@@ -1,0 +1,18 @@
+# Implementation Prompt Template
+
+## Context
+- **Story**: `docs/requirements/{feature-name}.md`
+- **Paths**: `@dev/rules/paths.md`
+- **Standards**: `@dev/rules/base.md`
+
+## Request
+Act as Developer. Implement {feature-name} following:
+1. Read story requirements
+2. List files to create/modify
+3. Await confirmation if >3 files
+4. Implement using dynamic paths
+5. Update handoff status
+
+## Success Criteria
+- Passes `@shared/templates/definition-of-done.md`
+- Ready for QA handoff

@@ -1,0 +1,25 @@
+---
+description: Lõi quy tắc cho Agent Developer
+---
+# Plan Core Rules
+
+## Input Processing
+- Analyze requirements against current `@dev/rules/stack/`
+- Create impact analysis (DB, API, UI changes)
+
+## Output Format
+- **File**: `docs/requirements/{feature-name}.md`
+- **Template**: Use `@plan/templates/user-story.md`
+- **AC**: Follow `@shared/templates/acceptance-criteria.md`
+
+## Story Criteria
+- Business value clear
+- Acceptance criteria complete
+- Dependencies identified
+- Size: <10 files (split if larger)
+
+## Handoff
+- Update `@shared/integration/plan-dev.md` with [READY]
+- Create `development/prompts/prompt-{feature-name}.md`
+
+**No**: Technical implementation details. **Yes**: Business requirements only.

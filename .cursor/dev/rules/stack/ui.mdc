@@ -1,0 +1,25 @@
+---
+description: UI/UX standard for angular
+---
+# UI/UX Standards
+
+## Component Design
+**Atomic Design:** Atoms → Molecules → Organisms → Templates → Pages
+**Reusability:** Shared components in `/shared/components/`
+**Theming:** CSS custom properties for consistent styling
+**Responsive:** Mobile-first approach with breakpoints
+
+## User Experience
+**Loading States:** Skeleton screens, spinners, progress bars
+**Error Handling:** User-friendly error messages, retry mechanisms
+**Accessibility:** WCAG 2.1 AA compliance, semantic HTML
+**Performance:** Lazy loading, virtual scrolling for large lists
+
+## Form Patterns
+**Validation:** Real-time validation with clear error messages
+**Input Types:** Appropriate input types for data (email, tel, date)
+**Submission:** Disable submit during processing, success feedback
+
+## Integration
+**Angular Components:** Implemented using `@dev/rules/stack/frontend.md` patterns
+**API Integration:** Error handling for `@dev/rules/stack/api.md` responses

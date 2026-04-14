@@ -1,0 +1,19 @@
+---
+Description: Template cho Acceptance Criteria (BDD)
+---
+
+# AC Template (Given - When - Then)
+**Scenario:** [Tên ngữ cảnh test]
+**Given:** [Tiền điều kiện - VD: User đang ở trang Login]
+**When:** [Hành động - VD: User nhập sai mật khẩu 3 lần]
+**Then:** [Kết quả mong đợi - VD: Hệ thống khóa tài khoản trong 15 phút]
+
+*Agent PM bắt buộc dùng format này để Agent QA dễ viết automation test*
+
+## Technical Constraints (For @Dev)
+**Folder Structure:**
+- Requests: `src/[P].Application/Models/[F]/Requests/`
+- Responses: `src/[P].Application/Models/[F]/Responses/`
+- Entities: `src/[P].Domain/Entities/`
+
+**Rule:** One file, one primary type. Namespace must match folder path.

@@ -1,0 +1,24 @@
+---
+description: [MANUAL] Checklist Định nghĩa hoàn thành (DoD)
+---
+
+# Definition of Done (DoD)
+
+Dev và QA không được đóng Task nếu thiếu:
+
+- [ ] Code tuân thủ Clean Architecture / Design Patterns
+- [ ] Không có cảnh báo/lỗi khi build
+- [ ] Pass toàn bộ AC từ `@shared/templates/acceptance-criteria.md`
+- [ ] Đã có Unit Test và pass 100%
+- [ ] @QA đã xác nhận "Pass" trên môi trường Test
+
+.cursor/shared/templates/definition-of-ready.md
+# Definition of Ready (DoR)
+
+Task chỉ được chuyển sang Dev khi:
+
+- [ ] User Story rõ ràng giá trị kinh doanh
+- [ ] AC viết theo `@shared/templates/acceptance-criteria.md`
+- [ ] Đã có thiết kế UI/UX hoặc mô tả luồng dữ liệu
+- [ ] Dependencies bên ngoài đã được giải quyết
+- [ ] Được @Plan phê duyệt qua `@shared/integration/plan-dev.md`

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Appointment - Paws &amp; Whiskers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#ffd0e2",
+                        "secondary-dim": "#8b2a5f",
+                        "on-background": "#4a2135",
+                        "tertiary-dim": "#533da6",
+                        "on-primary": "#ffeff0",
+                        "error-container": "#fb5151",
+                        "background": "#fff4f6",
+                        "surface-tint": "#b7004d",
+                        "primary-container": "#ff7294",
+                        "outline-variant": "#d79db5",
+                        "surface-container-low": "#ffecf1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#4a2135",
+                        "surface-container-highest": "#ffd0e2",
+                        "surface-container-high": "#ffd8e6",
+                        "tertiary-fixed": "#b5a4ff",
+                        "surface-container": "#ffe0eb",
+                        "on-secondary-fixed": "#670842",
+                        "on-primary-fixed-variant": "#5e0024",
+                        "secondary-fixed": "#ffc0da",
+                        "error-dim": "#9f0519",
+                        "primary-fixed-dim": "#ff5484",
+                        "primary": "#b7004d",
+                        "on-primary-fixed": "#000000",
+                        "surface-dim": "#ffc4dc",
+                        "on-secondary": "#ffeff3",
+                        "secondary-container": "#ffc0da",
+                        "tertiary": "#5f4ab3",
+                        "on-error": "#ffefee",
+                        "on-tertiary": "#f6f0ff",
+                        "inverse-on-surface": "#c58da5",
+                        "on-tertiary-fixed-variant": "#3c238e",
+                        "inverse-surface": "#220213",
+                        "primary-dim": "#a00043",
+                        "on-secondary-container": "#802156",
+                        "on-error-container": "#570008",
+                        "on-surface-variant": "#7d4d62",
+                        "on-primary-container": "#4d001c",
+                        "on-tertiary-fixed": "#190057",
+                        "error": "#b31b25",
+                        "surface-bright": "#fff4f6",
+                        "on-tertiary-container": "#331786",
+                        "tertiary-fixed-dim": "#a894ff",
+                        "secondary-fixed-dim": "#ffabd0",
+                        "primary-fixed": "#ff7294",
+                        "surface": "#fff4f6",
+                        "tertiary-container": "#b5a4ff",
+                        "outline": "#9c687e",
+                        "on-secondary-fixed-variant": "#8c2b60",
+                        "inverse-primary": "#ff4d80",
+                        "secondary": "#9a366b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #fff4f6;
+            color: #4a2135;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .velveteen-gradient {
+            background: linear-gradient(135deg, #b7004d 0%, #ff7294 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface selection:bg-primary-container/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fff4f6]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(74,33,53,0.05)]">
+<div class="flex items-center px-6 h-16 w-full max-w-screen-xl mx-auto">
+<button class="material-symbols-outlined text-[#b7004d] p-2 -ml-2 rounded-full hover:bg-[#ffd0e2]/30 active:scale-95 transition-all duration-200">
+                arrow_back
+            </button>
+<div class="flex-grow text-center">
+<h1 class="text-[#b7004d] font-plus-jakarta-sans font-bold tracking-tight text-lg">Book Appointment</h1>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="pt-20 pb-32 max-w-xl mx-auto px-6">
+<!-- Section 1: Calendar Strip -->
+<section class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold tracking-tight text-on-surface">September 2024</h2>
+<span class="text-primary font-semibold text-sm">Today</span>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar py-2">
+<!-- Inactive Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full bg-surface-container-low transition-all duration-300">
+<span class="text-xs font-medium text-on-surface-variant opacity-60">Mon</span>
+<span class="text-lg font-bold">12</span>
+</div>
+<!-- Inactive Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full bg-surface-container-low transition-all duration-300">
+<span class="text-xs font-medium text-on-surface-variant opacity-60">Tue</span>
+<span class="text-lg font-bold">13</span>
+</div>
+<!-- Active Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full velveteen-gradient text-on-primary shadow-lg shadow-primary/20 transition-all duration-300 scale-105">
+<span class="text-xs font-medium opacity-90">Wed</span>
+<span class="text-lg font-bold">14</span>
+</div>
+<!-- Inactive Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full bg-surface-container-low transition-all duration-300">
+<span class="text-xs font-medium text-on-surface-variant opacity-60">Thu</span>
+<span class="text-lg font-bold">15</span>
+</div>
+<!-- Inactive Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full bg-surface-container-low transition-all duration-300">
+<span class="text-xs font-medium text-on-surface-variant opacity-60">Fri</span>
+<span class="text-lg font-bold">16</span>
+</div>
+<!-- Inactive Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full bg-surface-container-low transition-all duration-300">
+<span class="text-xs font-medium text-on-surface-variant opacity-60">Sat</span>
+<span class="text-lg font-bold">17</span>
+</div>
+<!-- Inactive Day -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-full bg-surface-container-low transition-all duration-300">
+<span class="text-xs font-medium text-on-surface-variant opacity-60">Sun</span>
+<span class="text-lg font-bold">18</span>
+</div>
+</div>
+</section>
+<!-- Section 2: Services -->
+<section class="mb-10">
+<h2 class="text-xl font-bold tracking-tight text-on-surface mb-6">Select Service</h2>
+<div class="grid grid-cols-2 gap-4">
+<!-- Card 1: Active State -->
+<div class="p-5 rounded-3xl bg-surface-container-highest shadow-[0_8px_32px_rgba(74,33,53,0.08)] ring-2 ring-primary transition-all duration-300 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all"></div>
+<span class="material-symbols-outlined text-primary text-3xl mb-3 block" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<h3 class="font-bold text-on-surface mb-1">General Checkup</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Routine wellness and health monitoring.</p>
+</div>
+<!-- Card 2 -->
+<div class="p-5 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 relative overflow-hidden group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl mb-3 block">content_cut</span>
+<h3 class="font-bold text-on-surface mb-1">Grooming</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Bath, trim, and aesthetic pet care.</p>
+</div>
+<!-- Card 3 -->
+<div class="p-5 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 relative overflow-hidden group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl mb-3 block">vaccines</span>
+<h3 class="font-bold text-on-surface mb-1">Vaccination</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Essential immunizations for safety.</p>
+</div>
+<!-- Card 4 -->
+<div class="p-5 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 relative overflow-hidden group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl mb-3 block">biotech</span>
+<h3 class="font-bold text-on-surface mb-1">Surgery</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Specialized medical procedures.</p>
+</div>
+</div>
+</section>
+<!-- Section 3: Time Slots -->
+<section class="mb-6">
+<h2 class="text-xl font-bold tracking-tight text-on-surface mb-6">Select Time</h2>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 rounded-full bg-surface-container-low text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-colors active:scale-95">09:00 AM</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-low text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-colors active:scale-95">10:00 AM</button>
+<!-- Active Slot -->
+<button class="px-6 py-3 rounded-full velveteen-gradient text-on-primary font-semibold text-sm shadow-lg shadow-primary/20 active:scale-95">11:30 AM</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-low text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-colors active:scale-95">02:00 PM</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-low text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-colors active:scale-95">04:30 PM</button>
+</div>
+</section>
+<!-- Aesthetic Decoration -->
+<div class="mt-12 flex justify-center opacity-10">
+<span class="material-symbols-outlined text-8xl">pets</span>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="fixed bottom-0 left-0 right-0 p-6 bg-surface/80 backdrop-blur-xl max-w-xl mx-auto">
+<button class="w-full py-4 rounded-full velveteen-gradient text-on-primary font-headline font-bold text-lg shadow-[0_12px_24px_rgba(183,0,77,0.25)] hover:brightness-105 active:scale-[0.98] transition-all duration-200">
+            Confirm Booking
+        </button>
+</footer>
+</body></html>

@@ -1,0 +1,11 @@
+---
+description: Build rule for story-testing
+---
+"- Đọc story và AC tại `docs/requirements/`.
+- Tạo test case theo Given/When/Then.
+- Chuẩn bị test data cho positive/negative cases.
+- Chạy Unit/API/E2E theo phạm vi thay đổi.
+- Ghi kết quả Pass/Fail theo từng AC.
+- Nếu fail, gửi bug kèm evidence qua `@shared/integration/qa-plan.md`.
+- Nếu pass, phản hồi kết quả qua `@shared/integration/dev-qa.md`.
+- Đánh dấu rõ test chưa chạy và lý do chặn."

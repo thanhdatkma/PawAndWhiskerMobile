@@ -1,0 +1,26 @@
+---
+description: [MANUAL] Template viết User Story chuẩn
+---
+*Title:** [Short, descriptive name]
+**Story:** As a [User Role], I want [Action] so that [Value]
+**AC:** Sử dụng `@shared/templates/acceptance-criteria.md`
+**Note:** Tham chiếu ràng buộc kỹ thuật tại `@dev/rules/base.md` (nếu có)
+
+.cursor/dev/rules/base.md 
+# Dev Core Rules
+
+## Activation
+- Only when task status = [READY] in `@shared/integration/plan-dev.md`
+- Read requirements from `docs/requirements/`
+
+## Implementation
+- **Confirm first**: List files to create/modify (>3 files requires approval)
+- **Paths**: Use `@dev/rules/paths.md` dynamic mapping
+- **Standards**: SOLID, Clean naming, Namespace = Folder
+- **Output**: File paths only, no explanations
+
+## Completion
+- Pass `@shared/templates/definition-of-done.md`
+- Update `@shared/integration/dev-qa.md` with [READY_FOR_QA]
+
+**Max**: 10 files/request. No AC changes without Plan approval.

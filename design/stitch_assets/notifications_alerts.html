@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notifications &amp; Alerts | Paws &amp; Whiskers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#f6f0ff",
+                    "secondary-dim": "#8b2a5f",
+                    "on-primary-fixed-variant": "#5e0024",
+                    "tertiary": "#5f4ab3",
+                    "error": "#b31b25",
+                    "on-secondary": "#ffeff3",
+                    "tertiary-fixed-dim": "#a894ff",
+                    "error-container": "#fb5151",
+                    "primary-container": "#ff7294",
+                    "on-primary": "#ffeff0",
+                    "background": "#fff4f6",
+                    "surface-container": "#ffe0eb",
+                    "outline": "#9c687e",
+                    "tertiary-dim": "#533da6",
+                    "secondary-fixed": "#ffc0da",
+                    "primary-fixed": "#ff7294",
+                    "on-tertiary-fixed-variant": "#3c238e",
+                    "on-tertiary-fixed": "#190057",
+                    "primary-dim": "#a00043",
+                    "surface-dim": "#ffc4dc",
+                    "primary-fixed-dim": "#ff5484",
+                    "surface-container-high": "#ffd8e6",
+                    "on-surface-variant": "#7d4d62",
+                    "inverse-surface": "#220213",
+                    "on-secondary-container": "#802156",
+                    "primary": "#b7004d",
+                    "surface-tint": "#b7004d",
+                    "on-surface": "#4a2135",
+                    "on-secondary-fixed-variant": "#8c2b60",
+                    "error-dim": "#9f0519",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#9a366b",
+                    "on-error-container": "#570008",
+                    "on-primary-fixed": "#000000",
+                    "secondary-container": "#ffc0da",
+                    "surface-container-highest": "#ffd0e2",
+                    "surface-bright": "#fff4f6",
+                    "surface": "#fff4f6",
+                    "on-tertiary-container": "#331786",
+                    "surface-container-low": "#ffecf1",
+                    "on-background": "#4a2135",
+                    "surface-variant": "#ffd0e2",
+                    "on-error": "#ffefee",
+                    "inverse-primary": "#ff4d80",
+                    "tertiary-fixed": "#b5a4ff",
+                    "inverse-on-surface": "#c58da5",
+                    "on-secondary-fixed": "#670842",
+                    "on-primary-container": "#4d001c",
+                    "outline-variant": "#d79db5",
+                    "secondary-fixed-dim": "#ffabd0",
+                    "tertiary-container": "#b5a4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fff4f6]/80 dark:bg-[#1a1114]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(74,33,53,0.05)]">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#4a2135]/60 hover:bg-[#ffecf1] rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-[#b7004d] text-xl">Notifications</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden shadow-sm">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a smiling young man with friendly eyes in a bright professional studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXtcloteVucW7rdkDVrHsUhbJjp-2H34ACgAJvoLqZGqJgFaWYkDV7-eWtaIH9krGwZj5ADAYkvs6wrBPeiyt73GWzw3U55xsLzNH4i-iBzWK7fRpnwAdIIe6wiC9veLn8dmG65Lnzrh3pcsfa-4LrgC1vr-JTdVXrVkLOILShK5Xm_-GS99g8Kry4OEdOv6y38pK0SbXiMDefan8FD7LDHywEKv3sXl6uP99EgwAuWTWGBx6XwGeOrF46aK3OJYQLi_DeL1sx4Dk"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Today Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-lg font-bold tracking-tight text-on-surface/80">Today</h2>
+<button class="text-sm font-semibold text-primary hover:text-primary-dim transition-colors">Mark all as read</button>
+</div>
+<div class="space-y-4">
+<!-- Medical Alert -->
+<div class="bg-error-container/10 p-5 rounded-3xl flex items-start gap-4 shadow-[0_8px_32px_rgba(179,27,37,0.06)] hover:bg-error-container/15 transition-all">
+<div class="bg-error-container/20 p-3 rounded-2xl flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-2xl" data-icon="medical_services">medical_services</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-[#b31b25] leading-tight">Vaccine due for Bella</h3>
+<span class="text-[11px] font-medium text-[#b31b25]/60 mt-1 uppercase tracking-wider">Just now</span>
+</div>
+<p class="text-sm text-[#b31b25]/80 font-medium">Bella's annual rabies booster is due by Friday. Schedule an appointment at Paws Clinic today.</p>
+</div>
+</div>
+<!-- Reminder Alert -->
+<div class="bg-blue-50/80 p-5 rounded-3xl flex items-start gap-4 shadow-[0_8px_32px_rgba(59,130,246,0.04)] hover:bg-blue-100/50 transition-all">
+<div class="bg-blue-100 p-3 rounded-2xl flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined text-2xl" data-icon="content_cut">content_cut</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-blue-800 leading-tight">Grooming appointment today</h3>
+<span class="text-[11px] font-medium text-blue-600/60 mt-1 uppercase tracking-wider">2h ago</span>
+</div>
+<p class="text-sm text-blue-800/80 font-medium">Reminder: Luna has a full spa treatment and bath at 2:30 PM with Groomer Mark.</p>
+</div>
+</div>
+<!-- Offer Alert -->
+<div class="bg-tertiary-container/20 p-5 rounded-3xl flex items-start gap-4 shadow-[0_8px_32px_rgba(95,74,179,0.06)] hover:bg-tertiary-container/30 transition-all">
+<div class="bg-tertiary-container/40 p-3 rounded-2xl flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-2xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-tertiary leading-tight">20% off Spa Services</h3>
+<span class="text-[11px] font-medium text-tertiary/60 mt-1 uppercase tracking-wider">5h ago</span>
+</div>
+<p class="text-sm text-tertiary/80 font-medium">Limited time! Give your pet the royal treatment with our seasonal summer spa discount.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Earlier Section -->
+<section class="space-y-4 pt-4">
+<h2 class="text-lg font-bold tracking-tight text-on-surface/80 px-2">Yesterday</h2>
+<div class="space-y-4">
+<!-- Order Alert -->
+<div class="bg-emerald-50/80 p-5 rounded-3xl flex items-start gap-4 shadow-[0_8px_32px_rgba(16,185,129,0.04)] hover:bg-emerald-100/50 transition-all">
+<div class="bg-emerald-100 p-3 rounded-2xl flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined text-2xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-emerald-800 leading-tight">Premium Kibble Shipped</h3>
+<span class="text-[11px] font-medium text-emerald-600/60 mt-1 uppercase tracking-wider">Yesterday</span>
+</div>
+<p class="text-sm text-emerald-800/80 font-medium">Your monthly subscription order #PW-9283 is on its way and should arrive by tomorrow evening.</p>
+</div>
+</div>
+<!-- Card with Image (Engagement) -->
+<div class="bg-surface-container-low p-5 rounded-3xl flex flex-col gap-4 shadow-[0_8px_32px_rgba(74,33,53,0.05)]">
+<div class="flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-2xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="photo_camera">photo_camera</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-on-surface leading-tight">New Photo from Daycare</h3>
+<span class="text-[11px] font-medium text-on-surface/40 mt-1 uppercase tracking-wider">Yesterday</span>
+</div>
+<p class="text-sm text-on-surface/70 font-medium">Cooper had a blast playing with his friends today! See the latest activity photos.</p>
+</div>
+</div>
+<div class="w-full h-48 rounded-2xl overflow-hidden mt-1">
+<img alt="Pets playing" class="w-full h-full object-cover" data-alt="Happy golden retriever and a border collie playing together in a bright sunny park with soft focus greenery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiotXZucN5GWh9KBjXzu5Grja_9Ck3S13v-0D5Fkf2E-P-vq_rBWeZGw6uRnnMujA6ZzQfGgVbMeum_4CkibMMd04HUYwZXOrgWaxPpOSkTnErgKhJr4ju4yVdPKoyhYobA6JI3FgPvGRPBCR9z3z713TvzACuLlwoi_pPDb7q3ga57TRdvAKJEVg6VAJBu_n80pnnt-5RvKTTl3tOB4WmbdCmPZ9Vc37PVv4bsp4iMTRDABgVBajGYuwsaahUhqHHu1mkSkni9CM"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Empty State Logic (Subtle) -->
+<div class="py-12 flex flex-col items-center justify-center text-center px-8 space-y-4">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center text-primary/20">
+<span class="material-symbols-outlined text-4xl" data-icon="history">history</span>
+</div>
+<p class="text-sm font-medium text-on-surface/40 max-w-[200px]">You've caught up with all your latest alerts.</p>
+</div>
+</main>
+<!-- Navigation Shell Placeholder -->
+<app-bottom-nav></app-bottom-nav>
+<!-- Navigation Implementation Logic -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#fff4f6]/80 dark:bg-[#1a1114]/80 backdrop-blur-xl rounded-t-[32px] shadow-[0_-8px_48px_rgba(74,33,53,0.08)]">
+<div class="max-w-screen-xl mx-auto flex justify-around items-center px-4 pt-2 pb-6">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-[#4a2135]/50 dark:text-[#ffd0e2]/50 px-5 py-2.5 hover:bg-[#ffecf1] transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-medium">Home</span>
+</a>
+<!-- Pets -->
+<a class="flex flex-col items-center justify-center text-[#4a2135]/50 dark:text-[#ffd0e2]/50 px-5 py-2.5 hover:bg-[#ffecf1] transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="pets">pets</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-medium">Pets</span>
+</a>
+<!-- Alerts (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-[#ffd0e2] dark:bg-[#b7004d]/30 text-[#b7004d] dark:text-[#ffd0e2] rounded-2xl px-5 py-2.5 active:scale-90 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-medium">Alerts</span>
+</a>
+<!-- Shop -->
+<a class="flex flex-col items-center justify-center text-[#4a2135]/50 dark:text-[#ffd0e2]/50 px-5 py-2.5 hover:bg-[#ffecf1] transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Be_Vietnam_Pro'] text-[11px] font-medium">Shop</span>
+</a>
+</div>
+</nav>
+</body></html>

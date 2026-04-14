@@ -1,0 +1,10 @@
+---
+description: [MANUAL] Prompt Sprint Review
+---
+# Prompt: Sprint Review
+"Dựa vào các story hoàn tất trong Sprint, hãy:
+1) liệt kê Increment đã bàn giao,
+2) đối chiếu từng item với AC và DoD,
+3) tổng hợp feedback từ stakeholder,
+4) đề xuất item cần đưa lại Product Backlog.
+Mỗi feedback phải map rõ về story hoặc AC tương ứng."

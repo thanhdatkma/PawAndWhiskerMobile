@@ -1,0 +1,13 @@
+---
+description: [AUTO] Quy tắc Entity Framework & Database
+---
+- Dùng Repository/UoW cho domain phức tạp; CRUD đơn giản dùng DbContext
+- Dùng `.AsNoTracking()` cho query read-only
+- Dùng projection DTO cho danh sách/read model
+- Bắt buộc paging/filtering cho endpoint list
+- Giữ 1 request = 1 transaction boundary
+- Dùng optimistic concurrency cho bản ghi quan trọng
+- Quản lý schema bằng EF Migrations
+- Ưu tiên migration additive trước remove/rename
+- Tách seed dữ liệu theo môi trường
+- Không chạy transaction dài qua network call ngoài DB

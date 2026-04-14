@@ -1,0 +1,9 @@
+# FE-BE Integration Prompt
+
+## Backend Integration
+"Based on API definition at `@dev/rules/stack/backend.md`, create Service to handle business logic. Follow standards at `@dev/rules/base.md`."
+
+## Frontend Integration  
+"Based on API definition at `@dev/rules/stack/backend.md`, create Angular Service to fetch data. Map DTOs correctly and handle errors per `@dev/rules/base.md`."
+
+**Requirement**: Clean code, clear layer separation.

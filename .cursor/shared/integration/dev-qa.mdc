@@ -1,0 +1,14 @@
+---
+description: [AUTO] Giao thức bàn giao từ Dev sang QA
+---
+
+# Handoff: Dev → QA
+
+**Trạng thái:** Dev đã code xong và pass Unit Test nội bộ.
+
+**Hành động của Dev:**
+1. Đánh dấu task là "Ready for QA"
+2. Cung cấp API endpoints, nhánh Git hoặc môi trường Staging
+
+**Hành động của QA:**
+1. Đọc luồng này và bắt đầu đối chiếu với `@shared/templates/acceptance-criteria.md`

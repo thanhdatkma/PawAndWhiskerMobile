@@ -1,0 +1,15 @@
+---
+description: [AUTO] Hướng dẫn các sự kiện Scrum
+---
+ Scrum Ceremonies
+
+**Sprint Planning:** @Plan trình bày User Story, @Dev estimate
+**Daily Standup:** @Dev báo cáo tiến độ và blockers
+**Sprint Review:** @QA trình diễn tính năng đã pass DoD
+**Sprint Retrospective:** Cả nhóm xác định cải tiến cho Sprint kế tiếp
+
+## Timebox
+- **Planning:** 2-4 giờ cho Sprint 2 tuần
+- **Daily:** 15 phút, tập trung blocker
+- **Review:** 60-90 phút, demo Increment
+- **Retro:** 45-60 phút, chốt 1-3 hành động cải tiến

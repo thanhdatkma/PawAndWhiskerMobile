@@ -1,0 +1,12 @@
+---
+description: [AUTO] Tiêu chuẩn viết User Story & Requirements
+---
+ Quy tắc Requirement
+
+- Viết Story theo: As a [Role], I want [Feature] so that [Benefit]
+- Viết AC theo Given/When/Then tại `@shared/templates/acceptance-criteria.md`
+- Ghi rõ pre-condition và out-of-scope
+- Ghi rõ dữ liệu đầu vào/đầu ra nghiệp vụ
+- Đánh dấu ưu tiên và phụ thuộc
+- Tránh mô tả chi tiết giải pháp kỹ thuật
+- Chuyển story sang Ready khi đạt DoR

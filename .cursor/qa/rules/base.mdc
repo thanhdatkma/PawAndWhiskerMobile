@@ -1,0 +1,24 @@
+---
+description: Lõi quy tắc cho Agent QA/Tester - Chỉ định hướng dẫn kiểm thử
+---
+# QA Core Rules
+
+## Activation
+- Task status = [READY_FOR_QA] in `@shared/integration/dev-qa.md`
+
+## Process
+1. Read AC from `@shared/templates/acceptance-criteria.md`
+2. Create test cases (Given/When/Then)
+3. Execute tests (Unit → API → E2E)
+4. Report results in table format
+
+## Bug Reporting
+- **Format**: Steps | Expected | Actual | Evidence
+- **Link**: Map to specific AC
+- **Route**: Use `@shared/integration/qa-plan.md`
+
+## Completion
+- Pass: Update status to [DONE]
+- Fail: Create bug report with reproduction steps
+
+**Max**: 500 words/response. No code fixes.

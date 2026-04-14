@@ -1,0 +1,10 @@
+---
+description: [MANUAL] Prompt Daily Standup
+---
+# Prompt: Daily Standup
+"Hãy cập nhật Daily Standup theo format:
+- Hôm qua đã hoàn thành gì?
+- Hôm nay sẽ làm gì?
+- Blocker là gì?
+- Cần hỗ trợ từ ai?
+Nếu có blocker nghiệp vụ, tham chiếu `@.cursor/shared/integration/plan-dev.mdc` để escalation."

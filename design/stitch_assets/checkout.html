@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Paws &amp; Whiskers</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-dim": "#533da6",
+                    "error": "#b31b25",
+                    "error-dim": "#9f0519",
+                    "inverse-on-surface": "#c58da5",
+                    "secondary-fixed": "#ffc0da",
+                    "primary-fixed": "#ff7294",
+                    "surface-bright": "#fff4f6",
+                    "on-primary-fixed-variant": "#5e0024",
+                    "secondary": "#9a366b",
+                    "on-surface": "#4a2135",
+                    "on-background": "#4a2135",
+                    "on-secondary-fixed-variant": "#8c2b60",
+                    "inverse-primary": "#ff4d80",
+                    "tertiary": "#5f4ab3",
+                    "outline-variant": "#d79db5",
+                    "on-tertiary": "#f6f0ff",
+                    "on-error": "#ffefee",
+                    "primary-fixed-dim": "#ff5484",
+                    "on-primary-container": "#4d001c",
+                    "primary": "#b7004d",
+                    "on-tertiary-fixed": "#190057",
+                    "inverse-surface": "#220213",
+                    "background": "#fff4f6",
+                    "surface-container-highest": "#ffd0e2",
+                    "tertiary-fixed": "#b5a4ff",
+                    "on-primary-fixed": "#000000",
+                    "on-primary": "#ffeff0",
+                    "on-tertiary-fixed-variant": "#3c238e",
+                    "surface": "#fff4f6",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-dim": "#8b2a5f",
+                    "primary-container": "#ff7294",
+                    "surface-container": "#ffe0eb",
+                    "on-error-container": "#570008",
+                    "tertiary-container": "#b5a4ff",
+                    "primary-dim": "#a00043",
+                    "outline": "#9c687e",
+                    "on-secondary-fixed": "#670842",
+                    "error-container": "#fb5151",
+                    "surface-variant": "#ffd0e2",
+                    "secondary-fixed-dim": "#ffabd0",
+                    "surface-dim": "#ffc4dc",
+                    "on-tertiary-container": "#331786",
+                    "secondary-container": "#ffc0da",
+                    "surface-container-low": "#ffecf1",
+                    "surface-container-high": "#ffd8e6",
+                    "on-secondary-container": "#802156",
+                    "on-surface-variant": "#7d4d62",
+                    "tertiary-fixed-dim": "#a894ff",
+                    "on-secondary": "#ffeff3",
+                    "surface-tint": "#b7004d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen">
+<!-- TopAppBar - Fixed according to JSON instruction -->
+<header class="sticky top-0 w-full z-50 bg-[#fff4f6]/80 backdrop-blur-xl tonal-shift-no-borders bg-gradient-to-b from-[#fff4f6] to-transparent shadow-[0_8px_32px_0_rgba(74,33,53,0.05)]">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<button class="text-[#b7004d] hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline text-lg font-bold tracking-tight text-[#b7004d]">Checkout</h1>
+<div class="w-6"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-6 py-8 space-y-12 pb-40">
+<!-- Shipping View -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Shipping</h2>
+</div>
+<div class="bg-surface-container-highest p-6 rounded-xl shadow-[0_8px_32px_0_rgba(183,0,77,0.08)] flex justify-between items-start">
+<div class="space-y-2">
+<p class="font-headline font-bold text-lg text-on-surface">Alex Johnson</p>
+<p class="text-on-surface-variant leading-relaxed">
+                        482 Sanctuary Lane<br/>
+                        Berry Hill, CA 90210
+                    </p>
+<p class="text-on-surface-variant text-sm">+1 (555) 924-1182</p>
+</div>
+<button class="text-primary font-bold text-sm hover:opacity-80 transition-opacity active:scale-95">Change</button>
+</div>
+</section>
+<!-- Payment Method -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Payment Method</h2>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Selected: Credit Card -->
+<div class="flex-shrink-0 min-w-[140px] p-6 bg-gradient-to-br from-[#b7004d] to-[#ff7294] text-on-primary rounded-xl flex flex-col items-center gap-3 active:scale-95 transition-transform cursor-pointer shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl">credit_card</span>
+<span class="font-headline font-bold text-sm">Credit Card</span>
+</div>
+<!-- Unselected: Apple Pay -->
+<div class="flex-shrink-0 min-w-[140px] p-6 bg-surface-container-low text-on-surface-variant rounded-xl flex flex-col items-center gap-3 active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-3xl">ios</span>
+<span class="font-headline font-bold text-sm">Apple Pay</span>
+</div>
+<!-- Unselected: Cash -->
+<div class="flex-shrink-0 min-w-[140px] p-6 bg-surface-container-low text-on-surface-variant rounded-xl flex flex-col items-center gap-3 active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-3xl">payments</span>
+<span class="font-headline font-bold text-sm">Cash</span>
+</div>
+</div>
+</section>
+<!-- Order Items (Asymmetric Layout Hint) -->
+<section class="space-y-6">
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Order Summary</h2>
+<div class="space-y-4">
+<div class="flex gap-4 items-center bg-surface-container-low p-4 rounded-xl">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Premium organic dog treats in artisanal minimalist packaging sitting on a soft pink velvet surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhE5_w3kP6Blhzf-YUliVVa5w4__pD-eHlOXp0disZInW6OMkyQ7zHbtu7wbruq5hDxIN6gowdtI-bK6jmov2q4Z8YMxK8pZU4Co4Xk049IB28tGKgIcXK0Qn3-QqQtvtpv0mW4tskMsEsPSTXghIKLL0Z0DKZujmECb0UrUvq4tMdvic6k4L1beF2qLJfGJ7hB0USs6VkwSzRCWxuhuj8jWzYWuOT5Z8PG5-nLxpU8FMRTvpvN5Pyx0akK5O_R2IztEZBjg3A6PY"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline font-bold text-on-surface">Artisan Berry Treats</h4>
+<p class="text-xs text-on-surface-variant">2x Organic Pouches</p>
+</div>
+<p class="font-headline font-bold text-primary">$45.00</p>
+</div>
+<div class="flex gap-4 items-center bg-surface-container-low p-4 rounded-xl">
+<div class="w-16 h-16 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Luxury handcrafted leather pet collar with brass hardware resting on a cream colored soft textile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe6ldZWb8HmMyYQzKBlNx-N87IuuLE1EOMeMFxtsdaWJLw7X9eNd1049EUJnAoK50Ewggv6UaV6Eo96Buz0X_gLLRm_aHW7eh9hfttA81DO8og8gJ1wF1w3FWTWzDdrVDadC5gCE2Q_VOgl0dGVDJ2b8BGstwr2dfaRITZuHP2n92vonKyyXMhTkvaY6V4qJF_pgTanbNutBMe4z-yo69-dAxP2T7ry5LqCw9drTDvgdFhk7HWwqfAeMD-K0NMo1tPuotLnUfxY9I"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline font-bold text-on-surface">Velvet Rose Collar</h4>
+<p class="text-xs text-on-surface-variant">1x Large</p>
+</div>
+<p class="font-headline font-bold text-primary">$86.49</p>
+</div>
+</div>
+</section>
+<!-- Order Notes -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Delivery Instructions</h2>
+<div class="relative group">
+<textarea class="w-full bg-surface-container-lowest text-on-surface p-6 rounded-xl border-none focus:ring-4 focus:ring-primary/10 placeholder:text-on-surface-variant/40 resize-none transition-all shadow-[0_4px_16px_0_rgba(74,33,53,0.02)]" placeholder="e.g. Please leave by the garden gate and don't ring the doorbell as the pets are sleeping..." rows="4"></textarea>
+</div>
+</section>
+</main>
+<!-- Custom Sticky Footer CTA -->
+<footer class="fixed bottom-0 left-0 w-full z-50">
+<!-- Visual background for the footer with glass effect and no top border -->
+<div class="bg-white/80 backdrop-blur-2xl px-6 pt-6 pb-10 shadow-[0_-8px_48px_0_rgba(74,33,53,0.08)] rounded-t-[40px]">
+<div class="max-w-2xl mx-auto flex items-center justify-between gap-6">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-xs font-label tracking-wider uppercase">Total amount</span>
+<span class="font-headline font-extrabold text-2xl text-on-surface">$131.49</span>
+</div>
+<button class="flex-1 bg-gradient-to-br from-[#b7004d] to-[#ff7294] text-on-primary py-4 px-8 rounded-full font-headline font-bold text-lg shadow-lg shadow-primary/25 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+                    Place Order
+                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,12 @@
+---
+description: [MANUAL] Tiêu chuẩn đầu vào cho lập trình (DoR)
+---
+# Definition of Ready (DoR)
+
+Task chỉ được chuyển sang Dev khi:
+
+- [ ] User Story rõ ràng giá trị kinh doanh
+- [ ] AC viết theo `@shared/templates/acceptance-criteria.md`
+- [ ] Đã có thiết kế UI/UX hoặc mô tả luồng dữ liệu
+- [ ] Dependencies bên ngoài đã được giải quyết
+- [ ] Được @Plan phê duyệt qua `@shared/integration/plan-dev.md`

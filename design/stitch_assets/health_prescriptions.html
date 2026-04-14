@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#ffd0e2",
+                    "surface-container-high": "#ffd8e6",
+                    "tertiary": "#5f4ab3",
+                    "tertiary-fixed": "#b5a4ff",
+                    "surface-tint": "#b7004d",
+                    "tertiary-fixed-dim": "#a894ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#ffd0e2",
+                    "primary-container": "#ff7294",
+                    "error-container": "#fb5151",
+                    "surface": "#fff4f6",
+                    "secondary-container": "#ffc0da",
+                    "tertiary-container": "#b5a4ff",
+                    "surface-container": "#ffe0eb",
+                    "primary-fixed": "#ff7294",
+                    "error": "#b31b25",
+                    "secondary-fixed-dim": "#ffabd0",
+                    "on-primary-container": "#4d001c",
+                    "outline-variant": "#d79db5",
+                    "inverse-on-surface": "#c58da5",
+                    "error-dim": "#9f0519",
+                    "secondary-fixed": "#ffc0da",
+                    "tertiary-dim": "#533da6",
+                    "on-surface": "#4a2135",
+                    "on-primary-fixed": "#000000",
+                    "on-error-container": "#570008",
+                    "primary-dim": "#a00043",
+                    "outline": "#9c687e",
+                    "secondary": "#9a366b",
+                    "primary-fixed-dim": "#ff5484",
+                    "on-tertiary-fixed-variant": "#3c238e",
+                    "on-error": "#ffefee",
+                    "inverse-surface": "#220213",
+                    "on-surface-variant": "#7d4d62",
+                    "on-background": "#4a2135",
+                    "on-secondary-fixed": "#670842",
+                    "primary": "#b7004d",
+                    "on-primary-fixed-variant": "#5e0024",
+                    "surface-bright": "#fff4f6",
+                    "on-tertiary-fixed": "#190057",
+                    "inverse-primary": "#ff4d80",
+                    "on-tertiary-container": "#331786",
+                    "on-tertiary": "#f6f0ff",
+                    "on-secondary-container": "#802156",
+                    "on-primary": "#ffeff0",
+                    "on-secondary-fixed-variant": "#8c2b60",
+                    "secondary-dim": "#8b2a5f",
+                    "surface-dim": "#ffc4dc",
+                    "background": "#fff4f6",
+                    "on-secondary": "#ffeff3",
+                    "surface-container-low": "#ffecf1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .velveteen-gradient {
+            background: linear-gradient(135deg, #b7004d 0%, #ff7294 100%);
+        }
+        .glass-card {
+            background: rgba(255, 244, 246, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#fff4f6]/80 backdrop-blur-xl shadow-[0_8px_32px_0px_rgba(74,33,53,0.05)]">
+<div class="flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[#ffecf1] transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined text-[#b7004d]">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-[#4a2135] text-xl">Health Records</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[#ffecf1] transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined text-[#b7004d]">more_vert</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Hero Health Status Card -->
+<section class="mb-10">
+<div class="relative w-full aspect-[16/10] velveteen-gradient rounded-3xl p-8 flex flex-col justify-between overflow-hidden shadow-[0_12px_40px_rgba(183,0,77,0.15)]">
+<!-- Decorative Elements -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-60 h-60 bg-white/5 rounded-full blur-2xl"></div>
+<div class="z-10 flex justify-between items-start">
+<div>
+<p class="text-on-primary/80 font-medium tracking-wide text-xs uppercase mb-1">Overall Health Score</p>
+<h2 class="text-on-primary text-5xl font-bold tracking-tighter">94%</h2>
+</div>
+<div class="glass-card px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/20">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-on-surface text-xs font-bold">Excellent</span>
+</div>
+</div>
+<div class="z-10">
+<div class="flex items-end gap-1 h-24 mb-4">
+<div class="flex-1 bg-white/20 rounded-t-lg h-[40%]"></div>
+<div class="flex-1 bg-white/30 rounded-t-lg h-[60%]"></div>
+<div class="flex-1 bg-white/20 rounded-t-lg h-[45%]"></div>
+<div class="flex-1 bg-white/40 rounded-t-lg h-[75%]"></div>
+<div class="flex-1 bg-white/30 rounded-t-lg h-[55%]"></div>
+<div class="flex-1 bg-white/60 rounded-t-lg h-[90%]"></div>
+<div class="flex-1 bg-white/80 rounded-t-lg h-full"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-primary/70 text-sm font-medium">Weight Consistency</span>
+<span class="text-on-primary font-bold">12.4 lbs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Prescriptions Section -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold tracking-tight">Prescriptions</h3>
+<button class="text-primary font-semibold text-sm hover:underline">See All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar -mx-6 px-6 pb-4">
+<!-- Pill Card 1 -->
+<div class="flex-shrink-0 w-48 bg-surface-container-low rounded-3xl p-6 shadow-[0_8px_24px_rgba(74,33,53,0.03)] flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">pill</span>
+</div>
+<h4 class="font-bold text-lg leading-tight mb-1">Apoquel</h4>
+<p class="text-on-surface-variant text-sm mb-4">Itch Relief</p>
+<div class="mt-auto bg-surface-container-highest px-4 py-1.5 rounded-full">
+<span class="text-primary font-bold text-xs">2x Day</span>
+</div>
+</div>
+<!-- Pill Card 2 -->
+<div class="flex-shrink-0 w-48 bg-white rounded-3xl p-6 shadow-[0_8px_24px_rgba(74,33,53,0.03)] flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-container/30 flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-3xl">vaccines</span>
+</div>
+<h4 class="font-bold text-lg leading-tight mb-1">NexGard</h4>
+<p class="text-on-surface-variant text-sm mb-4">Flea &amp; Tick</p>
+<div class="mt-auto bg-tertiary-container/50 px-4 py-1.5 rounded-full">
+<span class="text-tertiary font-bold text-xs">Monthly</span>
+</div>
+</div>
+<!-- Pill Card 3 -->
+<div class="flex-shrink-0 w-48 bg-surface-container-low rounded-3xl p-6 shadow-[0_8px_24px_rgba(74,33,53,0.03)] flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-3xl">medication</span>
+</div>
+<h4 class="font-bold text-lg leading-tight mb-1">Probiotic</h4>
+<p class="text-on-surface-variant text-sm mb-4">Gut Health</p>
+<div class="mt-auto bg-secondary-container px-4 py-1.5 rounded-full">
+<span class="text-secondary font-bold text-xs">1x Day</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Clinic Visits Section -->
+<section class="mb-8">
+<h3 class="text-2xl font-bold tracking-tight mb-8">Recent Clinic Visits</h3>
+<div class="space-y-6">
+<!-- Visit 1: Large & Asymmetric -->
+<div class="flex gap-4 items-start group">
+<div class="w-16 h-16 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 mt-2">
+<img class="w-full h-full object-cover" data-alt="professional veterinarian smiling in a bright modern pet clinic with soft pastel walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX4vkgyOKxWcbr6qCcO33wYb23Q3QPBjpVoZ4vHjWXZ-rziNMwP2x5WI3_yttyGmOTuq5YsWaJvGNIa8KQQ8Xp-7Cz4HAGldyQg7ZeRJQOtXygRXOS7fZkB7QyfQPJOK6GxliAXzeUg82V7BXi-ZPk00fDrDmhspqG4FVUJZIh2qkHiJhXy2Wo5YovVfFsSEk7r2Idk7srfhubs6gwoQmcFKMGVB05h1Ewolnhy8ZrRIgVGwtpf7iFfqpIZSg3JVFLrbtpGVN1E0Y"/>
+</div>
+<div class="flex-1 bg-white rounded-[2rem] p-6 shadow-[0_12px_32px_rgba(74,33,53,0.04)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-surface-container-low rounded-bl-full opacity-50 -mr-4 -mt-4"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold">Routine Checkup</h4>
+<span class="text-on-surface-variant text-xs font-medium">May 12</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm text-primary">person</span>
+<span class="text-on-surface-variant text-sm font-medium">Dr. Smith • Paws &amp; Claws Clinic</span>
+</div>
+<p class="text-on-surface/70 text-sm leading-relaxed">Annual vaccinations administered. Healthy weight and clear lung sounds. Next visit in 6 months.</p>
+</div>
+</div>
+</div>
+<!-- Visit 2: Shifted Asymmetric -->
+<div class="flex flex-row-reverse gap-4 items-start group">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center flex-shrink-0 mt-4">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-[2rem] p-6 shadow-[0_8px_24px_rgba(74,33,53,0.03)] border-r-4 border-primary/20">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold">Ear Infection</h4>
+<span class="text-on-surface-variant text-xs font-medium">Apr 24</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm text-primary">person</span>
+<span class="text-on-surface-variant text-sm font-medium">Dr. Elena Ross</span>
+</div>
+<p class="text-on-surface/70 text-sm leading-relaxed">Redness in left ear. Prescribed topical drops. Cleaned and flushed canal.</p>
+</div>
+</div>
+<!-- Visit 3: Simple Minimalist -->
+<div class="flex gap-4 items-start group">
+<div class="w-14 h-20 bg-secondary-container/20 rounded-3xl flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-secondary text-2xl">healing</span>
+</div>
+<div class="flex-1 bg-white rounded-[2rem] p-6 shadow-[0_12px_32px_rgba(74,33,53,0.04)]">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold">Nail Trimming</h4>
+<span class="text-on-surface-variant text-xs font-medium">Mar 15</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm text-primary">store</span>
+<span class="text-on-surface-variant text-sm font-medium">The Grooming Hub</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Grooming</span>
+<span class="px-3 py-1 bg-surface rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Quick Service</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB Action -->
+<button class="fixed bottom-8 right-8 w-16 h-16 velveteen-gradient text-on-primary rounded-2xl shadow-[0_16px_32px_rgba(183,0,77,0.3)] flex items-center justify-center active:scale-95 transition-all duration-300 z-50 group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-500">add</span>
+<!-- Optional Label revealed on hover/desktop -->
+<span class="absolute right-full mr-4 bg-on-surface text-white px-4 py-2 rounded-xl text-sm font-bold opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap">Add Record</span>
+</button>
+</body></html>

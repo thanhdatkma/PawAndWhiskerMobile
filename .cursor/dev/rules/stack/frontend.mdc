@@ -1,0 +1,29 @@
+---
+description: [AUTO] Angular Standards
+---
+
+# Angular Architecture
+
+## Project Structure
+**Core Module:** Singletons (auth, http, guards)
+**Shared Module:** Reusable components, pipes, directives
+**Feature Modules:** Business logic, lazy-loaded
+**Standalone Components:** Preferred for new components
+**Naming:** `name.component.ts`, `name.service.ts`, `name.model.ts`
+
+## State Management
+**Local State:** Angular Signals
+**Component Communication:** Input/Output properties
+**Global State:** Services with BehaviorSubject/ Ngrxjs
+**Forms:** Reactive Forms with typed FormControls
+**RxJS:** No nested `.subscribe()`. Use `async` pipe or `takeUntilDestroyed`
+
+## Routing & Navigation
+**Lazy Loading:** Feature modules loaded on demand
+**Guards:** Route protection and data resolution
+**Resolvers:** Pre-load data before route activation
+
+## Integration
+**API Consumption:** HTTP services calling `@dev/rules/stack/api.md` endpoints
+**UI Components:** Following `@dev/rules/stack/ui.md` standards
+**Data Flow:** Models from `@dev/rules/stack/data.md` DTOs

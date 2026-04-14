@@ -1,0 +1,19 @@
+---
+description: [AUTO] Tương tác giữa các vai trò
+---
+
+# Role Interaction
+
+**Plan <-> Dev:** Qua `@shared/integration/plan-dev.md` (Làm rõ yêu cầu)
+**Dev <-> QA:** Qua `@shared/integration/dev-qa.md` (Bàn giao code)
+**QA <-> Plan:** Qua `@shared/integration/qa-plan.md` (Phản hồi chất lượng)
+
+## Scrum Responsibilities
+**@Plan/PO:** Chịu trách nhiệm giá trị sản phẩm, thứ tự ưu tiên backlog
+**@Dev:** Chịu trách nhiệm thiết kế kỹ thuật, code, unit test
+**@QA:** Chịu trách nhiệm xác minh AC/DoD, test evidence, bug triage
+
+## Boundary Rules
+- Plan không chỉ định giải pháp kỹ thuật chi tiết
+- Dev không thay đổi business intent/AC
+- QA không sửa code sản phẩm

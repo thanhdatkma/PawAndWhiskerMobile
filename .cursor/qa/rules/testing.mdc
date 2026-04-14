@@ -1,0 +1,15 @@
+# Testing Pyramid
+
+- Unit test cho logic đơn vị
+- Integration test cho API, DB, message flow
+- E2E cho user journey quan trọng
+- Ưu tiên test theo rủi ro và phạm vi thay đổi
+- Dừng pipeline khi test level bắt buộc fail
+- Gửi lỗi qua `@shared/integration/qa-plan.md`
+- Đính kèm evidence cho mỗi lỗi
+- Đánh dấu test flaky và tách riêng khỏi gate bắt buộc
+
+## Test Automation
+- Tự động hóa Happy Path và Regression chính
+- Duy trì suite chạy ổn định trong CI/CD
+- Ưu tiên API test cho nghiệp vụ lõi

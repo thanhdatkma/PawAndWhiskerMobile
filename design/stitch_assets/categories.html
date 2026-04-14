@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"primary-dim": "#a00043", outline: "#9c687e", "on-error-container": "#570008", "tertiary-container": "#b5a4ff", "surface-container": "#ffe0eb", "surface-container-lowest": "#ffffff", "secondary-dim": "#8b2a5f", "primary-container": "#ff7294", surface: "#fff4f6", "surface-tint": "#b7004d", "on-secondary": "#ffeff3", "on-surface-variant": "#7d4d62", "tertiary-fixed-dim": "#a894ff", "on-secondary-container": "#802156", "surface-container-low": "#ffecf1", "surface-container-high": "#ffd8e6", "secondary-container": "#ffc0da", "surface-dim": "#ffc4dc", "on-tertiary-container": "#331786", "error-container": "#fb5151", "surface-variant": "#ffd0e2", "secondary-fixed-dim": "#ffabd0", "on-secondary-fixed": "#670842", tertiary: "#5f4ab3", "on-secondary-fixed-variant": "#8c2b60", "inverse-primary": "#ff4d80", "on-background": "#4a2135", "on-surface": "#4a2135", secondary: "#9a366b", "surface-bright": "#fff4f6", "on-primary-fixed-variant": "#5e0024", "primary-fixed": "#ff7294", "secondary-fixed": "#ffc0da", "inverse-on-surface": "#c58da5", "error-dim": "#9f0519", "tertiary-dim": "#533da6", error: "#b31b25", "on-tertiary-fixed-variant": "#3c238e", "on-primary": "#ffeff0", "on-primary-fixed": "#000000", "surface-container-highest": "#ffd0e2", "tertiary-fixed": "#b5a4ff", "inverse-surface": "#220213", background: "#fff4f6", primary: "#b7004d", "on-tertiary-fixed": "#190057", "primary-fixed-dim": "#ff5484", "on-primary-container": "#4d001c", "on-error": "#ffefee", "on-tertiary": "#f6f0ff", "outline-variant": "#d79db5"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, fontFamily: {headline: ["Plus Jakarta Sans"], body: ["Be Vietnam Pro"], label: ["Be Vietnam Pro"], display: "Plus Jakarta Sans"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #fff4f6;
+            color: #4a2135;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<nav class="flex justify-between items-center w-full px-6 py-4 fixed top-0 z-50 bg-[#fff4f6]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(74,33,53,0.05)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#b7004d] text-3xl" data-icon="pets">pets</span>
+<span class="font-['Plus_Jakarta_Sans'] font-black text-[#b7004d] tracking-tighter text-2xl">Paws &amp; Whiskers</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a friendly pet owner smiling against a soft warm pink background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxaea1jT5BEPVwv-roitoRHJGMZN9oc8Xgch_dSD3Gw6jWb_j7xDum5xQjze1sjSB6ZGY0WQX2uffk8DUM_39n8fWIPusv-q2Rvl4smtlNcHLMDOzVsCeXv7TAJ8Pt3J9sOAx4t8_BmouCJKTflB4qbBZ2gfvjBtE_fyNk8uchkrKz4BqxzBabwbEnEp524niwhiAfvzUNH6VZ41H3frR40XKNiESFz-8CiLmTfrGp0SwtwX0-ElM0vKH2674-SvCDF6T-Htlmvjc"/>
+</div>
+</nav>
+<main class="pt-24 pb-32">
+<!-- Search Section -->
+<div class="px-6 mb-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary-dim opacity-60" data-icon="search">search</span>
+</div>
+<input class="w-full h-16 pl-14 pr-6 rounded-full border-none bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/50 focus:ring-4 focus:ring-primary/10 shadow-[0_8px_24px_rgba(74,33,53,0.04)] transition-all font-body text-lg" placeholder="Search for kibble, toys, or vets..." type="text"/>
+</div>
+</div>
+<!-- Split View Layout -->
+<div class="flex h-[calc(100vh-280px)] overflow-hidden">
+<!-- Left Sidebar: Parent Categories -->
+<aside class="w-28 md:w-36 flex-shrink-0 bg-surface-container-low/50 overflow-y-auto hide-scrollbar py-4 space-y-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer px-2">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-surface-container-highest flex items-center justify-center text-primary transition-all group-hover:scale-105">
+<span class="material-symbols-outlined text-3xl" data-icon="dog" style="font-variation-settings: 'FILL' 1;">pets</span>
+</div>
+<span class="font-headline font-bold text-sm tracking-tight text-primary">Dog</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer px-2 opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface transition-all group-hover:scale-105">
+<span class="material-symbols-outlined text-3xl" data-icon="cat">pets</span>
+</div>
+<span class="font-headline font-semibold text-sm tracking-tight">Cat</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer px-2 opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface transition-all group-hover:scale-105">
+<span class="material-symbols-outlined text-3xl" data-icon="rabbit">pets</span>
+</div>
+<span class="font-headline font-semibold text-sm tracking-tight text-center">Small Pets</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer px-2 opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface transition-all group-hover:scale-105">
+<span class="material-symbols-outlined text-3xl" data-icon="set_meal">set_meal</span>
+</div>
+<span class="font-headline font-semibold text-sm tracking-tight">Fish</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer px-2 opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface transition-all group-hover:scale-105">
+<span class="material-symbols-outlined text-3xl" data-icon="flutter_dash">flutter_dash</span>
+</div>
+<span class="font-headline font-semibold text-sm tracking-tight">Birds</span>
+</div>
+</aside>
+<!-- Right Content Area: Sub-Categories -->
+<section class="flex-grow bg-surface-container-lowest rounded-tl-[3rem] overflow-y-auto hide-scrollbar p-6">
+<div class="flex justify-between items-end mb-6">
+<h2 class="font-headline text-2xl font-extrabold tracking-tight text-on-background">Dog Essentials</h2>
+<span class="text-primary text-sm font-medium">68 Items</span>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<!-- Category Card 1 -->
+<div class="group flex flex-col gap-3">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container shadow-[0_8px_24px_rgba(74,33,53,0.03)] group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Premium bowl of organic dry dog food with fresh vegetables on the side, soft morning lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvsWtUmDSN-cMa0Aqz8Up5kV40ldyEPqWdiEYoDp3b6nX4KNSfAFiwqG9j2Izydhvf23InGnz1thaWpwJ1X1Rd3Xkyx4RpJgR1G6YRkYH3kIZ9yfhhGYLSOxoZ4_mv862Gx099KF_9hxGPVBxcIbFoAk7rhk0CSWLmenrXfzQZuG0kvXRdo5nIBP-momypwJuTneay1FoT6-AX2sKSgqoY9bZ4EBk_qtrjcdcPCefAG6FBvyZw58TnjC6B7_Hb1KdeoAJhI-bS4tA"/>
+</div>
+<div class="px-1">
+<h3 class="font-body font-bold text-on-surface text-lg">Food</h3>
+<a class="text-primary font-body font-semibold text-xs flex items-center gap-1 mt-1" href="#">
+                                xem thêm <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Category Card 2 -->
+<div class="group flex flex-col gap-3">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container shadow-[0_8px_24px_rgba(74,33,53,0.03)] group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Collection of durable rubber and plush colorful dog toys arranged neatly on a soft pink surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRSTvcMQvAUx-KFepblbiie1br5-NjaayeIq5nue8274Rpqlpwm-ypQf0fIKM4Eto9FafbY4fQqr5XI78Gr3MQLRC7-8ruRhKn3V-r5EDqfWuR1cGX1a_igTZiATpMx6SDd44IsL2r-tDrngNwSgl2hHAyGJS5gTKzCq3RuEv-Cm0wGOxXHEE7MxL3z672kxEg13RvoyBNFKaSkvmHACGlM_6OInHnF_P0W0djxkjm-htx6PFCxcyPYfdE5PZzH3uo2ElUd0UE3Nw"/>
+</div>
+<div class="px-1">
+<h3 class="font-body font-bold text-on-surface text-lg">Toys</h3>
+<a class="text-primary font-body font-semibold text-xs flex items-center gap-1 mt-1" href="#">
+                                xem thêm <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Category Card 3 -->
+<div class="group flex flex-col gap-3">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container shadow-[0_8px_24px_rgba(74,33,53,0.03)] group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Luxury velvet pet bed in dusty rose color with a soft cushion, cozy atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvvYP_nUq8Fji1_bREXCXOLLEkT4t7QFNe8lw-Kp88hhexnudRT0G6kcynH7yBcN1GGKrwfRv8gdz8vg0ezIZQoVJkWAEX12xyy_9rTVwBGQ3eyGJrZvZcAxAfzK54FmzYWCRsg9bZwV28uNhIAuqIcalN4rthHcTKp-jDUw1St5TYryvYz7AsKlrSVrhuFsJSY5EtazKGa0pVaVhRigmkfVtUhhUB_KpS8H_MIzEz89rubvzzlPN8WcDoNGYxaIpQUtL9WOwVP6k"/>
+</div>
+<div class="px-1">
+<h3 class="font-body font-bold text-on-surface text-lg">Beds</h3>
+<a class="text-primary font-body font-semibold text-xs flex items-center gap-1 mt-1" href="#">
+                                xem thêm <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Category Card 4 -->
+<div class="group flex flex-col gap-3">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container shadow-[0_8px_24px_rgba(74,33,53,0.03)] group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Pet medical kit with stethoscope, vitamins, and supplements on a clean medical tray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyoN8p89Zz9UpKRP-N_8_R0wvkR4p6SWHd6Px4pydNDAEUMtrbpNPpGsoTB6Pcn8UzBhaq4ZYWOuv3yYFD6fF-0zKBxtJi73pmu4thytqjwWIuDtTNf-caTOISTFPSmTtRER8zZ81fHYJUmZEGvzraOEtUI4lR2drCo5PvF4-OROZlAbBMuHpXP3asXmxWLt9ZKZaea0IGmHIG495gNAG6yroIurGceuDNyFJM6BEtYv5gFh-9wCWgdoGSvPh3yY8TMREEOopJO8s"/>
+</div>
+<div class="px-1">
+<h3 class="font-body font-bold text-on-surface text-lg">Health</h3>
+<a class="text-primary font-body font-semibold text-xs flex items-center gap-1 mt-1" href="#">
+                                xem thêm <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Category Card 5 -->
+<div class="group flex flex-col gap-3">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container shadow-[0_8px_24px_rgba(74,33,53,0.03)] group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Professional pet grooming scissors and a brush sitting next to a pile of soft white towels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzbS18kPlZq6nv1573W9GHBZzTJszxRhfSD2r76UV0kQ8sw7eN6n0ADrg9-SHtNuCaSSFcqJ-46eAB6LfKoEpq69LtwSBlpRFR0rLIaiOf5eQ7vVIWG2aQSbHf0Ydse45fwoshjIorX6JZW2ak3p-W0t1GOQwOsGXPNRTU9zXpbjwc2CGbREmUWOMY21uizr1T1pgr8ZRaUuD92YqzoLPz91OI047wyid-hCeguT3E9XZMSSh348r-4q_T5FF-fEIKK6tg2Y-5_rA"/>
+</div>
+<div class="px-1">
+<h3 class="font-body font-bold text-on-surface text-lg">Grooming</h3>
+<a class="text-primary font-body font-semibold text-xs flex items-center gap-1 mt-1" href="#">
+                                xem thêm <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Category Card 6 -->
+<div class="group flex flex-col gap-3">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container shadow-[0_8px_24px_rgba(74,33,53,0.03)] group-hover:scale-[1.02] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Fashionable leather dog collar and leash set in cognac brown with brass hardware" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbRg5-5R4WWx6VDZ-WQwdXE3l2qHQZ_oWbml-zBsZoseKT94n3EK-lWua9l1XqZuOVgGZnAUxexb7P5zB4k5_b-CyAjHmxz4NoXGu-B8_3xvU4toSY51wyYnOtN4o-e1fyvg6nZvzzp4lTnQ07BkNYVhy_Ns74IXGg64i3md1hvGm2RYugaRAL5mEMz88jG6uCEv2lvwbuu6-NjBzCyGI6L-58TmGfvgwh1KRwH_q_w56ZsCAT-P_3jMRAWMQUMYLMBIrckatvzxw"/>
+</div>
+<div class="px-1">
+<h3 class="font-body font-bold text-on-surface text-lg">Leashes</h3>
+<a class="text-primary font-body font-semibold text-xs flex items-center gap-1 mt-1" href="#">
+                                xem thêm <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<app-bottom-nav></app-bottom-nav></body></html>

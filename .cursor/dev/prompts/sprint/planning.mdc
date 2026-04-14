@@ -1,0 +1,10 @@
+---
+description: [MANUAL] Prompt Sprint Planning cho Dev team
+---
+# Prompt: Sprint Planning
+"Dựa trên backlog đã đạt DoR tại `@.cursor/shared/templates/definition-of-ready.mdc`, hãy:
+1) đề xuất Sprint Goal,
+2) tách Story thành technical tasks có estimate,
+3) nêu dependency/risk chính,
+4) xác nhận tiêu chí hoàn tất theo `@.cursor/shared/templates/definition-of-done.mdc`.
+Trả kết quả dạng checklist rõ owner và thứ tự ưu tiên."

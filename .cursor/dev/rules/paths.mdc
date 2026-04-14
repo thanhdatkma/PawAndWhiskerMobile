@@ -1,0 +1,46 @@
+---
+description: Define file path for project
+---
+ Dynamic Path Mapping
+
+## Variables
+- [P] = Project/Solution name
+- [F] = Feature name (PascalCase)
+- [A] = Action name (PascalCase)
+
+## Backend (.NET) - See `@dev/rules/stack/backend.md`
+### Core Structure
+- **Entity**: `src/[P].Domain/Entities/[F].cs`
+- **Interface**: `src/[P].Domain/Interfaces/I[F]Service.cs`
+- **Request**: `src/[P].Application/Models/[F]/Requests/[A]Request.cs`
+- **Response**: `src/[P].Application/Models/[F]/Responses/[A]Response.cs`
+- **Service**: `src/[P].Infrastructure/Services/[F]Service.cs`
+- **Controller**: `src/[P].API/Controllers/[F]Controller.cs`
+
+### Support Structure
+- **Constants**: `src/[P].Domain/Constants/[F]Constants.cs`
+- **Enums**: `src/[P].Domain/Enums/[F]Enums.cs`
+- **Extensions**: `src/[P].Domain/Extensions/[F]Extensions.cs`
+- **Helpers**: `src/[P].Application/Helpers/[F]Helper.cs`
+- **Validators**: `src/[P].Application/Validators/[F]/[A]RequestValidator.cs`
+
+## Frontend (Angular) - See `@dev/rules/stack/frontend.md`
+### Core Structure
+- **Component**: `src/app/features/[F]/components/[A]/`
+- **Service**: `src/app/features/[F]/services/[F].service.ts`
+- **Model**: `src/app/shared/models/[F].model.ts`
+
+### Support Structure
+- **Constants**: `src/app/shared/constants/[F].constants.ts`
+- **Enums**: `src/app/shared/enums/[F].enum.ts`
+- **Utils**: `src/app/shared/utils/[F].util.ts`
+- **Guards**: `src/app/features/[F]/guards/[F].guard.ts`
+- **Interceptors**: `src/app/core/interceptors/[F].interceptor.ts`
+
+## Tests
+- **Unit**: `tests/[P].Tests/[F]/[F]ServiceTests.cs`
+- **Integration**: `tests/[P].IntegrationTests/[F]/[F]ControllerTests.cs`
+- **E2E**: `tests/[P].E2ETests/[F]/[F].spec.ts`
+
+## Data layer - See `@dev/rules/stack/data.md`
+**Entities** follow Domain paths, **DTOs** follow Application paths above

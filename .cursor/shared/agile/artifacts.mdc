@@ -1,0 +1,19 @@
+---
+description: Scrum Artifacts
+---
+
+# Scrum Artifacts
+
+**Product Backlog:** Danh sách toàn bộ User Story theo thứ tự ưu tiên business do @Plan/PO quản lý
+**Sprint Backlog:** Tập con của Product Backlog được cam kết trong Sprint hiện tại
+**Increment:** Phần mềm hoạt động được sau Sprint, đáp ứng DoD
+
+## Quy tắc quản lý Artifact
+**Refinement cadence:** Tối thiểu 1 lần/tuần hoặc trước Sprint Planning
+**Story readiness:** Chỉ kéo vào Sprint khi đạt DoR
+**Traceability bắt buộc:** Story → AC → Dev Task → Test Case → Bug → Increment
+
+## Trách nhiệm theo vai trò
+**@Plan/PO:** Quản lý Product Backlog, ưu tiên và làm rõ giá trị
+**@Dev:** Phân rã Sprint Backlog thành task kỹ thuật, estimate và cập nhật tiến độ
+**@QA:** Liên kết test cases và bug với AC để đảm bảo chất lượng Increment

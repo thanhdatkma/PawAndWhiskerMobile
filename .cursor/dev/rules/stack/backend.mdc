@@ -1,0 +1,21 @@
+---
+description: [AUTO] .NET Core & Clean Arch Standards
+---
+# .NET Backend Architecture
+
+## Clean Architecture Layers
+**API Layer:** Controllers, middleware, filters
+**Application Layer:** Services, CQRS handlers, DTOs
+**Domain Layer:** Entities, value objects, domain services
+**Infrastructure Layer:** Repositories, external services
+
+## Core Patterns
+**CQRS:** MediatR for command/query separation
+**DI:** Built-in container, scoped services
+**Validation:** FluentValidation at application boundary
+**Logging:** ILogger with structured logging
+
+## Dependencies & Integration
+**API Standards:** See `@dev/rules/stack/api.md`
+**Data Access:** See `@dev/rules/stack/data.md`
+**Frontend Integration:** See `@dev/rules/stack/integration.md`

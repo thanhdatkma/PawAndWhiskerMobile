@@ -1,0 +1,9 @@
+---
+description: [AUTO] Vòng lặp phản hồi QA -> Plan/Dev (Bug Triage)
+---
+# Handoff: QA Feedback
+
+**Trạng thái:** QA phát hiện lỗi hoặc sai lệch so với Requirement.
+
+**Xử lý Bug kỹ thuật:** Trả thẳng về Dev kèm logs/screenshots/steps to reproduce.
+**Xử lý Lỗi Logic:** Nếu phát hiện case chưa có trong Requirement, ping Agent Plan để cập nhật.

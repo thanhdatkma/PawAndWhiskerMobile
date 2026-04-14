@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Profile - Paws &amp; Whiskers</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ff5484",
+                    "on-surface-variant": "#7d4d62",
+                    "primary": "#b7004d",
+                    "tertiary": "#5f4ab3",
+                    "on-primary-container": "#4d001c",
+                    "on-tertiary": "#f6f0ff",
+                    "on-secondary": "#ffeff3",
+                    "secondary": "#9a366b",
+                    "inverse-on-surface": "#c58da5",
+                    "on-primary-fixed": "#000000",
+                    "primary-dim": "#a00043",
+                    "inverse-surface": "#220213",
+                    "on-error-container": "#570008",
+                    "error-dim": "#9f0519",
+                    "surface-container-highest": "#ffd0e2",
+                    "error-container": "#fb5151",
+                    "background": "#fff4f6",
+                    "on-tertiary-container": "#331786",
+                    "on-error": "#ffefee",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#4a2135",
+                    "surface-tint": "#b7004d",
+                    "surface-container-high": "#ffd8e6",
+                    "surface-container-low": "#ffecf1",
+                    "tertiary-dim": "#533da6",
+                    "on-secondary-container": "#802156",
+                    "tertiary-fixed": "#b5a4ff",
+                    "error": "#b31b25",
+                    "surface-container": "#ffe0eb",
+                    "on-secondary-fixed-variant": "#8c2b60",
+                    "on-secondary-fixed": "#670842",
+                    "tertiary-container": "#b5a4ff",
+                    "surface-variant": "#ffd0e2",
+                    "on-tertiary-fixed-variant": "#3c238e",
+                    "on-primary-fixed-variant": "#5e0024",
+                    "surface-bright": "#fff4f6",
+                    "on-primary": "#ffeff0",
+                    "on-tertiary-fixed": "#190057",
+                    "inverse-primary": "#ff4d80",
+                    "secondary-fixed": "#ffc0da",
+                    "primary-fixed": "#ff7294",
+                    "secondary-container": "#ffc0da",
+                    "surface-dim": "#ffc4dc",
+                    "outline-variant": "#d79db5",
+                    "outline": "#9c687e",
+                    "secondary-fixed-dim": "#ffabd0",
+                    "secondary-dim": "#8b2a5f",
+                    "on-surface": "#4a2135",
+                    "primary-container": "#ff7294",
+                    "surface": "#fff4f6",
+                    "tertiary-fixed-dim": "#a894ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .velveteen-gradient {
+            background: linear-gradient(135deg, #b7004d 0%, #ff7294 100%);
+        }
+        .tonal-architecture-no-borders {
+            border: none !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fff4f6]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(74,33,53,0.05)] tonal-architecture-no-borders">
+<div class="flex items-center px-6 h-16 w-full max-w-2xl mx-auto">
+<button class="mr-4 text-[#b7004d] active:scale-95 duration-200 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-lg text-[#4a2135]">Edit Profile</h1>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Profile Picture Section -->
+<div class="flex flex-col items-center mb-10">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full overflow-hidden shadow-[0_12px_40px_rgba(74,33,53,0.1)] p-1 bg-surface-container-high">
+<img alt="User Avatar" class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of a woman with soft lighting and warm berry-toned atmosphere in a high-end photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEwQ1G6dVDsdaF0wqGeF34wDTzZV6fkXb37Hb-zwRqoKfivlmCRVnku-jU70jeCr8I43uyvkVf_gppqnIt7IjDznM4dPH19hclA8Kpjc_mSYT1ybHpQwNr5OQ3E_sEOTCSfX0J40raf90xLpNgZo26cEkj8EDDwr3TDZNVq2h5h7_neNI8plXjjiu94Y1d3SjFmqUqbJEk_rsTuGT8TdjVLONqjW1LZKXnmYUCr-mj4ZKpwVh50r1_O8ztZxWDdnRdlYM_R5ByKrk"/>
+</div>
+<button class="absolute bottom-1 right-1 velveteen-gradient w-10 h-10 rounded-full flex items-center justify-center text-on-primary shadow-lg border-4 border-surface active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="camera_alt">camera_alt</span>
+</button>
+</div>
+<p class="mt-4 font-headline font-bold text-primary tracking-tight">Update Photo</p>
+</div>
+<!-- Form Section -->
+<div class="space-y-6">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="px-4 font-label text-sm font-semibold text-on-surface-variant">Full Name</label>
+<div class="relative">
+<input class="w-full h-14 px-6 bg-surface-container-low text-on-surface border-none rounded-full focus:ring-2 focus:ring-primary/20 placeholder-outline transition-all" placeholder="Enter your full name" type="text" value="Isabella Chen"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<label class="px-4 font-label text-sm font-semibold text-on-surface-variant">Email</label>
+<div class="relative">
+<input class="w-full h-14 px-6 bg-surface-container-low text-on-surface border-none rounded-full focus:ring-2 focus:ring-primary/20 placeholder-outline transition-all" placeholder="Enter your email address" type="email" value="isabella.c@velveteen.com"/>
+</div>
+</div>
+<!-- Phone Number -->
+<div class="space-y-2">
+<label class="px-4 font-label text-sm font-semibold text-on-surface-variant">Phone Number</label>
+<div class="relative">
+<input class="w-full h-14 px-6 bg-surface-container-low text-on-surface border-none rounded-full focus:ring-2 focus:ring-primary/20 placeholder-outline transition-all" placeholder="Enter your phone number" type="tel" value="+1 (555) 924-1182"/>
+</div>
+</div>
+<!-- Address -->
+<div class="space-y-2">
+<label class="px-4 font-label text-sm font-semibold text-on-surface-variant">Address</label>
+<div class="relative">
+<textarea class="w-full py-4 px-6 bg-surface-container-low text-on-surface border-none rounded-3xl focus:ring-2 focus:ring-primary/20 placeholder-outline transition-all resize-none" placeholder="Enter your street address" rows="3">482 Sanctuary Lane, Berry Hill, CA 90210</textarea>
+</div>
+</div>
+<!-- Additional Preferences -->
+<div class="pt-4 px-2">
+<div class="bg-surface-container-highest p-6 rounded-[2rem] space-y-4">
+<h3 class="font-headline font-bold text-on-secondary-container">Profile Visibility</h3>
+<div class="flex items-center justify-between">
+<span class="text-on-secondary-container font-medium">Show my pets on public discovery</span>
+<div class="w-12 h-6 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-[#fff4f6]/90 backdrop-blur-xl px-6 py-6 z-40">
+<div class="max-w-2xl mx-auto">
+<button class="w-full h-14 velveteen-gradient text-on-primary font-headline font-bold text-lg rounded-full shadow-[0_8px_32px_rgba(183,0,77,0.25)] active:scale-[0.98] transition-all hover:opacity-90">
+                Save Changes
+            </button>
+</div>
+</div>
+</body></html>

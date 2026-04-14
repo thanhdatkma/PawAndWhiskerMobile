@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dog Food - Paws &amp; Whiskers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be_Vietnam_Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-error-container": "#570008", "error-dim": "#9f0519", "primary-container": "#ff7294", background: "#fff4f6", "on-secondary-container": "#802156", "primary-fixed": "#ff7294", "on-secondary-fixed-variant": "#8c2b60", error: "#b31b25", "on-primary-container": "#4d001c", "on-tertiary-container": "#331786", "on-background": "#4a2135", "tertiary-fixed": "#b5a4ff", outline: "#9c687e", "secondary-fixed": "#ffc0da", secondary: "#9a366b", "on-surface": "#4a2135", "on-tertiary-fixed-variant": "#3c238e", "on-tertiary": "#f6f0ff", tertiary: "#5f4ab3", "surface-dim": "#ffc4dc", "secondary-dim": "#8b2a5f", "tertiary-container": "#b5a4ff", "secondary-fixed-dim": "#ffabd0", "on-primary-fixed": "#000000", surface: "#fff4f6", "inverse-primary": "#ff4d80", "outline-variant": "#d79db5", "inverse-surface": "#220213", "surface-container-high": "#ffd8e6", "primary-fixed-dim": "#ff5484", "on-secondary-fixed": "#670842", "error-container": "#fb5151", "tertiary-fixed-dim": "#a894ff", "on-tertiary-fixed": "#190057", "surface-container-lowest": "#ffffff", "on-surface-variant": "#7d4d62", primary: "#b7004d", "on-secondary": "#ffeff3", "inverse-on-surface": "#c58da5", "surface-container-highest": "#ffd0e2", "surface-bright": "#fff4f6", "primary-dim": "#a00043", "on-primary-fixed-variant": "#5e0024", "on-primary": "#ffeff0", "surface-container-low": "#ffecf1", "tertiary-dim": "#533da6", "surface-tint": "#b7004d", "secondary-container": "#ffc0da", "on-error": "#ffefee", "surface-variant": "#ffd0e2", "surface-container": "#ffe0eb"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, fontFamily: {headline: ["Plus Jakarta Sans"], body: ["Be Vietnam Pro"], label: ["Be Vietnam Pro"], display: "Plus Jakarta Sans"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fff4f6]/80 dark:bg-[#4a2135]/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(74,33,53,0.05)] flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#b7004d] dark:text-[#ff7294] transition-all scale-95 active:opacity-80 cursor-pointer">arrow_back</span>
+<h1 class="text-xl font-black text-[#4a2135] dark:text-[#ffecf1] font-['Plus_Jakarta_Sans'] tracking-tight">Dog Food</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#b7004d] dark:text-[#ff7294] transition-all scale-95 active:opacity-80 cursor-pointer">shopping_cart</span>
+</div>
+</header>
+<main class="pt-24 px-6">
+<!-- Search Section -->
+<section class="mb-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-6 text-outline">search</span>
+<input class="w-full h-14 pl-14 pr-6 bg-surface-container-lowest rounded-full border-none shadow-[0_8px_32px_0_rgba(74,33,53,0.03)] focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline-variant" placeholder="Search for dog food..." type="text"/>
+</div>
+</section>
+<!-- Horizontal Filter Pills -->
+<section class="mb-8 overflow-x-auto -mx-6 px-6 no-scrollbar">
+<div class="flex gap-3 whitespace-nowrap">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full text-sm font-medium">All Food</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Dry Food</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Wet Food</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Treats</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Grain-Free</button>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 relative shadow-[0_8px_32px_0_rgba(74,33,53,0.05)] group">
+<div class="absolute top-4 left-4 z-10 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-1 rounded-full">15% OFF</div>
+<div class="aspect-square rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Premium organic dog food bag with illustrative dog graphics, studio lighting on soft pink background, high end packaging design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOV1OuyjY2g2oTBAWsAiG3qX4NN16vmN_W0o3I2q0lJ7ya4xnMCiv0zgneGNUSficjejwVDcTkEmgFK2ksCF3Dpfrpp6F-jsxXEcovoeoN1gdJ8QGQFC5eTEDLeIrc-AMe5HEjXQyMlsNYI8dSB-VRwZUiWTfdwIVm8-M_Xp9eTgVZs6T8GNfcvpy7ucAdNvAk8ffdyHllxdlR1AE3tpHzgktvaERCaHtZB55b3CSPbDSm3cxag9IvhVV0rdFifCpzHXp9kYB0pCU"/>
+</div>
+<div class="px-1">
+<h3 class="text-sm font-bold text-on-surface mb-1 truncate">Premium Kibble</h3>
+<div class="flex items-center gap-0.5 mb-2">
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="text-primary font-bold">$24.99</div>
+</div>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 relative shadow-[0_8px_32px_0_rgba(74,33,53,0.05)] group">
+<div class="aspect-square rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Bowl of fresh wet dog food with salmon and vegetables, high-end culinary presentation, warm soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP8zUWo4ifA1TKIKUE9BMFZSEwrkzOfU1VviSwC3ryidh-R1ODNGf9PQnQIn7NASo5H1DQOSAqB04j_66dyZjkMy0g7w2GRec6ZPp3iSgjyO1RJb7YmO-MNjxJEyWi5qHstw0NHmFs02gHNkpLaLwpeMpINkkDvUjeb4_qrDvnuBM3ZG0Y6G6WZPkakXfAOSf48im9SWl7YQTRjdg2hyyTa3at_60-SkbWFTT1K1iIa4b4tDsMtYf_EZEtACZq1Pt4dohnnf8rZQg"/>
+</div>
+<div class="px-1">
+<h3 class="text-sm font-bold text-on-surface mb-1 truncate">Salmon Feast</h3>
+<div class="flex items-center gap-0.5 mb-2">
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-outline-variant">star</span>
+</div>
+<div class="text-primary font-bold">$18.50</div>
+</div>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 relative shadow-[0_8px_32px_0_rgba(74,33,53,0.05)] group">
+<div class="absolute top-4 left-4 z-10 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-1 rounded-full">NEW</div>
+<div class="aspect-square rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Artisanal dog treats in a modern glass jar, soft focus kitchen background, warm morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1aEWdsyymsL_5a1L4dAO0Thn82v0Af_LeRKtywPhyJsmIV2rxD1PUDsHBvnkdMrgMqcOurINot10KbORGpwM5VR_S7y2qogWgfCz6iyYp266I6ouxu0vQVnANxEKiRspGb5E7zvyr5JnlZTgJ4u6i8H-wo2efAzm-bv0NmaI3T4SM41eTpXqcRke7d7hbC3Vqc8TAkbmknwIoeeGGZijq_H1EkZKijEZoMGE6RncWvbwdOOk01Ot-3KKxhN6Z8BuzDqgAvd0Du1g"/>
+</div>
+<div class="px-1">
+<h3 class="text-sm font-bold text-on-surface mb-1 truncate">Grain-Free Bites</h3>
+<div class="flex items-center gap-0.5 mb-2">
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="text-primary font-bold">$12.99</div>
+</div>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 relative shadow-[0_8px_32px_0_rgba(74,33,53,0.05)] group">
+<div class="aspect-square rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Gourmet beef pate for dogs in elegant white ramekin, garnished with parsley, editorial food photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJZJg45QHbCIYLonoqhWfN-tM-50ZD3AlrydcOtzJrJQyZCTQKZ2tWuI0bdr51oXBN59Ip41Ises3ZdBkKud50kjl-Vel5a1BeTqFOAbxYv-VCG816QIGecam3nI6ZWTNdi_JPBB9DaIQxcWWlEfZBV6iNDNa-83LOH1GKekObnZZ95jz8xlNBfbN8ewfbhpKLc7D3GsFS9ymOvvtH2glbmbbRQrvqdM7Gg9JkwySYUwbEkJqqEYZ29M0gCEHHg_K52vUGGOoXY2c"/>
+</div>
+<div class="px-1">
+<h3 class="text-sm font-bold text-on-surface mb-1 truncate">Beef Wellington Pate</h3>
+<div class="flex items-center gap-0.5 mb-2">
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="text-primary font-bold">$21.00</div>
+</div>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Floating Utility: Back to Top -->
+<button class="fixed bottom-28 right-6 w-12 h-12 bg-surface-container-highest text-primary rounded-full flex items-center justify-center shadow-[0_8px_32px_0_rgba(74,33,53,0.1)] active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+<!-- BottomNavBar -->
+<app-bottom-nav></app-bottom-nav></body></html>

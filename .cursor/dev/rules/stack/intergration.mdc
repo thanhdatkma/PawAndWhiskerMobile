@@ -1,0 +1,29 @@
+---
+description: Intergration with BE and FE
+---
+
+# Cross-Stack Integration
+
+## API Contract Synchronization
+**DTOs:** Backend Response DTOs must match Frontend Models
+**Validation:** Client-side validation mirrors server-side rules
+**Error Codes:** Consistent error codes between API and UI
+**Versioning:** API version compatibility with frontend releases
+
+## Data Flow
+**Request Flow:** Frontend → API → Backend Service → Data Layer
+**Response Flow:** Data Layer → Backend Service → API → Frontend
+**Error Flow:** Exception → Global Handler → API Response → Frontend Interceptor
+
+## Development Workflow
+**Contract-First:** Define API contracts before implementation
+**Mock Data:** Frontend development with mock API responses
+**Integration Testing:** End-to-end tests covering full stack
+**Documentation:** OpenAPI/Swagger for API documentation
+
+## Cross-References
+**Backend:** `@dev/rules/stack/backend.md` service implementations
+**API:** `@dev/rules/stack/api.md` endpoint definitions
+**Frontend:** `@dev/rules/stack/frontend.md` service consumption
+**Data:** `@dev/rules/stack/data.md` DTO definitions
+**UI:** `@dev/rules/stack/ui.md` error handling patterns

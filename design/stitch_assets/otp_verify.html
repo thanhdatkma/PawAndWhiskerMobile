@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paws &amp; Whiskers - Verify Phone Number</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        tertiary: "#5f4ab3",
+                        "on-secondary-fixed-variant": "#8c2b60",
+                        "surface-variant": "#ffd0e2",
+                        "surface-bright": "#fff4f6",
+                        "tertiary-container": "#b5a4ff",
+                        secondary: "#9a366b",
+                        "error-container": "#fb5151",
+                        "inverse-on-surface": "#c58da5",
+                        "tertiary-dim": "#533da6",
+                        "surface-dim": "#ffc4dc",
+                        surface: "#fff4f6",
+                        "on-secondary-fixed": "#670842",
+                        "secondary-container": "#ffc0da",
+                        "outline-variant": "#d79db5",
+                        "tertiary-fixed-dim": "#a894ff",
+                        "primary-dim": "#a00043",
+                        "inverse-surface": "#220213",
+                        "on-tertiary-container": "#331786",
+                        "on-error": "#ffefee",
+                        outline: "#9c687e",
+                        "on-surface": "#4a2135",
+                        "on-primary-fixed-variant": "#5e0024",
+                        "on-tertiary": "#f6f0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#b7004d",
+                        "surface-container-high": "#ffd8e6",
+                        "on-secondary-container": "#802156",
+                        "on-tertiary-fixed-variant": "#3c238e",
+                        "on-background": "#4a2135",
+                        background: "#fff4f6",
+                        "on-surface-variant": "#7d4d62",
+                        "on-tertiary-fixed": "#190057",
+                        "on-error-container": "#570008",
+                        "secondary-fixed": "#ffc0da",
+                        "on-primary": "#ffeff0",
+                        "surface-container-highest": "#ffd0e2",
+                        "on-primary-fixed": "#000000",
+                        "tertiary-fixed": "#b5a4ff",
+                        "secondary-fixed-dim": "#ffabd0",
+                        "on-primary-container": "#4d001c",
+                        "primary-fixed": "#ff7294",
+                        "primary-container": "#ff7294",
+                        "surface-container": "#ffe0eb",
+                        "inverse-primary": "#ff4d80",
+                        "primary-fixed-dim": "#ff5484",
+                        error: "#b31b25",
+                        "secondary-dim": "#8b2a5f",
+                        "surface-container-low": "#ffecf1",
+                        "on-secondary": "#ffeff3",
+                        primary: "#b7004d",
+                        "error-dim": "#9f0519"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Plus Jakarta Sans"],
+                        body: ["Be Vietnam Pro"],
+                        label: ["Be Vietnam Pro"],
+                        display: "Plus Jakarta Sans"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .otp-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(183, 0, 77, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<nav class="flex items-center px-6 py-4 w-full bg-surface dark:bg-pink-950 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<button class="text-[#b7004d] dark:text-pink-300 hover:opacity-80 transition-opacity active:scale-95 active:duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold tracking-tight text-2xl text-[#b7004d] dark:text-pink-300">Verify Phone Number</h1>
+</div>
+</nav>
+<main class="flex-1 px-6 pt-12 flex flex-col items-center">
+<!-- Brand Decorative Element -->
+<div class="mb-12 relative">
+<div class="w-24 h-24 bg-surface-container-highest rounded-xl flex items-center justify-center rotate-6 shadow-[#b7004d]/10 shadow-lg">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="sms" style="font-variation-settings: 'FILL' 1;">sms</span>
+</div>
+</div>
+<!-- Instructional Text -->
+<div class="text-center mb-10 max-w-xs">
+<p class="text-on-surface-variant font-medium leading-relaxed">Please enter the security code sent to your mobile device.</p>
+</div>
+<!-- OTP Input Grid -->
+<div class="flex gap-3 mb-8 justify-center w-full">
+<input class="otp-input w-12 h-16 text-center text-3xl font-headline font-bold bg-surface-container-lowest text-primary rounded-lg border-0 shadow-[#b7004d]/10 shadow-lg focus:bg-white transition-all" maxlength="1" type="text" value="4"/>
+<input class="otp-input w-12 h-16 text-center text-3xl font-headline font-bold bg-surface-container-lowest text-primary rounded-lg border-0 shadow-[#b7004d]/10 shadow-lg focus:bg-white transition-all" maxlength="1" type="text" value="8"/>
+<input class="otp-input w-12 h-16 text-center text-3xl font-headline font-bold bg-surface-container-lowest text-primary rounded-lg border-0 shadow-[#b7004d]/10 shadow-lg focus:bg-white transition-all" maxlength="1" placeholder="·" type="text"/>
+<input class="otp-input w-12 h-16 text-center text-3xl font-headline font-bold bg-surface-container-lowest text-primary rounded-lg border-0 shadow-[#b7004d]/10 shadow-lg focus:bg-white transition-all" maxlength="1" placeholder="·" type="text"/>
+<input class="otp-input w-12 h-16 text-center text-3xl font-headline font-bold bg-surface-container-lowest text-primary rounded-lg border-0 shadow-[#b7004d]/10 shadow-lg focus:bg-white transition-all" maxlength="1" placeholder="·" type="text"/>
+<input class="otp-input w-12 h-16 text-center text-3xl font-headline font-bold bg-surface-container-lowest text-primary rounded-lg border-0 shadow-[#b7004d]/10 shadow-lg focus:bg-white transition-all" maxlength="1" placeholder="·" type="text"/>
+</div>
+<!-- Countdown Text -->
+<div class="flex items-center gap-2 bg-surface-container-low px-5 py-2.5 rounded-full shadow-[#b7004d]/10 shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="schedule" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<p class="text-sm font-medium font-body text-on-surface-variant">Mã OTP sẽ hết hạn sau <span class="text-primary font-bold">30 giây</span></p>
+</div>
+</main>
+<!-- Bottom Actions -->
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-10 pt-6 bg-surface dark:bg-pink-950 backdrop-blur-xl shadow-[#b7004d]/10 shadow-[0_-8px_48px_rgba(183,0,77,0.1)] rounded-t-[3rem]">
+<!-- Resend Tab -->
+<button class="flex flex-col items-center justify-center text-[#4a2135] py-3 hover:brightness-110 transition-all tap-highlight-transparent active:scale-98">
+<span class="material-symbols-outlined text-2xl mb-1" data-icon="refresh">refresh</span>
+<span class="font-body font-medium text-sm">Resend Code</span>
+</button>
+<!-- Verify Tab -->
+<button class="flex flex-col items-center justify-center bg-gradient-to-br from-[#b7004d] to-[#ff7294] text-white rounded-full px-10 py-3 hover:brightness-110 transition-all tap-highlight-transparent active:scale-98 shadow-lg shadow-[#b7004d]/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body font-bold text-sm tracking-wide">Verify</span>
+</div>
+</button>
+</div>
+</body></html>

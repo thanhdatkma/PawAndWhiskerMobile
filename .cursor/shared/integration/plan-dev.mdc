@@ -1,0 +1,18 @@
+---
+description: Giao thức bàn giao từ Plan sang Dev
+---
+# Plan → Dev Handoff
+
+## Status Check
+- [x] Story has [READY] status
+- [x] DoR completed at `@shared/templates/definition-of-ready.md`
+- [x] AC follows `@shared/templates/acceptance-criteria.md`
+
+## Dev Actions
+1. Read story from `docs/requirements/{story-name}.md`
+2. Create prompt at `development/prompts/prompt-{story-name}.md`
+3. Use `@dev/rules/paths.md` for file locations
+4. Follow `@dev/rules/base.md` standards
+
+## Handoff Complete
+Update status to [IN_PROGRESS] when started.

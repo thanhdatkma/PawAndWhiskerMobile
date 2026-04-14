@@ -1,0 +1,26 @@
+---
+description: .NET API Standards
+---
+# Web API Standards
+
+## Routing & Versioning
+**Pattern:** `api/v{version}/[controller]/[action]`
+**Versioning:** URL-based versioning
+**Actions:** RESTful verbs (GET, POST, PUT, DELETE)
+
+## Request/Response
+**Request:** DTOs with validation attributes
+**Response:** `{ success: bool, data: T, message: string, errors: string[] }`
+**Status Codes:** 200 (OK), 201 (Created), 400 (Bad Request), 401 (Unauthorized), 404 (Not Found), 500 (Server Error)
+**Folders:** DTOs in `/Requests` & `/Responses`. Entities in `/Entities`
+
+## Security & Reliability
+**Authentication:** JWT Bearer tokens/OAuth2
+**Authorization:** Policy-based with claims
+**CORS:** Configured for frontend domains
+**Idempotency:** POST operations with idempotency keys
+
+## Integration
+**Backend Logic:** Implemented in `@dev/rules/stack/backend.md` services
+**Data Models:** DTOs from `@dev/rules/stack/data.md`
+**Frontend Consumption:** Contracts for `@dev/rules/stack/frontend.md`
