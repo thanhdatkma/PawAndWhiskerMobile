@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- App Header — Glassmorphism sticky top bar -->
+    <header class="app-header">
+
+      <!-- Title Row -->
+      <div class="app-header__title-row">
+
+        <!-- Left: Menu icon -->
+
+        <ion-buttons slot="start">
+          <ion-menu-button color="primary"></ion-menu-button>
+        </ion-buttons>
+
+        <!-- Centre: Avatar+name OR App title -->
+        <div *ngIf="avatarUrl; else appTitle" class="app-header__identity">
+          <div class="app-header__avatar" [style.background-image]="'url(' + avatarUrl + ')'">
+          </div>
+          <div>
+            <p class="app-header__subtitle">{{ subtitle ?? 'Welcome back,' }}</p>
+            <h2 class="app-header__name">{{ title }}</h2>
+          </div>
+        </div>
+
+        <ng-template #appTitle>
+          <h1 class="app-header__app-title">{{ title }}</h1>
+        </ng-template>
+
+        <!-- Right: Cart icon -->
+        <ion-buttons slot="end">
+          <ion-button color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart">
+            <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+      <!-- Optional Search Bar -->
+      <div *ngIf="showSearch" class="app-header__search-wrap">
+        <label class="app-header__search-label">
+          <ion-icon name="search"></ion-icon>
+          <input class="app-header__search-input" [placeholder]="searchPlaceholder" [(ngModel)]="searchTerm"
+            (ngModelChange)="onSearchInput($event)" type="text" />
+        </label>
+      </div>
+
+    </header>
+  </ion-toolbar>
+</ion-header>

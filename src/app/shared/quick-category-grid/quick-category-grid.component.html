@@ -1,0 +1,10 @@
+<section class="category-grid">
+  <div class="category-grid__grid">
+    <div *ngFor="let category of categories" class="category-grid__item" (click)="onSelect(category)">
+      <div class="category-grid__icon-wrap" [class.category-grid__icon-wrap--active]="activeId === category.id">
+        <span class="material-symbols-outlined category-grid__icon">{{ category.iconName }}</span>
+      </div>
+      <span class="category-grid__label">{{ category.title }}</span>
+    </div>
+  </div>
+</section>

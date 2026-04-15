@@ -35,3 +35,167 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/**
+ * Paws & Whiskers: Global Styles
+ * ----------------------------------------------------------------------------
+ */
+
+html, body {
+  font-family: var(--ion-font-family);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/** 0. Brand Interactivity **/
+::selection {
+  background: rgba(var(--primary-rgb), 0.2);
+  color: var(--primary);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  &:hover { opacity: 0.8; }
+}
+
+ion-button {
+  --border-radius: var(--radius-pill) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  margin: 0;
+  color: var(--on-surface);
+}
+
+/** 1. Global Layout & Spacing **/
+.ion-padding-sanctuary {
+  --padding-start: var(--padding-base);
+  --padding-end: var(--padding-base);
+  padding-left: var(--padding-base);
+  padding-right: var(--padding-base);
+}
+
+.no-line {
+  --border-style: none;
+  border: none !important;
+}
+
+/** 2. Typography Hierarchy **/
+.text-display {
+  font-family: var(--font-headline);
+  font-size: 3rem; // 48px (5xl)
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-headline {
+  font-family: var(--font-headline);
+  font-size: 1.5rem; // 24px (2xl)
+  font-weight: 700;
+}
+
+.text-title {
+  font-size: 1.125rem; // 18px (lg)
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: 0.875rem; // 14px (sm)
+  font-weight: 400;
+}
+
+.text-label {
+  font-size: 0.75rem; // 12px (xs)
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.text-secondary {
+  color: var(--on-surface-variant);
+}
+
+/** 3. Surfaces & Effects **/
+.glass-panel {
+  background: rgba(var(--surface-rgb), 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--outline-variant);
+}
+
+.bg-surface-low { background-color: var(--surface-container-low); }
+.bg-surface-lowest { background-color: var(--surface-container-lowest); }
+
+.shadow-sanctuary {
+  box-shadow: 0 10px 30px -10px rgba(var(--primary-rgb), 0.1);
+}
+
+/** 4. Components **/
+.btn-pill {
+  --border-radius: var(--radius-pill);
+  border-radius: var(--radius-pill);
+  text-transform: none;
+  font-weight: 600;
+}
+
+.input-sanctuary {
+  --background: var(--surface-container-low);
+  --border-radius: var(--radius-pill);
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --border-style: none;
+  margin-bottom: 12px;
+}
+
+.card-sanctuary {
+  border-radius: var(--radius-3xl);
+  background: var(--surface-container-lowest);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  border: none;
+}
+
+/** 5. Utilities **/
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.right-align-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.see-all {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.sticky-glass-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(var(--surface-rgb), 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--outline-variant);
+  z-index: 1000;
+}

@@ -1,26 +1,32 @@
-<app-header [showSearch]="true"></app-header>
+<ion-footer class="ion-no-border" style="overflow: visible; contain: none;">
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__row">
 
-<ion-content>
-  <ion-tabs>
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="bottom-tab-nav__fab-wrap">
-      <ion-fab-button class="bottom-tab-nav__fab" (click)="onScanTap()">
-        <ion-icon name="scan"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
-    <ion-tab-bar slot="bottom" class="">
+      <!-- Home -->
       <ion-tab-button tab="home" href="/tabs/home">
         <ion-icon aria-hidden="true" name="home"></ion-icon>
         <ion-label>Home</ion-label>
       </ion-tab-button>
 
+      <!-- Categories -->
       <ion-tab-button tab="categories" href="/tabs/categories">
         <ion-icon aria-hidden="true" name="grid"></ion-icon>
         <ion-label>Categories</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="" class="spacer" disabled="true" style="pointer-events: none; opacity: 1;"></ion-tab-button>
 
+      <!-- Scan FAB -->
+
+      <ion-fab class="bottom-nav__fab-wrap">
+        <ion-fab-button class="bottom-nav__fab" (click)="onScanTap()">
+          <ion-icon name="scan"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+
+      <!-- Alerts -->
       <ion-tab-button tab="alerts" href="/tabs/alerts">
+        <!-- <span class="bottom-nav__badge"></span> -->
         <ion-icon aria-hidden="true" name="notifications"></ion-icon>
         <ion-badge color="primary">5</ion-badge>
         <ion-label>Alerts</ion-label>
@@ -30,6 +36,10 @@
         <ion-icon aria-hidden="true" name="person"></ion-icon>
         <ion-label>Profile</ion-label>
       </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-content>
+
+    </div>
+    <!-- Safe area spacer for mobile -->
+    <div class="bottom-nav__safe-area"></div>
+
+  </nav>
+</ion-footer>

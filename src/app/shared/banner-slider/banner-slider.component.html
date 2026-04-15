@@ -1,0 +1,19 @@
+<swiper-container [attr.autoplay]="true" [attr.pagination]="true" class="banner-slider">
+  <swiper-slide *ngFor="let banner of banners">
+    <div *ngIf="banner.imageUrl" class="banner-slider__bg-overlay"
+      [style.background-image]="'url(' + banner.imageUrl + ')'">
+    </div>
+    <div class="banner-slider__content">
+      <div class="banner-slider__caption">
+        <span *ngIf="banner.tagline" class="banner-slider__tagline">
+          {{ banner.tagline }}
+        </span>
+        <h2 class="banner-slider__title">{{ banner.title }}</h2>
+        <button *ngIf="banner.buttonText" class="banner-slider__cta">
+          {{ banner.buttonText }}
+        </button>
+      </div>
+    </div>
+
+  </swiper-slide>
+</swiper-container>
