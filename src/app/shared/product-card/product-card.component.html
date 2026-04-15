@@ -1,0 +1,52 @@
+<!-- Product Card — Standard & Compact variants -->
+<div class="product-card" [class.product-card--compact]="variant === 'compact'" (click)="onCardClick()">
+
+  <!-- Image Area -->
+  <div class="product-card__image-wrap">
+
+    <!-- Discount Badge -->
+    <span *ngIf="product.discountPct" class="product-card__discount-badge">
+      -{{ product.discountPct }}%
+    </span>
+
+    <!-- Favorite Icon -->
+    <button class="product-card__fav-btn" (click)="onToggleFavorite($event)" aria-label="Toggle favourite">
+      <span class="material-symbols-outlined product-card__fav-icon">favorite</span>
+    </button>
+
+    <!-- Product Image -->
+    <div class="product-card__image" [style.background-image]="'url(' + product.coverImage + ')'">
+    </div>
+  </div>
+
+  <!-- Text Content -->
+  <div class="product-card__body">
+    <h4 class="product-card__name">{{ product.name }}</h4>
+
+    <!-- Star Rating -->
+    <div *ngIf="product.rating" class="product-card__rating">
+      <span class="material-symbols-outlined product-card__star-icon">star</span>
+      <span class="product-card__rating-value">{{ product.rating }}</span>
+      <ng-container *ngIf="product.soldCount">
+        <span class="product-card__sold-count">{{ product.soldCount | soldCount }} sold</span>
+      </ng-container>
+    </div>
+
+    <!-- Price Row -->
+    <div class="product-card__price-row">
+      <div class="product-card__prices">
+        <span *ngIf="product.discountPrice" class="product-card__original-price">
+          {{ product.price | appCurrency }}
+        </span>
+        <span class="product-card__current-price">
+          {{ (product.discountPrice ?? product.price) | appCurrency }}
+        </span>
+      </div>
+
+      <!-- Add to Cart -->
+      <button class="product-card__add-btn" (click)="onAddToCart($event)" aria-label="Add to cart">
+        <span class="material-symbols-outlined">add</span>
+      </button>
+    </div>
+  </div>
+</div>

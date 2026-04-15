@@ -1,5 +1,6 @@
 .category-grid {
-    padding: 0 16px;
+    // padding: 0 16px;
+    margin-bottom: 16px;
 
     &__grid {
         display: grid;
@@ -47,5 +48,9 @@
         color: var(--color-on-surface-variant);
         text-align: center;
         line-height: 1.2;
+
+        @media (prefers-color-scheme: dark) {
+            color: var(--color-primary);
+        }
     }
 }

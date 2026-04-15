@@ -1,6 +1,5 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonButton } from '@ionic/angular/standalone';
 import { register } from 'swiper/element/bundle';
 import { SlideModel } from 'src/app/models/slides.model';
 
@@ -11,7 +10,7 @@ register();
   templateUrl: './banner-slider.component.html',
   styleUrls: ['./banner-slider.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonButton],
+  imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BannerSliderComponent implements OnInit {

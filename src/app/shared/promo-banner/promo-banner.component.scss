@@ -1,0 +1,121 @@
+.promo-banner {
+    margin-bottom: 16px;
+
+    &__card {
+        position: relative;
+        border-radius: var(--radius-xl);
+        padding: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+
+        // Dog theme — primary gradient
+        &--dog {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #ff7294 100%);
+        }
+
+        // Cat theme — tertiary container
+        &--cat {
+            background: var(--color-tertiary-container);
+        }
+    }
+
+    // ── Text block ───────────────────────────────────────────────
+    &__content {
+        position: relative;
+        z-index: 2;
+        max-width: 60%;
+    }
+
+    &__title {
+        font-family: var(--font-headline);
+        font-size: 1.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin: 0 0 16px;
+
+        .promo-banner__card--dog & {
+            color: var(--color-on-primary);
+        }
+
+        .promo-banner__card--cat & {
+            color: var(--color-on-tertiary-container);
+        }
+    }
+
+    &__cta {
+        padding: 12px 32px;
+        border-radius: var(--radius-full);
+        font-family: var(--font-label);
+        font-weight: 700;
+        font-size: 0.875rem;
+        border: none;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: transform 0.1s;
+
+        .promo-banner__card--dog & {
+            color: var(--color-primary);
+        }
+
+        .promo-banner__card--cat & {
+            color: var(--color-tertiary);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    // ── Watermark icon ───────────────────────────────────────────
+    &__watermark {
+        position: absolute;
+        opacity: 0.2;
+
+        .promo-banner__card--dog & {
+            right: -20px;
+            top: -20px;
+            transform: rotate(12deg);
+        }
+
+        .promo-banner__card--cat & {
+            left: -20px;
+            bottom: -20px;
+            transform: rotate(-12deg);
+        }
+    }
+
+    &__watermark-icon {
+        font-size: 120px;
+        line-height: 1;
+
+        .promo-banner__card--dog & {
+            color: #ffffff;
+        }
+
+        .promo-banner__card--cat & {
+            color: var(--color-on-tertiary-container);
+        }
+    }
+
+    // ── Pet image ────────────────────────────────────────────────
+    &__pet-img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.6;
+
+        .promo-banner__card--dog & {
+            mix-blend-mode: overlay;
+        }
+
+        .promo-banner__card--cat & {
+            mix-blend-mode: multiply;
+        }
+    }
+}

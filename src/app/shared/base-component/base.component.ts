@@ -1,4 +1,4 @@
-import { Directive, inject, OnDestroy } from '@angular/core';
+import { Directive, inject, OnDestroy, OnInit } from '@angular/core';
 import { NavController, LoadingController, AlertController, ToastController, MenuController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 
@@ -9,7 +9,9 @@ export abstract class AuthService {
 }
 
 @Directive()
-export abstract class BaseComponent implements OnDestroy {
+export abstract class BaseComponent implements OnInit, OnDestroy {
+  ngOnInit(): void {
+  }
 
   protected readonly destroyed$ = new Subject<void>();
 

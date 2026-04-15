@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IonToolbar, IonButtons, IonButton, IonIcon, IonMenuButton, IonTitle, IonHeader } from '@ionic/angular/standalone';
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, inject } from '@angular/core';
+import { IonButtons, IonButton, IonIcon, IonMenuButton, IonHeader } from '@ionic/angular/standalone';
 import { BaseComponent } from '../base-component/base.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { ScrollService } from '../../core/services/scroll.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
   standalone: true,
-  imports: [IonToolbar, IonButtons, IonButton, IonIcon, IonMenuButton, IonTitle, CommonModule, FormsModule, IonHeader]
+  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, SearchBarComponent]
 })
-export class AppHeaderComponent extends BaseComponent {
+export class AppHeaderComponent extends BaseComponent implements OnInit {
 
   /** Main title shown in the center / beside avatar */
   @Input() title = 'Paws & Whiskers';
@@ -30,7 +32,26 @@ export class AppHeaderComponent extends BaseComponent {
   @Output() cartClick = new EventEmitter<void>();
   @Output() searchChange = new EventEmitter<string>();
 
-  searchTerm = '';
+  private readonly scrollService = inject(ScrollService);
+
+  isHeaderShrunk = false;
+
+  override ngOnInit(): void {
+    this.scrollService.scrollY$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(y => this.handleScroll(y));
+  }
+
+  private handleScroll(y: number): void {
+    // 0 to 60px: Header is normal
+    if (y <= 60) {
+      this.isHeaderShrunk = false;
+    }
+    // Beyond 60px: Header title shrinks
+    else {
+      this.isHeaderShrunk = true;
+    }
+  }
 
   onMenuClick(): void { this.menuClick.emit(); }
   onCartClick(): void { this.cartClick.emit(); }

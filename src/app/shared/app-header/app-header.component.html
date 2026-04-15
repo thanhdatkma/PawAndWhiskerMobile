@@ -1,48 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <!-- App Header — Glassmorphism sticky top bar -->
-    <header class="app-header">
+  <!-- App Header — Glassmorphism sticky top bar -->
+  <header class="app-header" [class.app-header--shrunk]="isHeaderShrunk">
+    
+    <!-- Title Row -->
+    <div class="app-header__title-row" [class.app-header__title-row--shrunk]="isHeaderShrunk">
 
-      <!-- Title Row -->
-      <div class="app-header__title-row">
+      <!-- Left: Menu icon -->
+      <ion-buttons slot="start">
+        <ion-menu-button color="primary"></ion-menu-button>
+      </ion-buttons>
 
-        <!-- Left: Menu icon -->
-
-        <ion-buttons slot="start">
-          <ion-menu-button color="primary"></ion-menu-button>
-        </ion-buttons>
-
-        <!-- Centre: Avatar+name OR App title -->
-        <div *ngIf="avatarUrl; else appTitle" class="app-header__identity">
-          <div class="app-header__avatar" [style.background-image]="'url(' + avatarUrl + ')'">
-          </div>
-          <div>
-            <p class="app-header__subtitle">{{ subtitle ?? 'Welcome back,' }}</p>
-            <h2 class="app-header__name">{{ title }}</h2>
-          </div>
+      <!-- Centre: Avatar+name OR App title -->
+      <div *ngIf="avatarUrl; else appTitle" class="app-header__identity" [class.app-header__identity--shrunk]="isHeaderShrunk">
+        <div class="app-header__avatar" [class.app-header__avatar--shrunk]="isHeaderShrunk" [style.background-image]="'url(' + avatarUrl + ')'">
         </div>
-
-        <ng-template #appTitle>
-          <h1 class="app-header__app-title">{{ title }}</h1>
-        </ng-template>
-
-        <!-- Right: Cart icon -->
-        <ion-buttons slot="end">
-          <ion-button color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart">
-            <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <div>
+          <p class="app-header__subtitle" [class.app-header__subtitle--shrunk]="isHeaderShrunk">{{ subtitle ?? 'Welcome back,' }}</p>
+          <h2 class="app-header__name" [class.app-header__name--shrunk]="isHeaderShrunk">{{ title }}</h2>
+        </div>
       </div>
 
-      <!-- Optional Search Bar -->
-      <div *ngIf="showSearch" class="app-header__search-wrap">
-        <label class="app-header__search-label">
-          <ion-icon name="search"></ion-icon>
-          <input class="app-header__search-input" [placeholder]="searchPlaceholder" [(ngModel)]="searchTerm"
-            (ngModelChange)="onSearchInput($event)" type="text" />
-        </label>
-      </div>
+      <ng-template #appTitle>
+        <h1 class="app-header__app-title" [class.app-header__app-title--shrunk]="isHeaderShrunk">{{ title }}</h1>
+      </ng-template>
 
-    </header>
-  </ion-toolbar>
+      <!-- Right: Cart icon -->
+      <ion-buttons slot="end">
+        <ion-button color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart">
+          <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <!-- Optional Search Bar -->
+    <app-search-bar 
+      *ngIf="showSearch" 
+      class="app-header__search"
+      [searchPlaceholder]="searchPlaceholder" 
+      (searchChange)="onSearchInput($event)">
+    </app-search-bar>
+
+  </header>
 </ion-header>

@@ -1,0 +1,22 @@
+<!-- Promo Banner — theme-configurable (dog = gradient, cat = tertiary) -->
+<section class="promo-banner">
+  <div class="promo-banner__card" [class.promo-banner__card--dog]="isDog" [class.promo-banner__card--cat]="!isDog">
+
+    <!-- Text Content -->
+    <div class="promo-banner__content">
+      <h4 class="promo-banner__title">{{ title }}</h4>
+      <button class="promo-banner__cta" (click)="onExplore()">{{ ctaLabel }}</button>
+    </div>
+
+    <!-- Decorative watermark icon -->
+    <div class="promo-banner__watermark">
+      <span class="material-symbols-outlined promo-banner__watermark-icon">
+        {{ isDog ? 'pets' : 'cruelty_free' }}
+      </span>
+    </div>
+
+    <!-- Pet image -->
+    <img *ngIf="imageUrl" class="promo-banner__pet-img" [src]="imageUrl"
+      [alt]="isDog ? 'Dog products' : 'Cat products'" />
+  </div>
+</section>

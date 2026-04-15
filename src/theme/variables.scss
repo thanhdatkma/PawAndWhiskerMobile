@@ -71,12 +71,12 @@
   --primary-rgb: 180, 0, 104;
   --secondary: var(--color-secondary);
   --secondary-rgb: 232, 196, 29;
-  
+
   --surface: var(--color-surface);
   --surface-rgb: 249, 249, 249;
   --surface-container-low: var(--color-surface-container-low);
   --surface-container-lowest: var(--color-surface-container-lowest);
-  
+
   --on-surface: var(--color-on-surface);
   --on-surface-variant: var(--color-on-surface-variant);
   --outline-variant: var(--color-outline-variant);
@@ -110,9 +110,15 @@
   :root {
     --surface: var(--color-inverse-surface);
     --surface-rgb: 47, 49, 49;
+    --surface-container-low: #3a3b3b;
+    --surface-container: #424343;
+    --surface-container-high: #4a4b4b;
+    --surface-container-highest: #525353;
     --on-surface: var(--color-inverse-on-surface);
-    
+    --on-surface-variant: #e1bdc8;
+    --color-primary: #b40068;
     --ion-background-color: var(--surface);
     --ion-text-color: var(--on-surface);
+
   }
 }
