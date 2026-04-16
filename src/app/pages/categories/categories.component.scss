@@ -1,0 +1,207 @@
+.categories-wrapper {
+  display: flex;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  // background: var(--surface-container-lowest);
+  /* Note: NO overscroll-behavior here to allow children to bubble up to the refresher */
+}
+
+.sidebar {
+  width: 100px;
+  background: var(--surface-container-low);
+  z-index: 2;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  /* Prevents pull-to-refresh when pulling the sidebar */
+  height: auto;
+  min-height: 100%;
+  //border-top-right-radius: 2.5rem;
+
+  // Custom shadow for sidebar depth
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.02);
+
+  :host-context(.dark-theme) & {
+    background: var(--surface-container-low);
+  }
+}
+
+
+.main-content {
+  flex: 1;
+  // background: var(--surface-container-lowest);
+  // border-top-left-radius: 2.5rem;
+  padding: 1rem 0.5rem;
+  z-index: 3;
+  position: relative;
+  height: auto;
+  min-height: 100%;
+  /* No overscroll-behavior here to allow pull-to-refresh */
+
+  // Custom box shadow for the main container overlay
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.03);
+}
+
+.scrollable-y {
+  overflow-y: auto;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.parent-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  opacity: 0.6;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &--active {
+    opacity: 1;
+    transform: translateY(-2px);
+
+    .parent-item__icon-box {
+      background: var(--color-surface-container-highest);
+      box-shadow: 0 8px 16px rgba(180, 0, 104, 0.1);
+
+      .parent-item__icon {
+        color: var(--ion-color-primary);
+      }
+    }
+
+    .parent-item__label {
+      color: var(--ion-color-primary);
+      font-weight: 800;
+    }
+  }
+
+  &__icon-box {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: var(--color-on-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  &__icon {
+    font-family: 'Material Symbols Outlined';
+    font-size: 1.75rem;
+    font-feature-settings: 'liga';
+    display: inline-block;
+    color: var(--on-surface-variant);
+    transition: color 0.3s ease;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-family: var(--font-label);
+    text-align: center;
+    font-weight: 600;
+    color: var(--on-surface-variant);
+  }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+
+  &__title {
+    margin: 0;
+    font-family: var(--font-headline);
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+
+    :host-context(.dark-theme) & {
+      color: var(--ion-text-color);
+    }
+  }
+
+  &__count {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-bottom: 0.25rem;
+  }
+}
+
+.child-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+
+  &__image-container {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface-container-high);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  &:active {
+    .child-card__image-container {
+      transform: scale(0.96);
+    }
+
+    .child-card__image {
+      transform: scale(1.1);
+    }
+  }
+
+  &__footer {
+    padding: 0 0.25rem;
+  }
+
+  &__name {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: var(--on-surface);
+    margin-bottom: 0.125rem;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--ion-color-primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: lowercase;
+    opacity: 0.9;
+
+    .material-symbols-outlined {
+      font-size: 1rem;
+    }
+  }
+}
+
+.ion-padding-tiny {
+  padding: 8px;
+}

@@ -9,4 +9,5 @@ export interface ProductBriefModel {
     rating?: number;
     reviewCount?: number;
     soldCount?: number;
+    categoryName?: string;
 }

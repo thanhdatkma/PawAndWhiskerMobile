@@ -13,9 +13,20 @@
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class="profile-container">
+    <ion-list lines="none" class="settings-list">
+      <ion-item class="settings-item">
+        <ion-label>
+          <h2 class="text-headline">Dark Mode</h2>
+          <p class="text-body">Enable dark theme across the app</p>
+        </ion-label>
+        <ion-toggle 
+          slot="end" 
+          [checked]="(configService.settings$ | async)?.isDarkmode"
+          (ionChange)="onDarkModeToggle()">
+        </ion-toggle>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

@@ -21,6 +21,7 @@
 
   <!-- Text Content -->
   <div class="product-card__body">
+    <div class="product-card__category" *ngIf="product.categoryName">{{ product.categoryName }}</div>
     <h4 class="product-card__name">{{ product.name }}</h4>
 
     <!-- Star Rating -->

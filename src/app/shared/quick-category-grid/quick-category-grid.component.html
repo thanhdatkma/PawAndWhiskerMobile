@@ -4,7 +4,8 @@
       <div class="category-grid__icon-wrap" [class.category-grid__icon-wrap--active]="activeId === category.id">
         <span class="material-symbols-outlined category-grid__icon">{{ category.iconName }}</span>
       </div>
-      <span class="category-grid__label">{{ category.title }}</span>
+      <span class="category-grid__label" [class.category-grid__label--active]="activeId === category.id">{{
+        category.title }}</span>
     </div>
   </div>
 </section>

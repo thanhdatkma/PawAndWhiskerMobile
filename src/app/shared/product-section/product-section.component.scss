@@ -17,9 +17,10 @@
         letter-spacing: -0.02em;
         margin: 0;
 
-        @media (prefers-color-scheme: dark) {
+        :host-context(.dark-theme) & {
             color: var(--ion-text-color);
         }
+
     }
 
     &__see-all {

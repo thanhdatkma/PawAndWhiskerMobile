@@ -39,10 +39,11 @@
 - [x] [Done] Implement Sticky Header & Bottom Navigation bar consistency — `AppHeaderComponent` (upgraded), `BottomNavComponent`
 
 ### 4. 🗂️ Categories Master (`categories-requirement.md`)
-- [ ] [Todo] Build responsive Category Tree Layout
-- [ ] [Todo] Implement synchronized Left Menu & Right Grid interactions
+- [x] [Done] Build responsive Category Tree Layout
+- [x] [Done] Implement synchronized Left Menu & Right Grid interactions
 - [ ] [Todo] Integrate Master Categories APIs
 - [ ] [Todo] Caching strategy for category data
+
 
 ### 5. 🔍 Category Detail (`category-detail-requirement.md`)
 - [ ] [Todo] Implement generic Product Card UI

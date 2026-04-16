@@ -10,6 +10,11 @@
         border-radius: var(--radius-full);
         padding: 0 16px;
         cursor: text;
+
+        :host-context(.dark-theme) & {
+            background: var(--color-primary-fixed);
+        }
+
     }
 
     &__icon {

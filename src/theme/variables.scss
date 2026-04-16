@@ -106,19 +106,16 @@
 }
 
 /** Dark Mode Overrides (Material You Style) **/
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface: var(--color-inverse-surface);
-    --surface-rgb: 47, 49, 49;
-    --surface-container-low: #3a3b3b;
-    --surface-container: #424343;
-    --surface-container-high: #4a4b4b;
-    --surface-container-highest: #525353;
-    --on-surface: var(--color-inverse-on-surface);
-    --on-surface-variant: #e1bdc8;
-    --color-primary: #b40068;
-    --ion-background-color: var(--surface);
-    --ion-text-color: var(--on-surface);
-
-  }
+body.dark-theme {
+  --surface: var(--color-inverse-surface);
+  --surface-rgb: 47, 49, 49;
+  --surface-container-low: #3a3b3b;
+  --surface-container: #424343;
+  --surface-container-high: #4a4b4b;
+  --surface-container-highest: #525353;
+  --on-surface: var(--color-inverse-on-surface);
+  --on-surface-variant: #e1bdc8;
+  --color-primary: #b40068;
+  --ion-background-color: var(--surface);
+  --ion-text-color: var(--on-surface);
 }

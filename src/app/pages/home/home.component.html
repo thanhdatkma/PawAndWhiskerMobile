@@ -3,7 +3,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <banner-slider></banner-slider>
-  <quick-category-grid [categories]="categories" [activeId]="activeId"></quick-category-grid>
+  <quick-category-grid [categories]="categories" [activeId]="activeId" (categorySelect)="onCategorySelect($event)">
+  </quick-category-grid>
   <app-product-section [sectionTitle]="'New Arrivals'" [products]="newArrivals" (seeAllClick)="onSeeAll($event)"
     (productClick)="onProductClick($event)" (productAddToCart)="onAddToCart($event)"></app-product-section>
   <app-promo-banner theme="dog" title="Food, toys, and essentials for dog" (exploreClick)="onPromoExplore($event)">

@@ -6,10 +6,6 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
-
-    @media (prefers-color-scheme: dark) {
-      color: var(--ion-text-color);
-    }
   }
 
   &__title {
@@ -19,6 +15,11 @@
     color: var(--color-on-surface);
     letter-spacing: -0.02em;
     margin: 0;
+
+    :host-context(.dark-theme) & {
+      color: var(--ion-text-color);
+    }
+
   }
 
   &__see-all {
@@ -53,6 +54,11 @@
     cursor: pointer;
     transition: opacity 0.15s;
 
+    :host-context(.dark-theme) & {
+      background: var(--color-on-surface);
+    }
+
+
     &:active {
       opacity: 0.8;
     }
@@ -85,6 +91,11 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    :host-context(.dark-theme) & {
+      color: var(--ion-text-color);
+    }
+
   }
 
   &__article-summary {
@@ -97,5 +108,6 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
   }
 }

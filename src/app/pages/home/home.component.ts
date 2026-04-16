@@ -18,8 +18,8 @@ import { inject } from '@angular/core';
   styleUrls: ['home.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
-    IonMenuButton, IonRefresher, IonRefresherContent, 
+    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonRefresher, IonRefresherContent,
     BannerSliderComponent, QuickCategoryGridComponent,
     ProductSectionComponent, PromoBannerComponent, NewsFeedComponent
   ],
@@ -36,34 +36,34 @@ export class HomePageComponent extends BaseComponent {
   ];
 
   newArrivals: ProductBriefModel[] = [
-    { id: 'na1', name: 'Organic Royal Canin Kibble', coverImage: 'assets/images/asset_1.png', price: 35.00, discountPrice: 29.75, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 1150 },
-    { id: 'na2', name: 'Pate cho chó mèo S2PET SNACK 85g dạng lỏng', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 1234 },
-    { id: 'na3', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456 },
-    { id: 'na4', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456 },
-    { id: 'na5', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456 },
-    { id: 'na6', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456 },
-    { id: 'na7', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8 },
-    { id: 'na8', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8 },
-    { id: 'na9', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8 },
-    { id: 'na10', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8 }
+    { id: 'na1', name: 'Organic Royal Canin Kibble', coverImage: 'assets/images/asset_1.png', price: 35.00, discountPrice: 29.75, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 1150, categoryName: 'Dog Food' },
+    { id: 'na2', name: 'Pate cho chó mèo S2PET SNACK 85g dạng lỏng', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 1234, categoryName: 'Pet Treats' },
+    { id: 'na3', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456, categoryName: 'Toys' },
+    { id: 'na4', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456, categoryName: 'Toys' },
+    { id: 'na5', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456, categoryName: 'Toys' },
+    { id: 'na6', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, reviewCount: 123, soldCount: 456, categoryName: 'Toys' },
+    { id: 'na7', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, categoryName: 'Toys' },
+    { id: 'na8', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, categoryName: 'Toys' },
+    { id: 'na9', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, categoryName: 'Toys' },
+    { id: 'na10', name: 'Plush Donut Squeaky Toy', coverImage: 'assets/images/asset_4.png', price: 15.00, discountPrice: 12.50, discountPct: 15, rating: 4.8, categoryName: 'Toys' }
   ];
 
   dogProducts: ProductBriefModel[] = [
-    { id: 'dp1', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9 },
-    { id: 'dp2', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6 },
-    { id: 'dp3', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9 },
-    { id: 'dp4', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6 },
-    { id: 'dp5', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9 },
-    { id: 'dp6', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6 },
-    { id: 'dp7', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9 },
-    { id: 'dp8', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6 },
-    { id: 'dp9', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9 },
-    { id: 'dp10', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6 }
+    { id: 'dp1', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9, categoryName: 'Dog Food' },
+    { id: 'dp2', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6, categoryName: 'Toys' },
+    { id: 'dp3', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9, categoryName: 'Dog Food' },
+    { id: 'dp4', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6, categoryName: 'Toys' },
+    { id: 'dp5', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9, categoryName: 'Dog Food' },
+    { id: 'dp6', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6, categoryName: 'Toys' },
+    { id: 'dp7', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9, categoryName: 'Dog Food' },
+    { id: 'dp8', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6, categoryName: 'Toys' },
+    { id: 'dp9', name: 'Beef & Rice Kibble', coverImage: 'assets/images/asset_2.png', price: 42.00, discountPrice: 35.70, discountPct: 15, rating: 4.9, categoryName: 'Dog Food' },
+    { id: 'dp10', name: 'Indestructible Chew Ball', coverImage: 'assets/images/asset_3.png', price: 12.99, rating: 4.6, categoryName: 'Toys' }
   ];
 
   catProducts: ProductBriefModel[] = [
-    { id: 'cp1', name: 'Cat Dental Treats Bag', coverImage: 'assets/images/asset_2.png', price: 11.99, discountPrice: 9.99, discountPct: 15, rating: 4.8 },
-    { id: 'cp2', name: 'Modern Pine Tower', coverImage: 'assets/images/asset_1.png', price: 89.00, rating: 4.7 },
+    { id: 'cp1', name: 'Cat Dental Treats Bag', coverImage: 'assets/images/asset_2.png', price: 11.99, discountPrice: 9.99, discountPct: 15, rating: 4.8, categoryName: 'Cat Treats' },
+    { id: 'cp2', name: 'Modern Pine Tower', coverImage: 'assets/images/asset_1.png', price: 89.00, rating: 4.7, categoryName: 'Furniture' },
     { id: 'cp3', name: 'Cat Dental Treats Bag', coverImage: 'assets/images/asset_2.png', price: 11.99, discountPrice: 9.99, discountPct: 15, rating: 4.8 },
     { id: 'cp4', name: 'Modern Pine Tower', coverImage: 'assets/images/asset_1.png', price: 89.00, rating: 4.7 },
     { id: 'cp5', name: 'Cat Dental Treats Bag', coverImage: 'assets/images/asset_2.png', price: 11.99, discountPrice: 9.99, discountPct: 15, rating: 4.8 },
@@ -103,9 +103,9 @@ export class HomePageComponent extends BaseComponent {
   //   console.log('[Home] Banner tapped:', banner.id);
   // }
 
-  // onCategorySelect(category: CategoryHeaderDTO): void {
-  //   console.log('[Home] Category selected:', category.id);
-  // }
+  onCategorySelect(category: QuickCategoryModel): void {
+    this.activeId = category.id;
+  }
 
   onSeeAll(sectionTitle: string): void {
     console.log('[Home] See all clicked for:', sectionTitle);

@@ -36,7 +36,7 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
     this.nav.navigateForward(path, extras);
   }
 
-  protected trackByFn(_index: number, item: { id: string | number }): string | number {
+  public trackByFn(_index: number, item: { id: string | number }): string | number {
     return item.id;
   }
 

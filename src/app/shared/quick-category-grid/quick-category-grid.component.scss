@@ -32,8 +32,19 @@
         background: var(--color-surface-container-low);
         transition: transform 0.12s ease, background 0.15s;
 
+        :host-context(.dark-theme) & {
+            background: var(--color-on-surface);
+        }
+
+
         &--active {
-            background: var(--color-surface-container-highest);
+            //background: var(--color-surface-container-highest);
+            background: var(--color-outline-variant);
+
+            :host-context(.dark-theme) & {
+                background: var(--color-outline-variant);
+            }
+
         }
     }
 
@@ -49,8 +60,18 @@
         text-align: center;
         line-height: 1.2;
 
-        @media (prefers-color-scheme: dark) {
+        :host-context(.dark-theme) & {
             color: var(--color-primary);
         }
+
+        &--active {
+            color: var(--color-primary);
+
+            :host-context(.dark-theme) & {
+                color: var(--color-primary);
+            }
+
+        }
+
     }
 }

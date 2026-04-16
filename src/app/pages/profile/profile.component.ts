@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle } from '@ionic/angular/standalone';
+import { ConfigService } from '../../services/config.service';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { addIcons } from 'ionicons';
+import { settingsOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-profile.page',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonRefresher, IonRefresherContent],
+  standalone: true,
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle, AsyncPipe, NgIf],
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public configService: ConfigService) {
+    addIcons({ settingsOutline });
+  }
 
   ngOnInit() { }
 
@@ -18,6 +25,10 @@ export class ProfilePageComponent implements OnInit {
       // Any calls to load data go here
       event.target.complete();
     }, 2000);
+  }
+
+  onDarkModeToggle() {
+    this.configService.toggleDarkMode();
   }
 
 }

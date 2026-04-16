@@ -1,7 +1,7 @@
 <ion-header>
   <!-- App Header — Glassmorphism sticky top bar -->
   <header class="app-header" [class.app-header--shrunk]="isHeaderShrunk">
-    
+
     <!-- Title Row -->
     <div class="app-header__title-row" [class.app-header__title-row--shrunk]="isHeaderShrunk">
 
@@ -11,11 +11,14 @@
       </ion-buttons>
 
       <!-- Centre: Avatar+name OR App title -->
-      <div *ngIf="avatarUrl; else appTitle" class="app-header__identity" [class.app-header__identity--shrunk]="isHeaderShrunk">
-        <div class="app-header__avatar" [class.app-header__avatar--shrunk]="isHeaderShrunk" [style.background-image]="'url(' + avatarUrl + ')'">
+      <div *ngIf="avatarUrl; else appTitle" class="app-header__identity"
+        [class.app-header__identity--shrunk]="isHeaderShrunk">
+        <div class="app-header__avatar" [class.app-header__avatar--shrunk]="isHeaderShrunk"
+          [style.background-image]="'url(' + avatarUrl + ')'">
         </div>
         <div>
-          <p class="app-header__subtitle" [class.app-header__subtitle--shrunk]="isHeaderShrunk">{{ subtitle ?? 'Welcome back,' }}</p>
+          <p class="app-header__subtitle" [class.app-header__subtitle--shrunk]="isHeaderShrunk">{{ subtitle ?? 'Welcome
+            back,' }}</p>
           <h2 class="app-header__name" [class.app-header__name--shrunk]="isHeaderShrunk">{{ title }}</h2>
         </div>
       </div>
@@ -33,10 +36,7 @@
     </div>
 
     <!-- Optional Search Bar -->
-    <app-search-bar 
-      *ngIf="showSearch" 
-      class="app-header__search"
-      [searchPlaceholder]="searchPlaceholder" 
+    <app-search-bar *ngIf="showSearch" class="app-header__search" [searchPlaceholder]="searchPlaceholder"
       (searchChange)="onSearchInput($event)">
     </app-search-bar>
 
