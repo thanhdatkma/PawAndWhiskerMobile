@@ -1,5 +1,66 @@
-<ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+<ion-content [fullscreen]="true" class="ion-padding" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event, 'alerts')">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+  <!-- Alerts and Reminders Section -->
+  <section class="section">
+    <h3 class="section-title">Cảnh báo & Nhắc nhở cho Max</h3>
+
+    <!-- Reusable Alert Card -->
+    <ion-card *ngFor="let alert of alerts" class="alert-card" [ngClass]="alert.type">
+      <div class="card-body">
+        <div class="icon-wrapper" [ngClass]="alert.type">
+          <img [src]="alert.icon" [alt]="alert.category + ' Icon'" />
+        </div>
+        <div class="content-wrapper">
+          <div class="card-header-row">
+            <ion-text class="category">
+              {{alert.category}} - <span class="highlight">{{alert.highlight}}</span>
+            </ion-text>
+            <ion-text class="title">
+              <h3>{{alert.title}}</h3>
+            </ion-text>
+          </div>
+          
+          <ion-text class="description" *ngIf="alert.description">
+            <p>{{alert.description}}</p>
+          </ion-text>
+
+          <div class="interactive-actions" *ngIf="alert.isInteractive">
+            <div class="confirm-wrapper">
+              <ion-label>Xác nhận đã uống</ion-label>
+              <ion-toggle (ionChange)="onMedicationToggle($event)" [checked]="medicationConfirmed"></ion-toggle>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ion-button *ngIf="alert.actionText" expand="block" fill="solid" class="action-button">
+        {{alert.actionText}}
+      </ion-button>
+    </ion-card>
+  </section>
+
+  <!-- Community Alerts Section -->
+  <section class="section community">
+    <ion-text class="section-title">
+      <h2>Cảnh báo cộng đồng</h2>
+    </ion-text>
+
+    <div class="horizontal-scroll no-scrollbar">
+      <div class="community-card active">
+        <div class="image-overlay" style="background-image: url('assets/images/community_tick.png')"></div>
+        <div class="card-content">
+          <h3>Báo cáo bọ ve trong khu vực gần bạn</h3>
+        </div>
+      </div>
+      <div class="community-card">
+        <div class="image-overlay" style="background-image: url('assets/images/community_bait.png')"></div>
+        <div class="card-content">
+          <h3>Cảnh báo bả chó ở công viên</h3>
+        </div>
+      </div>
+    </div>
+  </section>
 </ion-content>

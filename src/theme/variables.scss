@@ -103,6 +103,21 @@
   --radius-3xl: var(--radius-xl);
   --radius-2xl: var(--radius-lg);
   --radius-pill: var(--radius-full);
+
+  /* Alert Specific Colors */
+  --app-bg: #F8F9FA;
+  --app-yellow: #FBC02D;
+  --app-purple: #8E24AA;
+  --app-purple-dark: #6A1B9A;
+  --app-purple-light: #F3E8FF;
+  --app-red: #E53935;
+  --app-red-light: #FFEBEE;
+  --app-green: #43A047;
+  --app-green-light: #E8F5E9;
+  --app-text-primary: #111827;
+  --app-text-secondary: #4B5563;
+  --app-card-bg: #FFFFFF;
+  --app-divider: #F3F4F6;
 }
 
 /** Dark Mode Overrides (Material You Style) **/
@@ -118,4 +133,14 @@ body.dark-theme {
   --color-primary: #b40068;
   --ion-background-color: var(--surface);
   --ion-text-color: var(--on-surface);
+
+  /* Alert Dark Mode Overrides */
+  --app-bg: #121212;
+  --app-card-bg: #1E1E1E;
+  --app-text-primary: #F9FAFB;
+  --app-text-secondary: #9CA3AF;
+  --app-divider: #374151;
+  --app-purple-light: rgba(142, 36, 170, 0.15);
+  --app-red-light: rgba(229, 57, 53, 0.15);
+  --app-green-light: rgba(67, 160, 71, 0.15);
 }

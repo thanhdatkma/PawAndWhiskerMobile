@@ -14,7 +14,7 @@ ion-tab-bar {
     padding-bottom: env(safe-area-inset-bottom);
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.06);
 
-    @media (prefers-color-scheme: dark) {
+    :host-context(.dark-theme) & {
         --background: rgba(var(--surface-rgb), 0.75);
         border-top: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
@@ -40,7 +40,7 @@ ion-tab-bar {
         box-sizing: border-box;
         transition: transform 0.1s;
 
-        @media (prefers-color-scheme: dark) {
+        :host-context(.dark-theme) & {
             border: none;
         }
 

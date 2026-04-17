@@ -22,8 +22,6 @@ export class SearchBarComponent extends BaseComponent {
 
   searchTerm = '';
 
-  private readonly scrollService = inject(ScrollService);
-
   barHeight = 48;
   barPadding = 16;
   barOpacity = 1;
@@ -34,25 +32,25 @@ export class SearchBarComponent extends BaseComponent {
       .subscribe(y => this.handleScroll(y));
   }
 
-  private handleScroll(y: number): void {
+  override handleScroll(y: number): void {
     const fadeBreakpoint = 60;
     const collapseBreakpoint = 124; // 60 + 64px (height of search bar)
-    
+
     // Phase 1: 0 to 60px (Opacity Fades Out)
     if (y <= fadeBreakpoint) {
       this.barOpacity = Math.max(0, 1 - (y / fadeBreakpoint));
       this.barHeight = 48;
       this.barPadding = 16;
-    } 
+    }
     // Phase 2: 60 to 124px (Height/Padding Collapse)
     else if (y <= collapseBreakpoint) {
       this.barOpacity = 0;
       const collapseProgress = (y - fadeBreakpoint) / (collapseBreakpoint - fadeBreakpoint);
       const factor = Math.max(0, 1 - collapseProgress);
-      
+
       this.barHeight = 48 * factor;
       this.barPadding = 16 * factor;
-    } 
+    }
     // Beyond 124px: Fully Hidden
     else {
       this.barOpacity = 0;

@@ -4,7 +4,10 @@ import { BaseComponent } from '../base-component/base.component';
 import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ScrollService } from '../../core/services/scroll.service';
+import { TabService } from '../../services/tab.service';
+import { TabType } from '../../models/tab.model';
 import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-header',
@@ -27,12 +30,16 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   @Input() showSearch = false;
   /** Placeholder text for the search input */
   @Input() searchPlaceholder = 'Search for food, toys...';
+  /** Configuration Map to determine visibility of search bar per tab */
+  @Input() searchBarConfig: Map<TabType, boolean> = new Map();
+
 
   @Output() menuClick = new EventEmitter<void>();
   @Output() cartClick = new EventEmitter<void>();
   @Output() searchChange = new EventEmitter<string>();
 
-  private readonly scrollService = inject(ScrollService);
+  private readonly tabService = inject(TabService);
+
 
   isHeaderShrunk = false;
 
@@ -40,9 +47,18 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
     this.scrollService.scrollY$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(y => this.handleScroll(y));
+
+    this.tabService.activeTab$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(tab => this.updateSearchVisibility(tab));
   }
 
-  private handleScroll(y: number): void {
+  private updateSearchVisibility(activeTab: TabType): void {
+    this.showSearch = !!this.searchBarConfig.get(activeTab);
+  }
+
+
+  override handleScroll(y: number): void {
     // 0 to 60px: Header is normal
     if (y <= 60) {
       this.isHeaderShrunk = false;

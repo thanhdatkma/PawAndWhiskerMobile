@@ -1,0 +1,240 @@
+.section {
+  margin-bottom: 24px;
+
+  .section-title {
+    margin-bottom: 16px;
+    color: var(--app-text-primary);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+}
+
+.alert-card {
+  margin: 16px 0;
+  background: var(--app-card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: none;
+
+  .card-body {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  // Theme definitions
+  &.critical {
+    --category-color: var(--app-red);
+    --category-bg: var(--app-red-light);
+  }
+
+  &.confirmed {
+    --category-color: var(--app-green);
+    --category-bg: var(--app-green-light);
+  }
+
+  &.recurring {
+    --category-color: #d97706; 
+    --category-bg: #fffbeb;
+  }
+
+  &.special-offer {
+    --category-color: var(--app-purple);
+    --category-bg: var(--app-purple-light);
+  }
+}
+
+.icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--category-bg);
+
+  img {
+    width: 28px;
+    height: 28px;
+    
+    :host-context(.dark-theme) & {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  :host-context(.dark-theme) & {
+    &.recurring {
+      background: rgba(217, 119, 6, 0.15);
+    }
+  }
+}
+
+.content-wrapper {
+  flex: 1;
+
+  .category {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--app-text-secondary);
+
+    .highlight {
+      font-weight: 600;
+      color: var(--category-color);
+
+      :host-context(.dark-theme) & {
+        // Boost brightness for better contrast on dark backgrounds
+        filter: brightness(1.2) saturate(1.2);
+      }
+    }
+  }
+
+  .title h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--app-text-primary);
+    margin: 4px 0;
+    line-height: 1.2;
+  }
+
+  .description p {
+    font-size: 14px;
+    color: var(--app-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+.action-button {
+  margin: 0 16px 16px;
+  --border-radius: 12px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: none;
+  --background: var(--category-color);
+  --color: #ffffff;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .critical & {
+    --background: var(--app-red);
+  }
+
+  .confirmed & {
+    --background: var(--app-green);
+  }
+
+  .recurring & {
+    --background: #d97706;
+  }
+
+  .special-offer & {
+    --background: linear-gradient(90deg, #4c1d95, var(--app-purple-dark));
+  }
+}
+
+.interactive-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 12px;
+
+  .confirm-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    ion-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--app-text-primary);
+    }
+
+    ion-toggle {
+      --handle-background: #ffffff;
+      --handle-background-checked: #ffffff;
+      --background: #d1d5db;
+      --background-checked: var(--app-purple);
+      width: 44px;
+      height: 24px;
+      padding: 0;
+
+      :host-context(.dark-theme) & {
+        --background: rgba(255, 255, 255, 0.2);
+        --background-checked: var(--app-purple);
+      }
+    }
+  }
+}
+
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 0 4px 16px;
+  scroll-snap-type: x mandatory;
+
+  &.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.community-card {
+  min-width: 260px;
+  height: 120px;
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+  }
+
+  &:hover .image-overlay {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+      max-width: 80%;
+    }
+  }
+}

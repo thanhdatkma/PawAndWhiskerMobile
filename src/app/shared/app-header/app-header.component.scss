@@ -16,7 +16,7 @@
         padding-top: calc(env(safe-area-inset-top) / 2); // Optional: further reduction
     }
 
-    @media (prefers-color-scheme: dark) {
+    :host-context(.dark-theme) & {
         background: rgba(var(--surface-rgb), 0.75);
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
@@ -117,9 +117,10 @@
         margin: 0;
         transition: font-size 0.3s ease;
 
-        &--shrunk {
-            font-size: 1rem;
-        }
+        // TODO: this class will be used when we have a search bar disappear, the title side will smaller
+        // &--shrunk {
+        //     font-size: 1rem;
+        // }
     }
 
     &__search {

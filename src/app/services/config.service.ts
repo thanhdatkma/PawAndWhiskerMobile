@@ -12,7 +12,9 @@ export interface AppSettings {
   isDarkmode: boolean;
   activeCurrency: string;
   supportedCurrencies: CurrencyConfig[];
+  searchBarTabs: string[];
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +38,10 @@ export class ConfigService {
       const fallback: AppSettings = {
         isDarkmode: false,
         activeCurrency: 'USD',
-        supportedCurrencies: [{ code: 'USD', symbol: '$', label: 'US Dollar' }]
+        supportedCurrencies: [{ code: 'USD', symbol: '$', label: 'US Dollar' }],
+        searchBarTabs: ['home', 'categories']
       };
+
       this.settingsSubject.next(fallback);
       this.applyTheme(fallback.isDarkmode);
     }

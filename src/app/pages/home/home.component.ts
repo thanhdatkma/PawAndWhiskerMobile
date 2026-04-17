@@ -9,8 +9,6 @@ import { ProductSectionComponent } from '../../shared/product-section/product-se
 import { PromoBannerComponent } from '../../shared/promo-banner/promo-banner.component';
 import { NewsBriefModel } from '../../models/news-brief.model';
 import { NewsFeedComponent } from '../../shared/news-feed/news-feed.component';
-import { ScrollService } from '../../core/services/scroll.service';
-import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -81,21 +79,9 @@ export class HomePageComponent extends BaseComponent {
     { id: 'n4', title: 'New social distancing rules for dog parks', summary: 'The local community has updated guidelines for our favourite play areas...', thumbnailImage: 'assets/images/asset_2.png' },
     { id: 'n5', title: 'New social distancing rules for dog parks', summary: 'The local community has updated guidelines for our favourite play areas...', thumbnailImage: 'assets/images/asset_2.png' }
   ];
-  private readonly scrollService = inject(ScrollService);
 
   constructor() {
     super();
-  }
-
-  handleRefresh(event: any) {
-    setTimeout(() => {
-      // Any calls to load data go here
-      event.target.complete();
-    }, 2000);
-  }
-
-  handleScroll(ev: any) {
-    this.scrollService.updateScroll(ev.detail.scrollTop);
   }
 
   // --- Child event handlers ---

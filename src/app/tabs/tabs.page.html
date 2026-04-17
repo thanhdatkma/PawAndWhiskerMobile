@@ -1,7 +1,7 @@
-<app-header [showSearch]="true"></app-header>
+<app-header [searchBarConfig]="searchBarConfig"></app-header>
 
 <ion-content>
-  <ion-tabs>
+  <ion-tabs (ionTabsDidChange)="onTabChange($event)">
     <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="bottom-tab-nav__fab-wrap">
       <ion-fab-button class="bottom-tab-nav__fab" (click)="onScanTap()">
         <ion-icon name="scan"></ion-icon>

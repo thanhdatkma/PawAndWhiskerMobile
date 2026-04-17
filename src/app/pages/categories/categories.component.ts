@@ -28,7 +28,6 @@ import { CategoryModel } from '../../models/categories.model';
   ]
 })
 export class CategoriesPageComponent extends BaseComponent implements OnInit {
-  private readonly scrollService = inject(ScrollService);
 
   categories: CategoryModel[] = [
     {
@@ -121,17 +120,6 @@ export class CategoriesPageComponent extends BaseComponent implements OnInit {
 
   selectParent(category: CategoryModel) {
     this.selectedParent = category;
-  }
-
-  handleRefresh(event: any) {
-    setTimeout(() => {
-      console.log('handleRefresh');
-      event.target.complete();
-    }, 2000);
-  }
-
-  handleScroll(ev: any) {
-    this.scrollService.updateScroll(ev.detail.scrollTop);
   }
 
   onSearchChange(event: any) {

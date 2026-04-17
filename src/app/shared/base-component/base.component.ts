@@ -1,6 +1,7 @@
 import { Directive, inject, OnDestroy, OnInit } from '@angular/core';
 import { NavController, LoadingController, AlertController, ToastController, MenuController } from '@ionic/angular';
 import { Subject } from 'rxjs';
+import { ScrollService } from '../../core/services/scroll.service';
 
 // Stub — replace with real service once core/services/auth.service.ts is implemented
 export abstract class AuthService {
@@ -14,7 +15,7 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   }
 
   protected readonly destroyed$ = new Subject<void>();
-
+  protected readonly scrollService = inject(ScrollService);
   protected readonly nav = inject(NavController);
   protected readonly loadingCtrl = inject(LoadingController);
   protected readonly alertCtrl = inject(AlertController);
@@ -71,4 +72,17 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   protected onToggleMenuClick() {
     this.menu.toggle();
   }
+
+  protected handleScroll(ev: any) {
+    this.scrollService.updateScroll(ev.detail.scrollTop);
+  }
+
+
+  protected handleRefresh(event: any, action: string) {
+    setTimeout(() => {
+      console.log('handleRefresh', action);
+      event.target.complete();
+    }, 2000);
+  }
+
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle } from '@ionic/angular/standalone';
 import { ConfigService } from '../../services/config.service';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { settingsOutline } from 'ionicons/icons';
+import { BaseComponent } from '../../shared/base-component/base.component';
 
 @Component({
   selector: 'app-profile.page',
@@ -12,19 +13,11 @@ import { settingsOutline } from 'ionicons/icons';
   standalone: true,
   imports: [IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle, AsyncPipe],
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent extends BaseComponent {
 
   constructor(public configService: ConfigService) {
+    super();
     addIcons({ settingsOutline });
-  }
-
-  ngOnInit() { }
-
-  handleRefresh(event: any) {
-    setTimeout(() => {
-      // Any calls to load data go here
-      event.target.complete();
-    }, 2000);
   }
 
   onDarkModeToggle() {
