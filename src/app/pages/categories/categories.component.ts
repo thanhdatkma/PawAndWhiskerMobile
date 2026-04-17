@@ -44,7 +44,7 @@ export class CategoriesPageComponent extends BaseComponent implements OnInit {
   categories: CategoryModel[] = [
     {
       id: 'dog',
-      name: 'Dog',
+      name: 'Dog Essentials',
       iconName: 'pets',
       children: [
         {
@@ -99,7 +99,7 @@ export class CategoriesPageComponent extends BaseComponent implements OnInit {
     },
     {
       id: 'cat',
-      name: 'Cat',
+      name: 'Cat Essentials',
       iconName: 'cruelty_free',
       children: [
         {
@@ -112,10 +112,10 @@ export class CategoriesPageComponent extends BaseComponent implements OnInit {
         }
       ]
     },
-    { id: 'clinic', name: 'Clinic', iconName: 'medical_services' },
-    { id: 'services', name: 'Services', iconName: 'content_cut' },
-    { id: 'accessories', name: 'Accessories', iconName: 'shopping_bag' },
-    { id: 'pharmacy', name: 'Pharmacy', iconName: 'medication' }
+    { id: 'clinic', name: 'Clinic & Hospital', iconName: 'medical_services' },
+    { id: 'services', name: 'Services & Grooming', iconName: 'content_cut' },
+    { id: 'accessories', name: 'Accessories & Supplies', iconName: 'shopping_bag' },
+    { id: 'pharmacy', name: 'Pharmacy & Health', iconName: 'medication' }
   ];
 
 

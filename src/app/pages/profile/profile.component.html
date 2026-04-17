@@ -1,14 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="text-headline">Profile</ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="primary">
-        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -21,9 +10,7 @@
           <h2 class="text-headline">Dark Mode</h2>
           <p class="text-body">Enable dark theme across the app</p>
         </ion-label>
-        <ion-toggle 
-          slot="end" 
-          [checked]="(configService.settings$ | async)?.isDarkmode"
+        <ion-toggle slot="end" [checked]="(configService.settings$ | async)?.isDarkmode"
           (ionChange)="onDarkModeToggle()">
         </ion-toggle>
       </ion-item>
