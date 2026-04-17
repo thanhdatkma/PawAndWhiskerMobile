@@ -8,9 +8,11 @@ import { OnInit } from '@angular/core';
 
 
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonContent, IonBadge, IonFab, IonFabButton } from '@ionic/angular/standalone';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { triangle, ellipse, square } from 'ionicons/icons';
 import { AppHeaderComponent } from '../shared/app-header/app-header.component';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-tabs',
@@ -18,14 +20,16 @@ import { AppHeaderComponent } from '../shared/app-header/app-header.component';
   styleUrls: ['tabs.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel,
-    AppHeaderComponent, IonContent, IonBadge, IonFab, IonFabButton],
+    AppHeaderComponent, IonContent, IonBadge, IonFab, IonFabButton, AsyncPipe, NgIf],
 })
 export class TabsPage extends BaseComponent implements OnInit {
   public environmentInjector = inject(EnvironmentInjector);
   private tabService = inject(TabService);
   private configService = inject(ConfigService);
+  private notificationService = inject(NotificationService);
 
   searchBarConfig = new Map<TabType, boolean>();
+  unreadCount$ = this.notificationService.unreadCount$;
 
 
 

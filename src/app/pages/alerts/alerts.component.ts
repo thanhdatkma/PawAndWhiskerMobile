@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonContent,
@@ -7,15 +7,8 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
   IonText,
-  IonButton,
   IonIcon,
-  IonToggle,
-  IonLabel,
   IonList,
   IonItem
 } from '@ionic/angular/standalone';
@@ -32,18 +25,11 @@ import {
   cutOutline
 } from 'ionicons/icons';
 import { BaseComponent } from 'src/app/shared/base-component/base.component';
-
-export interface AlertModel {
-  id: string;
-  type: 'critical' | 'confirmed' | 'recurring' | 'special-offer';
-  icon: string;
-  category: string;
-  highlight: string;
-  title: string;
-  description?: string;
-  actionText?: string;
-  isInteractive?: boolean;
-}
+import { NotificationCardItemComponent } from 'src/app/shared/notification-card-item/notification-card-item.component';
+import { CommunityAlertsComponent } from 'src/app/shared/community-alerts/community-alerts.component';
+import { NotificationModel } from 'src/app/models/notification.model';
+import { NotificationService } from 'src/app/services/notification.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alerts',
@@ -58,63 +44,17 @@ export interface AlertModel {
     IonGrid,
     IonRow,
     IonCol,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
     IonText,
-    IonButton,
     IonIcon,
-    IonToggle,
-    IonLabel,
     IonList,
-    IonItem
+    IonItem,
+    NotificationCardItemComponent,
+    CommunityAlertsComponent
   ],
 })
-export class AlertsPageComponent extends BaseComponent {
-  medicationConfirmed = false;
-
-  alerts: AlertModel[] = [
-    {
-      id: 'a1',
-      type: 'critical',
-      icon: 'assets/icons/medical.svg',
-      category: 'Medical',
-      highlight: 'Critical',
-      title: 'Sắp đến lịch tiêm vắc-xin',
-      description: 'Vắc-xin dại (hàng năm) cho Max cần được tiêm trước ngày 25/05/2026 tại phòng khám Paws Health.',
-      actionText: 'Đặt hẹn khám ngay'
-    },
-    {
-      id: 'a2',
-      type: 'confirmed',
-      icon: 'assets/icons/delivery.svg',
-      category: 'Delivery',
-      highlight: 'Confirmed',
-      title: 'Đơn hàng của bạn đã được giao',
-      description: 'Gói đồ chơi và pate hữu cơ \'Organi-Treats\' cho Max đã được giao đến cửa hàng.',
-      actionText: 'Xem đơn hàng'
-    },
-    {
-      id: 'a3',
-      type: 'recurring',
-      icon: 'assets/icons/medication.svg',
-      category: 'Medication',
-      highlight: 'Recurring',
-      title: 'Nhắc nhở thuốc PawsGuard',
-      isInteractive: true
-    },
-    {
-      id: 'a4',
-      type: 'special-offer',
-      icon: 'assets/icons/service.svg',
-      category: 'Service',
-      highlight: 'Special Offer',
-      title: 'Ưu đãi đặc biệt: Gói Spa \'Groom & Glow\'',
-      description: 'Giảm 15% gói spa toàn diện cho Max. Đặt ngay để nhận ưu đãi!',
-      actionText: 'Xem ưu đãi'
-    }
-  ];
+export class AlertsPageComponent extends BaseComponent implements OnInit {
+  private notificationService = inject(NotificationService);
+  alerts$: Observable<NotificationModel[]> = this.notificationService.notifications$;
 
   constructor() {
     super();
@@ -131,7 +71,11 @@ export class AlertsPageComponent extends BaseComponent {
     });
   }
 
-  onMedicationToggle(event: any) {
-    this.medicationConfirmed = event.detail.checked;
+  override ngOnInit() {
+    super.ngOnInit();
+  }
+
+  ionViewWillEnter() {
+    this.notificationService.markAllAsRead();
   }
 }

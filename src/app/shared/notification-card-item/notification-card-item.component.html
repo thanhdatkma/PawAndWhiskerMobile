@@ -1,0 +1,33 @@
+<ion-card class="alert-card" [ngClass]="notification.type">
+  <div class="card-body">
+    <div class="icon-wrapper" [ngClass]="notification.type">
+      <img [src]="notification.icon" [alt]="notification.category + ' Icon'" />
+    </div>
+    <div class="content-wrapper">
+      <div class="card-header-row">
+        <ion-text class="category">
+          {{notification.category}} - <span class="highlight">{{notification.highlight}}</span>
+        </ion-text>
+        <ion-text class="title">
+          <h3>{{notification.title}}</h3>
+        </ion-text>
+      </div>
+
+      <ion-text class="description" *ngIf="notification.description">
+        <p>{{notification.description}}</p>
+      </ion-text>
+
+      <div class="interactive-actions" *ngIf="notification.isInteractive">
+        <div class="confirm-wrapper">
+          <ion-label>Xác nhận đã uống</ion-label>
+          <ion-toggle color="primary" (ionChange)="onMedicationToggle($event)" [checked]="medicationConfirmed"
+            justify="end"></ion-toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-button *ngIf="notification.actionText" expand="block" fill="solid" class="action-button">
+    {{notification.actionText}}
+  </ion-button>
+</ion-card>

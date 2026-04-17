@@ -1,0 +1,194 @@
+.alert-card {
+  margin: 16px 0;
+  background: var(--app-card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: none;
+
+  .card-body {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  // Theme definitions
+  &.critical {
+    --category-color: var(--app-red);
+    --category-bg: var(--app-red-light);
+  }
+
+  &.confirmed {
+    --category-color: var(--app-green);
+    --category-bg: var(--app-green-light);
+  }
+
+  &.recurring {
+    --category-color: #d97706;
+    --category-bg: #fffbeb;
+  }
+
+  &.special-offer {
+    --category-color: var(--app-purple);
+    --category-bg: var(--app-purple-light);
+  }
+}
+
+.icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--category-bg);
+
+  img {
+    width: 28px;
+    height: 28px;
+
+    :host-context(.dark-theme) & {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  :host-context(.dark-theme) & {
+    &.recurring {
+      background: rgba(217, 119, 6, 0.15);
+    }
+  }
+}
+
+.content-wrapper {
+  flex: 1;
+
+  .category {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--app-text-secondary);
+
+    .highlight {
+      font-weight: 600;
+      color: var(--category-color);
+
+      :host-context(.dark-theme) & {
+        // Boost brightness for better contrast on dark backgrounds
+        filter: brightness(1.2) saturate(1.2);
+      }
+    }
+  }
+
+  .title h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--app-text-primary);
+    margin: 4px 0;
+    line-height: 1.2;
+  }
+
+  .description p {
+    font-size: 14px;
+    color: var(--app-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+.action-button {
+  margin: 0 16px 16px;
+  --border-radius: 12px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: none;
+  --background: var(--category-color);
+  --background-activated: var(--category-color);
+  --background-focused: var(--category-color);
+  --background-hover: var(--category-color);
+  --color: #ffffff;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  &::part(native) {
+    transition: filter 0.2s ease;
+  }
+
+  &.ion-activated {
+    filter: brightness(0.9);
+  }
+
+  .critical & {
+    --background: var(--app-red);
+    --background-activated: var(--app-red);
+    --background-focused: var(--app-red);
+    --background-hover: var(--app-red);
+  }
+
+  .confirmed & {
+    --background: var(--app-green);
+    --background-activated: var(--app-green);
+    --background-focused: var(--app-green);
+    --background-hover: var(--app-green);
+  }
+
+  .recurring & {
+    --background: #d97706;
+    --background-activated: #d97706;
+    --background-focused: #d97706;
+    --background-hover: #d97706;
+  }
+
+  .special-offer & {
+    --background: linear-gradient(90deg, #4c1d95, var(--app-purple-dark));
+    --background-activated: linear-gradient(90deg, #4c1d95, var(--app-purple-dark));
+    --background-focused: linear-gradient(90deg, #4c1d95, var(--app-purple-dark));
+    --background-hover: linear-gradient(90deg, #4c1d95, var(--app-purple-dark));
+  }
+}
+
+.interactive-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 12px;
+
+  .confirm-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    ion-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--app-text-primary);
+    }
+
+    ion-toggle {
+      --handle-background: var(--color-surface-container-lowest);
+      --handle-background-checked: var(--color-surface-container-lowest);
+      --track-background: var(--color-surface-container-highest);
+      --track-background-checked: var(--color-primary);
+      width: 44px;
+      height: 24px;
+      padding: 0;
+
+      .toggle-icon-wrapper {
+        --background: #dedede;
+      }
+
+      :host-context(.dark-theme) & {
+        --background: rgba(255, 255, 255, 0.2);
+        --background-checked: var(--app-purple);
+      }
+
+      // Light mode adjustment for "interactive" icon wrapper
+      :host-context(:not(.dark-theme)) & {
+        &.recurring {
+          background: #c8c9cb; // Darker grey for the medication/recurring icon
+        }
+      }
+    }
+  }
+}
