@@ -2,12 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
-  IonButton, IonRefresher, IonRefresherContent,
-  IonGrid, IonRow, IonCol, IonText, IonImg, IonInput
+  IonContent, IonRefresher, IonRefresherContent,
+  IonGrid, IonRow, IonCol, IonText, IonImg
 } from '@ionic/angular/standalone';
-import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
-import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 import { ScrollService } from '../../core/services/scroll.service';
 import { BaseComponent } from '../../shared/base-component/base.component';
 import { CategoryModel } from '../../models/categories.model';
@@ -20,22 +17,14 @@ import { CategoryModel } from '../../models/categories.model';
   imports: [
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
-    IonButtons,
-    IonButton,
     IonRefresher,
     IonRefresherContent,
     IonGrid,
     IonRow,
     IonCol,
     IonText,
-    IonImg,
-    IonInput,
-    AppHeaderComponent,
-    SearchBarComponent
+    IonImg
   ]
 })
 export class CategoriesPageComponent extends BaseComponent implements OnInit {

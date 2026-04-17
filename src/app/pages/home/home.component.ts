@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
+import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
 import { BannerSliderComponent } from '../../shared/banner-slider/banner-slider.component';
 import { QuickCategoryGridComponent } from '../../shared/quick-category-grid/quick-category-grid.component';
 import { QuickCategoryModel } from '../../models/quick-category.model';
@@ -18,7 +18,7 @@ import { inject } from '@angular/core';
   styleUrls: ['home.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonContent,
     IonRefresher, IonRefresherContent,
     BannerSliderComponent, QuickCategoryGridComponent,
     ProductSectionComponent, PromoBannerComponent, NewsFeedComponent

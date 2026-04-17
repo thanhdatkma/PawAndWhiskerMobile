@@ -10,7 +10,7 @@ import { settingsOutline } from 'ionicons/icons';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle, AsyncPipe, NgIf],
+  imports: [IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle, AsyncPipe],
 })
 export class ProfilePageComponent implements OnInit {
 
