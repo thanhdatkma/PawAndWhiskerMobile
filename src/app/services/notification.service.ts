@@ -17,7 +17,7 @@ export class NotificationService {
       title: 'Sắp đến lịch tiêm vắc-xin',
       description: 'Vắc-xin dại (hàng năm) cho Max cần được tiêm trước ngày 25/05/2026 tại phòng khám Paws Health.',
       actionText: 'Đặt hẹn khám ngay',
-      isRead: false
+      isRead: true
     },
     {
       id: 'a2',
@@ -61,7 +61,7 @@ export class NotificationService {
     map(notifications => notifications.filter(n => !n.isRead).length)
   );
 
-  constructor() {}
+  constructor() { }
 
   private loadNotifications(): NotificationModel[] {
     const stored = localStorage.getItem(this.STORAGE_KEY);

@@ -1,38 +1,147 @@
-.profile-container {
-  padding: 16px;
-}
-
-.settings-list {
-  background: transparent;
-  padding: 0;
-  margin: 0;
-}
-
-.settings-item {
-  --background: var(--surface-container-low);
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  border-radius: var(--radius-lg);
-  margin-bottom: 12px;
+.welcome-content {
+  --background: transparent;
   
-  h2 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  
-  p {
-    margin: 4px 0 0;
-    font-size: 0.9rem;
-    color: var(--on-surface-variant);
+  .welcome-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .background-image {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to top,
+        rgba(var(--primary-rgb), 0.95) 0%,
+        rgba(var(--primary-rgb), 0.40) 50%,
+        rgba(var(--primary-rgb), 0.10) 100%
+      );
+      pointer-events: none;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      padding-top: 64px;
+      padding-bottom: 32px;
+
+      .top-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: fadeIn 1s ease-out;
+
+        .logo-icon {
+          color: white;
+          font-size: 48px;
+          margin-bottom: 8px;
+          filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+          font-variation-settings: 'FILL' 1;
+        }
+
+        .app-title {
+          font-family: var(--font-headline);
+          font-size: 48px;
+          font-weight: 800;
+          color: white;
+          text-align: center;
+          line-height: 1.1;
+          letter-spacing: -0.025em;
+          margin: 0;
+          filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+      }
+
+      .bottom-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        button {
+          width: 100%;
+          height: 64px;
+          border-radius: var(--radius-full);
+          font-family: var(--font-body);
+          font-size: 1.125rem;
+          font-weight: 700;
+          transition: transform 0.1s ease;
+          border: none;
+          cursor: pointer;
+
+          &:active {
+            transform: scale(0.98);
+          }
+        }
+
+        .btn-primary {
+          background: linear-gradient(to right, var(--color-primary), var(--color-primary-container));
+          color: var(--color-on-primary);
+          box-shadow: 0 8px 32px rgba(180, 0, 104, 0.4);
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          color: white;
+          font-weight: 600;
+        }
+
+        .terms-text {
+          text-align: center;
+          color: rgba(255, 255, 255, 0.8);
+          font-family: var(--font-label);
+          font-size: 0.875rem;
+          margin: 16px 0 0;
+          padding: 0 16px;
+
+          a {
+            color: white;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+
+            &:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-ion-toggle {
-    --handle-background: var(--color-surface-container-lowest);
-    --handle-background-checked: var(--color-surface-container-lowest);
-    --track-background: var(--color-surface-container-highest);
-    --track-background-checked: var(--color-primary);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+/* Dark mode adjustments if needed, though the design is vibrant/fixed for this screen */
+:host-context(.dark-theme) {
+  .welcome-content {
+     /* Usually welcome screens maintain their branding even in dark mode */
+  }
+}
+

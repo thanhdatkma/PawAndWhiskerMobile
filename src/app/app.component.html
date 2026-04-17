@@ -17,6 +17,18 @@
           }
         </ion-list>
 
+        <ion-list lines="none" class="settings-list">
+          <ion-item class="settings-item">
+            <ion-label>
+              <h2 class="text-headline">Dark Mode</h2>
+              <p class="text-body">Enable dark theme across the app</p>
+            </ion-label>
+            <ion-toggle slot="end" [checked]="(configService.settings$ | async)?.isDarkmode"
+              (ionChange)="onDarkModeToggle()">
+            </ion-toggle>
+          </ion-item>
+        </ion-list>
+
         <ion-list id="labels-list">
           <ion-list-header>Labels</ion-list-header>
 

@@ -4,13 +4,6 @@ import {
   IonContent,
   IonRefresher,
   IonRefresherContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonText,
-  IonIcon,
-  IonList,
-  IonItem
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -41,13 +34,6 @@ import { Observable } from 'rxjs';
     IonContent,
     IonRefresher,
     IonRefresherContent,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonText,
-    IonIcon,
-    IonList,
-    IonItem,
     NotificationCardItemComponent,
     CommunityAlertsComponent
   ],

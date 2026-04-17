@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel } from '@ionic/angular/standalone';
+import { IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonToggle } from '@ionic/angular/standalone';
+import { ConfigService } from './services/config.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel],
+  imports: [RouterLink, RouterLinkActive, IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonToggle, AsyncPipe],
 })
 export class AppComponent {
   public appPages = [
@@ -18,8 +20,11 @@ export class AppComponent {
     { title: 'Settings', url: '/tabs/profile', icon: 'settings' },
   ];
   public labels = ['Grooming', 'Vet Visits', 'Orders', 'Food'];
-
+  public configService = inject(ConfigService);
   constructor() {
 
+  }
+  onDarkModeToggle() {
+    this.configService.toggleDarkMode();
   }
 }

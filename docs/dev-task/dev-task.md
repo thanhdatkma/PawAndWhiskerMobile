@@ -12,7 +12,7 @@
 - Style: Cấm lạm dụng Tailwind class cho layout. Phải dùng Ionic CSS Variables (--background, --color) và SASS local -sê https://ionicframework.com/docs/theming/css-variables
 
 - Structure: ion-header (Top), ion-content (Body), ion-tab-bar[slot="bottom"] (Nav).
-
+- Ảnh, font, icon dùng có sẵn hoặc bổ sung vào /assets.* nếu chưa có
 - Standard: Tuân thủ triệt để tài liệu Ionic v8.
 
 # Based on the Sprint Planning strategy and gathered User Stories in the `docs/requirements` directory.

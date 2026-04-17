@@ -11,17 +11,13 @@ import { BaseComponent } from '../../shared/base-component/base.component';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonLabel, IonToggle, AsyncPipe],
+  imports: [IonContent, AsyncPipe],
 })
 export class ProfilePageComponent extends BaseComponent {
 
   constructor(public configService: ConfigService) {
     super();
     addIcons({ settingsOutline });
-  }
-
-  onDarkModeToggle() {
-    this.configService.toggleDarkMode();
   }
 
 }
