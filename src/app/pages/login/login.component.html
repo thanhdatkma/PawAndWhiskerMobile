@@ -1,0 +1,99 @@
+<ion-header class="login-header">
+  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="logo-wrapper">
+    <!-- <ion-icon name="paw" class="logo-icon"></ion-icon> -->
+    <ion-text class="logo-text">Paws & Whiskers</ion-text>
+  </div>
+</ion-header>
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-container">
+    <main class="login-main">
+      <section class="hero-section">
+        <div class="hero-image-container">
+          <div class="hero-image-backdrop"></div>
+          <ion-img src="./assets/images/login-hero.png" alt="Friendly pet" class="hero-image"></ion-img>
+        </div>
+        <h2 class="welcome-title">Welcome Back!</h2>
+        <p class="welcome-subtitle">Log in to continue pampering your pet.</p>
+      </section>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+        <div class="input-group">
+          <ion-label class="input-label">Email Address</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="email" type="email" placeholder="hello@paws.com"
+              class="custom-input"></ion-input>
+          </div>
+          <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']"
+            class="error-text">
+            Please enter a valid email address.
+          </ion-text>
+        </div>
+
+        <div class="input-group">
+          <ion-label class="input-label">Password</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="••••••••"
+              class="custom-input"></ion-input>
+            <ion-button fill="clear" (click)="togglePassword()" slot="end" class="password-toggle">
+              <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </div>
+          <ion-text color="danger"
+            *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['minlength']"
+            class="error-text">
+            Password must be at least 6 characters.
+          </ion-text>
+          <div class="forgot-password-wrapper">
+            <ion-text (click)="onForgotPassword()" class="forgot-password-link">Forgot Password?</ion-text>
+          </div>
+        </div>
+
+        <div class="login-actions">
+          <ion-button expand="block" shape="round" type="submit" class="login-btn">
+            Login
+          </ion-button>
+          <ion-button fill="outline" shape="round" class="face-id-btn" (click)="onFaceIdLogin()"
+            aria-label="Login with Face ID">
+            <ion-img src="./assets/images/faceid.png" class="face-id-icon"></ion-img>
+          </ion-button>
+        </div>
+      </form>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">OR CONTINUE WITH</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <ion-grid class="social-grid">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button expand="block" fill="outline" class="social-btn" (click)="onSocialLogin('google')">
+              <ion-icon name="logo-google" slot="start"></ion-icon>
+              Google
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" fill="outline" class="social-btn" (click)="onSocialLogin('apple')">
+              <ion-icon name="logo-apple" slot="start"></ion-icon>
+              Apple
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <footer class="login-footer">
+        <p class="footer-text">
+          Don't have an account?
+          <ion-text class="register-link" (click)="onRegister()">Join the Pack</ion-text>
+        </p>
+      </footer>
+    </main>
+  </div>
+
+</ion-content>

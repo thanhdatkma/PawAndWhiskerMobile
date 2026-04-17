@@ -1,4 +1,4 @@
-<ion-content class="welcome-content" [scrollY]="false">
+<ion-content class="welcome-content" scrollX="true" scrollY="true">
   <div class="welcome-container">
     <!-- Full-Screen Background Image -->
     <div class="background-image">
@@ -12,22 +12,21 @@
     <div class="content-wrapper">
       <!-- Top Section: Logo -->
       <div class="top-section">
-        <span class="material-symbols-outlined logo-icon">pets</span>
+        <ion-icon name="paw" class="logo-icon"></ion-icon>
         <h1 class="app-title">Paws &<br>Whiskers</h1>
       </div>
 
-      <!-- Bottom Section: Actions -->
       <div class="bottom-section">
-        <button class="btn-primary">
+        <ion-button class="btn-primary" expand="block" mode="ios" routerLink="/login">
           Login
-        </button>
-        <button class="btn-secondary">
+        </ion-button>
+        <ion-button class="btn-secondary" expand="block" mode="ios">
           Register
-        </button>
-        <p class="terms-text">
+        </ion-button>
+        <ion-text class="terms-text">
           By continuing, you agree to our
           <a href="#">Terms of Service</a>
-        </p>
+        </ion-text>
       </div>
     </div>
   </div>

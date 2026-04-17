@@ -12,15 +12,15 @@
 - Style: Cấm lạm dụng Tailwind class cho layout. Phải dùng Ionic CSS Variables (--background, --color) và SASS local -sê https://ionicframework.com/docs/theming/css-variables
 
 - Structure: ion-header (Top), ion-content (Body), ion-tab-bar[slot="bottom"] (Nav).
-- Ảnh, font, icon dùng có sẵn hoặc bổ sung vào /assets.* nếu chưa có
+- Ảnh, font, icon dùng có sẵn hoặc bổ sung vào /assets.* nếu chưa có, không dùng cdn link.
 - Standard: Tuân thủ triệt để tài liệu Ionic v8.
-
+- Không giải thích dài dòng, chỉ trả lời code.
 # Based on the Sprint Planning strategy and gathered User Stories in the `docs/requirements` directory.
 
 ## 🏃 Sprint 1: Foundation & Discovery (Tuần 1 - Tuần 2)
 
 ### 1. 🛡️ Auth Flow (`auth-requirement.md`)
-- [ ] [Todo] Implement Welcome screen UI (Slider, Graphics)
+- [x] [Done] Implement Welcome screen UI (Slider, Graphics)
 - [ ] [Todo] Develop Login & Validation form logic
 - [ ] [Todo] Develop Register & Validation form logic
 - [ ] [Todo] Integrate Authentication API and Token Interceptors

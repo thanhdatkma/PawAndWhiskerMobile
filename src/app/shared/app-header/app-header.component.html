@@ -24,7 +24,11 @@
       </div>
 
       <ng-template #appTitle>
-        <h1 class="app-header__app-title" [class.app-header__app-title--shrunk]="isHeaderShrunk">{{ title }}</h1>
+        <!-- <h1 class="app-header__app-title" [class.app-header__app-title--shrunk]="isHeaderShrunk">{{ title }}</h1> -->
+        <div class="logo-wrapper" [class.logo-wrapper--shrunk]="isHeaderShrunk">
+          <!-- <ion-icon name="paw" class="logo-icon"></ion-icon> -->
+          <ion-text class="logo-text">{{ title }}</ion-text>
+        </div>
       </ng-template>
 
       <!-- Right: Cart icon -->

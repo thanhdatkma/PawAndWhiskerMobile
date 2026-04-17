@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#e1bdc8",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#e8c41d",
+                    "surface": "#f9f9f9",
+                    "on-tertiary-fixed-variant": "#004c6c",
+                    "surface-dim": "#dadada",
+                    "outline": "#8d6f78",
+                    "on-tertiary-container": "#fcfcff",
+                    "primary-container": "#dd1683",
+                    "on-secondary-fixed-variant": "#544600",
+                    "surface-bright": "#f9f9f9",
+                    "inverse-primary": "#ffb0cc",
+                    "tertiary-fixed-dim": "#83cfff",
+                    "on-surface-variant": "#594048",
+                    "surface-variant": "#e2e2e2",
+                    "primary-fixed-dim": "#ffb0cc",
+                    "on-secondary-fixed": "#221b00",
+                    "surface-container-low": "#f3f3f3",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary": "#705d00",
+                    "on-tertiary-fixed": "#001e2e",
+                    "surface-container-highest": "#e2e2e2",
+                    "secondary-container": "#fdd835",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#705e00",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "on-primary-container": "#fffbff",
+                    "primary": "#b40068",
+                    "surface-container-high": "#e8e8e8",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#007dae",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "background": "#f9f9f9",
+                    "surface-tint": "#b8006b",
+                    "secondary-fixed": "#ffe16e",
+                    "on-surface": "#1a1c1c",
+                    "on-primary-fixed": "#3e0020",
+                    "primary-fixed": "#ffd9e4",
+                    "tertiary": "#00628a",
+                    "tertiary-fixed": "#c7e7ff",
+                    "on-primary-fixed-variant": "#8d0050"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-[0_32px_0_0_rgba(26,28,28,0.06)]">
+<div class="flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-500 dark:text-zinc-400 hover:opacity-80 transition-opacity cursor-pointer">arrow_back</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-xl font-extrabold text-pink-600 dark:text-pink-400">PetPulse</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-500 dark:text-zinc-400">search</span>
+<span class="material-symbols-outlined text-zinc-500 dark:text-zinc-400">notifications</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 space-y-12">
+<!-- Hero Section: The Playful Curator -->
+<section class="space-y-6">
+<div class="relative overflow-hidden rounded-[3rem] bg-primary-container text-on-primary-container p-8 min-h-[400px] flex flex-col justify-end">
+<img alt="Happy Golden Retriever in a modern bright home" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="cheerful golden retriever puppy sitting in a sun-drenched modern minimalist living room with soft pink and yellow accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0ajPcYi-sDBA-8yJ-vUu2dI7_gHZ_en1ppZUfSMT5dwVqtTyz4F_2DD7F5sNVVN2iRw8QHutgiUVtTy_DpkRbGNh9KLbmsab3wI4Cw1g1k92hyHqelIXbNUX3ojqzOgXzQ98DQnzVBSB5xQ4fK5nZHhZFinkBa8sIXHfC-aXSivKPsECVwlnpIKW5cbfmuZDRPZd4bhE5dlQvLlTXRiJnMC35W2yA1t9EyDJ-pE9kfjtUvqa_nG-_YDVEDv5DLfsG6Bi-qfKFeec"/>
+<div class="relative z-10 space-y-4">
+<span class="font-label text-sm uppercase tracking-widest bg-white/20 backdrop-blur-md px-4 py-1 rounded-full w-fit">Our Mission</span>
+<h2 class="font-headline text-4xl font-extrabold leading-tight">The Playful Curator</h2>
+<p class="text-lg opacity-90 max-w-md">We believe pet care isn't just a chore—it's a premium lifestyle choice for your best friends.</p>
+</div>
+</div>
+</section>
+<!-- Storytelling Grid -->
+<section class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Our Story Card -->
+<div class="bg-surface-container-lowest p-8 rounded-[2.5rem] shadow-[0_32px_0_0_rgba(26,28,28,0.06)] space-y-4">
+<div class="h-12 w-12 rounded-2xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">pets</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface">Tail-Wagging Beginnings</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                        Founded by a group of obsessive pet parents, Paws &amp; Whiskers was born from a simple realization: the pet market lacked "soul." We set out to curate a world where safety meets style.
+                    </p>
+</div>
+<!-- Vision Card -->
+<div class="bg-surface-container-low p-8 rounded-[2.5rem] space-y-4 relative overflow-hidden">
+<div class="h-12 w-12 rounded-2xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white">auto_awesome</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface">A New Standard</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                        We don't just sell products; we curate experiences. From hand-picked organic treats to ergonomically designed beds that actually match your decor.
+                    </p>
+<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+</section>
+<!-- Values Section (Bento Style) -->
+<section class="space-y-6">
+<h3 class="font-headline text-3xl font-extrabold px-2">What we live by</h3>
+<div class="grid grid-cols-2 gap-4">
+<!-- Value 1 -->
+<div class="col-span-1 aspect-square bg-white rounded-[2.5rem] p-6 flex flex-col justify-between items-start shadow-sm">
+<div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Pure Love</h4>
+<p class="text-xs text-on-surface-variant mt-1">Every choice is lead by the heart.</p>
+</div>
+</div>
+<!-- Value 2 -->
+<div class="col-span-1 aspect-square bg-secondary-container rounded-[2.5rem] p-6 flex flex-col justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-secondary-container">Safe Guard</h4>
+<p class="text-xs text-on-secondary-container opacity-80 mt-1">Uncompromising safety standards.</p>
+</div>
+</div>
+<!-- Value 3: Wide -->
+<div class="col-span-2 bg-tertiary-container text-on-tertiary-container rounded-[2.5rem] p-8 flex items-center gap-6">
+<div class="w-14 h-14 shrink-0 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">star</span>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold">Curated Quality</h4>
+<p class="opacity-90 text-sm">We test everything on our own pets first. If they don't love it, we don't stock it.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Meet the Team (Asymmetric Layout) -->
+<section class="space-y-8">
+<div class="flex justify-between items-end px-2">
+<h3 class="font-headline text-3xl font-extrabold max-w-[200px]">The Humans Behind the Paws</h3>
+<span class="text-primary font-label font-bold text-sm">Join the team</span>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar">
+<!-- Member 1 -->
+<div class="shrink-0 w-64 space-y-4">
+<div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-surface-container">
+<img alt="Founder Portrait" class="w-full h-full object-cover" data-alt="Professional young woman with a warm smile holding a small fluffy kitten, editorial photography style, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyxHaPHOPBH88sOWlGJraluAXlUl69YNe6sjADawYAJOwoNYwHmWt_TEe2y0MnLQqhEwqEZ8PsBKayfek7YdK9WDrPTx8tBuFflrAVdM5mdwlZebivSXvYVQRbDGjmDLoYTWxSK-jTITI5twEra5EoLbukDET7U9I2FONDLggify7nRabd6PXgqAWVd-hapA7e8vRmghwaKMws4tZ6_Eb940z6zWnfEavnllz0xOccrQ6XhwBRgTZ5QvS5glsmjw0nesL5Y7MpCAo"/>
+</div>
+<div class="px-2">
+<h5 class="font-headline font-bold text-lg">Sarah Jenkins</h5>
+<p class="text-sm text-on-surface-variant">Founder &amp; Chief Snuggler</p>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="shrink-0 w-64 space-y-4 mt-8">
+<div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-surface-container">
+<img alt="Co-Founder Portrait" class="w-full h-full object-cover" data-alt="Friendly man in his 30s wearing a casual linen shirt, sitting outdoors with a large Labrador, high-end lifestyle photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDGGWBd3LgsWaSpXcdjQy8Xqw9pOB2u8dYAmJ-mVs2eUmGSDGj2saI1CZvKXUdV9E-eHJ5-zgetEEdYNfZlIc4XwvN08QH918H-aPe1mX1UJswbuwb4FGuR1Q_1wxU1Q99kLGJj_iLaSMKjV3DBoAQFgKxz2gG46ZBgN7QWRdGXJ5ZUVWgmqO3YOp0Un58e94vUr88m0tlC4XflsVCLFWbF8Px0ZguoCH3iLfi1NBxBCr8EtP914JDx09qIDGK94ya2sNEgPZJVgY"/>
+</div>
+<div class="px-2">
+<h5 class="font-headline font-bold text-lg">Marcus Chen</h5>
+<p class="text-sm text-on-surface-variant">Product Curator</p>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="shrink-0 w-64 space-y-4">
+<div class="aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-surface-container">
+<img alt="Team Member Portrait" class="w-full h-full object-cover" data-alt="Young woman laughing while playing with a group of colorful parrots, vibrant and joyful studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-av17pTeH_-Si-u6E0ra62ZtfK0Un6BqlKYnps_5awieZSDjj6yVgoowMjG-quKNSLosUyPdr2Kra3l5MS1HgbINvYoeTGSs2EEr8OP5KAGDsNm-3oJSRYHzLVctU0EDTNU-pW8X7co9_jxX7E18ggSB9hB3wLTWJ66nUfJAVubso33p8Nyi23EmatlKhkHFO-z-WFfrgi2a0heGL4WYN898-RWOOTKYEEnacYx0lOjgJGAcdeJeLaqz8IGZRKBWItO42ipmNdoo"/>
+</div>
+<div class="px-2">
+<h5 class="font-headline font-bold text-lg">Elena Rodriguez</h5>
+<p class="text-sm text-on-surface-variant">Customer Happiness</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="bg-secondary text-on-secondary rounded-[3rem] p-10 text-center space-y-6">
+<h3 class="font-headline text-3xl font-extrabold">Ready to join our family?</h3>
+<p class="opacity-90 max-w-xs mx-auto">Discover a new way to celebrate the bond with your pets.</p>
+<button class="bg-primary text-on-primary font-headline font-bold px-10 py-4 rounded-full shadow-lg hover:opacity-90 transition-all">
+                Shop Our Collection
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md rounded-t-[3rem] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] z-50">
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-5 py-2 hover:text-pink-500 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-['Inter'] text-[11px] font-medium">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-5 py-2 hover:text-pink-500 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-['Inter'] text-[11px] font-medium">Health</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-5 py-2 hover:text-pink-500 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-['Inter'] text-[11px] font-medium">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-[2rem] px-5 py-2 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] text-[11px] font-medium">Account</span>
+</div>
+</nav>
+</body></html>

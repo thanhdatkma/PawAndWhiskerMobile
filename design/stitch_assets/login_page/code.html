@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Paws &amp; Whiskers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Be+Vietnam+Pro:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadada",
+                        "outline-variant": "#e1bdc8",
+                        "background": "#f9f9f9",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#004c6c",
+                        "on-primary-fixed-variant": "#8d0050",
+                        "error": "#ba1a1a",
+                        "tertiary": "#00628a",
+                        "surface-container-high": "#e8e8e8",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed": "#c7e7ff",
+                        "surface-tint": "#b8006b",
+                        "primary-fixed": "#ffd9e4",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed": "#221b00",
+                        "on-secondary-fixed-variant": "#544600",
+                        "tertiary-fixed-dim": "#83cfff",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "secondary-container": "#fdd835",
+                        "primary": "#b40068",
+                        "on-primary-fixed": "#3e0020",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffe16e",
+                        "outline": "#8d6f78",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#dd1683",
+                        "primary-fixed-dim": "#ffb0cc",
+                        "on-surface": "#1a1c1c",
+                        "on-secondary-container": "#705e00",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "secondary": "#705d00",
+                        "tertiary-container": "#007dae",
+                        "inverse-primary": "#ffb0cc",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary-fixed": "#001e2e",
+                        "surface-container": "#eeeeee",
+                        "on-primary-container": "#fffbff",
+                        "on-surface-variant": "#594048",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary-fixed-dim": "#e8c41d",
+                        "on-tertiary-container": "#fcfcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-header {
+            background: rgba(249, 249, 249, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen flex flex-col">
+<header class="fixed w-full top-0 z-50 glass-header">
+<div class="flex justify-center items-center px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#EB278D] text-2xl">pets</span>
+<h1 class="font-headline font-bold tracking-tight text-2xl text-[#EB278D]">Paws &amp; Whiskers</h1>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-6 pt-24 pb-12 max-w-md mx-auto w-full">
+<section class="w-full text-center mb-10">
+<div class="relative w-48 h-48 mx-auto mb-6">
+<div class="absolute inset-0 bg-secondary-container rounded-full opacity-20 scale-110"></div>
+<img alt="Friendly golden retriever" class="w-full h-full object-cover rounded-full shadow-lg relative z-10" data-alt="A happy, smiling golden retriever wearing a pink bandana sitting in a sunlit studio with soft pastel yellow background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYRsJnxsiGOgTYy3e6zkVwcLlBaENCw0Llh7ZHb9Zf2aDwzsFOfojVMVZsbkToKtnkeDPFyORS90_KUz2S9tJY45n-p6hKFeMAANOx7ENJ4-tiT9wjWCEYwcU2Gg-Pxklnqp2t0z3iyi7PZKumoq_w9GQ6XbJIqOtVwFnjFZG5LmMtJQ8wdguTyo36I1ZPh00EMRvVrhzCWRmWzyFv5tbjJpLIcliDL5hTeXB-HtU_koXjultCvz1VIKnbrE3yCEyZl7aMT5DTMjE"/>
+</div>
+<h2 class="font-headline font-extrabold text-4xl text-on-surface tracking-tight mb-2">Welcome Back!</h2>
+<p class="text-on-surface-variant font-medium">Log in to continue pampering your pet.</p>
+</section>
+<section class="w-full space-y-6">
+<div class="space-y-4">
+<div class="relative group">
+<label class="block text-sm font-label font-medium text-on-surface-variant mb-1.5 ml-4">Email Address</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-highest rounded-xl border-none focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline/50 font-medium transition-all" placeholder="hello@paws.com" type="email"/>
+</div>
+</div>
+<div class="relative group">
+<label class="block text-sm font-label font-medium text-on-surface-variant mb-1.5 ml-4">Password</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full pl-12 pr-12 py-4 bg-surface-container-highest rounded-xl border-none focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline/50 font-medium transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 flex items-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<div class="flex justify-end mt-2">
+<a class="text-sm font-semibold text-primary hover:opacity-80 transition-opacity" href="#">Forgot Password?</a>
+</div>
+</div>
+</div>
+<button class="w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary-container text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 active:scale-95 transition-transform duration-200">
+                Login
+            </button>
+<div class="flex items-center gap-4 py-4">
+<div class="h-[1px] flex-grow bg-outline-variant opacity-30"></div>
+<span class="text-xs font-label font-bold text-outline tracking-widest uppercase">OR CONTINUE WITH</span>
+<div class="h-[1px] flex-grow bg-outline-variant opacity-30"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3.5 px-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow active:scale-95 duration-200 border border-outline-variant/10">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoUNA92UX2qTBM-gmkWn1VFKe4nxowAP0sJ-lWhD5fBBYi9ecngl-dhDxaJcrrhC09udCtEuMZ1iFlndAmetFtToHNQ8tCGP0ufMVS_dhZo23JPQWd0QNbSZPlRL6FCQiT3jaGrwJQ41ChOI1ZIawm_SsxeEBFizW3ry4sJvmk8p562YYvaVllmye29PYg9xlmITAgjRIQjoWE8x9Tzr2R3733_DubFZXXQySPArx0iDkQLzKX-UwBrpGpynN___x7MZgmaCi0l0"/>
+<span class="font-body font-semibold text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3.5 px-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow active:scale-95 duration-200 border border-outline-variant/10">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">ios</span>
+<span class="font-body font-semibold text-on-surface">Apple</span>
+</button>
+</div>
+</section>
+<footer class="mt-12 text-center">
+<p class="text-on-surface-variant font-medium">
+                Don't have an account? 
+                <a class="text-primary font-bold ml-1 hover:underline underline-offset-4 decoration-2" href="#">Join the Pack</a>
+</p>
+</footer>
+</main>
+</body></html>

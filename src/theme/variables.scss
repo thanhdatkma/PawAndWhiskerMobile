@@ -40,8 +40,7 @@
   --color-inverse-primary: #ffb0cc;
   --color-on-secondary-fixed: #221b00;
   --color-background: #f9f9f9;
-  --color-surface-dim: #dadada;
-  --color-primary: #b40068;
+  --color-primary: #EB278D;
   --color-surface-container-highest: #e2e2e2;
   --color-secondary-container: #FDD835;
   --color-on-background: #1a1c1c;
@@ -130,7 +129,8 @@ body.dark-theme {
   --surface-container-highest: #525353;
   --on-surface: var(--color-inverse-on-surface);
   --on-surface-variant: #e1bdc8;
-  --color-primary: #b40068;
+  // --color-primary: #b40068;
+  --color-primary: #EB278D;
   --ion-background-color: var(--surface);
   --ion-text-color: var(--on-surface);
 

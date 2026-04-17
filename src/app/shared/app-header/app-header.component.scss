@@ -118,12 +118,44 @@
         transition: font-size 0.3s ease;
 
         // TODO: this class will be used when we have a search bar disappear, the title side will smaller
-        // &--shrunk {
-        //     font-size: 1rem;
-        // }
+        &--shrunk {
+            font-size: 1rem;
+        }
     }
 
     &__search {
         overflow: hidden;
+    }
+
+    .logo-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+
+        &--shrunk {
+            transform: scale(0.85);
+            transform-origin: left center;
+        }
+
+        .logo-icon {
+            color: var(--color-primary);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-family: var(--font-headline);
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+            color: var(--color-primary);
+        }
+    }
+
+    :host-context(.dark-theme) & {
+        .logo-icon,
+        .logo-text {
+            color: var(--color-primary);
+        }
     }
 }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, inject } from '@angular/core';
-import { IonButtons, IonButton, IonIcon, IonMenuButton, IonHeader } from '@ionic/angular/standalone';
+import { IonButtons, IonButton, IonText, IonIcon, IonMenuButton, IonHeader } from '@ionic/angular/standalone';
 import { BaseComponent } from '../base-component/base.component';
 import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
@@ -14,7 +14,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, SearchBarComponent]
+  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, IonText, SearchBarComponent]
 })
 export class AppHeaderComponent extends BaseComponent implements OnInit {
 
