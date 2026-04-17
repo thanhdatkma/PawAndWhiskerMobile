@@ -1,6 +1,7 @@
 <ion-card class="alert-card" [ngClass]="notification.type">
   <div class="card-body">
-    <div class="icon-wrapper" [ngClass]="notification.type">
+    <div class="icon-wrapper" [ngClass]="notification.type"
+      [class.toggle-off]="notification.isInteractive && !medicationConfirmed">
       <img [src]="notification.icon" [alt]="notification.category + ' Icon'" />
     </div>
     <div class="content-wrapper">

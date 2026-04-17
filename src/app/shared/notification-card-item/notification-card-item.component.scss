@@ -166,28 +166,16 @@
     }
 
     ion-toggle {
-      --handle-background: var(--color-surface-container-lowest);
-      --handle-background-checked: var(--color-surface-container-lowest);
-      --track-background: var(--color-surface-container-highest);
-      --track-background-checked: var(--color-primary);
       width: 44px;
       height: 24px;
       padding: 0;
-
-      .toggle-icon-wrapper {
-        --background: #dedede;
-      }
+      --background: rgba(255, 255, 255, 0.2);
+      // --background-checked: var(--app-purple);
+      --track-background: var(--color-surface-container-highest);
 
       :host-context(.dark-theme) & {
         --background: rgba(255, 255, 255, 0.2);
-        --background-checked: var(--app-purple);
-      }
-
-      // Light mode adjustment for "interactive" icon wrapper
-      :host-context(:not(.dark-theme)) & {
-        &.recurring {
-          background: #c8c9cb; // Darker grey for the medication/recurring icon
-        }
+        --track-background: rgba(var(--ion-text-color-rgb), 0.088);
       }
     }
   }
