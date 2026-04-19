@@ -45,15 +45,15 @@ export class AlertsPageComponent extends BaseComponent implements OnInit {
   constructor() {
     super();
     addIcons({
-      alertCircleOutline,
-      checkmarkCircleOutline,
-      timeOutline,
-      giftOutline,
-      chevronForwardOutline,
-      medicalOutline,
-      cubeOutline,
-      flaskOutline,
-      cutOutline
+      'alert-circle-outline': alertCircleOutline,
+      'checkmark-circle-outline': checkmarkCircleOutline,
+      'time-outline': timeOutline,
+      'gift-outline': giftOutline,
+      'chevron-forward-outline': chevronForwardOutline,
+      'medical-outline': medicalOutline,
+      'cube-outline': cubeOutline,
+      'flask-outline': flaskOutline,
+      'cut-outline': cutOutline
     });
   }
 

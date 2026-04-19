@@ -1,0 +1,458 @@
+:host {
+  --profile-padding: 24px;
+}
+
+.profile-content {
+  --background: var(--color-background);
+}
+
+.profile-header {
+  background: rgba(var(--surface-rgb), 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 8px 16px;
+
+  .profile-toolbar {
+    --background: transparent;
+    --min-height: 64px;
+  }
+
+  .back-btn,
+  .settings-btn {
+    --color: var(--on-surface);
+    --padding-start: 8px;
+    --padding-end: 8px;
+    margin: 0;
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+
+  .header-title-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .header-title {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--on-surface);
+    letter-spacing: -0.02em;
+  }
+}
+
+.profile-grid {
+  --ion-grid-padding: 0;
+  --ion-grid-column-padding: 0;
+  padding-bottom: 40px;
+}
+
+.main-column {
+  padding: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .main-column {
+    padding: 24px !important;
+  }
+}
+
+// User Hero Section
+.user-hero {
+  margin-bottom: 40px;
+  margin-top: 32px;
+
+  .avatar-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px;
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid var(--surface-container-lowest);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      background: var(--surface-container);
+    }
+
+    .user-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .camera-btn {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      --background: var(--primary);
+      --color: white;
+      --border-radius: 50% !important;
+      --padding-top: 0;
+      --padding-bottom: 0;
+      --padding-start: 0;
+      --padding-end: 0;
+      width: 36px !important;
+      height: 36px !important;
+      max-width: 36px !important;
+      max-height: 36px !important;
+      min-width: 36px !important;
+      min-height: 36px !important;
+      margin: 0;
+      z-index: 20;
+
+      &::part(native) {
+        border-radius: 50%;
+        padding: 0;
+        width: 36px !important;
+        height: 36px !important;
+      }
+
+      ion-icon {
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+
+    .premium-badge {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #FFB800 0%, #FF8A00 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      border: 4px solid var(--surface-container-lowest);
+      box-shadow: 0 6px 16px rgba(255, 184, 0, 0.4);
+
+      .premium-icon {
+        color: white;
+        font-size: 20px;
+        --ionicon-stroke-width: 48px;
+      }
+    }
+  }
+
+  .user-name {
+    display: block;
+    margin-bottom: 20px;
+
+    h2 {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--on-surface);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .user-actions {
+    display: flex;
+    justify-content: center;
+
+    .edit-profile-btn {
+      --border-color: var(--primary);
+      --color: var(--primary);
+      font-weight: 700;
+      font-size: 15px;
+      height: 44px;
+      --padding-start: 36px;
+      --padding-end: 36px;
+      margin: 0;
+    }
+  }
+}
+
+// Pet Card
+.pet-card {
+  margin: 24px 0 24px;
+  border-radius: 32px;
+  background: var(--surface-container-lowest);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: none;
+
+  .pet-card-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0 16px;
+    position: relative;
+  }
+
+  .pet-image-wrapper {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 4px solid var(--surface-container);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      background: var(--surface-container);
+      transition: all 0.3s ease;
+    }
+
+    .pet-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .pet-info-header {
+    padding: 0 24px 24px;
+    text-align: center;
+
+    .pet-name {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: 28px;
+      color: var(--primary);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .pet-breed {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--on-surface-variant);
+      margin: 4px 0 0;
+      opacity: 0.8;
+    }
+  }
+
+  .pet-info-list {
+    background: transparent;
+    width: 100%;
+
+    .pet-info-item {
+      --background: transparent;
+      --padding-start: 24px;
+      --padding-end: 24px;
+      --min-height: 72px;
+      --inner-padding-end: 0;
+      --border-style: none;
+      --inner-border-width: 0;
+
+      .info-icon-wrapper {
+        width: 44px;
+        height: 44px;
+        background: var(--surface-container-low);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+
+        ion-icon {
+          font-size: 20px;
+          color: var(--primary);
+        }
+
+        &.vaccine-icon {
+          background: rgba(var(--primary-rgb), 0.1);
+        }
+      }
+
+      .info-label {
+        font-family: var(--font-label);
+        font-weight: 700;
+        font-size: 11px;
+        color: var(--on-surface-variant);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0 0 2px;
+      }
+
+      .info-value {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--on-surface);
+        margin: 0;
+      }
+
+      &.vaccine-highlight {
+        .info-value {
+          color: var(--primary);
+        }
+      }
+    }
+  }
+}
+
+// Action Menu
+.profile-menu {
+  background: transparent;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .profile-menu-item {
+    --background: var(--surface-container-low);
+    --border-radius: 20px;
+    --padding-start: 8px;
+    --padding-end: 16px;
+    --min-height: 72px;
+    --inner-padding-end: 0;
+    margin-bottom: 0;
+    transition: all 0.2s ease;
+
+    &:active {
+      --background: var(--surface-container-high);
+      transform: scale(0.98);
+    }
+
+    .item-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      background: var(--color-surface-container-highest);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      margin-right: 16px;
+
+      ion-icon {
+        font-size: 22px;
+      }
+    }
+
+    ion-label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--on-surface);
+    }
+
+    &::part(native) {
+      padding: 12px 16px;
+    }
+  }
+}
+
+// Logout Action
+.logout-action-btn {
+  --color: var(--primary);
+  --padding-top: 24px;
+  --padding-bottom: 24px;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 32px;
+  margin-bottom: 40px;
+  letter-spacing: 0.01em;
+
+  ion-icon {
+    font-size: 22px;
+    margin-right: 10px;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+// Dark Mode Adjustments
+:host-context(.dark-theme) {
+  .profile-header {
+    background: rgba(var(--surface-rgb), 1);
+  }
+
+  .premium-badge {
+    border-color: var(--surface-container-low) !important;
+  }
+
+  .camera-btn {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .pet-card {
+    background: var(--surface-container-low);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+    .pet-card-layout {
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), transparent);
+        border-radius: 36px;
+        pointer-events: none;
+      }
+    }
+
+    .pet-image-wrapper {
+      .image-inner {
+        border-color: var(--surface-container-low);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .pet-info-list {
+      .pet-info-item {
+        --border-color: rgba(255, 255, 255, 0.05);
+
+        .info-icon-wrapper {
+          background: var(--surface-container-high);
+        }
+      }
+    }
+  }
+
+  .profile-menu-item {
+    --background: var(--surface-container-low);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:active {
+      --background: var(--surface-container-high);
+    }
+
+    .item-icon-wrapper {
+      background: var(--surface-container-high);
+    }
+  }
+
+  .avatar-inner {
+    border-color: var(--surface-container-low);
+  }
+}
+
+// Media Queries for Tablet/Desktop
+@media (min-width: 768px) {
+  .pet-card {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .pet-image-wrapper {
+      width: 150px;
+      height: 150px;
+    }
+
+    .pet-card-layout {
+      padding: 40px 0 24px;
+    }
+  }
+}

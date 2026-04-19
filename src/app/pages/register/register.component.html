@@ -1,0 +1,158 @@
+<ion-header class="register-header">
+  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="logo-wrapper">
+    <ion-text class="logo-text">Paws & Whiskers</ion-text>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="register-content">
+  <div class="register-container">
+    <main class="register-main">
+      <section class="hero-section">
+        <div class="hero-image-container">
+          <div class="hero-image-backdrop"></div>
+          <ion-img src="./assets/images/register.png" alt="Join the pack" class="hero-image"></ion-img>
+        </div>
+        <h2 class="welcome-title">Join the Pack</h2>
+        <p class="welcome-subtitle">Create an account to start pampering your pet.</p>
+      </section>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-form">
+        <div class="input-group">
+          <ion-label class="input-label">Full Name</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="person-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="fullName" type="text" placeholder="John Doe" class="custom-input"></ion-input>
+          </div>
+          <ion-text color="danger"
+            *ngIf="registerForm.get('fullName')?.touched && registerForm.get('fullName')?.invalid" class="error-text">
+            <span *ngIf="registerForm.get('fullName')?.errors?.['required']">Name is required.</span>
+            <span *ngIf="registerForm.get('fullName')?.errors?.['minlength']">Minimum 2 characters.</span>
+          </ion-text>
+        </div>
+
+        <div class="input-group">
+          <ion-label class="input-label">Email Address</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="email" type="email" placeholder="john@example.com"
+              class="custom-input"></ion-input>
+          </div>
+          <ion-text color="danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+            class="error-text">
+            <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</span>
+          </ion-text>
+        </div>
+
+        <div class="input-group">
+          <ion-label class="input-label">Phone Number</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="call-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="phone" type="tel" placeholder="0912345678" class="custom-input"></ion-input>
+          </div>
+          <ion-text color="danger" *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid"
+            class="error-text">
+            <span *ngIf="registerForm.get('phone')?.errors?.['required']">Phone is required.</span>
+            <span *ngIf="registerForm.get('phone')?.errors?.['pattern']">Invalid phone format (10-11 digits).</span>
+          </ion-text>
+        </div>
+
+        <div class="input-group">
+          <ion-label class="input-label">Password</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="••••••••"
+              class="custom-input"></ion-input>
+            <ion-button fill="clear" (click)="togglePassword()" slot="end" class="password-toggle">
+              <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </div>
+          <ion-text color="danger"
+            *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="error-text">
+            <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Minimum 8 characters.</span>
+          </ion-text>
+        </div>
+
+        <div class="input-group">
+          <ion-label class="input-label">Confirm Password</ion-label>
+          <div class="input-wrapper">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input formControlName="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'"
+              placeholder="••••••••" class="custom-input"></ion-input>
+            <ion-button fill="clear" (click)="toggleConfirmPassword()" slot="end" class="password-toggle">
+              <ion-icon [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </div>
+          <ion-text color="danger"
+            *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid"
+            class="error-text">
+            <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm password is required.</span>
+            <span *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not
+              match.</span>
+          </ion-text>
+        </div>
+
+        <div class="input-group">
+          <div class="terms-group">
+            <ion-item lines="none" class="terms-item">
+              <ion-checkbox formControlName="agreeTerms" slot="start"></ion-checkbox>
+              <ion-label class="terms-label ion-text-wrap">
+                I agree to the <ion-text color="primary" class="clickable-link"
+                  (click)="goToTerms($event); $event.stopPropagation()">Terms of Service</ion-text> and <ion-text
+                  color="primary" class="clickable-link" (click)="goToPrivacy($event); $event.stopPropagation()">Privacy
+                  Policy</ion-text>
+              </ion-label>
+            </ion-item>
+
+          </div>
+          <ion-text color="danger"
+            *ngIf="registerForm.get('agreeTerms')?.touched && registerForm.get('agreeTerms')?.invalid"
+            class="error-text">
+            You must agree to the terms.
+          </ion-text>
+        </div>
+        <ion-checkbox slot="start">123</ion-checkbox>
+
+        <div class="register-actions">
+          <ion-button expand="block" shape="round" type="submit" class="register-btn" [disabled]="registerForm.invalid">
+            Register
+          </ion-button>
+        </div>
+      </form>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">OR CONTINUE WITH</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <ion-grid class="social-grid">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button expand="block" fill="outline" class="social-btn" (click)="onSocialLogin('google')">
+              <ion-icon name="logo-google" slot="start"></ion-icon>
+              Google
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" fill="outline" class="social-btn" (click)="onSocialLogin('apple')">
+              <ion-icon name="logo-apple" slot="start"></ion-icon>
+              Apple
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <footer class="register-footer">
+        <p class="footer-text">
+          Already have an account?
+          <ion-text class="signin-link" (click)="onSignIn()">Sign In</ion-text>
+        </p>
+      </footer>
+    </main>
+  </div>
+</ion-content>

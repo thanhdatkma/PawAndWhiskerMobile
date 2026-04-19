@@ -1,0 +1,198 @@
+<ion-header class="privacy-header">
+  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="logo-wrapper">
+    <ion-text class="logo-text">Paws & Whiskers</ion-text>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-padding content-container">
+    <!-- Hero Section -->
+    <ion-row class="hero-section">
+      <ion-col size="12">
+        <div class="hero-card">
+          <ion-text>
+            <h1 class="hero-title">Your Privacy Matters</h1>
+          </ion-text>
+          <ion-text>
+            <p class="hero-subtitle">
+              At Paws & Whiskers, we treat your pet's data with the same love and care we give to our furry friends.
+            </p>
+          </ion-text>
+          <ion-icon name="shield-checkmark-outline" class="hero-bg-icon"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- 1. Introduction -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-secondary">
+              <ion-icon name="bandage-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="section-title">1. Introduction</h2>
+            </ion-text>
+          </div>
+          <ion-text class="section-body">
+            <p>
+              Welcome to Paws & Whiskers. This Privacy Policy explains how we collect, use, and safeguard your personal information. Our commitment is to ensure your pet care journey is safe, transparent, and built on trust.
+            </p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- 2. Data Collection -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-tertiary">
+              <ion-icon name="server-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="section-title">2. Data Collection</h2>
+            </ion-text>
+          </div>
+          <ion-text class="section-body">
+            <p>
+              We collect information to provide better services to our users. This includes:
+            </p>
+          </ion-text>
+          
+          <ion-row class="sub-section-row">
+            <ion-col size="12" size-md="6">
+              <div class="sub-card border-primary">
+                <ion-text>
+                  <h3 class="sub-card-title">Account Details</h3>
+                </ion-text>
+                <ion-text class="sub-card-body">
+                  <p>Name, email, phone number, and account credentials used to identify you.</p>
+                </ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md="6">
+              <div class="sub-card border-secondary">
+                <ion-text>
+                  <h3 class="sub-card-title">Pet Information</h3>
+                </ion-text>
+                <ion-text class="sub-card-body">
+                  <p>Breed, age, health records, and activity tracking data for your furry friends.</p>
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- 3. Data Usage -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card bento-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-primary">
+              <ion-icon name="analytics-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="bento-title">3. Data Usage</h2>
+            </ion-text>
+          </div>
+          <ion-text class="bento-body">
+            <p>
+              Your data helps us personalize your experience. We use it to suggest products, remind you of vet appointments, track pet activity, and improve our overall app performance to serve you better.
+            </p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- 4. Data Protection -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card dark-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-dark">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="section-title text-white">4. Data Protection</h2>
+            </ion-text>
+          </div>
+          <ion-text class="quote-text text-light">
+            <p>"We protect your data with the same intensity we use to protect our own pets."</p>
+          </ion-text>
+          <ion-text class="section-body text-light">
+            <p>
+              We employ industry-standard encryption and security measures to protect your data from unauthorized access, loss, or misuse. Your information is stored on secure, monitored servers.
+            </p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- 5 & 6 Shared Row -->
+    <ion-row class="section-row">
+      <ion-col size="12" size-md="6">
+        <div class="section-card bento-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-secondary">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="bento-title">5. Third-Party Sharing</h2>
+            </ion-text>
+          </div>
+          <ion-text class="bento-body">
+            <p>
+              We do not sell your personal information. Data is only shared with trusted partners necessary to provide our core services.
+            </p>
+          </ion-text>
+        </div>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <div class="section-card bento-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-tertiary">
+              <ion-icon name="options-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="bento-title">6. User Rights</h2>
+            </ion-text>
+          </div>
+          <ion-text class="bento-body">
+            <p>
+              You have full control. You can request to view, update, or delete your personal data at any time through account settings.
+            </p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Acceptance Banner -->
+    <ion-row class="section-row ion-margin-vertical">
+      <ion-col size="12">
+        <div class="acceptance-banner">
+          <div class="acceptance-info">
+            <ion-text>
+              <h4 class="acceptance-title">Acceptance of Privacy Policy</h4>
+            </ion-text>
+            <ion-text>
+              <p class="acceptance-subtitle">By continuing to use PetPulse, you acknowledge that you have read and understood how we handle your data.</p>
+            </ion-text>
+          </div>
+          <ion-button expand="block" color="primary" class="accept-btn" (click)="goBack()">
+            I Understand
+            <ion-icon name="checkmark-circle-outline" slot="end"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

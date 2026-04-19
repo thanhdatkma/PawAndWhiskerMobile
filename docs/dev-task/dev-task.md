@@ -21,14 +21,14 @@
 
 ### 1. 🛡️ Auth Flow (`auth-requirement.md`)
 - [x] [Done] Implement Welcome screen UI (Slider, Graphics)
-- [ ] [Todo] Develop Login & Validation form logic
-- [ ] [Todo] Develop Register & Validation form logic
+- [x] [Done] Develop Login & Validation form logic
+- [x] [Done] Develop Register & Validation form logic
 - [ ] [Todo] Integrate Authentication API and Token Interceptors
 - [ ] [Todo] Write Unit/E2E UI tests for Auth module
 
 ### 2. 🔐 Security Verify (`security-requirement.md`)
 - [ ] [Todo] Implement OTP Input Component and Resend logic
-- [ ] [Todo] Develop Forgot/Reset Password flows
+- [x] [Done] Develop Forgot/Reset Password flows
 - [ ] [Todo] Integrate Security/Accounts API
 - [ ] [Todo] Add Error Error Handling & Token expiration logic
 
@@ -50,7 +50,9 @@
 - [ ] [Todo] Build Product List grid View
 - [ ] [Todo] Develop Infinity Scroll & Pagination logic
 - [ ] [Todo] Develop basic Filters & Sort functionalities
-
+ ### 6. Terms & Privacy Policy
+- [x] [Done] Terms & Privacy Policy
+- [x] [Done] Privacy Policy
 ---
 
 ## 🏃 Sprint 2: E-Commerce & Core Profile (Tuần 3 - Tuần 4)
@@ -79,7 +81,7 @@
 - [ ] [Todo] Connect real-time or polling Order Tracking APIs
 
 ### 5. 🐾 User & Pet Profile (`profile-requirement.md`)
-- [ ] [Todo] Create User Profile Dashboard UI
+- [x] [Done] Create User Profile Dashboard UI
 - [ ] [Todo] Implement Avatar Camera & Upload functionalities
 - [ ] [Todo] Build Address Book & Info Edit modal/screens
 - [ ] [Todo] Support CRUD capabilities for Pet Information

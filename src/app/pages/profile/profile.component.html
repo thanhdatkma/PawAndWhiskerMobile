@@ -1,33 +1,40 @@
-<ion-content class="welcome-content" scrollX="true" scrollY="true">
-  <div class="welcome-container">
-    <!-- Full-Screen Background Image -->
-    <div class="background-image">
-      <img src="./assets/images/login-bg.png" alt="Cute puppy and kitten">
-    </div>
-
-    <!-- Gradient Overlay -->
-    <div class="gradient-overlay"></div>
-
-    <!-- Content -->
-    <div class="content-wrapper">
-      <!-- Top Section: Logo -->
-      <div class="top-section">
-        <ion-icon name="paw" class="logo-icon"></ion-icon>
-        <h1 class="app-title">Paws &<br>Whiskers</h1>
+<ion-content class="welcome-content" scrollX="false" scrollY="!authService.isLoggedIn() ? false : true">
+  <ng-container *ngIf="!authService.isLoggedIn(); else profileDashboard">
+    <div class="welcome-container">
+      <!-- Full-Screen Background Image -->
+      <div class="background-image">
+        <img src="./assets/images/login-bg.png" alt="Cute puppy and kitten">
       </div>
 
-      <div class="bottom-section">
-        <ion-button class="btn-primary" expand="block" mode="ios" routerLink="/login">
-          Login
-        </ion-button>
-        <ion-button class="btn-secondary" expand="block" mode="ios">
-          Register
-        </ion-button>
-        <ion-text class="terms-text">
-          By continuing, you agree to our
-          <a href="#">Terms of Service</a>
-        </ion-text>
+      <!-- Gradient Overlay -->
+      <div class="gradient-overlay"></div>
+
+      <!-- Content -->
+      <div class="content-wrapper">
+        <!-- Top Section: Logo -->
+        <div class="top-section">
+          <ion-icon name="paw" class="logo-icon"></ion-icon>
+          <h1 class="app-title">Paws &<br>Whiskers</h1>
+        </div>
+
+        <div class="bottom-section">
+          <ion-button class="btn-primary" expand="block" mode="ios" routerLink="/login">
+            Login
+          </ion-button>
+          <ion-button class="btn-secondary" expand="block" mode="ios" routerLink="/register">
+            Register
+          </ion-button>
+          <ion-text class="terms-text">
+            By continuing, you agree to our
+            <span class="terms-link" (click)="goToTerms($event)">Terms of Service</span>
+          </ion-text>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </ion-content>
+
+
+<ng-template #profileDashboard>
+  <app-user-profile></app-user-profile>
+</ng-template>

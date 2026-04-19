@@ -1,0 +1,223 @@
+<ion-header class="terms-header">
+  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="logo-wrapper">
+    <ion-text class="logo-text">Paws & Whiskers</ion-text>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-padding content-container">
+    <!-- Hero Section -->
+    <ion-row class="hero-section">
+      <ion-col size="12">
+        <div class="hero-card">
+          <ion-text>
+            <h1 class="hero-title">Terms & Conditionals</h1>
+          </ion-text>
+          <ion-text>
+            <p class="hero-subtitle">Effective Date: October 24, 2023. Our commitment to you and your furry companions
+              at Paws & Whiskers.</p>
+          </ion-text>
+          <ion-icon name="hammer-outline" class="hero-bg-icon"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Content Sections -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-secondary">
+              <ion-icon name="information-circle-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="section-title">1. Introduction</h2>
+            </ion-text>
+          </div>
+          <ion-text class="section-body">
+            <p>Welcome to Paws & Whiskers (operated by PetPulse). By accessing our website or mobile application, you
+              agree to comply with and be bound by the following terms and conditions of use, which govern PetPulse's
+              relationship with you in relation to this service.</p>
+            <p>The term 'PetPulse' or 'us' or 'we' refers to the owner of the platform. The term 'you' refers to the
+              user or viewer of our digital interfaces.</p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Bento Grid -->
+    <ion-row class="section-row">
+      <ion-col size="12" size-md="6">
+        <div class="section-card bento-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-tertiary">
+              <ion-icon name="person-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="bento-title">2. User Accounts</h2>
+            </ion-text>
+          </div>
+          <ion-text class="bento-body">
+            <p>To access certain features of the service, you must register for an account. You are responsible for
+              maintaining the confidentiality of your login credentials and for all activities that occur under your
+              account.</p>
+          </ion-text>
+        </div>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <div class="section-card bento-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-primary">
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="bento-title">3. Privacy Policy</h2>
+            </ion-text>
+          </div>
+          <ion-text class="bento-body">
+            <p>Your privacy is paramount. Our privacy policy, which is incorporated into these terms by reference,
+              explains how we collect, use, and protect your personal data when you use PetPulse.</p>
+          </ion-text>
+          <div class="bento-footer">
+            <ion-button fill="clear" color="primary" class="view-btn" (click)="goToPrivacy()">
+              View Privacy Policy
+              <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Intellectual Property -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-secondary">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="section-title">4. Intellectual Property</h2>
+            </ion-text>
+          </div>
+          <ion-text class="section-body ion-margin-bottom">
+            <p>All content included on this site, such as text, graphics, logos, button icons, images, audio clips,
+              digital downloads, and software, is the property of PetPulse or its content suppliers and protected by
+              international copyright laws.</p>
+          </ion-text>
+
+          <ion-row class="sub-section-row">
+            <ion-col size="12" size-md="6">
+              <div class="sub-card border-primary">
+                <ion-text>
+                  <h3 class="sub-card-title">Usage Rights</h3>
+                </ion-text>
+                <ion-text class="sub-card-body">
+                  <p>We grant you a limited license to access and make personal use of this site, but not to download or
+                    modify it, or any portion of it, except with express written consent.</p>
+                </ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md="6">
+              <div class="sub-card border-secondary">
+                <ion-text>
+                  <h3 class="sub-card-title">Trademarks</h3>
+                </ion-text>
+                <ion-text class="sub-card-body">
+                  <p>Paws & Whiskers, PetPulse, and other marks indicated on our site are registered trademarks. They
+                    may not be used in connection with any product or service that is not ours.</p>
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Limitation of Liability DARK -->
+    <ion-row class="section-row">
+      <ion-col size="12">
+        <div class="section-card dark-card">
+          <div class="section-header">
+            <div class="icon-wrapper icon-dark">
+              <ion-icon name="warning-outline"></ion-icon>
+            </div>
+            <ion-text>
+              <h2 class="section-title text-white">5. Limitation of Liability</h2>
+            </ion-text>
+          </div>
+          <ion-text class="quote-text text-light">
+            <p>"Our goal is happy tails, but we must clarify our legal boundaries."</p>
+          </ion-text>
+          <ion-text class="section-body text-light">
+            <p>The service is provided on an "AS IS" and "AS AVAILABLE" basis. PetPulse makes no representations or
+              warranties of any kind, express or implied, as to the operation of their services, or the information,
+              content, or materials included therein. You expressly agree that your use of these services is at your
+              sole risk.</p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Governing Law and Contact -->
+    <ion-row class="section-row">
+      <ion-col size="12" size-md="8">
+        <div class="section-card bento-card">
+          <div class="section-header">
+            <ion-icon name="hammer-outline" class="small-icon"></ion-icon>
+            <ion-text>
+              <h2 class="bento-title">6. Governing Law</h2>
+            </ion-text>
+          </div>
+          <ion-text class="bento-body">
+            <p>These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction
+              in which PetPulse operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that
+              State or location.</p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <div class="contact-card">
+          <ion-icon name="mail-outline" class="contact-icon"></ion-icon>
+          <ion-text>
+            <h3 class="contact-title">Questions?</h3>
+          </ion-text>
+          <ion-text>
+            <p class="contact-subtitle">Get in touch with our legal team for any clarifications.</p>
+          </ion-text>
+          <ion-button fill="solid" color="light" class="contact-btn" (click)="onContactUs()">
+            Contact Us
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Acceptance Banner -->
+    <ion-row class="section-row ion-margin-vertical">
+      <ion-col size="12">
+        <div class="acceptance-banner">
+          <div class="acceptance-info">
+            <ion-text>
+              <h4 class="acceptance-title">Acceptance of Terms</h4>
+            </ion-text>
+            <ion-text>
+              <p class="acceptance-subtitle">By continuing to use PetPulse, you acknowledge that you have read and
+                understood these Terms & Conditionals.</p>
+            </ion-text>
+          </div>
+          <ion-button expand="block" color="primary" class="accept-btn" (click)="onAccept()">
+            I Understand
+            <ion-icon name="checkmark-circle-outline" slot="end"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

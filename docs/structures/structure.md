@@ -92,8 +92,8 @@ Phác thảo cấu trúc Data Transfer Object cho các tương tác giữa Web-U
 ### 2.7. Nhóm User/Pet Profile & Records
 | DTO Name | Properties | Mô tả |
 |---|---|---|
-| `UserProfileDTO` | `id`, `fullName`, `email`, `phone`, `address`, `avatarUrl`, `pets[]` | Dashboard Profile |
-| `PetDTO` | `id`, `name`, `breed`, `gender`, `age`, `avatarUrl`, `bio` | Dashboard Thú cưng |
+| `UserProfile` | `id`, `name`, `email`, `avatar`, `membership`, `pet?` | Dashboard Profile |
+| `Pet` | `id`, `name`, `breed`, `weight`, `age`, `nextVaccine`, `image` | Dashboard Thú cưng |
 | `HealthRecordDTO`| `id`, `recordType` (vaccine/clinic/food), `date`, `providerName`, `doctor`, `notes` | Base class cho mọi Flat list Y tế |
 
 ### 2.8. Nhóm Đặt Lịch Dịch Vụ (BookingModule)

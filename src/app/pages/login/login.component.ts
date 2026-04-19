@@ -21,6 +21,8 @@ import {
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoGoogle, logoApple, paw } from 'ionicons/icons';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -52,9 +54,19 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private authService: AuthService
   ) {
-    addIcons({ arrowBackOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoGoogle, logoApple, paw });
+    addIcons({
+      'arrow-back-outline': arrowBackOutline,
+      'mail-outline': mailOutline,
+      'lock-closed-outline': lockClosedOutline,
+      'eye-outline': eyeOutline,
+      'eye-off-outline': eyeOffOutline,
+      'logo-google': logoGoogle,
+      'logo-apple': logoApple,
+      'paw': paw
+    });
   }
 
   ngOnInit() {
@@ -75,8 +87,9 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.valid) {
       console.log('Login data:', this.loginForm.value);
-      // Implement auth logic here
-      this.navCtrl.navigateRoot('/home');
+      // Mock login
+      this.authService.login();
+      this.navCtrl.navigateRoot('/profile');
     } else {
       this.markFormGroupTouched(this.loginForm);
     }
@@ -92,7 +105,7 @@ export class LoginComponent implements OnInit {
   }
 
   goBack() {
-    this.navCtrl.back();
+    this.navCtrl.navigateBack('/profile');
   }
 
   onFaceIdLogin() {
@@ -105,10 +118,10 @@ export class LoginComponent implements OnInit {
   }
 
   onForgotPassword() {
-    console.log('Forgot password clicked');
+    this.navCtrl.navigateForward('/forgot-password');
   }
 
   onRegister() {
-    console.log('Navigate to register');
+    this.navCtrl.navigateForward('/register');
   }
 }
