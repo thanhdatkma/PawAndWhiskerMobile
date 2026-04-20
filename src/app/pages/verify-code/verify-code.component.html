@@ -1,0 +1,71 @@
+<ion-header class="register-header">
+  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="logo-wrapper">
+    <ion-text class="logo-text">Enter Verification Code</ion-text>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="verify-content">
+  <ion-grid class="verify-container ion-no-padding">
+    <ion-row class="ion-justify-content-center ion-padding-top">
+      <ion-col size="12" class="ion-text-center">
+        <!-- Brand Decorative Element -->
+        <ion-row class="ion-justify-content-center brand-row">
+          <div class="brand-icon-wrapper">
+            <ion-icon name="mail-outline" class="brand-icon"></ion-icon>
+          </div>
+        </ion-row>
+
+        <!-- Instructional Text -->
+        <ion-row class="ion-justify-content-center instruction-row">
+          <ion-col size="10">
+            <h2 class="welcome-title">Enter Code</h2>
+            <ion-text class="instruction-text">
+              <p class="instruction-p">Your verification code is sent by email to <br><b>{{ email }}</b></p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- OTP Input Grid -->
+        <ion-row class="ion-justify-content-center otp-row">
+          <div class="otp-inputs-wrapper">
+            <input *ngFor="let digit of otp; let i = index; trackBy: trackByFn" #otpInput type="text"
+              inputmode="numeric" pattern="[0-9]*" maxlength="1" [(ngModel)]="otp[i]" (input)="onOtpInput($event, i)"
+              (keydown)="onKeyDown($event, i)" class="otp-input" placeholder="·" />
+          </div>
+        </ion-row>
+
+        <!-- Countdown Text -->
+        <ion-row class="ion-justify-content-center countdown-row">
+          <div class="countdown-wrapper">
+            <ion-icon name="scale-outline" class="timer-icon"></ion-icon>
+            <ion-text class="timer-text">
+              OTP will expire in <span class="time">{{ countdown }} seconds</span>
+            </ion-text>
+          </div>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Bottom Actions moved inside ion-content -->
+  <div class="bottom-actions-container">
+    <div class="footer-inner">
+      <ion-button fill="clear" class="resend-btn" (click)="onResend()" [disabled]="countdown > 0">
+        <div class="action-btn-inner">
+          <ion-icon name="refresh-outline" class="action-icon"></ion-icon>
+          <ion-label>Resend Code</ion-label>
+        </div>
+      </ion-button>
+
+      <ion-button class="verify-btn" [disabled]="!isOtpComplete" (click)="onVerify()">
+        <div class="action-btn-inner-horizontal">
+          <ion-icon name="checkmark-circle-outline" class="action-icon"></ion-icon>
+          <ion-label>Verify Account</ion-label>
+        </div>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

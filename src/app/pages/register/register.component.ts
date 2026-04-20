@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import {
@@ -22,6 +22,7 @@ import {
   IonButtons,
   NavController
 } from '@ionic/angular/standalone';
+import { BaseComponent } from '../../shared/base-component/base.component';
 import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOutline, eyeOutline, eyeOffOutline, logoGoogle, logoFacebook, logoTiktok, logoApple, paw } from 'ionicons/icons';
@@ -56,7 +57,9 @@ import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOu
     RouterLink
   ]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends BaseComponent implements OnInit {
+  @ViewChild('registerTitle', { static: false }) registerTitle!: ElementRef;
+
   registerForm!: FormGroup;
   showPassword = false;
   showConfirmPassword = false;
@@ -65,6 +68,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private navCtrl: NavController
   ) {
+    super();
     addIcons({
       'arrow-back-outline': arrowBackOutline,
       'mail-outline': mailOutline,
@@ -81,8 +85,15 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.initForm();
+  }
+
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.registerTitle?.nativeElement?.focus();
+    }, 100);
   }
 
   initForm() {
@@ -119,7 +130,9 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       console.log('Registration data:', this.registerForm.value);
       // Implement registration API integration here
-      this.navCtrl.navigateRoot('/home');
+      this.navCtrl.navigateForward('/verify-code', {
+        state: { email: this.registerForm.value.email }
+      });
     } else {
       this.markFormGroupTouched(this.registerForm);
     }

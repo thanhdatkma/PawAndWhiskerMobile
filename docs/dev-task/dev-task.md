@@ -27,7 +27,7 @@
 - [ ] [Todo] Write Unit/E2E UI tests for Auth module
 
 ### 2. 🔐 Security Verify (`security-requirement.md`)
-- [ ] [Todo] Implement OTP Input Component and Resend logic
+- [x] [Done] Implement OTP Input Component and Resend logic
 - [x] [Done] Develop Forgot/Reset Password flows
 - [ ] [Todo] Integrate Security/Accounts API
 - [ ] [Todo] Add Error Error Handling & Token expiration logic

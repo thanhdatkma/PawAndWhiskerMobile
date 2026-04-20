@@ -15,7 +15,7 @@
           <div class="hero-image-backdrop"></div>
           <ion-img src="./assets/images/login-hero.png" alt="Friendly pet" class="hero-image"></ion-img>
         </div>
-        <h2 class="welcome-title">Welcome Back!</h2>
+        <h2 class="welcome-title" tabindex="-1" #loginTitle>Welcome Back!</h2>
         <p class="welcome-subtitle">Log in to continue pampering your pet.</p>
       </section>
 
@@ -25,7 +25,7 @@
           <div class="input-wrapper">
             <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
             <ion-input formControlName="email" type="email" placeholder="hello@paws.com"
-              class="custom-input"></ion-input>
+              class="custom-input" #emailInput></ion-input>
           </div>
           <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']"
             class="error-text">

@@ -85,7 +85,9 @@ export class ForgotPasswordComponent implements OnInit {
       console.log('Reset password request for:', this.forgotForm.value.identifier);
       // Implement password reset logic here
       // For now, navigate back to login as a placeholder
-      this.navCtrl.navigateBack('/login');
+      this.navCtrl.navigateForward('/verify-code', {
+        state: { email: this.forgotForm.value.identifier }
+      });
     } else {
       this.markFormGroupTouched(this.forgotForm);
     }

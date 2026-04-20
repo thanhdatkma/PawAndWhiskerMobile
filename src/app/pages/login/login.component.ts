@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { 
-  IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar, 
-  IonInput, 
-  IonButton, 
-  IonItem, 
-  IonLabel, 
-  IonText, 
-  IonIcon, 
-  IonGrid, 
-  IonRow, 
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonButton,
+  IonItem,
+  IonLabel,
+  IonText,
+  IonIcon,
+  IonGrid,
+  IonRow,
   IonCol,
   IonImg,
-  NavController
+  NavController,
+  IonInput
 } from '@ionic/angular/standalone';
+import { BaseComponent } from '../../shared/base-component/base.component';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoGoogle, logoApple, paw } from 'ionicons/icons';
 
@@ -29,8 +30,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
+    CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     IonContent,
     IonHeader,
@@ -48,7 +49,10 @@ import { AuthService } from '../../services/auth.service';
     IonImg
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends BaseComponent implements OnInit {
+  @ViewChild('loginTitle', { static: false }) loginTitle!: ElementRef;
+  @ViewChild('emailInput', { static: false }) emailInput!: IonInput;
+
   loginForm!: FormGroup;
   showPassword = false;
 
@@ -57,6 +61,7 @@ export class LoginComponent implements OnInit {
     private navCtrl: NavController,
     private authService: AuthService
   ) {
+    super();
     addIcons({
       'arrow-back-outline': arrowBackOutline,
       'mail-outline': mailOutline,
@@ -69,8 +74,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.initForm();
+  }
+
+  ionViewDidEnter() {
+    // Focus the title for screen readers
+    setTimeout(() => {
+      this.loginTitle?.nativeElement?.focus();
+    }, 100);
   }
 
   initForm() {

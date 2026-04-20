@@ -1,4 +1,4 @@
-import { Directive, inject, OnDestroy, OnInit } from '@angular/core';
+import { Directive, inject, OnDestroy, OnInit, ElementRef, HostBinding } from '@angular/core';
 import { NavController, LoadingController, AlertController, ToastController, MenuController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { ScrollService } from '../../core/services/scroll.service';
@@ -21,6 +21,12 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   protected readonly alertCtrl = inject(AlertController);
   protected readonly toastCtrl = inject(ToastController);
   protected readonly menu = inject(MenuController);
+  protected readonly el = inject(ElementRef);
+
+  @HostBinding('attr.inert')
+  get isPageHidden() {
+    return this.el.nativeElement.classList.contains('ion-page-hidden') ? '' : null;
+  }
 
   isLoading = false;
 
