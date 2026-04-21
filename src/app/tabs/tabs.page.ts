@@ -25,7 +25,6 @@ import { NotificationService } from '../services/notification.service';
 export class TabsPage extends BaseComponent implements OnInit {
   public environmentInjector = inject(EnvironmentInjector);
   private tabService = inject(TabService);
-  private configService = inject(ConfigService);
   private notificationService = inject(NotificationService);
 
   searchBarConfig = new Map<TabType, boolean>();

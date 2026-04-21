@@ -5,14 +5,14 @@
   <div class="product-card__image-wrap">
 
     <!-- Discount Badge -->
-    <span *ngIf="product.discountPct" class="product-card__discount-badge">
+    <ion-text *ngIf="product.discountPct" class="product-card__discount-badge">
       -{{ product.discountPct }}%
-    </span>
+    </ion-text>
 
     <!-- Favorite Icon -->
-    <button class="product-card__fav-btn" (click)="onToggleFavorite($event)" aria-label="Toggle favourite">
-      <span class="material-symbols-outlined product-card__fav-icon">favorite</span>
-    </button>
+    <ion-button class="product-card__fav-btn" (click)="onToggleFavorite($event)" fill="clear">
+      <ion-icon slot="icon-only" name="heart-outline" class="product-card__fav-icon"></ion-icon>
+    </ion-button>
 
     <!-- Product Image -->
     <div class="product-card__image" [style.background-image]="'url(' + product.coverImage + ')'">
@@ -21,33 +21,33 @@
 
   <!-- Text Content -->
   <div class="product-card__body">
-    <div class="product-card__category" *ngIf="product.categoryName">{{ product.categoryName }}</div>
+    <ion-text class="product-card__category" *ngIf="product.categoryName">{{ product.categoryName }}</ion-text>
     <h4 class="product-card__name">{{ product.name }}</h4>
 
     <!-- Star Rating -->
     <div *ngIf="product.rating" class="product-card__rating">
-      <span class="material-symbols-outlined product-card__star-icon">star</span>
-      <span class="product-card__rating-value">{{ product.rating }}</span>
+      <ion-icon name="star" class="product-card__star-icon"></ion-icon>
+      <ion-text class="product-card__rating-value">{{ product.rating }}</ion-text>
       <ng-container *ngIf="product.soldCount">
-        <span class="product-card__sold-count">{{ product.soldCount | soldCount }} sold</span>
+        <ion-text class="product-card__sold-count">{{ product.soldCount | soldCount }} sold</ion-text>
       </ng-container>
     </div>
 
     <!-- Price Row -->
     <div class="product-card__price-row">
       <div class="product-card__prices">
-        <span *ngIf="product.discountPrice" class="product-card__original-price">
+        <ion-text *ngIf="product.discountPrice" class="product-card__original-price">
           {{ product.price | appCurrency }}
-        </span>
-        <span class="product-card__current-price">
+        </ion-text>
+        <ion-text class="product-card__current-price">
           {{ (product.discountPrice ?? product.price) | appCurrency }}
-        </span>
+        </ion-text>
       </div>
 
       <!-- Add to Cart -->
-      <button class="product-card__add-btn" (click)="onAddToCart($event)" aria-label="Add to cart">
-        <span class="material-symbols-outlined">add</span>
-      </button>
+      <ion-button class="product-card__add-btn" (click)="onAddToCart($event)" fill="clear">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
     </div>
   </div>
 </div>

@@ -1,22 +1,27 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, inject } from '@angular/core';
-import { IonButtons, IonButton, IonText, IonIcon, IonMenuButton, IonHeader } from '@ionic/angular/standalone';
+import { IonButtons, IonButton, IonText, IonIcon, IonMenuButton, IonHeader, IonBackButton } from '@ionic/angular/standalone';
 import { BaseComponent } from '../base-component/base.component';
 import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { ScrollService } from '../../core/services/scroll.service';
 import { TabService } from '../../services/tab.service';
 import { TabType } from '../../models/tab.model';
+import { addIcons } from 'ionicons';
+import { cartOutline, chevronBack, search } from 'ionicons/icons';
 import { takeUntil } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, IonText, SearchBarComponent]
+  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, IonText, SearchBarComponent, IonBackButton]
 })
 export class AppHeaderComponent extends BaseComponent implements OnInit {
+
+  constructor() {
+    super();
+    addIcons({ 'cart-outline': cartOutline, 'chevron-back': chevronBack, search });
+  }
 
   /** Main title shown in the center / beside avatar */
   @Input() title = 'Paws & Whiskers';
@@ -28,6 +33,10 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   @Input() showCart = true;
   /** Whether to render an inline search bar below the title row */
   @Input() showSearch = false;
+  /** Whether to show back button instead of menu button */
+  @Input() showBackButton = false;
+  /** Default href for back button */
+  @Input() backButtonDefaultHref = '/';
   /** Placeholder text for the search input */
   @Input() searchPlaceholder = 'Search for food, toys...';
   /** Configuration Map to determine visibility of search bar per tab */
@@ -50,7 +59,11 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
 
     this.tabService.activeTab$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(tab => this.updateSearchVisibility(tab));
+      .subscribe(tab => {
+        if (this.searchBarConfig && this.searchBarConfig.size > 0) {
+          this.updateSearchVisibility(tab);
+        }
+      });
   }
 
   private updateSearchVisibility(activeTab: TabType): void {

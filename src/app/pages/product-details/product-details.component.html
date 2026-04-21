@@ -5,9 +5,14 @@
   <div class="header-title-wrapper">
     <ion-text class="header-title">{{ product.name }}</ion-text>
   </div>
-  <ion-button fill="clear" class="favorite-btn" (click)="toggleFavorite()">
-    <ion-icon [name]="product.isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
-  </ion-button>
+  <div class="header-actions">
+    <ion-button fill="clear" class="share-btn" (click)="shareProduct()">
+      <ion-icon name="share-outline"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" class="favorite-btn" (click)="toggleFavorite()">
+      <ion-icon [name]="product.isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+    </ion-button>
+  </div>
 </ion-header>
 
 <ion-content>

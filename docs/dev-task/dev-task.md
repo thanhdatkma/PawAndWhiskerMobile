@@ -47,10 +47,10 @@
 
 
 ### 5. 🔍 Category Detail (`category-detail-requirement.md`)
-- [ ] [Todo] Implement generic Product Card UI
-- [ ] [Todo] Build Product List grid View
-- [ ] [Todo] Develop Infinity Scroll & Pagination logic
-- [ ] [Todo] Develop basic Filters & Sort functionalities
+- [x] [Done] Implement generic Product Card UI
+- [x] [Done] Build Product List grid View
+- [x] [Done] Develop Infinity Scroll & Pagination logic
+- [x] [Done] Develop basic Filters & Sort functionalities
  ### 6. Terms & Privacy Policy
 - [x] [Done] Terms & Privacy Policy
 - [x] [Done] Privacy Policy

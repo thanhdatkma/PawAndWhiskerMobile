@@ -14,6 +14,7 @@ export interface AppSettings {
   supportedCurrencies: CurrencyConfig[];
   searchBarTabs: string[];
   showScanFab: boolean;
+  disableScrollFadeSearchBar: boolean;
 }
 
 
@@ -41,7 +42,8 @@ export class ConfigService {
         activeCurrency: 'USD',
         supportedCurrencies: [{ code: 'USD', symbol: '$', label: 'US Dollar' }],
         searchBarTabs: ['home', 'categories'],
-        showScanFab: true
+        showScanFab: true,
+        disableScrollFadeSearchBar: false
       };
 
       this.settingsSubject.next(fallback);
@@ -55,6 +57,10 @@ export class ConfigService {
     } else {
       document.body.classList.remove('dark-theme');
     }
+  }
+
+  public get settings(): AppSettings | null {
+    return this.settingsSubject.value;
   }
 
   public toggleDarkMode(): void {

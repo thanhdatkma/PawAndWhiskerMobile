@@ -37,4 +37,8 @@ export const routes: Routes = [
     path: 'product-details',
     loadComponent: () => import('./pages/product-details/product-details.component').then((m) => m.ProductDetailsComponent),
   },
+  {
+    path: 'category-detail/:id',
+    loadComponent: () => import('./pages/product-of-category/product-of-category.component').then((m) => m.ProductOfCategoryComponent),
+  },
 ];

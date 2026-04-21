@@ -49,26 +49,34 @@ ion-content {
     }
   }
 
-  .favorite-btn {
+  .header-actions {
     position: absolute;
-    right: 12px;
-    --color: var(--on-surface);
-    --padding-start: 8px;
-    --padding-end: 8px;
-    margin: 0;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 
-    ion-icon {
-      font-size: 24px;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    .favorite-btn, .share-btn {
+      --color: var(--on-surface);
+      --padding-start: 8px;
+      --padding-end: 8px;
+      margin: 0;
 
-      &[name="heart"] {
-        color: var(--primary);
-        filter: drop-shadow(0 0 8px rgba(var(--primary-rgb), 0.3));
+      ion-icon {
+        font-size: 24px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      &:active {
+        transform: scale(1.2);
       }
     }
 
-    &:active {
-      transform: scale(1.2);
+    .favorite-btn {
+      ion-icon[name="heart"] {
+        color: var(--primary);
+        filter: drop-shadow(0 0 8px rgba(var(--primary-rgb), 0.3));
+      }
     }
   }
 

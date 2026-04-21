@@ -2,6 +2,8 @@ import { Directive, inject, OnDestroy, OnInit, ElementRef, HostBinding } from '@
 import { NavController, LoadingController, AlertController, ToastController, MenuController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { ScrollService } from '../../core/services/scroll.service';
+import { ConfigService } from '../../services/config.service';
+
 
 // Stub — replace with real service once core/services/auth.service.ts is implemented
 export abstract class AuthService {
@@ -16,6 +18,7 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
 
   protected readonly destroyed$ = new Subject<void>();
   protected readonly scrollService = inject(ScrollService);
+  protected readonly configService = inject(ConfigService);
   protected readonly nav = inject(NavController);
   protected readonly loadingCtrl = inject(LoadingController);
   protected readonly alertCtrl = inject(AlertController);
@@ -80,6 +83,9 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   }
 
   protected handleScroll(ev: any) {
+    if (this.configService.settings?.disableScrollFadeSearchBar) {
+      return;
+    }
     this.scrollService.updateScroll(ev.detail.scrollTop);
   }
 

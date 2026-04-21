@@ -1,0 +1,43 @@
+<app-header 
+  [title]="categoryName" 
+  [showBackButton]="true" 
+  backButtonDefaultHref="/tabs/categories"
+  [showSearch]="showSearch"
+  searchPlaceholder="Search in this category">
+</app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-container">
+    <!-- Filters & Sort -->
+    <div class="filter-bar">
+      <div class="filter-actions">
+        <button class="filter-btn">
+          <ion-icon name="tune-outline"></ion-icon>
+          <ion-text>Filter</ion-text>
+        </button>
+        <button class="filter-btn">
+          <ion-icon name="swap-vert-outline"></ion-icon>
+          <ion-text>Sort</ion-text>
+        </button>
+      </div>
+      <ion-text class="items-found">{{ products.length }} items found</ion-text>
+    </div>
+
+    <!-- Product Grid -->
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="6" *ngFor="let product of products" class="ion-padding-small">
+          <app-product-card 
+            [product]="product" 
+            (cardClick)="viewProduct($event.id)">
+          </app-product-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more products...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

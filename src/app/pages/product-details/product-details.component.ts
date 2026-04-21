@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle,
 import { BaseComponent } from '../../shared/base-component/base.component';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
-import { arrowBackOutline, heartOutline, star, chevronForwardOutline, busOutline, refreshOutline, leafOutline, ribbonOutline, paw, removeOutline, addOutline, cartOutline, heart } from 'ionicons/icons';
+import { arrowBackOutline, heartOutline, star, chevronForwardOutline, busOutline, refreshOutline, leafOutline, ribbonOutline, paw, removeOutline, addOutline, cartOutline, heart, shareOutline } from 'ionicons/icons';
 import { ProductDetailModel } from '../../models/product-detail.model';
 import { BreadcrumbModel } from '../../models/breadcrumb.model';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
@@ -62,6 +62,7 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
       'arrow-back-outline': arrowBackOutline,
       'heart-outline': heartOutline,
       'heart': heart,
+      'share-outline': shareOutline,
       'star': star,
       'chevron-forward-outline': chevronForwardOutline,
       'bus-outline': busOutline,
@@ -82,6 +83,22 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
     }
     this.checkFavorite();
     this.loadInitialRecommendations();
+  }
+
+  async shareProduct() {
+    if ((navigator as any).share) {
+      try {
+        await (navigator as any).share({
+          title: this.product.name,
+          text: `Check out this ${this.product.name}!`,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      this.showToast('Sharing not supported on this browser', 'warning');
+    }
   }
 
   loadInitialRecommendations() {

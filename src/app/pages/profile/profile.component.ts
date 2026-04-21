@@ -21,7 +21,6 @@ import { NgIf } from '@angular/common';
 export class ProfilePageComponent extends BaseComponent {
 
   constructor(
-    public configService: ConfigService,
     private navCtrl: NavController,
     public authService: AuthService
   ) {
