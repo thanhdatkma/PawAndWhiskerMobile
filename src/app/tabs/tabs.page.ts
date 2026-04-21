@@ -30,9 +30,7 @@ export class TabsPage extends BaseComponent implements OnInit {
 
   searchBarConfig = new Map<TabType, boolean>();
   unreadCount$ = this.notificationService.unreadCount$;
-
-
-
+  showScanFab = true;
 
   constructor() {
     super();
@@ -44,13 +42,16 @@ export class TabsPage extends BaseComponent implements OnInit {
     this.configService.settings$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(settings => {
-        if (settings?.searchBarTabs) {
-          this.searchBarConfig.clear();
-          settings.searchBarTabs.forEach(tab => {
-            this.searchBarConfig.set(tab as TabType, true);
-          });
-          // Refresh current tab visibility
-          this.tabService.setActiveTab(this.tabService.getActiveTab());
+        if (settings) {
+          this.showScanFab = settings.showScanFab;
+          if (settings.searchBarTabs) {
+            this.searchBarConfig.clear();
+            settings.searchBarTabs.forEach(tab => {
+              this.searchBarConfig.set(tab as TabType, true);
+            });
+            // Refresh current tab visibility
+            this.tabService.setActiveTab(this.tabService.getActiveTab());
+          }
         }
       });
   }

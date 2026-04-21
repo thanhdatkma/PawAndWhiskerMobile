@@ -2,16 +2,18 @@
 
 ## Context
 - **Story**: `docs/requirements/{feature-name}.md`
+- **Task**: `docs/dev-task/dev-task.md - {task-name}`
 - **Paths**: `@dev/rules/paths.md`
 - **Standards**: `@dev/rules/base.md`
 
 ## Request
-Act as Developer. Implement {feature-name} following:
+Act as Developer. Implement {task-name} created from {feature-name} following:
 1. Read story requirements
 2. List files to create/modify
 3. Await confirmation if >3 files
 4. Implement using dynamic paths
-5. Update handoff status
+5. No explain
+6. Update handoff status
 
 ## Success Criteria
 - Passes `@shared/templates/definition-of-done.md`

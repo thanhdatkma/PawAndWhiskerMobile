@@ -29,6 +29,7 @@
 ### 2. 🔐 Security Verify (`security-requirement.md`)
 - [x] [Done] Implement OTP Input Component and Resend logic
 - [x] [Done] Develop Forgot/Reset Password flows
+- [x] [Done] Create/Integrate Navigate to verify successed page after verified otp done
 - [ ] [Todo] Integrate Security/Accounts API
 - [ ] [Todo] Add Error Error Handling & Token expiration logic
 
@@ -58,10 +59,10 @@
 ## 🏃 Sprint 2: E-Commerce & Core Profile (Tuần 3 - Tuần 4)
 
 ### 1. 🏷️ Product Detail (`product-detail-requirement.md`)
-- [ ] [Todo] Implement Dynamic Image Slider & Image Zoom functions
-- [ ] [Todo] Develop product Tabs (Description, Reviews)
-- [ ] [Todo] Implement Complex Variants logic (Size, Color)
-- [ ] [Todo] State management handling for the active variant
+- [x] [Done] Implement Dynamic Image Slider & Image Zoom functions
+- [x] [Done] Develop product Tabs (Description, Reviews)
+- [x] [Done] Implement Complex Variants logic (Size, Color)
+- [x] [Done] State management handling for the active variant
 
 ### 2. 🛒 Shopping Cart (`shopping-cart-requirement.md`)
 - [ ] [Todo] Develop global Cart State Management (Services/NgRx)

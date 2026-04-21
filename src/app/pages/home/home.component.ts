@@ -99,6 +99,7 @@ export class HomePageComponent extends BaseComponent {
 
   onProductClick(product: ProductBriefModel): void {
     console.log('[Home] Product clicked:', product.id);
+    this.navigate('/product-details');
   }
 
   onAddToCart(product: ProductBriefModel): void {

@@ -35,11 +35,11 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  protected back(): void {
+  public back(): void {
     this.nav.back();
   }
 
-  protected navigate(path: string, extras?: any): void {
+  public navigate(path: string, extras?: any): void {
     this.nav.navigateForward(path, extras);
   }
 
@@ -47,19 +47,19 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
     return item.id;
   }
 
-  protected async showLoader(message = 'Please wait...'): Promise<HTMLIonLoadingElement> {
+  public async showLoader(message = 'Please wait...'): Promise<HTMLIonLoadingElement> {
     const loader = await this.loadingCtrl.create({ message, cssClass: 'app-loader' });
     await loader.present();
     this.isLoading = true;
     return loader;
   }
 
-  protected async dismissLoader(loader?: HTMLIonLoadingElement): Promise<void> {
+  public async dismissLoader(loader?: HTMLIonLoadingElement): Promise<void> {
     this.isLoading = false;
     await (loader ?? this.loadingCtrl.dismiss().catch(() => null));
   }
 
-  protected async showToast(message: string, color: 'success' | 'danger' | 'warning' = 'success'): Promise<void> {
+  public async showToast(message: string, color: 'success' | 'danger' | 'warning' = 'success'): Promise<void> {
     const toast = await this.toastCtrl.create({
       message,
       duration: 2500,
@@ -70,7 +70,7 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
     await toast.present();
   }
 
-  protected async showAlert(header: string, message: string): Promise<void> {
+  public async showAlert(header: string, message: string): Promise<void> {
     const alert = await this.alertCtrl.create({ header, message, buttons: ['OK'] });
     await alert.present();
   }

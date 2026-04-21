@@ -128,6 +128,11 @@ export class VerifyCodeComponent implements OnInit, OnDestroy {
         const inputs = this.otpInputs.toArray();
         inputs[index + 1].nativeElement.focus();
       });
+    } else if (value && index === 5) {
+      // Auto-verify if the last digit is entered
+      requestAnimationFrame(() => {
+        this.onVerify();
+      });
     }
   }
 
@@ -163,7 +168,7 @@ export class VerifyCodeComponent implements OnInit, OnDestroy {
       const code = this.otp.join('');
       console.log('Verifying code:', code);
       // Logic to verify OTP via API
-      this.navCtrl.navigateRoot('/home');
+      this.navCtrl.navigateRoot('/verify-successed');
     }
   }
 

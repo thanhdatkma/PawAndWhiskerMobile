@@ -29,4 +29,12 @@ export const routes: Routes = [
     path: 'verify-code',
     loadComponent: () => import('./pages/verify-code/verify-code.component').then((m) => m.VerifyCodeComponent),
   },
+  {
+    path: 'verify-successed',
+    loadComponent: () => import('./pages/verify-successed/verify-successed.component').then((m) => m.VerifySuccessedComponent),
+  },
+  {
+    path: 'product-details',
+    loadComponent: () => import('./pages/product-details/product-details.component').then((m) => m.ProductDetailsComponent),
+  },
 ];

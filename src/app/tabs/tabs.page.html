@@ -2,7 +2,7 @@
 
 <ion-content [scrollY]="false">
   <ion-tabs (ionTabsDidChange)="onTabChange($event)">
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="bottom-tab-nav__fab-wrap">
+    <ion-fab *ngIf="showScanFab" vertical="bottom" horizontal="center" slot="fixed" class="bottom-tab-nav__fab-wrap">
       <ion-fab-button class="bottom-tab-nav__fab" (click)="onScanTap()">
         <ion-icon name="scan"></ion-icon>
       </ion-fab-button>
@@ -18,7 +18,7 @@
         <ion-icon aria-hidden="true" name="grid"></ion-icon>
         <ion-label>Categories</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="" class="spacer" disabled="true" style="pointer-events: none; opacity: 1;"></ion-tab-button>
+      <ion-tab-button *ngIf="showScanFab" tab="" class="spacer" disabled="true" style="pointer-events: none; opacity: 1;"></ion-tab-button>
 
       <ion-tab-button tab="alerts" href="/alerts">
         <ion-icon aria-hidden="true" name="notifications"></ion-icon>

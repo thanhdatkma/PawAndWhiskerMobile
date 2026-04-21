@@ -1,0 +1,240 @@
+<ion-header class="product-header">
+  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <div class="header-title-wrapper">
+    <ion-text class="header-title">{{ product.name }}</ion-text>
+  </div>
+  <ion-button fill="clear" class="favorite-btn" (click)="toggleFavorite()">
+    <ion-icon [name]="product.isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+  </ion-button>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="product-container ion-no-padding">
+    <ion-row>
+      <!-- Hero Section: Gallery & Basic Info -->
+      <ion-col size="12" size-lg="6" class="gallery-section">
+        <div class="main-image-wrapper">
+          <ion-img [src]="product.mainImage" [alt]="product.name" class="main-image"></ion-img>
+          <div class="discount-badge" *ngIf="product.discountPct">
+            <ion-text>{{ product.discountPct }}% OFF</ion-text>
+          </div>
+        </div>
+        <div class="thumbnail-list hide-scrollbar">
+          <div *ngFor="let img of product.images" class="thumbnail-item" [class.active]="img === product.mainImage"
+            (click)="setMainImage(img)">
+            <ion-img [src]="img" class="thumbnail-img"></ion-img>
+          </div>
+        </div>
+      </ion-col>
+
+      <!-- Product Details -->
+      <ion-col size="12" size-lg="6" class="details-section ion-padding">
+        <nav class="breadcrumb">
+          <ng-container *ngFor="let crumb of product.breadcrumbs; let last = last">
+            <ion-text [class.active]="crumb.isActive" (click)="crumb.url && navigate(crumb.url)">
+              {{ crumb.label }}
+            </ion-text>
+            <ion-icon *ngIf="!last" name="chevron-forward-outline"></ion-icon>
+          </ng-container>
+        </nav>
+
+        <h2 class="product-title">
+          <ion-text>{{ product.name }}</ion-text>
+        </h2>
+
+        <div class="rating-row">
+          <div class="rating-badge">
+            <ion-icon name="star" class="star-icon"></ion-icon>
+            <ion-text class="rating-value">{{ product.rating }}</ion-text>
+          </div>
+          <ion-text class="review-count">({{ product.reviewCount }} reviews)</ion-text>
+        </div>
+
+        <div class="price-row">
+          <ion-text class="current-price">${{ product.discountPrice | number:'1.2-2' }}</ion-text>
+          <ion-text class="original-price">${{ product.price | number:'1.2-2' }}</ion-text>
+          <div class="save-badge">
+            <ion-text>Save ${{ (product.price - product.discountPrice) | number:'1.2-2' }}</ion-text>
+          </div>
+        </div>
+
+        <div class="selectors-container">
+          <!-- Weight Selector -->
+          <div class="selector-group">
+            <ion-text class="selector-label">Select Weight</ion-text>
+            <div class="weight-buttons">
+              <ion-button *ngFor="let w of product.weights" [fill]="w === selectedWeight ? 'solid' : 'clear'"
+                class="weight-btn" [class.btn-active]="w === selectedWeight" (click)="setWeight(w)">
+                {{ w }}
+              </ion-button>
+            </div>
+          </div>
+
+          <!-- Shipping Info -->
+          <ion-grid class="info-grid ion-no-padding">
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <div class="info-card">
+                  <div class="info-icon delivery">
+                    <ion-icon name="bus-outline"></ion-icon>
+                  </div>
+                  <div class="info-text">
+                    <ion-text class="info-title">Fast Delivery</ion-text>
+                    <ion-text class="info-sub">Within 48h</ion-text>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <div class="info-card">
+                  <div class="info-icon return">
+                    <ion-icon name="refresh-outline"></ion-icon>
+                  </div>
+                  <div class="info-text">
+                    <ion-text class="info-title">Easy Returns</ion-text>
+                    <ion-text class="info-sub">30-day policy</ion-text>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Description Section -->
+    <ion-row class="tab-section">
+      <ion-col size="12">
+        <div class="tab-header hide-scrollbar">
+          <ion-button fill="clear" class="tab-btn" [class.active]="activeTab === 'info'"
+            (click)="setTab('info')">Product Information</ion-button>
+          <ion-button fill="clear" class="tab-btn" [class.active]="activeTab === 'ingredients'"
+            (click)="setTab('ingredients')">Ingredients</ion-button>
+          <ion-button fill="clear" class="tab-btn" [class.active]="activeTab === 'guide'"
+            (click)="setTab('guide')">Feeding Guide</ion-button>
+        </div>
+
+        <div class="tab-content" [ngSwitch]="activeTab">
+          <div *ngSwitchCase="'info'" class="info-content-grid">
+            <div class="content-main">
+              <div class="description-text">
+                <ion-text>
+                  Treat your furry companion to the finest nutrition with our <span class="highlight">Organic Royal
+                    Canin Kibble</span>.
+                  Specially formulated for adult dogs, this premium blend combines high-quality proteins with essential
+                  vitamins and minerals to support overall vitality and a shiny coat.
+                </ion-text>
+              </div>
+              <ion-grid class="benefits-grid ion-no-padding">
+                <ion-row>
+                  <ion-col size="12" size-md="6">
+                    <h3 class="section-title">
+                      <ion-icon name="leaf-outline" class="title-icon"></ion-icon>
+                      <ion-text>Key Benefits</ion-text>
+                    </h3>
+                    <ul class="benefits-list">
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Specially formulated for adult dogs, this premium blend combines high-quality proteins with essential
+                  vitamins and minerals to support overall vitality and a shiny coat.</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Promotes healthy digestion with prebiotic fiber</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Supports joint health and mobility</ion-text>
+                      </li>
+                    </ul>
+                  </ion-col>
+                  <ion-col size="12" size-md="6">
+                    <h3 class="section-title">
+                      <ion-icon name="ribbon-outline" class="title-icon"></ion-icon>
+                      <ion-text>Quality Assurance</ion-text>
+                    </h3>
+                    <ul class="benefits-list">
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>100% USDA Certified Organic</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>No artificial preservatives or colors</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Ethically sourced cage-free chicken</ion-text>
+                      </li>
+                    </ul>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+            <div class="sidebar-promo-col">
+              <div class="promo-card">
+                <div class="promo-content">
+                  <h4 class="promo-title">
+                    <ion-text>Join the Club</ion-text>
+                  </h4>
+                  <ion-text class="promo-desc">Subscribe & save 10% on every order.</ion-text>
+                  <ion-button fill="solid" class="promo-btn">Learn More</ion-button>
+                </div>
+                <ion-icon name="paw" class="promo-bg-icon"></ion-icon>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'ingredients'" class="placeholder-text">
+            <ion-text>Detailed ingredient list coming soon...</ion-text>
+          </div>
+          <div *ngSwitchCase="'guide'" class="placeholder-text">
+            <ion-text>Feeding guidelines and portions coming soon...</ion-text>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- You May Also Like Section -->
+    <ion-row class="product-section">
+      <ion-col size="12">
+        <div class="product-section__header">
+          <h2 class="product-section__title">You May Also Like</h2>
+          <!-- <button class="product-section__see-all">See All</button> -->
+        </div>
+
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="6" size-md="4" size-lg="2.4" *ngFor="let item of recommendedProducts">
+              <app-product-card [product]="item"></app-product-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreProducts($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more products...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <div class="cart-bar">
+    <div class="quantity-selector">
+      <ion-button fill="clear" class="qty-btn" (click)="decrementQuantity()">
+        <ion-icon name="remove-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-text class="qty-value">{{ quantity }}</ion-text>
+      <ion-button fill="clear" class="qty-btn" (click)="incrementQuantity()">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-button fill="solid" class="add-to-cart-btn">
+      <ion-icon name="cart-outline" slot="start"></ion-icon>
+      <ion-text>Add to Cart</ion-text>
+    </ion-button>
+  </div>
+</ion-footer>

@@ -10,6 +10,9 @@ description: [AUTO] Angular Standards
 **Feature Modules:** Business logic, lazy-loaded
 **Standalone Components:** Preferred for new components
 **Naming:** `name.component.ts`, `name.service.ts`, `name.model.ts`
+**BaseComponent:** All components must extend `BaseComponent`
+    - BaseComponet need implemnt this.subs = new Subject() then call to unsubscribe() when onDestroy
+    - Compoennts use Subscription need to push to this.subs
 
 ## State Management
 **Local State:** Angular Signals

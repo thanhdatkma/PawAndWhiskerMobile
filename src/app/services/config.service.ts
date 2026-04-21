@@ -13,6 +13,7 @@ export interface AppSettings {
   activeCurrency: string;
   supportedCurrencies: CurrencyConfig[];
   searchBarTabs: string[];
+  showScanFab: boolean;
 }
 
 
@@ -39,7 +40,8 @@ export class ConfigService {
         isDarkmode: false,
         activeCurrency: 'USD',
         supportedCurrencies: [{ code: 'USD', symbol: '$', label: 'US Dollar' }],
-        searchBarTabs: ['home', 'categories']
+        searchBarTabs: ['home', 'categories'],
+        showScanFab: true
       };
 
       this.settingsSubject.next(fallback);
