@@ -1,0 +1,142 @@
+:host {
+  --ion-background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+ion-header {
+  background: var(--surface);
+  
+  ion-toolbar {
+    --background: transparent;
+    --color: var(--on-surface);
+  }
+}
+
+.segment-toolbar {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-bottom: 16px;
+  
+  ion-segment {
+    background: var(--ion-color-step-100, #eef0f2);
+    border-radius: 12px;
+    padding: 2px;
+    
+    ion-segment-button {
+      --indicator-color: var(--ion-color-primary);
+      --color-checked: var(--ion-color-primary-contrast);
+      --border-radius: 10px;
+      min-height: 38px;
+      margin: 0;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+      --padding-start: 16px;
+      --padding-end: 16px;
+    }
+  }
+}
+
+.scroll-wrapper {
+  max-height: 50vh;
+  overflow-y: auto;
+  background: var(--surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-body {
+  padding: 0 16px 16px 16px;
+}
+
+.tab-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Filter/Sort Styles */
+.filter-list {
+  background: transparent;
+  padding: 0;
+  
+  .filter-item {
+    --background: transparent;
+    --border-radius: 0;
+    margin-bottom: 0;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --inner-padding-end: 0;
+    box-shadow: none;
+    border-bottom: 1px solid var(--outline-variant, rgba(0,0,0,0.05));
+    
+    &:last-child {
+      border-bottom: none;
+    }
+
+    ion-label {
+      font-weight: 500;
+      font-size: 1.05rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--on-surface);
+
+      .count {
+        color: var(--on-surface-variant);
+        font-size: 0.9rem;
+      }
+    }
+    
+    ion-radio {
+      --color-checked: var(--primary);
+      margin: 12px 0;
+    }
+
+    ion-checkbox {
+      --checkbox-background-checked: var(--primary);
+      --border-color-checked: var(--primary);
+      margin: 12px 0;
+    }
+  }
+}
+
+ion-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--outline-variant, rgba(0,0,0,0.05));
+
+  .footer-actions {
+    display: flex;
+    gap: 12px;
+    
+    .reset-btn {
+      flex: 1;
+      margin: 0;
+      height: 52px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      --color: var(--on-surface);
+      --border-color: var(--outline);
+    }
+    
+    .apply-btn {
+      flex: 2;
+      --box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.25);
+      margin: 0;
+      height: 52px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+/* Dark Mode Overrides */
+:host-context(.dark-theme) {
+  .filter-item {
+    border-bottom: 1px solid var(--outline-variant);
+  }
+}

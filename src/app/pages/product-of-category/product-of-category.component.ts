@@ -7,14 +7,16 @@ import {
   IonIcon, IonButton
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { atOutline, saveOutline } from 'ionicons/icons';
+import { atOutline, saveOutline, optionsOutline, swapVerticalOutline, chevronDownOutline, pricetagOutline, bookmarkOutline } from 'ionicons/icons';
 import { BaseComponent } from '../../shared/base-component/base.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
 import { ConfigService } from '../../services/config.service';
 import { takeUntil } from 'rxjs/operators';
 
+import { ModalController } from '@ionic/angular/standalone';
 import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
+import { FilterSortComponent } from '../filter-sort/filter-sort.component';
 
 @Component({
   selector: 'app-product-of-category',
@@ -26,15 +28,17 @@ import { ProductCardComponent } from '../../shared/product-card/product-card.com
     IonContent, IonGrid, IonRow, 
     IonCol, IonText, IonInfiniteScroll, IonInfiniteScrollContent,
     IonIcon, IonButton,
-    AppHeaderComponent, ProductCardComponent
+    AppHeaderComponent, ProductCardComponent, FilterSortComponent
   ]
 })
 export class ProductOfCategoryComponent extends BaseComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private modalCtrl = inject(ModalController);
   
   categoryId: string | null = null;
   categoryName: string = 'Products';
   showSearch = false;
+  isFilterHidden = false;
   
   products: ProductBriefModel[] = [
     {
@@ -89,7 +93,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
 
   constructor() {
     super();
-    addIcons({ 'tune-outline': atOutline, 'swap-vert-outline': saveOutline });
+    addIcons({optionsOutline, swapVerticalOutline, chevronDownOutline, pricetagOutline, bookmarkOutline, 'tuneOutline':atOutline, 'swapVertOutline':saveOutline});
   }
 
   override ngOnInit() {
@@ -103,6 +107,16 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
           this.showSearch = settings.searchBarTabs.includes('categories');
         }
       });
+
+    this.scrollService.filterHidden$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(isHidden => {
+        this.isFilterHidden = isHidden;
+      });
+  }
+
+  onScroll(event: any) {
+    this.handleScroll(event);
   }
 
   loadData(event: any) {
@@ -119,5 +133,24 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
 
   viewProduct(id: string) {
     this.navigate('/product-details', { id });
+  }
+
+  async openFilterSort(tab: 'brands' | 'pricing' | 'tags' | 'sort' = 'brands') {
+    const modal = await this.modalCtrl.create({
+      component: FilterSortComponent,
+      componentProps: {
+        initialTab: tab
+      },
+      cssClass: 'auto-height-modal sheet-modal'
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      console.log('Filter/Sort Applied:', data);
+      // Here you would normally filter/sort your products array
+      // For demo, we'll just log it
+    }
   }
 }

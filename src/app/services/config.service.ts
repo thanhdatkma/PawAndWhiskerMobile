@@ -15,6 +15,7 @@ export interface AppSettings {
   searchBarTabs: string[];
   showScanFab: boolean;
   disableScrollFadeSearchBar: boolean;
+  disableScrollFadeFilterBar: boolean;
 }
 
 
@@ -43,7 +44,8 @@ export class ConfigService {
         supportedCurrencies: [{ code: 'USD', symbol: '$', label: 'US Dollar' }],
         searchBarTabs: ['home', 'categories'],
         showScanFab: true,
-        disableScrollFadeSearchBar: false
+        disableScrollFadeSearchBar: false,
+        disableScrollFadeFilterBar: false
       };
 
       this.settingsSubject.next(fallback);

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonIcon } from '@ionic/angular/standalone';
 import { BaseComponent } from '../base-component/base.component';
 import { ScrollService } from '../../core/services/scroll.service';
+import { TabService } from '../../services/tab.service';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -22,41 +23,72 @@ export class SearchBarComponent extends BaseComponent {
 
   searchTerm = '';
 
-  barHeight = 48;
-  barPadding = 16;
-  barOpacity = 1;
+  isSearchShrunk = false;
+  private lastScrollTop = 0;
+  private accumulatedDelta = 0;
+  private isAnimating = false;
+  private animationTimeout: any;
+
+  private readonly tabService = inject(TabService);
 
   override ngOnInit(): void {
     this.scrollService.scrollY$
       .pipe(takeUntil(this.destroyed$))
       .subscribe(y => this.handleScroll(y));
+
+    this.tabService.activeTab$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => {
+        this.isSearchShrunk = false;
+        this.accumulatedDelta = 0;
+      });
   }
 
   override handleScroll(y: number): void {
-    const fadeBreakpoint = 60;
-    const collapseBreakpoint = 124; // 60 + 64px (height of search bar)
+    if (this.configService.settings?.disableScrollFadeSearchBar) {
+      this.isSearchShrunk = false;
+      return;
+    }
 
-    // Phase 1: 0 to 60px (Opacity Fades Out)
-    if (y <= fadeBreakpoint) {
-      this.barOpacity = Math.max(0, 1 - (y / fadeBreakpoint));
-      this.barHeight = 48;
-      this.barPadding = 16;
-    }
-    // Phase 2: 60 to 124px (Height/Padding Collapse)
-    else if (y <= collapseBreakpoint) {
-      this.barOpacity = 0;
-      const collapseProgress = (y - fadeBreakpoint) / (collapseBreakpoint - fadeBreakpoint);
-      const factor = Math.max(0, 1 - collapseProgress);
+    const delta = y - this.lastScrollTop;
+    this.lastScrollTop = y;
 
-      this.barHeight = 48 * factor;
-      this.barPadding = 16 * factor;
+    if (this.isAnimating) {
+      this.accumulatedDelta = 0;
+      return;
     }
-    // Beyond 124px: Fully Hidden
-    else {
-      this.barOpacity = 0;
-      this.barHeight = 0;
-      this.barPadding = 0;
+
+    if ((delta > 0 && this.accumulatedDelta < 0) || (delta < 0 && this.accumulatedDelta > 0)) {
+      this.accumulatedDelta = 0;
     }
+    
+    this.accumulatedDelta += delta;
+
+    if (y <= 50) {
+      if (this.isSearchShrunk) {
+        this.isSearchShrunk = false;
+        this.startAnimationCooldown();
+        this.accumulatedDelta = 0;
+      }
+    } else {
+      if (this.accumulatedDelta > 20 && !this.isSearchShrunk) {
+        this.isSearchShrunk = true;
+        this.startAnimationCooldown();
+        this.accumulatedDelta = 0;
+      } else if (this.accumulatedDelta < -20 && this.isSearchShrunk) {
+        this.isSearchShrunk = false;
+        this.startAnimationCooldown();
+        this.accumulatedDelta = 0;
+      }
+    }
+  }
+
+  private startAnimationCooldown(): void {
+    this.isAnimating = true;
+    clearTimeout(this.animationTimeout);
+    this.animationTimeout = setTimeout(() => {
+      this.isAnimating = false;
+    }, 400);
   }
 
   onSearchInput(value: string): void {

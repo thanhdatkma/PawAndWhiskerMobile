@@ -64,5 +64,12 @@ export class TabsPage extends BaseComponent implements OnInit {
     const tab = event.tab as TabType;
     this.tabService.setActiveTab(tab);
   }
+
+  onTabClick(tab: string) {
+    if (this.tabService.getActiveTab() === tab as TabType) {
+      // Re-trigger active tab to listeners to signify an active tab click
+      this.tabService.setActiveTab(tab as TabType);
+    }
+  }
 }
 

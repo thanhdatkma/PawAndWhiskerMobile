@@ -15,7 +15,8 @@ import {
   IonRow,
   IonCol,
   IonLabel,
-  NavController
+  NavController,
+  IonInputOtp
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, refreshOutline, checkmarkCircleOutline, scaleOutline, mailOutline } from 'ionicons/icons';
@@ -43,7 +44,8 @@ import { take } from 'rxjs/operators';
     IonGrid,
     IonRow,
     IonCol,
-    IonLabel
+    IonLabel,
+    IonInputOtp
   ]
 })
 export class VerifyCodeComponent implements OnInit, OnDestroy {

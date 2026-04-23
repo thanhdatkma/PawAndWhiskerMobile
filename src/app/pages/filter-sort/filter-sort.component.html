@@ -1,0 +1,67 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{currentTab | titlecase}}</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<div class="scroll-wrapper">
+  <div class="modal-body">
+    <!-- Brands Tab -->
+    <div *ngIf="currentTab === 'brands'" class="tab-content">
+      <ion-list lines="none" class="filter-list">
+        <ion-item *ngFor="let brand of brands" class="filter-item">
+          <ion-label>{{ brand.label }} <span class="count">({{ brand.count }})</span></ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="brand.checked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Pricing Tab -->
+    <div *ngIf="currentTab === 'pricing'" class="tab-content">
+      <ion-list lines="none" class="filter-list">
+        <ion-item *ngFor="let price of pricings" class="filter-item">
+          <ion-label>{{ price.label }} <span class="count">({{ price.count }})</span></ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="price.checked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Tags Tab -->
+    <div *ngIf="currentTab === 'tags'" class="tab-content">
+      <ion-list lines="none" class="filter-list">
+        <ion-item *ngFor="let tag of tags" class="filter-item">
+          <ion-label>{{ tag.label }} <span class="count">({{ tag.count }})</span></ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="tag.checked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Sort Tab -->
+    <div *ngIf="currentTab === 'sort'" class="tab-content">
+      <ion-list lines="none" class="filter-list">
+        <ion-radio-group [(ngModel)]="selectedSort">
+          <ion-item *ngFor="let opt of sorts" class="filter-item">
+            <ion-label>{{ opt.label }}</ion-label>
+            <ion-radio slot="end" [value]="opt.value"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </div>
+  </div>
+</div>
+
+<ion-footer class="ion-no-border ion-padding">
+  <div class="footer-actions">
+    <ion-button fill="outline" shape="round" color="medium" class="reset-btn" (click)="reset()">
+      Reset
+    </ion-button>
+    <ion-button expand="block" shape="round" class="apply-btn" (click)="apply()">
+      Apply
+    </ion-button>
+  </div>
+</ion-footer>

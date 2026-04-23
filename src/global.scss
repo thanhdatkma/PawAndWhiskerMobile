@@ -203,3 +203,14 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid var(--outline-variant);
   z-index: 1000;
 }
+
+/** 6. Custom Modals **/
+ion-modal.auto-height-modal {
+  --height: auto;
+  align-items: flex-end; /* position like a sheet */
+}
+ion-modal.auto-height-modal .ion-page {
+  position: relative;
+  display: block;
+  contain: content;
+}

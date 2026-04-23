@@ -6,23 +6,34 @@
   searchPlaceholder="Search in this category">
 </app-header>
 
-<ion-content [fullscreen]="true">
-  <div class="main-container">
-    <!-- Filters & Sort -->
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="sticky-filter-wrapper" [class.filter-hidden]="isFilterHidden">
     <div class="filter-bar">
-      <div class="filter-actions">
-        <button class="filter-btn">
-          <ion-icon name="tune-outline"></ion-icon>
-          <ion-text>Filter</ion-text>
+      <div class="filter-scroll-container">
+        <button class="filter-btn" (click)="openFilterSort('brands')">
+          <ion-text>Brands</ion-text>
+          <ion-icon name="chevron-down-outline"></ion-icon>
         </button>
-        <button class="filter-btn">
-          <ion-icon name="swap-vert-outline"></ion-icon>
-          <ion-text>Sort</ion-text>
+        <button class="filter-btn" (click)="openFilterSort('pricing')">
+          <ion-text>Pricing</ion-text>
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </button>
+        <button class="filter-btn" (click)="openFilterSort('tags')">
+          <ion-text>Tags</ion-text>
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </button>
+        <button class="filter-btn" (click)="openFilterSort('sort')">
+          <ion-icon name="swap-vertical-outline"></ion-icon>
+          <ion-text>Sort By</ion-text>
         </button>
       </div>
-      <ion-text class="items-found">{{ products.length }} items found</ion-text>
+      <!-- <div class="items-found-container">
+        <ion-text class="items-found">{{ products.length }} items found</ion-text>
+      </div> -->
     </div>
+  </div>
 
+  <div class="main-container product-list-container">
     <!-- Product Grid -->
     <ion-grid class="ion-no-padding">
       <ion-row>

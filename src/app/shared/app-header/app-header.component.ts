@@ -51,6 +51,10 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
 
 
   isHeaderShrunk = false;
+  private lastScrollTop = 0;
+  private accumulatedDelta = 0;
+  private isAnimating = false;
+  private animationTimeout: any;
 
   override ngOnInit(): void {
     this.scrollService.scrollY$
@@ -70,16 +74,51 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
     this.showSearch = !!this.searchBarConfig.get(activeTab);
   }
 
-
   override handleScroll(y: number): void {
-    // 0 to 60px: Header is normal
-    if (y <= 60) {
+    if (this.configService.settings?.disableScrollFadeSearchBar) {
       this.isHeaderShrunk = false;
+      return;
     }
-    // Beyond 60px: Header title shrinks
-    else {
-      this.isHeaderShrunk = true;
+
+    const delta = y - this.lastScrollTop;
+    this.lastScrollTop = y;
+
+    if (this.isAnimating) {
+      this.accumulatedDelta = 0;
+      return;
     }
+
+    if ((delta > 0 && this.accumulatedDelta < 0) || (delta < 0 && this.accumulatedDelta > 0)) {
+      this.accumulatedDelta = 0;
+    }
+    
+    this.accumulatedDelta += delta;
+
+    if (y <= 60) {
+      if (this.isHeaderShrunk) {
+        this.isHeaderShrunk = false;
+        this.startAnimationCooldown();
+        this.accumulatedDelta = 0;
+      }
+    } else {
+      if (this.accumulatedDelta > 20 && !this.isHeaderShrunk) {
+        this.isHeaderShrunk = true;
+        this.startAnimationCooldown();
+        this.accumulatedDelta = 0;
+      } else if (this.accumulatedDelta < -20 && this.isHeaderShrunk) {
+        this.isHeaderShrunk = false;
+        this.startAnimationCooldown();
+        this.accumulatedDelta = 0;
+      }
+    }
+  }
+
+  private startAnimationCooldown(): void {
+    this.isAnimating = true;
+    clearTimeout(this.animationTimeout);
+    this.animationTimeout = setTimeout(() => {
+      this.isAnimating = false;
+    }, 400); // 400ms cooldown gives enough time for layout bounce to settle
   }
 
   onMenuClick(): void { this.menuClick.emit(); }

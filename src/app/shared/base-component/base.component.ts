@@ -83,9 +83,6 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   }
 
   protected handleScroll(ev: any) {
-    if (this.configService.settings?.disableScrollFadeSearchBar) {
-      return;
-    }
     this.scrollService.updateScroll(ev.detail.scrollTop);
   }
 
