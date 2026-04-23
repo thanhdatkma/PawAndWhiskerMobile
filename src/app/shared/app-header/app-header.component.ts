@@ -6,7 +6,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { TabService } from '../../services/tab.service';
 import { TabType } from '../../models/tab.model';
 import { addIcons } from 'ionicons';
-import { cartOutline, chevronBack, search } from 'ionicons/icons';
+import { cartOutline, chevronBack, search, shareOutline, heartOutline, heart } from 'ionicons/icons';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
 
   constructor() {
     super();
-    addIcons({ 'cart-outline': cartOutline, 'chevron-back': chevronBack, search });
+    addIcons({ 'cart-outline': cartOutline, 'chevron-back': chevronBack, search, 'share-outline': shareOutline, 'heart-outline': heartOutline, heart });
   }
 
   /** Main title shown in the center / beside avatar */
@@ -41,6 +41,15 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   @Input() searchPlaceholder = 'Search for food, toys...';
   /** Configuration Map to determine visibility of search bar per tab */
   @Input() searchBarConfig: Map<TabType, boolean> = new Map();
+  /** Whether to show the share icon button */
+  @Input() showShare = false;
+  /** Whether to show the favorite icon button */
+  @Input() showFavorite = false;
+  /** Whether the item is favorite or not */
+  @Input() isFavorite = false;
+
+  @Output() shareClick = new EventEmitter<void>();
+  @Output() favoriteClick = new EventEmitter<void>();
 
 
   @Output() menuClick = new EventEmitter<void>();
@@ -124,5 +133,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   onMenuClick(): void { this.menuClick.emit(); }
   onCartClick(): void { this.cartClick.emit(); }
   onSearchInput(value: string): void { this.searchChange.emit(value); }
+  onShareClick(): void { this.shareClick.emit(); }
+  onFavoriteClick(): void { this.favoriteClick.emit(); }
 
 }

@@ -14,9 +14,9 @@
     <!-- Brands Tab -->
     <div *ngIf="currentTab === 'brands'" class="tab-content">
       <ion-list lines="none" class="filter-list">
-        <ion-item *ngFor="let brand of brands" class="filter-item">
-          <ion-label>{{ brand.label }} <span class="count">({{ brand.count }})</span></ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="brand.checked"></ion-checkbox>
+        <ion-item *ngFor="let brand of brands" class="filter-item" (click)="brand.checked = !brand.checked" button="false" detail="false">
+          <ion-label [color]="brand.checked ? 'primary' : ''" [style.fontWeight]="brand.checked ? 'bold' : 'normal'">{{ brand.label }} <span class="count">({{ brand.count }})</span></ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="brand.checked" (click)="$event.stopPropagation()"></ion-checkbox>
         </ion-item>
       </ion-list>
     </div>
@@ -24,9 +24,9 @@
     <!-- Pricing Tab -->
     <div *ngIf="currentTab === 'pricing'" class="tab-content">
       <ion-list lines="none" class="filter-list">
-        <ion-item *ngFor="let price of pricings" class="filter-item">
-          <ion-label>{{ price.label }} <span class="count">({{ price.count }})</span></ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="price.checked"></ion-checkbox>
+        <ion-item *ngFor="let price of pricings" class="filter-item" (click)="price.checked = !price.checked" button="false" detail="false">
+          <ion-label [color]="price.checked ? 'primary' : ''" [style.fontWeight]="price.checked ? 'bold' : 'normal'">{{ price.label }} <span class="count">({{ price.count }})</span></ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="price.checked" (click)="$event.stopPropagation()"></ion-checkbox>
         </ion-item>
       </ion-list>
     </div>
@@ -34,9 +34,9 @@
     <!-- Tags Tab -->
     <div *ngIf="currentTab === 'tags'" class="tab-content">
       <ion-list lines="none" class="filter-list">
-        <ion-item *ngFor="let tag of tags" class="filter-item">
-          <ion-label>{{ tag.label }} <span class="count">({{ tag.count }})</span></ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="tag.checked"></ion-checkbox>
+        <ion-item *ngFor="let tag of tags" class="filter-item" (click)="tag.checked = !tag.checked" button="false" detail="false">
+          <ion-label [color]="tag.checked ? 'primary' : ''" [style.fontWeight]="tag.checked ? 'bold' : 'normal'">{{ tag.label }} <span class="count">({{ tag.count }})</span></ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="tag.checked" (click)="$event.stopPropagation()"></ion-checkbox>
         </ion-item>
       </ion-list>
     </div>
@@ -45,9 +45,9 @@
     <div *ngIf="currentTab === 'sort'" class="tab-content">
       <ion-list lines="none" class="filter-list">
         <ion-radio-group [(ngModel)]="selectedSort">
-          <ion-item *ngFor="let opt of sorts" class="filter-item">
-            <ion-label>{{ opt.label }}</ion-label>
-            <ion-radio slot="end" [value]="opt.value"></ion-radio>
+          <ion-item *ngFor="let opt of sorts" class="filter-item" (click)="selectedSort = opt.value" button="false" detail="false">
+            <ion-label [color]="selectedSort === opt.value ? 'primary' : ''" [style.fontWeight]="selectedSort === opt.value ? 'bold' : 'normal'">{{ opt.label }}</ion-label>
+            <ion-radio slot="end" [value]="opt.value" (click)="$event.stopPropagation()"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-list>

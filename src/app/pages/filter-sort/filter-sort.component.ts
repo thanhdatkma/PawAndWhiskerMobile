@@ -29,25 +29,12 @@ export class FilterSortComponent implements OnInit {
   @Input() initialTab: 'brands' | 'pricing' | 'tags' | 'sort' = 'brands';
   currentTab: 'brands' | 'pricing' | 'tags' | 'sort' = 'brands';
 
-  brands = [
-    { label: 'Nike', count: 120, checked: false },
-    { label: 'Adidas', count: 85, checked: false },
-    { label: 'Puma', count: 40, checked: false },
-    { label: 'Reebok', count: 25, checked: false },
-    { label: 'Under Armour', count: 18, checked: false }
-  ];
+  @Input() filterState: any;
 
-  pricings = [
-    { label: '$0 - $31', count: 800, checked: false },
-    { label: '$31 - $64', count: 8, checked: false },
-    { label: '$64 - $121', count: 3, checked: false }
-  ];
-
-  tags = [
-    { label: 'New', count: 4, checked: false },
-    { label: 'On Sale', count: 20, checked: false },
-    { label: 'In Stock', count: 3, checked: false }
-  ];
+  brands: any[] = [];
+  pricings: any[] = [];
+  tags: any[] = [];
+  selectedSort = 'price_asc';
 
   sorts = [
     { label: 'Price: Low to High', value: 'price_asc' },
@@ -55,7 +42,6 @@ export class FilterSortComponent implements OnInit {
     { label: 'Brands: A to Z', value: 'brand_asc' },
     { label: 'Brands: Z to A', value: 'brand_desc' }
   ];
-  selectedSort = 'price_asc';
 
   constructor() {
     addIcons({ closeOutline, refreshOutline });
@@ -63,6 +49,12 @@ export class FilterSortComponent implements OnInit {
 
   ngOnInit() {
     this.currentTab = this.initialTab;
+    if (this.filterState) {
+      this.brands = JSON.parse(JSON.stringify(this.filterState.brands));
+      this.pricings = JSON.parse(JSON.stringify(this.filterState.pricings));
+      this.tags = JSON.parse(JSON.stringify(this.filterState.tags));
+      this.selectedSort = this.filterState.selectedSort;
+    }
   }
 
   dismiss() {
@@ -70,19 +62,25 @@ export class FilterSortComponent implements OnInit {
   }
 
   reset() {
-    this.brands.forEach(b => b.checked = false);
-    this.pricings.forEach(p => p.checked = false);
-    this.tags.forEach(t => t.checked = false);
-    this.selectedSort = 'price_asc';
+    if (this.currentTab === 'brands') {
+      this.brands.forEach(b => b.checked = false);
+    } else if (this.currentTab === 'pricing') {
+      this.pricings.forEach(p => p.checked = false);
+    } else if (this.currentTab === 'tags') {
+      this.tags.forEach(t => t.checked = false);
+    } else if (this.currentTab === 'sort') {
+      this.selectedSort = 'price_asc';
+    }
+    this.apply();
   }
 
   apply() {
     this.modalCtrl.dismiss({
-      sort: this.selectedSort,
-      filter: {
-        brands: this.brands.filter(b => b.checked).map(b => b.label),
-        pricings: this.pricings.filter(p => p.checked).map(p => p.label),
-        tags: this.tags.filter(t => t.checked).map(t => t.label)
+      filterState: {
+        brands: this.brands,
+        pricings: this.pricings,
+        tags: this.tags,
+        selectedSort: this.selectedSort
       }
     });
   }

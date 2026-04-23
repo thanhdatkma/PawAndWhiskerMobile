@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { 
   IonContent, IonGrid, IonRow, 
   IonCol, IonText, IonInfiniteScroll, IonInfiniteScrollContent,
-  IonIcon, IonButton
+  IonIcon, IonButton, IonBadge
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { atOutline, saveOutline, optionsOutline, swapVerticalOutline, chevronDownOutline, pricetagOutline, bookmarkOutline } from 'ionicons/icons';
@@ -27,8 +27,9 @@ import { FilterSortComponent } from '../filter-sort/filter-sort.component';
     CommonModule,
     IonContent, IonGrid, IonRow, 
     IonCol, IonText, IonInfiniteScroll, IonInfiniteScrollContent,
-    IonIcon, IonButton,
-    AppHeaderComponent, ProductCardComponent, FilterSortComponent
+    IonIcon, IonButton, IonBadge,
+    AppHeaderComponent, ProductCardComponent, FilterSortComponent,
+    
   ]
 })
 export class ProductOfCategoryComponent extends BaseComponent implements OnInit {
@@ -90,6 +91,28 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
       rating: 4.6
     }
   ];
+  originalProducts: ProductBriefModel[] = [];
+
+  filterState = {
+    brands: [
+      { label: 'Nike', count: 120, checked: false },
+      { label: 'Adidas', count: 85, checked: false },
+      { label: 'Puma', count: 40, checked: false },
+      { label: 'Reebok', count: 25, checked: false },
+      { label: 'Under Armour', count: 18, checked: false }
+    ],
+    pricings: [
+      { label: '$0 - $31', count: 800, checked: false },
+      { label: '$31 - $64', count: 8, checked: false },
+      { label: '$64 - $121', count: 3, checked: false }
+    ],
+    tags: [
+      { label: 'New', count: 4, checked: false },
+      { label: 'On Sale', count: 20, checked: false },
+      { label: 'In Stock', count: 3, checked: false }
+    ],
+    selectedSort: 'price_asc'
+  };
 
   constructor() {
     super();
@@ -98,6 +121,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
 
   override ngOnInit() {
     super.ngOnInit();
+    this.originalProducts = [...this.products];
     this.categoryId = this.route.snapshot.paramMap.get('id');
     
     this.configService.settings$
@@ -139,7 +163,8 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     const modal = await this.modalCtrl.create({
       component: FilterSortComponent,
       componentProps: {
-        initialTab: tab
+        initialTab: tab,
+        filterState: JSON.parse(JSON.stringify(this.filterState))
       },
       cssClass: 'auto-height-modal sheet-modal'
     });
@@ -147,10 +172,52 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
-    if (data) {
-      console.log('Filter/Sort Applied:', data);
-      // Here you would normally filter/sort your products array
-      // For demo, we'll just log it
+    if (data && data.filterState) {
+      this.filterState = data.filterState;
+      this.applyFilters();
     }
+  }
+
+  applyFilters() {
+    let filtered = [...this.originalProducts];
+    
+    // active filters
+    const activeBrands = this.filterState.brands.filter((b: any) => b.checked).map((b: any) => b.label);
+    const activePricing = this.filterState.pricings.filter((p: any) => p.checked).map((p: any) => p.label);
+    
+    // Simulate filtering
+    if (activePricing.length > 0) {
+      filtered = filtered.filter(p => {
+        const price = p.discountPrice || p.price;
+        return activePricing.some((range: string) => {
+          if (range === '$0 - $31' && price <= 31) return true;
+          if (range === '$31 - $64' && price > 31 && price <= 64) return true;
+          if (range === '$64 - $121' && price > 64 && price <= 121) return true;
+          return false;
+        });
+      });
+    }
+
+    if (activeBrands.length > 0) {
+      // Because we don't have brand in ProductBriefModel, just mock it by keeping all if they are checked
+      // Or actually filter by name including brand name? Let's just mock
+    }
+
+    // Sort
+    if (this.filterState.selectedSort === 'price_asc') {
+      filtered.sort((a, b) => (a.discountPrice || a.price) - (b.discountPrice || b.price));
+    } else if (this.filterState.selectedSort === 'price_desc') {
+      filtered.sort((a, b) => (b.discountPrice || b.price) - (a.discountPrice || a.price));
+    } else if (this.filterState.selectedSort === 'brand_asc') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (this.filterState.selectedSort === 'brand_desc') {
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    this.products = filtered;
+  }
+
+  getFilterCount(type: 'brands' | 'pricings' | 'tags'): number {
+    return this.filterState[type].filter((item: any) => item.checked).length;
   }
 }

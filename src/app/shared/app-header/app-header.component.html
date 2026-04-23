@@ -25,16 +25,20 @@
       </div>
 
       <ng-template #appTitle>
-        <!-- <h1 class="app-header__app-title" [class.app-header__app-title--shrunk]="isHeaderShrunk">{{ title }}</h1> -->
         <div class="logo-wrapper" [class.logo-wrapper--shrunk]="isHeaderShrunk">
-          <!-- <ion-icon name="paw" class="logo-icon"></ion-icon> -->
           <ion-text class="logo-text">{{ title }}</ion-text>
         </div>
       </ng-template>
 
-      <!-- Right: Cart icon -->
+      <!-- Right: Actions -->
       <ion-buttons slot="end">
-        <ion-button color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart">
+        <ion-button *ngIf="showShare" color="primary" class="app-header__icon-btn" aria-label="Share" (click)="onShareClick()">
+          <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="showFavorite" color="primary" class="app-header__icon-btn" aria-label="Favorite" (click)="onFavoriteClick()">
+          <ion-icon slot="icon-only" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="showCart" color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart" (click)="onCartClick()">
           <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
         </ion-button>
       </ion-buttons>

@@ -65,6 +65,9 @@ ion-header {
   .filter-item {
     --background: transparent;
     --border-radius: 0;
+    --background-hover: transparent;
+    --background-activated: transparent;
+    --ripple-color: transparent;
     margin-bottom: 0;
     --padding-start: 16px;
     --padding-end: 16px;
@@ -80,9 +83,10 @@ ion-header {
       font-weight: 500;
       font-size: 1.05rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: baseline;
       color: var(--on-surface);
+      gap: 5px;
 
       .count {
         color: var(--on-surface-variant);
@@ -96,9 +100,10 @@ ion-header {
     }
 
     ion-checkbox {
-      --checkbox-background-checked: var(--primary);
+      --border-color: var(--on-surface-variant);
       --border-color-checked: var(--primary);
-      margin: 12px 0;
+      --checkbox-background: transparent;
+      --checkbox-background-checked: var(--primary);
     }
   }
 }

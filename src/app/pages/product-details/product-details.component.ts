@@ -8,6 +8,7 @@ import { ProductDetailModel } from '../../models/product-detail.model';
 import { BreadcrumbModel } from '../../models/breadcrumb.model';
 import { ProductCardComponent } from '../../shared/product-card/product-card.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +18,8 @@ import { ProductBriefModel } from '../../models/product-brief.model';
   imports: [
     CommonModule,
     IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonBadge, IonFooter, IonText, IonGrid, IonRow, IonCol, IonImg, IonInfiniteScroll, IonInfiniteScrollContent,
-    ProductCardComponent
+    ProductCardComponent,
+    AppHeaderComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
