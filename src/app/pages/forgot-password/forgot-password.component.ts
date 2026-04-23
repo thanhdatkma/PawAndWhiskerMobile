@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, callOutline, informationCircleOutline, paw } from 'ionicons/icons';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 
 @Component({
   selector: 'app-forgot-password',
@@ -37,7 +38,8 @@ import { arrowBackOutline, mailOutline, callOutline, informationCircleOutline, p
     IonLabel,
     IonText,
     IonIcon,
-    IonImg
+    IonImg,
+    AppHeaderComponent
   ]
 })
 export class ForgotPasswordComponent implements OnInit {

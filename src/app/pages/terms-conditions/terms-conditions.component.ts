@@ -16,6 +16,7 @@ import {
   NavController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 import {
   arrowBackOutline,
   hammerOutline,
@@ -48,7 +49,8 @@ import {
     IonCol,
     IonText,
     IonIcon,
-    IonButton
+    IonButton,
+    AppHeaderComponent
   ]
 })
 export class TermsConditionsComponent implements OnInit {

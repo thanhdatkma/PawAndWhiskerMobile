@@ -24,6 +24,7 @@ import {
 } from '@ionic/angular/standalone';
 import { BaseComponent } from '../../shared/base-component/base.component';
 import { RouterLink } from '@angular/router';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOutline, eyeOutline, eyeOffOutline, logoGoogle, logoFacebook, logoTiktok, logoApple, paw } from 'ionicons/icons';
 
@@ -54,7 +55,8 @@ import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOu
     IonCheckbox,
     IonBackButton,
     IonButtons,
-    RouterLink
+    RouterLink,
+    AppHeaderComponent
   ]
 })
 export class RegisterComponent extends BaseComponent implements OnInit {

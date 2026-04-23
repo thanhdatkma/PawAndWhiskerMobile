@@ -20,6 +20,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, refreshOutline, checkmarkCircleOutline, scaleOutline, mailOutline } from 'ionicons/icons';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -45,7 +46,8 @@ import { take } from 'rxjs/operators';
     IonRow,
     IonCol,
     IonLabel,
-    IonInputOtp
+    IonInputOtp,
+    AppHeaderComponent
   ]
 })
 export class VerifyCodeComponent implements OnInit, OnDestroy {

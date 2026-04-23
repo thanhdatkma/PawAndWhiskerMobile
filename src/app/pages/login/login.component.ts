@@ -21,6 +21,7 @@ import {
 import { BaseComponent } from '../../shared/base-component/base.component';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoGoogle, logoApple, paw } from 'ionicons/icons';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -46,7 +47,8 @@ import { AuthService } from '../../services/auth.service';
     IonGrid,
     IonRow,
     IonCol,
-    IonImg
+    IonImg,
+    AppHeaderComponent
   ]
 })
 export class LoginComponent extends BaseComponent implements OnInit {

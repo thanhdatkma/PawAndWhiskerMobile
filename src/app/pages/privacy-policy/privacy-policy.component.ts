@@ -15,6 +15,7 @@ import {
   IonCol
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
+import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
 import {
   arrowBackOutline,
   searchOutline,
@@ -45,7 +46,8 @@ import {
     IonText,
     IonGrid,
     IonRow,
-    IonCol
+    IonCol,
+    AppHeaderComponent
   ]
 })
 export class PrivacyPolicyComponent implements OnInit {

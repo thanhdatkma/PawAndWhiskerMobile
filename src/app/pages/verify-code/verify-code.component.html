@@ -1,11 +1,4 @@
-<ion-header class="register-header">
-  <ion-button fill="clear" (click)="goBack()" class="back-btn" aria-label="Go back">
-    <ion-icon name="arrow-back-outline"></ion-icon>
-  </ion-button>
-  <div class="logo-wrapper">
-    <ion-text class="logo-text">Enter Verification Code</ion-text>
-  </div>
-</ion-header>
+<app-header [title]="'Verification'" [showBackButton]="true" [showCart]="false"></app-header>
 
 <ion-content [fullscreen]="true" class="verify-content">
   <ion-grid class="verify-container ion-no-padding">
