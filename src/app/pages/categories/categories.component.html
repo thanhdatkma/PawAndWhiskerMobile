@@ -3,7 +3,7 @@
     <!-- Left Sidebar: Parent Categories -->
     <aside class="sidebar hide-scrollbar">
       <div *ngFor="let cat of categories; trackBy: trackByFn" class="parent-item"
-        [class.parent-item--active]="cat.id === selectedParent.id" (click)="selectParent(cat)">
+        [class.parent-item--active]="cat.id === selectedParent?.id" (click)="selectParent(cat)">
         <div class="parent-item__icon-box">
           <span class="material-symbols-outlined parent-item__icon">{{ cat.iconName }}</span>
         </div>
@@ -20,20 +20,21 @@
         <div class="section-header">
 
           <ion-text color="dark">
-            <h3 class="section-header__title">{{ selectedParent.name }}</h3>
+            <h3 class="section-header__title">{{ selectedParent?.name }}</h3>
           </ion-text>
           <ion-text color="primary" class="section-header__count">
-            {{ selectedParent.children?.length ?? 0 }} Item(s)
+            {{ selectedParent?.children?.length ?? 0 }} Item(s)
           </ion-text>
         </div>
 
         <ion-grid class="ion-no-padding">
           <ion-row>
-            <ion-col size="6" *ngFor="let child of selectedParent.children; trackBy: trackByFn"
+            <ion-col size="6" *ngFor="let child of selectedParent?.children; trackBy: trackByFn"
               class="ion-padding-tiny">
               <div class="child-card group" (click)="navigate('/category-detail/' + child.id)">
                 <div class="child-card__image-container">
-                  <ion-img class="child-card__image" [src]="child.image" [alt]="child.name"></ion-img>
+                  <ion-img class="child-card__image" [src]="child.image || 'assets/images/no-image.png'"
+                    [alt]="child.name"></ion-img>
                 </div>
                 <div class="child-card__footer">
                   <ion-text class="child-card__name">{{ child.name }}</ion-text>
@@ -46,7 +47,7 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngIf="!selectedParent.children?.length">
+          <ion-row *ngIf="!selectedParent?.children?.length">
             <ion-col size="12" class="ion-text-center ion-padding">
               <ion-text color="medium">No sub-categories found.</ion-text>
             </ion-col>

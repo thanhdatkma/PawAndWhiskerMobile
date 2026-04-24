@@ -10,4 +10,5 @@ export interface ProductBriefModel {
     reviewCount?: number;
     soldCount?: number;
     categoryName?: string;
+    isFavorite?: boolean;
 }

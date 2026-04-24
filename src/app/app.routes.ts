@@ -34,7 +34,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/verify-successed/verify-successed.component').then((m) => m.VerifySuccessedComponent),
   },
   {
-    path: 'product-details',
+    path: 'product-details/:id',
     loadComponent: () => import('./pages/product-details/product-details.component').then((m) => m.ProductDetailsComponent),
   },
   {

@@ -9,6 +9,8 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline, refreshOutline } from 'ionicons/icons';
+import { FilterTab, SortType, SORT_OPTIONS_MAP } from '../../enums/filter.enum';
+
 
 @Component({
   selector: 'app-filter-sort',
@@ -25,23 +27,25 @@ import { closeOutline, refreshOutline } from 'ionicons/icons';
 })
 export class FilterSortComponent implements OnInit {
   private modalCtrl = inject(ModalController);
+  readonly FilterTab = FilterTab;
+  readonly SortType = SortType;
 
-  @Input() initialTab: 'brands' | 'pricing' | 'tags' | 'sort' = 'brands';
-  currentTab: 'brands' | 'pricing' | 'tags' | 'sort' = 'brands';
+  @Input() initialTab: FilterTab = FilterTab.BRANDS;
+  currentTab: FilterTab = FilterTab.BRANDS;
 
   @Input() filterState: any;
 
   brands: any[] = [];
   pricings: any[] = [];
   tags: any[] = [];
-  selectedSort = 'price_asc';
+  selectedSort = { 
+    value: SortType.DEFAULT, 
+    label: SORT_OPTIONS_MAP.get(SortType.DEFAULT)! 
+  };
 
-  sorts = [
-    { label: 'Price: Low to High', value: 'price_asc' },
-    { label: 'Price: High to Low', value: 'price_desc' },
-    { label: 'Brands: A to Z', value: 'brand_asc' },
-    { label: 'Brands: Z to A', value: 'brand_desc' }
-  ];
+  sorts = Array.from(SORT_OPTIONS_MAP.entries())
+    .filter(([value]) => value !== SortType.DEFAULT)
+    .map(([value, label]) => ({ value, label }));
 
   constructor() {
     addIcons({ closeOutline, refreshOutline });
@@ -53,7 +57,12 @@ export class FilterSortComponent implements OnInit {
       this.brands = JSON.parse(JSON.stringify(this.filterState.brands));
       this.pricings = JSON.parse(JSON.stringify(this.filterState.pricings));
       this.tags = JSON.parse(JSON.stringify(this.filterState.tags));
-      this.selectedSort = this.filterState.selectedSort;
+      if (typeof this.filterState.selectedSort === 'string') {
+        const val = this.filterState.selectedSort as SortType;
+        this.selectedSort = { value: val, label: SORT_OPTIONS_MAP.get(val)! };
+      } else {
+        this.selectedSort = this.filterState.selectedSort;
+      }
     }
   }
 
@@ -62,14 +71,17 @@ export class FilterSortComponent implements OnInit {
   }
 
   reset() {
-    if (this.currentTab === 'brands') {
+    if (this.currentTab === FilterTab.BRANDS) {
       this.brands.forEach(b => b.checked = false);
-    } else if (this.currentTab === 'pricing') {
+    } else if (this.currentTab === FilterTab.PRICING) {
       this.pricings.forEach(p => p.checked = false);
-    } else if (this.currentTab === 'tags') {
+    } else if (this.currentTab === FilterTab.TAGS) {
       this.tags.forEach(t => t.checked = false);
-    } else if (this.currentTab === 'sort') {
-      this.selectedSort = 'price_asc';
+    } else if (this.currentTab === FilterTab.SORT) {
+      this.selectedSort = { 
+        value: SortType.DEFAULT, 
+        label: SORT_OPTIONS_MAP.get(SortType.DEFAULT)! 
+      };
     }
     this.apply();
   }
@@ -83,5 +95,18 @@ export class FilterSortComponent implements OnInit {
         selectedSort: this.selectedSort
       }
     });
+  }
+
+  toggleSort(opt: any) {
+    if (this.selectedSort.value === opt.value) {
+      this.reset();
+    } else {
+      this.selectedSort = opt;
+      this.apply();
+    }
+  }
+
+  compareSort(o1: any, o2: any) {
+    return o1 && o2 ? o1.value === o2.value : o1 === o2;
   }
 }

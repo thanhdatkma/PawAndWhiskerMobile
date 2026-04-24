@@ -11,12 +11,16 @@
 
     <!-- Favorite Icon -->
     <ion-button class="product-card__fav-btn" (click)="onToggleFavorite($event)" fill="clear">
-      <ion-icon slot="icon-only" name="heart-outline" class="product-card__fav-icon"></ion-icon>
+      <ng-container *ngIf="{ isFav: (favoriteService.favorites$ | async)?.includes(product.id) } as favState">
+        <ion-icon slot="icon-only" [name]="favState.isFav ? 'heart' : 'heart-outline'" [class.active]="favState.isFav" class="product-card__fav-icon"></ion-icon>
+      </ng-container>
     </ion-button>
 
+
     <!-- Product Image -->
-    <div class="product-card__image" [style.background-image]="'url(' + product.coverImage + ')'">
-    </div>
+    <!-- <div class="product-card__image" [style.background-image]="'url(' + product.coverImage + ')'">
+    </div> -->
+    <ion-img [src]="product.coverImage || 'assets/images/no-image.png'" alt="Product image"></ion-img>
   </div>
 
   <!-- Text Content -->

@@ -1,15 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!-- <ion-buttons slot="start">
       <ion-button color="medium" (click)="dismiss()">
         <ion-icon slot="icon-only" name="close-outline"></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-title>{{currentTab | titlecase}}</ion-title>
+    </ion-buttons> -->
+    <ion-title size="large">{{currentTab | titlecase}}</ion-title>
   </ion-toolbar> 
 </ion-header>
 
-<div class="scroll-wrapper">
+<div class="scroll-wrapper" [ngClass]="currentTab === FilterTab.SORT ? 'scroll-wrapper__sort-padding-bottom' : ''">
   <div class="modal-body">
     <!-- Brands Tab -->
     <div *ngIf="currentTab === 'brands'" class="tab-content">
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Pricing Tab -->
-    <div *ngIf="currentTab === 'pricing'" class="tab-content">
+    <div *ngIf="currentTab === FilterTab.PRICING" class="tab-content">
       <ion-list lines="none" class="filter-list">
         <ion-item *ngFor="let price of pricings" class="filter-item" (click)="price.checked = !price.checked" button="false" detail="false">
           <ion-label [color]="price.checked ? 'primary' : ''" [style.fontWeight]="price.checked ? 'bold' : 'normal'">{{ price.label }} <span class="count">({{ price.count }})</span></ion-label>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Tags Tab -->
-    <div *ngIf="currentTab === 'tags'" class="tab-content">
+    <div *ngIf="currentTab === FilterTab.TAGS" class="tab-content">
       <ion-list lines="none" class="filter-list">
         <ion-item *ngFor="let tag of tags" class="filter-item" (click)="tag.checked = !tag.checked" button="false" detail="false">
           <ion-label [color]="tag.checked ? 'primary' : ''" [style.fontWeight]="tag.checked ? 'bold' : 'normal'">{{ tag.label }} <span class="count">({{ tag.count }})</span></ion-label>
@@ -42,20 +42,18 @@
     </div>
 
     <!-- Sort Tab -->
-    <div *ngIf="currentTab === 'sort'" class="tab-content">
+    <div *ngIf="currentTab === FilterTab.SORT" class="tab-content">
       <ion-list lines="none" class="filter-list">
-        <ion-radio-group [(ngModel)]="selectedSort">
-          <ion-item *ngFor="let opt of sorts" class="filter-item" (click)="selectedSort = opt.value" button="false" detail="false">
-            <ion-label [color]="selectedSort === opt.value ? 'primary' : ''" [style.fontWeight]="selectedSort === opt.value ? 'bold' : 'normal'">{{ opt.label }}</ion-label>
-            <ion-radio slot="end" [value]="opt.value" (click)="$event.stopPropagation()"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
+        <ion-item *ngFor="let opt of sorts" class="filter-item" (click)="toggleSort(opt)" button="false" detail="false">
+          <ion-label [color]="selectedSort.value === opt.value ? 'primary' : ''" [style.fontWeight]="selectedSort.value === opt.value ? 'bold' : 'normal'">{{ opt.label }}</ion-label>
+          <ion-checkbox slot="end" [checked]="selectedSort.value === opt.value" (click)="$event.stopPropagation(); toggleSort(opt)"></ion-checkbox>
+        </ion-item>
       </ion-list>
     </div>
   </div>
 </div>
 
-<ion-footer class="ion-no-border ion-padding">
+<ion-footer *ngIf="currentTab !== FilterTab.SORT" class="ion-no-border ion-padding">
   <div class="footer-actions">
     <ion-button fill="outline" shape="round" color="medium" class="reset-btn" (click)="reset()">
       Reset

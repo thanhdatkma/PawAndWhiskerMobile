@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="icon-wrapper" [ngClass]="notification.type"
       [class.toggle-off]="notification.isInteractive && !medicationConfirmed">
-      <img [src]="notification.icon" [alt]="notification.category + ' Icon'" />
+      <ion-img [src]="notification.icon" [alt]="notification.category + ' Icon'"></ion-img>
     </div>
     <div class="content-wrapper">
       <div class="card-header-row">

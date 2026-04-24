@@ -35,18 +35,22 @@
         <ion-button *ngIf="showShare" color="primary" class="app-header__icon-btn" aria-label="Share" (click)="onShareClick()">
           <ion-icon slot="icon-only" name="share-outline"></ion-icon>
         </ion-button>
-        <ion-button *ngIf="showFavorite" color="primary" class="app-header__icon-btn" aria-label="Favorite" (click)="onFavoriteClick()">
-          <ion-icon slot="icon-only" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+        <ion-button *ngIf="showFavorite" class="app-header__icon-btn" aria-label="Favorite" (click)="onFavoriteClick()">
+          <ng-container *ngIf="{ isFav: (favoriteService.favorites$ | async)?.includes(productId!) } as favState">
+            <ion-icon slot="icon-only" 
+              [name]="favState.isFav ? 'heart' : 'heart-outline'"
+              [color]="'primary'"></ion-icon>
+          </ng-container>
         </ion-button>
-        <ion-button *ngIf="showCart" color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart" (click)="onCartClick()">
+
+        <ion-button *ngIf="showCart" color="primary" class="app-header__icon-btn app-header__cart-btn" aria-label="Open cart">
           <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
     </div>
 
     <!-- Optional Search Bar -->
-    <app-search-bar *ngIf="showSearch" class="app-header__search" [searchPlaceholder]="searchPlaceholder"
-      (searchChange)="onSearchInput($event)">
+    <app-search-bar *ngIf="showSearch" class="app-header__search" [searchPlaceholder]="searchPlaceholder">
     </app-search-bar>
 
   </header>

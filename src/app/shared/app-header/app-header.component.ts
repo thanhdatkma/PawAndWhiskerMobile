@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { IonButtons, IonButton, IonText, IonIcon, IonMenuButton, IonHeader, IonBackButton } from '@ionic/angular/standalone';
 import { BaseComponent } from '../base-component/base.component';
 import { CommonModule } from '@angular/common';
@@ -8,13 +8,15 @@ import { TabType } from '../../models/tab.model';
 import { addIcons } from 'ionicons';
 import { cartOutline, chevronBack, search, shareOutline, heartOutline, heart } from 'ionicons/icons';
 import { takeUntil } from 'rxjs/operators';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, IonText, SearchBarComponent, IonBackButton]
+  imports: [IonButtons, IonButton, IonIcon, IonMenuButton, CommonModule, IonHeader, IonText, SearchBarComponent, IonBackButton],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppHeaderComponent extends BaseComponent implements OnInit {
 
@@ -45,18 +47,16 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   @Input() showShare = false;
   /** Whether to show the favorite icon button */
   @Input() showFavorite = false;
-  /** Whether the item is favorite or not */
-  @Input() isFavorite = false;
+  /** Product ID for favorite service integration */
+  @Input() productId?: string;
+
 
   @Output() shareClick = new EventEmitter<void>();
-  @Output() favoriteClick = new EventEmitter<void>();
-
-
-  @Output() menuClick = new EventEmitter<void>();
-  @Output() cartClick = new EventEmitter<void>();
-  @Output() searchChange = new EventEmitter<string>();
 
   private readonly tabService = inject(TabService);
+  public readonly favoriteService = inject(FavoriteService);
+  private readonly cdr = inject(ChangeDetectorRef);
+
 
 
   isHeaderShrunk = false;
@@ -81,6 +81,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
 
   private updateSearchVisibility(activeTab: TabType): void {
     this.showSearch = !!this.searchBarConfig.get(activeTab);
+    this.cdr.markForCheck();
   }
 
   override handleScroll(y: number): void {
@@ -106,16 +107,19 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
     if (y <= 60) {
       if (this.isHeaderShrunk) {
         this.isHeaderShrunk = false;
+        this.cdr.markForCheck();
         this.startAnimationCooldown();
         this.accumulatedDelta = 0;
       }
     } else {
       if (this.accumulatedDelta > 20 && !this.isHeaderShrunk) {
         this.isHeaderShrunk = true;
+        this.cdr.markForCheck();
         this.startAnimationCooldown();
         this.accumulatedDelta = 0;
       } else if (this.accumulatedDelta < -20 && this.isHeaderShrunk) {
         this.isHeaderShrunk = false;
+        this.cdr.markForCheck();
         this.startAnimationCooldown();
         this.accumulatedDelta = 0;
       }
@@ -124,16 +128,20 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
 
   private startAnimationCooldown(): void {
     this.isAnimating = true;
+    this.cdr.markForCheck();
     clearTimeout(this.animationTimeout);
     this.animationTimeout = setTimeout(() => {
       this.isAnimating = false;
+      this.cdr.markForCheck();
     }, 400); // 400ms cooldown gives enough time for layout bounce to settle
   }
 
-  onMenuClick(): void { this.menuClick.emit(); }
-  onCartClick(): void { this.cartClick.emit(); }
-  onSearchInput(value: string): void { this.searchChange.emit(value); }
   onShareClick(): void { this.shareClick.emit(); }
-  onFavoriteClick(): void { this.favoriteClick.emit(); }
+  onFavoriteClick(): void {
+    if (this.productId) {
+      this.favoriteService.toggleFavorite(this.productId);
+    }
+  }
+
 
 }

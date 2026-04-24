@@ -59,27 +59,27 @@
         font-family: var(--font-label);
         font-size: 0.625rem; // 10px
         font-weight: 700;
-        padding: 2px 8px;
+        padding: 6px 8px;
         border-radius: var(--radius-full);
     }
 
     &__fav-btn {
         position: absolute;
-        top: 8px;
-        inset-inline-end: 8px;
+        top: 0px;
+        inset-inline-end: 0px;
         z-index: 2;
         background: transparent;
         border: none;
         cursor: pointer;
-        color: rgba(141, 111, 120, 0.4); // outline-variant/40
-        transition: color 0.15s, transform 0.1s;
+        transition: transform 0.1s;
+
         display: flex;
         align-items: center;
         justify-content: center;
 
-        &:hover {
-            color: var(--color-primary);
-        }
+        // &:hover {
+        //     color: var(--color-primary);
+        // }
 
         &:active {
             transform: scale(0.9);
@@ -88,7 +88,15 @@
 
     &__fav-icon {
         font-size: 20px;
+        color: rgba(141, 111, 120, 0.4); // Default color for outline
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        &.active {
+            color: var(--color-primary);
+        }
     }
+
+
 
     &__image {
         width: 100%;

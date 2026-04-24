@@ -42,10 +42,13 @@ ion-header {
   overflow-y: auto;
   background: var(--surface);
   -webkit-overflow-scrolling: touch;
+  &__sort-padding-bottom {
+    padding-bottom: 40px;
+  }
 }
 
 .modal-body {
-  padding: 0 16px 16px 16px;
+  padding: 0 1rem;
 }
 
 .tab-content {

@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { UserProfile } from '../models/user-profile.model';
+import mockData from '../../../test/mock-data.json';
 
 @Injectable({
   providedIn: 'root'
@@ -24,23 +25,8 @@ export class AuthService {
     }
   }
 
-  login() {
-    const mockUser: UserProfile = {
-      id: '1',
-      name: 'Alex Johnson',
-      email: 'alex.johnson@example.com',
-      avatar: 'assets/images/user-avatar.png',
-      membership: 'Premium Member',
-      pet: {
-        id: 'p1',
-        name: 'Max',
-        breed: 'Golden Retriever',
-        weight: '32kg',
-        age: '3 Years',
-        nextVaccine: 'Dec 12, 2023',
-        image: 'assets/images/pet-max.png'
-      }
-    };
+  login = () => {
+    const mockUser: UserProfile = mockData.user as any;
     this._currentUser.set(mockUser);
     this.isLoggedIn.set(true);
     localStorage.setItem('user_profile', JSON.stringify(mockUser));

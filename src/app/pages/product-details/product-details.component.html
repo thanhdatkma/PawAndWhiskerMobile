@@ -4,9 +4,9 @@
   [showCart]="false" 
   [showShare]="true"
   [showFavorite]="true"
-  [isFavorite]="!!product.isFavorite"
-  (shareClick)="shareProduct()"
-  (favoriteClick)="toggleFavorite()">
+  [productId]="product.id"
+  (shareClick)="shareProduct()">
+
 </app-header>
 
 <ion-content>

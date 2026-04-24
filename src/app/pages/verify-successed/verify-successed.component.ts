@@ -8,7 +8,8 @@ import {
   IonToolbar,
   IonButton,
   IonIcon,
-  IonButtons
+  IonButtons,
+  IonImg
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline, checkmarkOutline, arrowForwardOutline } from 'ionicons/icons';
@@ -29,7 +30,8 @@ import { BaseComponent } from '../../shared/base-component/base.component';
     IonToolbar,
     IonButton,
     IonIcon,
-    IonButtons
+    IonButtons,
+    IonImg
   ]
 })
 export class VerifySuccessedComponent extends BaseComponent {

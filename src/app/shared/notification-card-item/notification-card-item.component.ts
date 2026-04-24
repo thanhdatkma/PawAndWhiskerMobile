@@ -5,7 +5,8 @@ import {
   IonText, 
   IonButton, 
   IonToggle, 
-  IonLabel 
+  IonLabel,
+  IonImg
 } from '@ionic/angular/standalone';
 import { NotificationModel } from 'src/app/models/notification.model';
 
@@ -20,7 +21,8 @@ import { NotificationModel } from 'src/app/models/notification.model';
     IonText,
     IonButton,
     IonToggle,
-    IonLabel
+    IonLabel,
+    IonImg
   ]
 })
 export class NotificationCardItemComponent implements OnInit {
