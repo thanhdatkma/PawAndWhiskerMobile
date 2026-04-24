@@ -1,0 +1,20 @@
+<!-- Product Section Shell: header row + horizontal snap scroll -->
+<section class="product-section">
+
+  <!-- Section Header -->
+  <div class="product-section__header">
+    <h3 class="product-section__title">{{ sectionTitle }}</h3>
+    <button *ngIf="showSeeAll" class="product-section__see-all" (click)="onSeeAll()">
+      See All
+    </button>
+  </div>
+
+  <!-- Horizontal Scroll Row -->
+  <div class="product-section__scroll-row">
+    <ng-container *ngFor="let product of products; trackBy: trackById">
+      <app-product-card [product]="product" (addToCart)="onAddToCart($event)" (cardClick)="onProductClick($event)">
+      </app-product-card>
+    </ng-container>
+  </div>
+
+</section>

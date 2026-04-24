@@ -1,0 +1,31 @@
+<!-- News Feed — vertical flat list -->
+<section class="news-feed">
+
+  <!-- Section Header -->
+  <div class="news-feed__header">
+    <h3 class="news-feed__title">{{ sectionTitle }}</h3>
+    <button class="news-feed__see-all" (click)="onSeeAll()">See all</button>
+  </div>
+
+  <!-- Article List -->
+  <div class="news-feed__list">
+    <div
+      *ngFor="let article of visibleArticles"
+      class="news-feed__item"
+      (click)="onArticleClick(article)">
+
+      <!-- Thumbnail -->
+      <ion-img
+        class="news-feed__thumbnail"
+        [src]="article.thumbnailImage"
+        [alt]="article.title"></ion-img>
+
+      <!-- Text -->
+      <div class="news-feed__body">
+        <h5 class="news-feed__article-title">{{ article.title }}</h5>
+        <p class="news-feed__article-summary">{{ article.summary }}</p>
+      </div>
+    </div>
+  </div>
+
+</section>

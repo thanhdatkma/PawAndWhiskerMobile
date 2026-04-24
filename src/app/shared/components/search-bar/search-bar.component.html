@@ -1,0 +1,7 @@
+<div class="search-bar" [class.search-hidden]="isSearchShrunk">
+  <label class="search-bar__label">
+    <ion-icon name="search" class="search-bar__icon"></ion-icon>
+    <input class="search-bar__input" [placeholder]="searchPlaceholder" [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchInput($event)" type="text" />
+  </label>
+</div>
