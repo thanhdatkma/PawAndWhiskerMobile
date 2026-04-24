@@ -1,6 +1,6 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, HostBinding, inject } from '@angular/core';
+import { Component, OnInit, HostBinding, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonBadge, IonFooter, IonText, IonGrid, IonRow, IonCol, IonImg, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, heartOutline, star, chevronForwardOutline, busOutline, refreshOutline, leafOutline, ribbonOutline, paw, removeOutline, addOutline, cartOutline, heart, shareOutline } from 'ionicons/icons';
@@ -20,11 +20,10 @@ import { BaseComponent } from '../../shared/components/base-component/base.compo
   standalone: true,
   imports: [
     CommonModule,
-    IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonBadge, IonFooter, IonText, IonGrid, IonRow, IonCol, IonImg, IonInfiniteScroll, IonInfiniteScrollContent,
+    IonicModule,
     ProductCardComponent,
     AppHeaderComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductDetailsComponent extends BaseComponent implements OnInit {
   @HostBinding('class.ion-page') ionPage = true;

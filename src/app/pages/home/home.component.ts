@@ -4,14 +4,14 @@ import { BannerSliderComponent } from '../../shared/components/banner-slider/ban
 import { QuickCategoryGridComponent } from '../../shared/components/quick-category-grid/quick-category-grid.component';
 import { QuickCategoryModel } from '../../models/quick-category.model';
 import { ProductBriefModel } from '../../models/product-brief.model';
-import { ProductSectionComponent } from '../../shared/components/product-section/product-section.component';
-import { PromoBannerComponent } from '../../shared/components/promo-banner/promo-banner.component';
 import { NewsBriefModel } from '../../models/news-brief.model';
-import { NewsFeedComponent } from '../../shared/components/news-feed/news-feed.component';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { HomeService } from '../../services/home.service';
 import { BaseComponent } from '../../shared/components/base-component/base.component';
+import { ProductSectionComponent } from '../../shared/components/product-section/product-section.component';
+import { PromoBannerComponent } from '../../shared/components/promo-banner/promo-banner.component';
+import { NewsFeedComponent } from '../../shared/components/news-feed/news-feed.component';
 
 @Component({
   selector: 'app-home',

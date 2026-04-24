@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonIcon, IonText, IonButton, IonImg} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline, star, add } from 'ionicons/icons';
 import { BaseComponent } from '../base-component/base.component';
@@ -12,7 +12,7 @@ import { FavoriteService } from '../../../services/favorite.service';
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, IonIcon, IonText, IonButton, CurrencyPipe, SoldCountPipe, IonImg],
+  imports: [CommonModule, IonicModule, CurrencyPipe, SoldCountPipe],
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

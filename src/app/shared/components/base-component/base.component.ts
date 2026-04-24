@@ -11,7 +11,9 @@ export abstract class AuthService {
   abstract logout(): void;
 }
 
-@Directive()
+@Directive({
+  standalone: true
+})
 export abstract class BaseComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
