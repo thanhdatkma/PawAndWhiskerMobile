@@ -1,17 +1,17 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, HostBinding, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonBadge, IonFooter, IonText, IonGrid, IonRow, IonCol, IonImg, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/angular/standalone';
-import { BaseComponent } from '../../shared/base-component/base.component';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, heartOutline, star, chevronForwardOutline, busOutline, refreshOutline, leafOutline, ribbonOutline, paw, removeOutline, addOutline, cartOutline, heart, shareOutline } from 'ionicons/icons';
 import { ProductDetailModel } from '../../models/product-detail.model';
 import { BreadcrumbModel } from '../../models/breadcrumb.model';
-import { ProductCardComponent } from '../../shared/product-card/product-card.component';
+import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
-import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
+import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
 import { FavoriteService } from '../../services/favorite.service';
 import { ProductService } from '../../services/product.service';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 
 @Component({
   selector: 'app-product-details',

@@ -4,10 +4,10 @@ import { IonIcon, IonText, IonButton, IonImg} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline, star, add } from 'ionicons/icons';
 import { BaseComponent } from '../base-component/base.component';
-import { ProductBriefModel } from '../../models/product-brief.model';
-import { CurrencyPipe } from '../../pipes/currency-pipe';
-import { SoldCountPipe } from '../../pipes/sold-count-pipe';
-import { FavoriteService } from '../../services/favorite.service';
+import { ProductBriefModel } from '../../../models/product-brief.model';
+import { CurrencyPipe } from '../../../pipes/currency-pipe';
+import { SoldCountPipe } from '../../../pipes/sold-count-pipe';
+import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({
   selector: 'app-product-card',

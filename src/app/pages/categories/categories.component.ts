@@ -5,8 +5,7 @@ import {
   IonContent, IonRefresher, IonRefresherContent,
   IonGrid, IonRow, IonCol, IonText, IonImg
 } from '@ionic/angular/standalone';
-import { ScrollService } from '../../core/services/scroll.service';
-import { BaseComponent } from '../../shared/base-component/base.component';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { CategoryModel } from '../../models/categories.model';
 import { CategoryService } from '../../services/category.service';
 

@@ -1,8 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EnvironmentInjector, inject } from '@angular/core';
 import { TabService } from '../services/tab.service';
 import { TabType } from '../models/tab.model';
-import { ConfigService } from '../services/config.service';
-import { BaseComponent } from '../shared/base-component/base.component';
+import { BaseComponent } from '../shared/components/base-component/base.component';
 import { takeUntil } from 'rxjs/operators';
 import { OnInit } from '@angular/core';
 
@@ -11,7 +10,7 @@ import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonContent, IonBad
 import { AsyncPipe, NgIf } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { triangle, ellipse, square } from 'ionicons/icons';
-import { AppHeaderComponent } from '../shared/app-header/app-header.component';
+import { AppHeaderComponent } from '../shared/components/app-header/app-header.component';
 import { NotificationService } from '../services/notification.service';
 
 @Component({

@@ -18,10 +18,10 @@ import {
   NavController,
   IonInput
 } from '@ionic/angular/standalone';
-import { BaseComponent } from '../../shared/base-component/base.component';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoGoogle, logoApple, paw } from 'ionicons/icons';
-import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
+import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
 
 import { AuthService } from '../../services/auth.service';
 

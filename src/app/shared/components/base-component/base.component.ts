@@ -1,8 +1,8 @@
 import { Directive, inject, OnDestroy, OnInit, ElementRef, HostBinding } from '@angular/core';
 import { NavController, LoadingController, AlertController, ToastController, MenuController } from '@ionic/angular';
 import { Subject } from 'rxjs';
-import { ScrollService } from '../../core/services/scroll.service';
-import { ConfigService } from '../../services/config.service';
+import { ScrollService } from '../../../core/services/scroll.service';
+import { ConfigService } from '../../../services/config.service';
 
 
 // Stub — replace with real service once core/services/auth.service.ts is implemented

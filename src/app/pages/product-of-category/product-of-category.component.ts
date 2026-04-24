@@ -8,15 +8,14 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { atOutline, saveOutline, optionsOutline, swapVerticalOutline, chevronDownOutline, pricetagOutline, bookmarkOutline } from 'ionicons/icons';
-import { BaseComponent } from '../../shared/base-component/base.component';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
-import { ConfigService } from '../../services/config.service';
 import { ProductService } from '../../services/product.service';
 import { takeUntil } from 'rxjs/operators';
 
 import { ModalController } from '@ionic/angular/standalone';
-import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
-import { ProductCardComponent } from '../../shared/product-card/product-card.component';
+import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
+import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { FilterSortComponent } from '../filter-sort/filter-sort.component';
 import { FilterTab, SortType, SORT_OPTIONS_MAP } from '../../enums/filter.enum';
 import { SortLabelPipe } from '../../pipes/sort-label.pipe';

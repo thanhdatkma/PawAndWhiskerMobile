@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { BaseComponent } from '../base-component/base.component';
-import { ProductBriefModel } from '../../models/product-brief.model';
+import { ProductBriefModel } from '../../../models/product-brief.model';
 
 @Component({
   selector: 'app-product-section',

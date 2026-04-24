@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonIcon } from '@ionic/angular/standalone';
 import { BaseComponent } from '../base-component/base.component';
-import { ScrollService } from '../../core/services/scroll.service';
-import { TabService } from '../../services/tab.service';
+import { ScrollService } from '../../../core/services/scroll.service';
+import { TabService } from '../../../services/tab.service';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

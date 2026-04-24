@@ -3,12 +3,12 @@ import { IonButtons, IonButton, IonText, IonIcon, IonMenuButton, IonHeader, IonB
 import { BaseComponent } from '../base-component/base.component';
 import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { TabService } from '../../services/tab.service';
-import { TabType } from '../../models/tab.model';
+import { TabService } from '../../../services/tab.service';
+import { TabType } from '../../../models/tab.model';
 import { addIcons } from 'ionicons';
 import { cartOutline, chevronBack, search, shareOutline, heartOutline, heart } from 'ionicons/icons';
 import { takeUntil } from 'rxjs/operators';
-import { FavoriteService } from '../../services/favorite.service';
+import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({
   selector: 'app-header',

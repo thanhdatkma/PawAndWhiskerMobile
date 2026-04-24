@@ -1,17 +1,17 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
-import { BannerSliderComponent } from '../../shared/banner-slider/banner-slider.component';
-import { QuickCategoryGridComponent } from '../../shared/quick-category-grid/quick-category-grid.component';
+import { BannerSliderComponent } from '../../shared/components/banner-slider/banner-slider.component';
+import { QuickCategoryGridComponent } from '../../shared/components/quick-category-grid/quick-category-grid.component';
 import { QuickCategoryModel } from '../../models/quick-category.model';
-import { BaseComponent } from '../../shared/base-component/base.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
-import { ProductSectionComponent } from '../../shared/product-section/product-section.component';
-import { PromoBannerComponent } from '../../shared/promo-banner/promo-banner.component';
+import { ProductSectionComponent } from '../../shared/components/product-section/product-section.component';
+import { PromoBannerComponent } from '../../shared/components/promo-banner/promo-banner.component';
 import { NewsBriefModel } from '../../models/news-brief.model';
-import { NewsFeedComponent } from '../../shared/news-feed/news-feed.component';
+import { NewsFeedComponent } from '../../shared/components/news-feed/news-feed.component';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 import { HomeService } from '../../services/home.service';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 
 @Component({
   selector: 'app-home',

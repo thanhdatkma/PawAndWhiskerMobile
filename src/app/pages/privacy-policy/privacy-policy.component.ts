@@ -15,7 +15,7 @@ import {
   IonCol
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
+import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
 import {
   arrowBackOutline,
   searchOutline,

@@ -17,11 +17,11 @@ import {
   flaskOutline,
   cutOutline
 } from 'ionicons/icons';
-import { BaseComponent } from 'src/app/shared/base-component/base.component';
-import { NotificationCardItemComponent } from 'src/app/shared/notification-card-item/notification-card-item.component';
-import { CommunityAlertsComponent } from 'src/app/shared/community-alerts/community-alerts.component';
-import { NotificationModel } from 'src/app/models/notification.model';
-import { NotificationService } from 'src/app/services/notification.service';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
+import { NotificationCardItemComponent } from '../../shared/components/notification-card-item/notification-card-item.component';
+import { CommunityAlertsComponent } from '../../shared/components/community-alerts/community-alerts.component';
+import { NotificationModel } from '../../models/notification.model';
+import { NotificationService } from '../../services/notification.service';
 import { Observable } from 'rxjs';
 
 @Component({

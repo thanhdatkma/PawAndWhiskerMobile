@@ -15,7 +15,7 @@ import { addIcons } from 'ionicons';
 import { closeOutline, checkmarkOutline, arrowForwardOutline } from 'ionicons/icons';
 import { interval, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { BaseComponent } from '../../shared/base-component/base.component';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 
 @Component({
   selector: 'app-verify-successed',

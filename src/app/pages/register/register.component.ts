@@ -22,9 +22,9 @@ import {
   IonButtons,
   NavController
 } from '@ionic/angular/standalone';
-import { BaseComponent } from '../../shared/base-component/base.component';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { RouterLink } from '@angular/router';
-import { AppHeaderComponent } from '../../shared/app-header/app-header.component';
+import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOutline, eyeOutline, eyeOffOutline, logoGoogle, logoFacebook, logoTiktok, logoApple, paw } from 'ionicons/icons';
 

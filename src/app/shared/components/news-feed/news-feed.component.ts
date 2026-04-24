@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { BaseComponent } from '../base-component/base.component';
-import { NewsBriefModel } from '../../models/news-brief.model';
+import { NewsBriefModel } from '../../../models/news-brief.model';
 
 @Component({
   selector: 'app-news-feed',

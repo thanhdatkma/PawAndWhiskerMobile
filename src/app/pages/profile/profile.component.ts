@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonContent, IonIcon, IonImg, IonText, IonButton, NavController } from '@ionic/angular/standalone';
-import { ConfigService } from '../../services/config.service';
 import { AsyncPipe } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { settingsOutline, paw } from 'ionicons/icons';
-import { BaseComponent } from '../../shared/base-component/base.component';
+import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
