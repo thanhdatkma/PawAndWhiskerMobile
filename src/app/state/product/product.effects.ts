@@ -9,6 +9,7 @@ import { ToastController } from '@ionic/angular/standalone';
 import mockData from '../../../../test/mock-data.json';
 import { ProductDetailModel } from 'src/app/models/product-detail.model';
 import { ProductBriefModel } from 'src/app/models/product-brief.model';
+import { SlideModel } from 'src/app/models/slides.model';
 
 @Injectable()
 export class ProductEffects {
@@ -20,16 +21,11 @@ export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductDetail),
-      switchMap(( action) => {
-        return of(ProductActions.loadProductDetailSuccess({ 
-          product: mockData.product_detail as ProductDetailModel 
+      switchMap((action) => {
+        return of(ProductActions.loadProductDetailSuccess({
+          product: mockData.product_detail as ProductDetailModel
         }))
-      }
-        // this.productService.getProductDetail(action.productId).pipe(
-        //   map((product) => ProductActions.loadProductDetailSuccess({ product })),
-        //   catchError((error) => of(ProductActions.loadProductDetailFailure({ error: error.message })))
-        // )
-      )
+      })
     )
   );
 
@@ -37,12 +33,11 @@ export class ProductEffects {
   loadSlideImages$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadSliderImages),
-      switchMap(() =>
-        this.productService.getSlideImages().pipe(
-          map((slider) => ProductActions.loadSliderImagesSuccess({ slider })),
-          catchError((error) => of(ProductActions.loadSliderImagesFailure({ error: error.message })))
-        )
-      )
+      switchMap(() => {
+        return of(ProductActions.loadSliderImagesSuccess({
+          slider: mockData.banners as SlideModel[]
+        }))
+      })
     )
   );
 
@@ -63,7 +58,7 @@ export class ProductEffects {
       ofType(ProductActions.loadProductsByCategory),
       switchMap((action) =>
         this.categoryService.getProductByCategories(action).pipe(
-          map((pagination) => 
+          map((pagination) =>
             ProductActions.loadProductsByCategorySuccess(pagination)
           ),
           catchError((error) => of(ProductActions.loadProductsByCategoryFailure({ error: error.message })))
@@ -75,12 +70,11 @@ export class ProductEffects {
   loadProductsNewArrivals$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsNewArrivals),
-      switchMap(() =>
-        this.productService.getNewArrivals().pipe(
-          map((products) => ProductActions.loadProductsNewArrivalsSuccess({ products })),
-          catchError((error) => of(ProductActions.loadProductsNewArrivalsFailure({ error: error.message })))
-        )
-      )
+      switchMap(() => {
+        return of(ProductActions.loadProductsNewArrivalsSuccess({
+          products: mockData.new_arrivals as ProductBriefModel[]
+        }))
+      })
     )
   );
 
@@ -112,15 +106,10 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsDogFood),
       switchMap(() => {
-        return of(ProductActions.loadProductsDogFoodSuccess({ 
-          products: mockData.dog_products as ProductBriefModel[] 
+        return of(ProductActions.loadProductsDogFoodSuccess({
+          products: mockData.dog_products as ProductBriefModel[]
         }))
-      }
-        // this.productService.getDogProducts().pipe(
-        //   map((products) => ProductActions.loadProductsDogFoodSuccess({ products })),
-        //   catchError((error) => of(ProductActions.loadProductsDogFoodFailure({ error: error.message })))
-        // )
-      )
+      })
     )
   );
 
@@ -128,15 +117,10 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsCatFood),
       switchMap(() => {
-        return of(ProductActions.loadProductsCatFoodSuccess({ 
-          products: mockData.cat_products as ProductBriefModel[] 
+        return of(ProductActions.loadProductsCatFoodSuccess({
+          products: mockData.cat_products as ProductBriefModel[]
         }))
-      }
-        // this.productService.getCatProducts().pipe(
-        //   map((products) => ProductActions.loadProductsCatFoodSuccess({ products })),
-        //   catchError((error) => of(ProductActions.loadProductsCatFoodFailure({ error: error.message })))
-        // )
-      )
+      })
     )
   );
 
@@ -144,12 +128,15 @@ export class ProductEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          ProductActions.loadProductDetailFailure, 
-          ProductActions.loadProductsByCategoryFailure, 
-          ProductActions.loadSliderImagesFailure, 
+          ProductActions.loadProductDetailFailure,
+          ProductActions.loadProductsByCategoryFailure,
+          ProductActions.loadSliderImagesFailure,
           ProductActions.loadPopupBannerFailure,
           ProductActions.loadProductsDogFoodFailure,
-          ProductActions.loadProductsCatFoodFailure
+          ProductActions.loadProductsCatFoodFailure,
+          ProductActions.loadProductsNewArrivalsFailure,
+          ProductActions.loadProductsDealOfDayFailure,
+          ProductActions.loadProductsCommentFailure
         ),
         tap(async (action) => {
           const error = (action as any).error;
@@ -165,3 +152,4 @@ export class ProductEffects {
     { dispatch: false }
   );
 }
+
