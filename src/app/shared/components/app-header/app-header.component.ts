@@ -52,6 +52,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
 
 
   @Output() shareClick = new EventEmitter<void>();
+  @Output() searchChange = new EventEmitter<string>();
 
   private readonly tabService = inject(TabService);
   public readonly favoriteService = inject(FavoriteService);

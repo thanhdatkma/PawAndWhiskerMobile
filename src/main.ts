@@ -10,6 +10,13 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { ConfigService } from './app/services/config.service';
 import { appReducers, appMetaReducers } from './app/store';
+import { UserEffects } from './app/store/user/user.effects';
+import { ProductEffects } from './app/state/product/product.effects';
+import { CategoryEffects } from './app/state/category/category.effects';
+import { OrderEffects } from './app/state/order/order.effects';
+import { CheckoutEffects } from './app/state/checkout/checkout.effects';
+import { HomeEffects } from './app/state/home/home.effects';
+
 
 function initializeApp(configService: ConfigService) {
   return () => configService.loadSettings();
@@ -30,6 +37,14 @@ bootstrapApplication(AppComponent, {
     // ── NgRx Store ──────────────────────────────────────────────────────────
     // metaReducers order: transient (clean) → hydration (save)
     provideStore(appReducers, { metaReducers: appMetaReducers }),
-    provideEffects([]), // add Effect classes here as you create them
+    provideEffects([
+      UserEffects,
+      ProductEffects,
+      CategoryEffects,
+      OrderEffects,
+      CheckoutEffects,
+      HomeEffects,
+    ]), // add Effect classes here as you create them
+
   ],
 });

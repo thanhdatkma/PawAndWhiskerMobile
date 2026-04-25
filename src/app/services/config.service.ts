@@ -9,6 +9,7 @@ export interface CurrencyConfig {
 }
 
 export interface AppSettings {
+  environment: string;
   isDarkmode: boolean;
   activeCurrency: string;
   supportedCurrencies: CurrencyConfig[];
@@ -16,6 +17,7 @@ export interface AppSettings {
   showScanFab: boolean;
   disableScrollFadeSearchBar: boolean;
   disableScrollFadeFilterBar: boolean;
+  baseUrl: string;
 }
 
 
@@ -45,7 +47,9 @@ export class ConfigService {
         searchBarTabs: ['home', 'categories'],
         showScanFab: true,
         disableScrollFadeSearchBar: false,
-        disableScrollFadeFilterBar: false
+        disableScrollFadeFilterBar: false,
+        environment: '',
+        baseUrl: '',
       };
 
       this.settingsSubject.next(fallback);

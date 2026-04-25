@@ -1,9 +1,7 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { register } from 'swiper/element/bundle';
 import { SlideModel } from 'src/app/models/slides.model';
-import { HomeService } from 'src/app/services/home.service';
-import { inject } from '@angular/core';
 
 register();
 
@@ -15,14 +13,9 @@ register();
   imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class BannerSliderComponent implements OnInit {
+export class BannerSliderComponent {
 
-  private homeService = inject(HomeService);
-  banners: SlideModel[] = this.homeService.getBanners();
-
-  constructor() { }
-
-  ngOnInit() { }
+  @Input() banners: SlideModel[] = [];
 
   onBannerClick(banner: any) {
     console.log('Banner clicked:', banner.title);

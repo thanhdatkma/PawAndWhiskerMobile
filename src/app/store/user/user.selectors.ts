@@ -5,7 +5,7 @@ export const selectUserState = createFeatureSelector<UserState>('user');
 
 export const selectUserProfile = createSelector(
   selectUserState,
-  (s) => s.profile,
+  (s) => s.data,
 );
 
 export const selectIsLoggedIn = createSelector(
@@ -15,12 +15,7 @@ export const selectIsLoggedIn = createSelector(
 
 export const selectUserIsLoading = createSelector(
   selectUserState,
-  (s) => s.isLoading,
-);
-
-export const selectUserIsSubmitting = createSelector(
-  selectUserState,
-  (s) => s.isSubmitting,
+  (s) => s.loading,
 );
 
 export const selectUserError = createSelector(

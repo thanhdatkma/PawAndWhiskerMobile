@@ -46,7 +46,10 @@ export class FavoriteService {
   }
 
 
-  isFavorite(productId: string): boolean {
+  isFavorite(productId: string | undefined): boolean {
+    if (!productId) {
+      return false;
+    }
     return this.favoritesSubject.getValue().includes(productId);
   }
 

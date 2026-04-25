@@ -11,6 +11,7 @@ import { atOutline, saveOutline, optionsOutline, swapVerticalOutline, chevronDow
 import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
 import { ProductService } from '../../services/product.service';
+import { CategoryService } from '../../services/category.service';
 import { takeUntil } from 'rxjs/operators';
 
 import { ModalController } from '@ionic/angular/standalone';
@@ -19,6 +20,15 @@ import { ProductCardComponent } from '../../shared/components/product-card/produ
 import { FilterSortComponent } from '../filter-sort/filter-sort.component';
 import { FilterTab, SortType, SORT_OPTIONS_MAP } from '../../enums/filter.enum';
 import { SortLabelPipe } from '../../pipes/sort-label.pipe';
+import { ProductActions } from '../../state/product/product.actions';
+import { 
+  selectProductList, 
+  selectProductListLoading, 
+  selectProductListHasMore, 
+  selectProductListCurrentPage 
+} from '../../state/product/product.selectors';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 
 
@@ -40,16 +50,34 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   private route = inject(ActivatedRoute);
   private modalCtrl = inject(ModalController);
   private productService = inject(ProductService);
+  private categoryService = inject(CategoryService);
   
-  categoryId: string | null = null;
+  categoryId = this.route.snapshot.paramMap.get('id');
   categoryName: string = 'Products';
   showSearch = false;
   isFilterHidden = false;
   
+  products$ = this.store.select(selectProductList);
+  isLoading$ = this.store.select(selectProductListLoading);
+  hasMore$ = this.store.select(selectProductListHasMore);
+  currentPage$ = this.store.select(selectProductListCurrentPage);
+
   products: ProductBriefModel[] = [];
   originalProducts: ProductBriefModel[] = [];
 
-  filterState: any = {};
+  private searchSubject = new Subject<string>();
+  filterState: any = {
+    page: 1,
+    perPage: 20,
+    searchTerm: '',
+    categoryIds: this.categoryId ? [this.categoryId] : [],
+    brandIds: [],
+    attributeIds: [],
+    minPrice: 0,
+    maxPrice: 0,
+    orderBy: 'name',
+    orderDir: 'asc',
+  };
 
   readonly FilterTab = FilterTab;
   readonly SortType = SortType;
@@ -57,21 +85,40 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   constructor() {
     super();
     addIcons({optionsOutline, swapVerticalOutline, chevronDownOutline, pricetagOutline, bookmarkOutline, atOutline, saveOutline});
+    
+    this.searchSubject.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      takeUntil(this.destroyed$)
+    ).subscribe(searchTerm => {
+      this.store.dispatch(ProductActions.loadProductsByCategory({ 
+        categoryIds: this.categoryId, 
+        page: 1,
+        perPage: this.filterState.pageSize,
+        searchTerm: searchTerm
+      }));
+    });
   }
-
   override ngOnInit() {
     super.ngOnInit();
-    this.products = this.productService.getProducts();
-    this.originalProducts = [...this.products];
     this.filterState = {
-      ...this.productService.getFilterState(),
+      ...this.categoryService.getFilterState(),
       selectedSort: { 
         value: SortType.DEFAULT, 
         label: SORT_OPTIONS_MAP.get(SortType.DEFAULT)! 
       }
     };
-    
+
     this.categoryId = this.route.snapshot.paramMap.get('id');
+    
+    if (this.categoryId) {
+      this.store.dispatch(ProductActions.loadProductsByCategory({ 
+        categoryIds: this.categoryId ? [this.categoryId] : [], 
+        page: this.filterState.page,
+        perPage: this.filterState.perPage,
+        searchTerm: this.filterState.searchTerm
+      }));
+    }
     
     this.configService.settings$
       .pipe(takeUntil(this.destroyed$))
@@ -86,6 +133,11 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
       .subscribe(isHidden => {
         this.isFilterHidden = isHidden;
       });
+
+    this.products$.pipe(takeUntil(this.destroyed$)).subscribe(products => {
+      this.products = products;
+      this.originalProducts = products;
+    });
   }
 
   onScroll(event: any) {
@@ -93,15 +145,28 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   }
 
   loadData(event: any) {
-    setTimeout(() => {
-      const nextBatch = this.products.slice(0, 6).map(p => ({...p, id: Math.random().toString()}));
-      this.products.push(...nextBatch);
-      event.target.complete();
+    this.currentPage$.pipe(takeUntil(this.destroyed$)).subscribe(page => {
+      this.store.dispatch(ProductActions.loadProductsByCategory({ 
+         categoryIds: this.categoryId,
+        page: page + 1,
+        perPage: this.filterState.perPage,
+        searchTerm: this.filterState.searchTerm 
+      }));
+      
+      this.isLoading$.pipe(
+        takeUntil(this.destroyed$),
+        distinctUntilChanged()
+      ).subscribe(loading => {
+        if (!loading) {
+          event.target.complete();
+        }
+      });
+    });
+  }
 
-      if (this.products.length > 30) {
-        event.target.disabled = true;
-      }
-    }, 1000);
+  onSearchChange(value: any) {
+    const term = typeof value === 'string' ? value : value.target?.value;
+    this.searchSubject.next(term);
   }
 
   viewProduct(id: string) {

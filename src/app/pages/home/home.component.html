@@ -1,21 +1,51 @@
 <ion-content [fullscreen]="true" class="ion-padding" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event, 'home')">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <banner-slider></banner-slider>
-  <quick-category-grid [categories]="categories" [activeId]="activeId" (categorySelect)="onCategorySelect($event)">
+  
+  <banner-slider [banners]="(banners$ | async) || []"></banner-slider>
+  
+  <quick-category-grid 
+    [categories]="(categories$ | async) || []" 
+    [activeId]="activeId" 
+    (categorySelect)="onCategorySelect($event)">
   </quick-category-grid>
-  <app-product-section [sectionTitle]="'New Arrivals'" [products]="newArrivals" (seeAllClick)="onSeeAll($event)"
-    (productClick)="onProductClick($event)" (productAddToCart)="onAddToCart($event)"></app-product-section>
+
+  <app-product-section 
+    [sectionTitle]="'New Arrivals'" 
+    [products]="(newArrivals$ | async) || []" 
+    (seeAllClick)="onSeeAll($event)"
+    (productClick)="onProductClick($event)" 
+    (productAddToCart)="onAddToCart($event)">
+  </app-product-section>
+
   <app-promo-banner theme="dog" title="Food, toys, and essentials for dog" (exploreClick)="onPromoExplore($event)">
   </app-promo-banner>
-  <app-product-section [sectionTitle]="'Everything For Dogs'" [products]="dogProducts" (seeAllClick)="onSeeAll($event)"
-    (productClick)="onProductClick($event)" (productAddToCart)="onAddToCart($event)"></app-product-section>
+
+  <app-product-section 
+    [sectionTitle]="'Everything For Dogs'" 
+    [products]="(dogProducts$ | async) || []" 
+    (seeAllClick)="onSeeAll($event)"
+    (productClick)="onProductClick($event)" 
+    (productAddToCart)="onAddToCart($event)">
+  </app-product-section>
+
   <app-promo-banner theme="cat" title="Food, toys, and essentials for cat" (exploreClick)="onPromoExplore($event)">
   </app-promo-banner>
-  <app-product-section [sectionTitle]="'Everything For Cats'" [products]="catProducts" (seeAllClick)="onSeeAll($event)"
-    (productClick)="onProductClick($event)" (productAddToCart)="onAddToCart($event)"></app-product-section>
-  <app-news-feed [articles]="news" [sectionTitle]="'Latest News'" [maxItems]="5"
-    (articleClick)="onNewsArticleClick($event)" (seeAllClick)="onSeeAll('News')">
+
+  <app-product-section 
+    [sectionTitle]="'Everything For Cats'" 
+    [products]="(catProducts$ | async) || []" 
+    (seeAllClick)="onSeeAll($event)"
+    (productClick)="onProductClick($event)" 
+    (productAddToCart)="onAddToCart($event)">
+  </app-product-section>
+
+  <app-news-feed 
+    [articles]="(news$ | async) || []" 
+    [sectionTitle]="'Latest News'" 
+    [maxItems]="5"
+    (articleClick)="onNewsArticleClick($event)" 
+    (seeAllClick)="onSeeAll('News')">
   </app-news-feed>
 </ion-content>

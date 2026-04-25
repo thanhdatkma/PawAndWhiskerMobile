@@ -1,27 +1,27 @@
 <app-header 
-  [title]="product.name" 
+  [title]="productDetail?.name || 'Product Details'" 
   [showBackButton]="true" 
   [showCart]="false" 
   [showShare]="true"
   [showFavorite]="true"
-  [productId]="product.id"
+  [productId]="productDetail?.id"
   (shareClick)="shareProduct()">
 
 </app-header>
 
 <ion-content>
-  <ion-grid class="product-container ion-no-padding">
+  <ion-grid class="product-container ion-no-padding" *ngIf="productDetail">
     <ion-row>
       <!-- Hero Section: Gallery & Basic Info -->
       <ion-col size="12" size-lg="6" class="gallery-section">
         <div class="main-image-wrapper">
-          <ion-img [src]="product.mainImage" [alt]="product.name" class="main-image"></ion-img>
-          <div class="discount-badge" *ngIf="product.discountPct">
-            <ion-text>{{ product.discountPct }}% OFF</ion-text>
+          <ion-img [src]="productDetail.mainImage" [alt]="productDetail.name" class="main-image"></ion-img>
+          <div class="discount-badge" *ngIf="productDetail.discountPct">
+            <ion-text>{{ productDetail.discountPct }}% OFF</ion-text>
           </div>
         </div>
         <div class="thumbnail-list hide-scrollbar">
-          <div *ngFor="let img of product.images" class="thumbnail-item" [class.active]="img === product.mainImage"
+          <div *ngFor="let img of productDetail.images" class="thumbnail-item" [class.active]="img === productDetail.mainImage"
             (click)="setMainImage(img)">
             <ion-img [src]="img" class="thumbnail-img"></ion-img>
           </div>
@@ -31,7 +31,7 @@
       <!-- Product Details -->
       <ion-col size="12" size-lg="6" class="details-section ion-padding">
         <nav class="breadcrumb">
-          <ng-container *ngFor="let crumb of product.breadcrumbs; let last = last">
+          <ng-container *ngFor="let crumb of productDetail.breadcrumbs; let last = last">
             <ion-text [class.active]="crumb.isActive" (click)="crumb.url && navigate(crumb.url)">
               {{ crumb.label }}
             </ion-text>
@@ -40,22 +40,22 @@
         </nav>
 
         <h2 class="product-title">
-          <ion-text>{{ product.name }}</ion-text>
+          <ion-text>{{ productDetail.name }}</ion-text>
         </h2>
 
         <div class="rating-row">
           <div class="rating-badge">
             <ion-icon name="star" class="star-icon"></ion-icon>
-            <ion-text class="rating-value">{{ product.rating }}</ion-text>
+            <ion-text class="rating-value">{{ productDetail.rating }}</ion-text>
           </div>
-          <ion-text class="review-count">({{ product.reviewCount }} reviews)</ion-text>
+          <ion-text class="review-count">({{ productDetail.reviewCount }} reviews)</ion-text>
         </div>
 
         <div class="price-row">
-          <ion-text class="current-price">${{ product.discountPrice | number:'1.2-2' }}</ion-text>
-          <ion-text class="original-price">${{ product.price | number:'1.2-2' }}</ion-text>
+          <ion-text class="current-price">${{ productDetail.discountPrice | number:'1.2-2' }}</ion-text>
+          <ion-text class="original-price">${{ productDetail.price | number:'1.2-2' }}</ion-text>
           <div class="save-badge">
-            <ion-text>Save ${{ (product.price - product.discountPrice) | number:'1.2-2' }}</ion-text>
+            <ion-text>Save ${{ (productDetail.price - productDetail.discountPrice) | number:'1.2-2' }}</ion-text>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
           <div class="selector-group">
             <ion-text class="selector-label">Select Weight</ion-text>
             <div class="weight-buttons">
-              <ion-button *ngFor="let w of product.weights" [fill]="w === selectedWeight ? 'solid' : 'clear'"
+              <ion-button *ngFor="let w of productDetail.weights" [fill]="w === selectedWeight ? 'solid' : 'clear'"
                 class="weight-btn" [class.btn-active]="w === selectedWeight" (click)="setWeight(w)">
                 {{ w }}
               </ion-button>

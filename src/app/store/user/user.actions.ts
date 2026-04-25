@@ -1,39 +1,28 @@
-import { createAction, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { UserProfile } from '../../models/user-profile.model';
 
-export const UserActions = {
-  login: createAction(
-    '[User] Login',
-    props<{ email: string; password: string }>(),
-  ),
-  loginSuccess: createAction(
-    '[User] Login Success',
-    props<{ profile: UserProfile }>(),
-  ),
-  loginFailure: createAction(
-    '[User] Login Failure',
-    props<{ error: string }>(),
-  ),
+export const UserActions = createActionGroup({
+  source: 'User',
+  events: {
+    // Profile Actions (Requirement 5)
+    'Load Profile': emptyProps(),
+    'Load Profile Success': props<{ data: UserProfile }>(),
+    'Load Profile Failure': props<{ error: string }>(),
 
-  logout: createAction('[User] Logout'),
-  logoutSuccess: createAction('[User] Logout Success'),
+    // Update Profile
+    'Update Profile': props<{ changes: Partial<UserProfile> }>(),
+    'Update Profile Success': props<{ data: UserProfile }>(),
+    'Update Profile Failure': props<{ error: string }>(),
 
-  updateProfile: createAction(
-    '[User] Update Profile',
-    props<{ changes: Partial<UserProfile> }>(),
-  ),
-  updateProfileSuccess: createAction(
-    '[User] Update Profile Success',
-    props<{ profile: UserProfile }>(),
-  ),
-  updateProfileFailure: createAction(
-    '[User] Update Profile Failure',
-    props<{ error: string }>(),
-  ),
+    // Auth Actions (Keeping existing functionality but standardizing)
+    'Login': props<{ email: string; password: string }>(),
+    'Login Success': props<{ data: UserProfile }>(),
+    'Login Failure': props<{ error: string }>(),
+    'Logout': emptyProps(),
+    'Logout Success': emptyProps(),
 
-  setTempNotice: createAction(
-    '[User] Set Temp Notice',
-    props<{ message: string }>(),
-  ),
-  clearTempNotice: createAction('[User] Clear Temp Notice'),
-};
+    // Utility
+    'Set Temp Notice': props<{ message: string }>(),
+    'Clear Temp Notice': emptyProps(),
+  },
+});

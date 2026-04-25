@@ -36,14 +36,14 @@
 ### 3. 🏠 Home Page (`home-requirement.md`)
 - [x] [Done] Create Product/Categories Slider Components — `BannerSliderComponent`, `QuickCategoryGridComponent`
 - [x] [Done] Create Section Scroller Component — `ProductSectionComponent` + `ProductCardComponent`
-- [ ] [Todo] Integrate Home Dashboard API — mock data in place, swap with NgRx selectors
+- [x] [Done] Integrate Home Dashboard API — mock data in place, swap with NgRx selectors
 - [x] [Done] Implement Sticky Header & Bottom Navigation bar consistency — `AppHeaderComponent` (upgraded), `BottomNavComponent`
 
 ### 4. 🗂️ Categories Master (`categories-requirement.md`)
 - [x] [Done] Build responsive Category Tree Layout
 - [x] [Done] Implement synchronized Left Menu & Right Grid interactions
-- [ ] [Todo] Integrate Master Categories APIs
-- [ ] [Todo] Caching strategy for category data
+- [x] [Done] Integrate Master Categories APIs
+- [x] [Done] Caching strategy for category data
 
 
 ### 5. 🔍 Category Detail (`category-detail-requirement.md`)
@@ -51,6 +51,7 @@
 - [x] [Done] Build Product List grid View
 - [x] [Done] Develop Infinity Scroll & Pagination logic
 - [x] [Done] Develop basic Filters & Sort functionalities
+- [ ] [Todo] Product list
  ### 6. Terms & Privacy Policy
 - [x] [Done] Terms & Privacy Policy
 - [x] [Done] Privacy Policy

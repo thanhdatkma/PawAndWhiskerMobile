@@ -206,5 +206,14 @@
       "buttonText": "Discover More",
       "linkTo": "/shop"
     }
+  ],
+  "pop_up_banners": [
+    {
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCsVozkQMcFIYQVCNJ3R_wdpsCftlQT0a_kREhTRunGN-QZN4mby7X3Q7yLvv6NWzL2N6ZValLHC2ZQf46ZqLHY4Fl8S5Wf_gNXpFXTEw3cjchrNvyAwOjtb_UvhEwTiNq7dL-TON4bODF6JOYngTJMLYYq5JyhuPqmg-mmS0NAVFytXjH6hlhGYeQuA0HzjsDMxVucD3WoqMI-bxPUzFUnOTGEFWz-6VW3QfmOt708Mm5gPj_sBqm4ZBOFeBZ01xkP42enS0-JY1A",
+      "title": "Premium Pet Supplies",
+      "description": "Shop our latest collection of high-quality pet products. Limited time offer!",
+      "link": "/shop",
+      "actionText": "Shop Now"
+    }
   ]
 }

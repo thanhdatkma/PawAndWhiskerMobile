@@ -5,54 +5,77 @@ import { UserActions } from './user.actions';
 export const userReducer = createReducer<UserState>(
   initialUserState,
 
-  on(UserActions.login, (state) => ({
+  // ─── Profile Loading (Requirement 3 & 5) ──────────────────────────────────
+  on(UserActions.loadProfile, (state) => ({
     ...state,
-    isLoading: true,
+    loading: true,
     error: null,
   })),
 
-  on(UserActions.loginSuccess, (state, { profile }) => ({
+  on(UserActions.loadProfileSuccess, (state, { data }) => ({
     ...state,
-    profile,
+    data,
+    loading: false,
+    error: null,
+  })),
+
+  on(UserActions.loadProfileFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+
+  // ─── Update Profile ────────────────────────────────────────────────────────
+  on(UserActions.updateProfile, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+
+  on(UserActions.updateProfileSuccess, (state, { data }) => ({
+    ...state,
+    data,
+    loading: false,
+    error: null,
+  })),
+
+  on(UserActions.updateProfileFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+
+  // ─── Auth Actions ──────────────────────────────────────────────────────────
+  on(UserActions.login, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+
+  on(UserActions.loginSuccess, (state, { data }) => ({
+    ...state,
+    data,
     isLoggedIn: true,
-    isLoading: false,
+    loading: false,
     error: null,
   })),
 
   on(UserActions.loginFailure, (state, { error }) => ({
     ...state,
-    isLoading: false,
+    loading: false,
     error,
   })),
 
   on(UserActions.logout, (state) => ({
     ...state,
-    isLoading: true,
+    loading: true,
   })),
 
   on(UserActions.logoutSuccess, () => ({
     ...initialUserState,
   })),
 
-  on(UserActions.updateProfile, (state) => ({
-    ...state,
-    isSubmitting: true,
-    error: null,
-  })),
-
-  on(UserActions.updateProfileSuccess, (state, { profile }) => ({
-    ...state,
-    profile,
-    isSubmitting: false,
-    error: null,
-  })),
-
-  on(UserActions.updateProfileFailure, (state, { error }) => ({
-    ...state,
-    isSubmitting: false,
-    error,
-  })),
-
+  // ─── Utility ───────────────────────────────────────────────────────────────
   on(UserActions.setTempNotice, (state, { message }) => ({
     ...state,
     tempNotice: message,

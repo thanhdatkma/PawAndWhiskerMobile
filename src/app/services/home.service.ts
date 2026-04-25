@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import mockData from '../../../test/mock-data.json';
-import { SlideModel } from '../models/slides.model';
+import { Observable } from 'rxjs';
 import { NewsBriefModel } from '../models/news-brief.model';
+import { BaseService } from './base.service';
+
+import { of } from 'rxjs';
+import mockData from '../../../test/mock-data.json';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
-  getBanners = (): SlideModel[] => mockData.banners as any[];
-  getNewsFeed = (): NewsBriefModel[] => mockData.news_feed as any[];
+export class HomeService extends BaseService {
+
+  getNewsFeed(): Observable<NewsBriefModel[]> {
+    return this.get<NewsBriefModel[]>(`api/news`);
+  }
 }

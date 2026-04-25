@@ -5,4 +5,6 @@ export interface CategoryModel {
     itemCount?: number;
     image?: string;
     children?: CategoryModel[];
+    isQuick?: boolean;
+    sequence?: number;
 }

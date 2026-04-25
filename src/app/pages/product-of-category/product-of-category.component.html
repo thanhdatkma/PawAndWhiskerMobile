@@ -3,7 +3,8 @@
   [showBackButton]="true" 
   backButtonDefaultHref="/tabs/categories"
   [showSearch]="showSearch"
-  searchPlaceholder="Search in this category">
+  searchPlaceholder="Search in this category"
+  (searchChange)="onSearchChange($event)">
 </app-header>
 
 <ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)">
@@ -49,7 +50,7 @@
       </ion-row>
     </ion-grid>
 
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="!(hasMore$ | async)">
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more products...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>

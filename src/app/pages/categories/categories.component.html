@@ -1,35 +1,41 @@
-<ion-content>
+<!-- categories -->
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div class="categories-wrapper">
     <!-- Left Sidebar: Parent Categories -->
-    <aside class="sidebar hide-scrollbar">
-      <div *ngFor="let cat of categories; trackBy: trackByFn" class="parent-item"
-        [class.parent-item--active]="cat.id === selectedParent?.id" (click)="selectParent(cat)">
+    <div class="sidebar hide-scrollbar">
+      <div *ngFor="let cat of (categories$ | async); trackBy: trackByFn" 
+        class="parent-item"
+        [class.parent-item--active]="cat.id === (selectedParentId$ | async)" 
+        (click)="selectParent(cat.id)">
         <div class="parent-item__icon-box">
           <span class="material-symbols-outlined parent-item__icon">{{ cat.iconName }}</span>
         </div>
         <ion-text class="parent-item__label">{{ cat.name }}</ion-text>
       </div>
-    </aside>
+    </div>
 
     <!-- Right Content: Child Categories -->
-    <ion-content [scrollEvents]="true" [fullscreen]="true" (ionScroll)="handleScroll($event)">
-      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event, 'categories')">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
-      <section class="main-content hide-scrollbar">
+    <div class="main-content hide-scrollbar">
+      <ng-container *ngIf="(categories$ | async) as categories">
         <div class="section-header">
-
           <ion-text color="dark">
-            <h3 class="section-header__title">{{ selectedParent?.name }}</h3>
+            <h3 class="section-header__title">
+              {{ (selectedParent$ | async)?.name }}
+            </h3>
           </ion-text>
           <ion-text color="primary" class="section-header__count">
-            {{ selectedParent?.children?.length ?? 0 }} Item(s)
+            {{ (childCategories$ | async)?.length ?? 0 }} Item(s)
           </ion-text>
         </div>
 
         <ion-grid class="ion-no-padding">
           <ion-row>
-            <ion-col size="6" *ngFor="let child of selectedParent?.children; trackBy: trackByFn"
+            <ion-col size="6" *ngFor="let child of (childCategories$ | async); trackBy: trackByFn"
               class="ion-padding-tiny">
               <div class="child-card group" (click)="navigate('/category-detail/' + child.id)">
                 <div class="child-card__image-container">
@@ -39,7 +45,7 @@
                 <div class="child-card__footer">
                   <ion-text class="child-card__name">{{ child.name }}</ion-text>
                   <div class="child-card__action">
-                    <span>xem thêm</span>
+                    <ion-text>xem thêm</ion-text>
                     <span class="material-symbols-outlined">chevron_right</span>
                   </div>
                 </div>
@@ -47,14 +53,13 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngIf="!selectedParent?.children?.length">
+          <ion-row *ngIf="!(childCategories$ | async)?.length">
             <ion-col size="12" class="ion-text-center ion-padding">
               <ion-text color="medium">No sub-categories found.</ion-text>
             </ion-col>
           </ion-row>
         </ion-grid>
-      </section>
-    </ion-content>
-
+      </ng-container>
+    </div>
   </div>
 </ion-content>

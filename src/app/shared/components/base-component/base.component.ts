@@ -3,6 +3,7 @@ import { NavController, LoadingController, AlertController, ToastController, Men
 import { Subject } from 'rxjs';
 import { ScrollService } from '../../../core/services/scroll.service';
 import { ConfigService } from '../../../services/config.service';
+import { Store } from '@ngrx/store';
 
 
 // Stub — replace with real service once core/services/auth.service.ts is implemented
@@ -27,7 +28,7 @@ export abstract class BaseComponent implements OnInit, OnDestroy {
   protected readonly toastCtrl = inject(ToastController);
   protected readonly menu = inject(MenuController);
   protected readonly el = inject(ElementRef);
-
+  protected readonly store = inject(Store);
   @HostBinding('attr.inert')
   get isPageHidden() {
     return this.el.nativeElement.classList.contains('ion-page-hidden') ? '' : null;

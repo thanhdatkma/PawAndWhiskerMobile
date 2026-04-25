@@ -12,6 +12,7 @@ import { AppHeaderComponent } from '../../shared/components/app-header/app-heade
 import { FavoriteService } from '../../services/favorite.service';
 import { ProductService } from '../../services/product.service';
 import { BaseComponent } from '../../shared/components/base-component/base.component';
+import { ProductActions, selectProductDetail } from 'src/app/store';
 
 @Component({
   selector: 'app-product-details',
@@ -31,7 +32,8 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
   selectedWeight = '';
   activeTab = 'info';
   recommendedProducts: ProductBriefModel[] = [];
-  
+  productDetail: ProductDetailModel | undefined;
+  productDetail$ = this.store.select(selectProductDetail);
   private route = inject(ActivatedRoute);
 
   breadcrumbList: BreadcrumbModel[] = [
@@ -41,7 +43,7 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
   ];
 
   private productService = inject(ProductService);
-  product: ProductDetailModel = {} as ProductDetailModel;
+ 
 
   constructor(private favoriteService: FavoriteService) {
     super();
@@ -68,13 +70,17 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
     
     // Get product ID from query params
     const id = this.route.snapshot.queryParams['id'];
-    this.product = this.productService.getProductDetail(id || 'na1');
-    this.product.breadcrumbs = this.breadcrumbList;
+    this.store.dispatch(ProductActions.loadProductDetail({ productId: id }));
+    this.productDetail$.subscribe(product => {
+      if (!product) return;
+      this.productDetail = product;
+      
+      if (this.productDetail?.weights && this.productDetail?.weights.length > 0 && !this.selectedWeight) {
+        this.selectedWeight = this.productDetail?.weights[0];
+      }
+      this.checkFavorite();
+    });
 
-    if (this.product.weights && this.product.weights.length > 0) {
-      this.selectedWeight = this.product.weights[0];
-    }
-    this.checkFavorite();
     this.loadInitialRecommendations();
   }
 
@@ -82,8 +88,8 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
     if ((navigator as any).share) {
       try {
         await (navigator as any).share({
-          title: this.product.name,
-          text: `Check out this ${this.product.name}!`,
+          title: this.productDetail?.name,
+          text: `Check out this ${this.productDetail?.name}!`,
           url: window.location.href,
         });
       } catch (err) {
@@ -96,32 +102,37 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
 
   loadInitialRecommendations() {
     // Simulate loading 10 items
-    this.recommendedProducts = this.generateMockProducts(10);
+    // this.recommendedProducts = this.generateMockProducts(10);
   }
 
   loadMoreProducts(event: any) {
-    setTimeout(() => {
-      const nextBatch = this.generateMockProducts(10);
-      this.recommendedProducts = [...this.recommendedProducts, ...nextBatch];
-      event.target.complete();
+    // setTimeout(() => {
+    //   const nextBatch = this.generateMockProducts(10);
+    //   this.recommendedProducts = [...this.recommendedProducts, ...nextBatch];
+    //   event.target.complete();
 
-      // Limit to 40 items for demo
-      if (this.recommendedProducts.length >= 40) {
-        event.target.disabled = true;
-      }
-    }, 1000);
+    //   // Limit to 40 items for demo
+    //   if (this.recommendedProducts.length >= 40) {
+    //     event.target.disabled = true;
+    //   }
+    // }, 1000);
   }
 
-  private generateMockProducts(count: number): ProductBriefModel[] {
-    const products = this.productService.getProducts();
-    return products.slice(0, count).map((p, i) => ({
-      ...p,
-      id: `rec-${this.recommendedProducts.length + i}`
-    }));
-  }
+  // private generateMockProducts(count: number): ProductBriefModel[] {
+  //   const products = this.productService.getProductsSync();
+  //   // Return a slice of products, cycling through if we exceed the total available
+  //   return Array.from({ length: count }).map((_, i) => {
+  //     const index = (this.recommendedProducts.length + i) % products.length;
+  //     return {
+  //       ...products[index],
+  //       id: `rec-${this.recommendedProducts.length + i}`
+  //     };
+  //   });
+  // }
 
   checkFavorite() {
-    this.product.isFavorite = this.favoriteService.isFavorite(this.product.id);
+    if (!this.productDetail) return;
+    this.productDetail.isFavorite = this.favoriteService.isFavorite(this.productDetail.id);
   }
 
 
@@ -148,6 +159,8 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
   }
 
   setMainImage(image: string) {
-    this.product.mainImage = image;
+    if (this.productDetail) {
+      this.productDetail.mainImage = image;
+    }
   }
 }

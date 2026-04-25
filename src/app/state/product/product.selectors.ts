@@ -1,0 +1,77 @@
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ProductState, ProductListState } from '../../models/app-state.model';
+
+// ─── Base Feature Selectors ───────────────────────────────────────────────────
+export const selectProductState = createFeatureSelector<ProductState>('product');
+export const selectProductListState = createFeatureSelector<ProductListState>('productList');
+
+// ─── Product Feature Selectors (Nested ApiStates) ─────────────────────────────
+
+// New Arrivals
+export const selectNewArrivalsState = createSelector(selectProductState, (state) => state.newArrivals);
+export const selectNewArrivals = createSelector(selectNewArrivalsState, (state) => state.data || []);
+export const selectNewArrivalsLoading = createSelector(selectNewArrivalsState, (state) => state.loading);
+
+// Deal of Today
+export const selectDealOfDayState = createSelector(selectProductState, (state) => state.dealOfDay);
+export const selectDealOfDay = createSelector(selectDealOfDayState, (state) => state.data || []);
+export const selectDealOfDayLoading = createSelector(selectDealOfDayState, (state) => state.loading);
+
+// New Comments
+export const selectNewCommentsState = createSelector(selectProductState, (state) => state.newComments);
+export const selectNewComments = createSelector(selectNewCommentsState, (state) => state.data || []);
+export const selectNewCommentsLoading = createSelector(selectNewCommentsState, (state) => state.loading);
+
+// Dog Food
+export const selectDogFoodState = createSelector(selectProductState, (state) => state.dogFood);
+export const selectDogFood = createSelector(selectDogFoodState, (state) => state.data || []);
+export const selectDogFoodLoading = createSelector(selectDogFoodState, (state) => state.loading);
+
+// Cat Food
+export const selectCatFoodState = createSelector(selectProductState, (state) => state.catFood);
+export const selectCatFood = createSelector(selectCatFoodState, (state) => state.data || []);
+export const selectCatFoodLoading = createSelector(selectCatFoodState, (state) => state.loading);
+
+// Slider Images
+export const selectProductSliderState = createSelector(selectProductState, (state) => state.slider);
+export const selectProductSlider = createSelector(selectProductSliderState, (state) => state.data || []);
+export const selectProductSliderLoading = createSelector(selectProductSliderState, (state) => state.loading);
+
+// Product Detail
+export const selectProductDetailState = createSelector(selectProductState, (state) => state.detail);
+export const selectProductDetail = createSelector(selectProductDetailState, (state) => state.data);
+export const selectProductDetailLoading = createSelector(selectProductDetailState, (state) => state.loading);
+
+// Popup Banner
+export const selectPopupBannerState = createSelector(selectProductState, (state) => state.popupBanner);
+export const selectPopupBanner = createSelector(selectPopupBannerState, (state) => state.data);
+export const selectPopupBannerLoading = createSelector(selectPopupBannerState, (state) => state.loading);
+
+
+
+// ─── Product List Selectors (Paginated/Filtered) ───────────────────────────────
+
+export const selectProductList = createSelector(
+  selectProductListState,
+  (state) => state.data || []
+);
+
+export const selectProductListLoading = createSelector(
+  selectProductListState,
+  (state) => state.loading
+);
+
+export const selectProductListHasMore = createSelector(
+  selectProductListState,
+  (state) => state.hasMore
+);
+
+export const selectProductListCurrentPage = createSelector(
+  selectProductListState,
+  (state) => state.currentPage
+);
+
+export const selectProductListError = createSelector(
+  selectProductListState,
+  (state) => state.error
+);

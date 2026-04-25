@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseComponent } from '../base-component/base.component';
-import { QuickCategoryModel } from 'src/app/models/quick-category.model';
+import { CategoryModel } from '../../../models/categories.model';
 
 @Component({
   selector: 'quick-category-grid',
@@ -12,12 +12,12 @@ import { QuickCategoryModel } from 'src/app/models/quick-category.model';
 })
 export class QuickCategoryGridComponent extends BaseComponent {
 
-  @Input({ required: true }) categories: QuickCategoryModel[] = [];
+  @Input({ required: true }) categories: CategoryModel[] = [];
   @Input() activeId?: string;
 
-  @Output() categorySelect = new EventEmitter<QuickCategoryModel>();
+  @Output() categorySelect = new EventEmitter<CategoryModel>();
 
-  onSelect(category: QuickCategoryModel): void {
+  onSelect(category: CategoryModel): void {
     this.categorySelect.emit(category);
   }
 

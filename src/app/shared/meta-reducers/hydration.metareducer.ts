@@ -63,6 +63,7 @@ Preferences.get({ key: STORE_KEY }).then(({ value }) => {
 
 const TRANSIENT_KEYS = new Set([
   'isLoading',
+  'loading',
   'isSubmitting',
   'error',
   'tempNotice',

@@ -1,5 +1,14 @@
 import { UserProfile } from './user-profile.model';
 import { ProductBriefModel } from './product-brief.model';
+import { ApiState, createInitialApiState } from './api-state.model';
+import { CategoryModel } from './categories.model';
+import { Order } from './order.model';
+import { CheckoutResponse } from './checkout.model';
+import { NewsBriefModel } from './news-brief.model';
+import { SlideModel } from './slides.model';
+import { PopupBannerModel } from './popup-banner.model';
+import { ProductDetailModel } from './product-detail.model';
+
 
 // ─── Cart ────────────────────────────────────────────────────────────────────
 
@@ -36,23 +45,74 @@ export const initialFavoritesState: FavoritesState = {
 
 // ─── User ────────────────────────────────────────────────────────────────────
 
-export interface UserState {
-  profile: UserProfile | null;
+export interface UserState extends ApiState<UserProfile> {
   isLoggedIn: boolean;
-  isLoading: boolean;
-  isSubmitting: boolean;
-  error: string | null;
   tempNotice: string | null;
 }
 
 export const initialUserState: UserState = {
-  profile: null,
+  ...createInitialApiState<UserProfile>(),
   isLoggedIn: false,
-  isLoading: false,
-  isSubmitting: false,
-  error: null,
   tempNotice: null,
 };
+
+// ─── Features ────────────────────────────────────────────────────────────────
+
+export interface ProductListState extends ApiState<ProductBriefModel[]> {
+  categoryIds: string[];
+  currentPage: number;
+  perPage: number;
+  hasMore: boolean;
+  searchTerm: string;
+  sortBy?: string;
+  sortDirection?: string;
+}
+
+export const initialProductListState: ProductListState = {
+  ...createInitialApiState<ProductBriefModel[]>([]),
+  categoryIds: [],
+  currentPage: 1,
+  perPage: 20,
+  hasMore: true,
+  searchTerm: '',
+};
+
+export interface ProductState {
+  newArrivals: ApiState<ProductBriefModel[]>;
+  dealOfDay: ApiState<ProductBriefModel[]>;
+  newComments: ApiState<ProductBriefModel[]>;
+  slider: ApiState<SlideModel[]>;
+  detail: ApiState<ProductDetailModel>;
+  popupBanner: ApiState<PopupBannerModel>;
+  dogFood: ApiState<ProductBriefModel[]>;
+  catFood: ApiState<ProductBriefModel[]>;
+}
+
+export const initialProductState: ProductState = {
+  newArrivals: createInitialApiState<ProductBriefModel[]>([]),
+  dealOfDay: createInitialApiState<ProductBriefModel[]>([]),
+  newComments: createInitialApiState<ProductBriefModel[]>([]),
+  slider: createInitialApiState<SlideModel[]>([]),
+  detail: createInitialApiState<ProductDetailModel>(),
+  popupBanner: createInitialApiState<PopupBannerModel>(),
+  dogFood: createInitialApiState<ProductBriefModel[]>([]),
+  catFood: createInitialApiState<ProductBriefModel[]>([]),
+};
+export interface CategoryState extends ApiState<CategoryModel[]> {
+  selectedParentId: string | null;
+}
+
+export type OrderState = ApiState<Order[]>;
+export type CheckoutState = ApiState<CheckoutResponse>;
+
+export interface HomeState {
+  newsFeed: ApiState<NewsBriefModel[]>;
+}
+
+export const initialHomeState: HomeState = {
+  newsFeed: createInitialApiState<NewsBriefModel[]>([]),
+};
+
 
 // ─── Root AppState ────────────────────────────────────────────────────────────
 
@@ -60,12 +120,28 @@ export interface AppState {
   cart: CartState;
   favorites: FavoritesState;
   user: UserState;
+  product: ProductState;
+  productList: ProductListState;
+  category: CategoryState;
+  order: OrderState;
+  checkout: CheckoutState;
+  home: HomeState;
+
 }
 
 export const initialAppState: AppState = {
   cart: initialCartState,
   favorites: initialFavoritesState,
   user: initialUserState,
+  product: initialProductState,
+  productList: initialProductListState,
+  category: {
+    ...createInitialApiState<CategoryModel[]>([]),
+    selectedParentId: null,
+  },
+  order: createInitialApiState<Order[]>([]),
+  checkout: createInitialApiState<CheckoutResponse>(),
+  home: initialHomeState,
 };
 
 /** Keys that are persisted to Capacitor Preferences. */
@@ -73,4 +149,10 @@ export const PERSISTED_SLICE_KEYS: (keyof AppState)[] = [
   'cart',
   'favorites',
   'user',
+  'product',
+  'productList',
+  'category',
+  'order',
+  'home',
+
 ];

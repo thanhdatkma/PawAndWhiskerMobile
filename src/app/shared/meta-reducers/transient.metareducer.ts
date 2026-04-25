@@ -7,6 +7,7 @@ import { AppState } from '../../models/app-state.model';
  */
 const TRANSIENT_KEYS = new Set<string>([
   'isLoading',
+  'loading',
   'isSubmitting',
   'error',
   'tempNotice',
