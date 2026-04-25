@@ -8,9 +8,12 @@
 
 .sidebar {
   width: 100px;
+  min-width: 100px;
+  flex-shrink: 0;
   background: var(--surface-container-low);
   z-index: 2;
   overflow-y: auto;
+
   overscroll-behavior-y: contain;
   /* Prevents pull-to-refresh when pulling the sidebar */
   height: auto;

@@ -56,16 +56,38 @@ export class ProductEffects {
   loadProductsByCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsByCategory),
-      switchMap((action) =>
-        this.categoryService.getProductByCategories(action).pipe(
-          map((pagination) =>
-            ProductActions.loadProductsByCategorySuccess(pagination)
-          ),
-          catchError((error) => of(ProductActions.loadProductsByCategoryFailure({ error: error.message })))
-        )
-      )
+      // switchMap((action) =>
+      //   this.categoryService.getProductByCategories(action).pipe(
+      //     map((pagination) =>
+      //       ProductActions.loadProductsByCategorySuccess(pagination)
+      //     ),
+      //     catchError((error) => of(ProductActions.loadProductsByCategoryFailure({ error: error.message })))
+      //   )
+      // )
+      switchMap((action) => {
+        let items = mockData.products as ProductBriefModel[];
+        const catIds = action.categoryIds;
+        const firstCatId = Array.isArray(catIds) ? catIds[0] : catIds;
+
+        if (firstCatId?.startsWith('1-')) {
+          items = mockData.dog_products as ProductBriefModel[];
+        } else if (firstCatId?.startsWith('2-')) {
+          items = mockData.cat_products as ProductBriefModel[];
+        }
+
+        return of(ProductActions.loadProductsByCategorySuccess({
+          items: items,
+          totalCount: items.length,
+          pageIndex: action.page || 1,
+          pageSize: action.perPage || 20,
+          totalPages: 1,
+          hasPreviousPage: false,
+          hasNextPage: false
+        }));
+      })
     )
   );
+
 
   loadProductsNewArrivals$ = createEffect(() =>
     this.actions$.pipe(

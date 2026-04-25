@@ -1,6 +1,6 @@
 export interface PaginationModel<T> {
   items: T[];
-  totalItems: number;
+  totalCount: number;
   pageIndex: number;
   pageSize: number;
   totalPages: number;
