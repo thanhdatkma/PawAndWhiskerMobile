@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { 
   IonContent, IonGrid, IonRow, 
   IonCol, IonText, IonInfiniteScroll, IonInfiniteScrollContent,
-  IonIcon, IonButton, IonBadge
+  IonIcon, IonButton, IonBadge, IonRefresher, IonRefresherContent
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { atOutline, saveOutline, optionsOutline, swapVerticalOutline, chevronDownOutline, pricetagOutline, bookmarkOutline } from 'ionicons/icons';
@@ -12,7 +12,7 @@ import { BaseComponent } from '../../shared/components/base-component/base.compo
 import { ProductBriefModel } from '../../models/product-brief.model';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 
 import { ModalController } from '@ionic/angular/standalone';
 import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
@@ -41,7 +41,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
     CommonModule,
     IonContent, IonGrid, IonRow, 
     IonCol, IonText, IonInfiniteScroll, IonInfiniteScrollContent,
-    IonIcon, IonButton, IonBadge,
+    IonIcon, IonButton, IonBadge, IonRefresher, IonRefresherContent,
     AppHeaderComponent, ProductCardComponent, FilterSortComponent,
     SortLabelPipe
   ]
@@ -68,7 +68,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   private searchSubject = new Subject<string>();
   filterState: any = {
     page: 1,
-    perPage: 20,
+    perPage: 10,
     searchTerm: '',
     categoryIds: this.categoryId ? [this.categoryId] : [],
     brandIds: [],
@@ -94,7 +94,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
         categoryIds: this.categoryId, 
         page: 1,
-        perPage: this.filterState.pageSize,
+        perPage: this.filterState.perPage,
         searchTerm: searchTerm
       }));
     });
@@ -144,10 +144,29 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     this.handleScroll(event);
   }
 
+  override handleRefresh(event: any) {
+    this.filterState.page = 1;
+    this.store.dispatch(ProductActions.loadProductsByCategory({ 
+      categoryIds: this.categoryId ? [this.categoryId] : [], 
+      page: 1,
+      perPage: this.filterState.perPage,
+      searchTerm: this.filterState.searchTerm
+    }));
+    
+    this.isLoading$.pipe(
+      takeUntil(this.destroyed$),
+      distinctUntilChanged()
+    ).subscribe(loading => {
+      if (!loading) {
+        event.target.complete();
+      }
+    });
+  }
+
   loadData(event: any) {
-    this.currentPage$.pipe(takeUntil(this.destroyed$)).subscribe(page => {
+    this.currentPage$.pipe(take(1)).subscribe(page => {
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
-         categoryIds: this.categoryId,
+        categoryIds: this.categoryId ? [this.categoryId] : [],
         page: page + 1,
         perPage: this.filterState.perPage,
         searchTerm: this.filterState.searchTerm 
@@ -196,46 +215,18 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   }
 
   applyFilters() {
-    let filtered = [...this.originalProducts];
-    
-    // active filters
-    const activeBrands = this.filterState.brands.filter((b: any) => b.checked).map((b: any) => b.label);
-    const activePricing = this.filterState.pricings.filter((p: any) => p.checked).map((p: any) => p.label);
-    
-    // Simulate filtering
-    if (activePricing.length > 0) {
-      filtered = filtered.filter(p => {
-        const price = p.discountPrice || p.price;
-        return activePricing.some((range: string) => {
-          if (range === '$0 - $31' && price <= 31) return true;
-          if (range === '$31 - $64' && price > 31 && price <= 64) return true;
-          if (range === '$64 - $121' && price > 64 && price <= 121) return true;
-          return false;
-        });
-      });
-    }
-
-    if (activeBrands.length > 0) {
-      // Because we don't have brand in ProductBriefModel, just mock it by keeping all if they are checked
-      // Or actually filter by name including brand name? Let's just mock
-    }
-
-    // Sort
     const sortValue = typeof this.filterState.selectedSort === 'object' 
       ? this.filterState.selectedSort.value 
       : this.filterState.selectedSort;
 
-    if (sortValue === SortType.PRICE_ASC) {
-      filtered.sort((a, b) => (a.discountPrice || a.price) - (b.discountPrice || b.price));
-    } else if (sortValue === SortType.PRICE_DESC) {
-      filtered.sort((a, b) => (b.discountPrice || b.price) - (a.discountPrice || a.price));
-    } else if (sortValue === SortType.BRAND_ASC) {
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortValue === SortType.BRAND_DESC) {
-      filtered.sort((a, b) => b.name.localeCompare(a.name));
-    }
-
-    this.products = filtered;
+    this.store.dispatch(ProductActions.loadProductsByCategory({
+      categoryIds: this.categoryId ? [this.categoryId] : [],
+      page: 1,
+      perPage: this.filterState.perPage,
+      searchTerm: this.filterState.searchTerm,
+      sortBy: (sortValue === SortType.PRICE_ASC || sortValue === SortType.PRICE_DESC) ? 'price' : 'name',
+      sortDirection: (sortValue === SortType.PRICE_DESC || sortValue === SortType.BRAND_DESC) ? 'desc' : 'asc'
+    }));
   }
 
   getFilterCount(type: FilterTab): number {

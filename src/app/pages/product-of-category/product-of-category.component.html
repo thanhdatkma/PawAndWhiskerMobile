@@ -8,6 +8,10 @@
 </app-header>
 
 <ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div class="sticky-filter-wrapper" [class.filter-hidden]="isFilterHidden">
     <div class="filter-bar">
       <div class="filter-scroll-container">

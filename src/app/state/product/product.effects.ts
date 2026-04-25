@@ -75,16 +75,43 @@ export class ProductEffects {
           items = mockData.cat_products as ProductBriefModel[];
         }
 
+        // Apply Search Term
+        if (action.searchTerm) {
+          const term = action.searchTerm.toLowerCase();
+          items = items.filter(p => p.name.toLowerCase().includes(term));
+        }
+
+        // Apply Sort
+        if (action.sortBy) {
+          items = [...items].sort((a, b) => {
+            const dir = action.sortDirection === 'desc' ? -1 : 1;
+            if (action.sortBy === 'price') {
+              return ((a.discountPrice || a.price) - (b.discountPrice || b.price)) * dir;
+            }
+            return a.name.localeCompare(b.name) * dir;
+          });
+        }
+
+        const page = action.page || 1;
+        const perPage = action.perPage || 10;
+        const totalCount = items.length;
+        const totalPages = Math.ceil(totalCount / perPage);
+        
+        const start = (page - 1) * perPage;
+        const pagedItems = items.slice(start, start + perPage);
+
         return of(ProductActions.loadProductsByCategorySuccess({
-          items: items,
-          totalCount: items.length,
-          pageIndex: action.page || 1,
-          pageSize: action.perPage || 20,
-          totalPages: 1,
-          hasPreviousPage: false,
-          hasNextPage: false
+          items: pagedItems,
+          totalCount: totalCount,
+          pageIndex: page,
+          pageSize: perPage,
+          totalPages: totalPages,
+          hasPreviousPage: page > 1,
+          hasNextPage: page < totalPages
         }));
       })
+
+
     )
   );
 
