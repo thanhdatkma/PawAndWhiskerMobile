@@ -10,11 +10,11 @@ import { PopupBannerModel } from '../../models/popup-banner.model';
 export const ProductActions = createActionGroup({
   source: 'Product',
   events: {
-    'Load Products New Arrivals': emptyProps(),
+    'Load Products New Arrivals': props<{ categoryId?: string }>(),
     'Load Products New Arrivals Success': props<{ products: ProductBriefModel[] }>(),
     'Load Products New Arrivals Failure': props<{ error: string }>(),
 
-    'Load Products Deal of Day': emptyProps(),
+    'Load Products Deal of Day': props<{ categoryId?: string }>(),
     'Load Products Deal of Day Success': props<{ products: ProductBriefModel[] }>(),
     'Load Products Deal of Day Failure': props<{ error: string }>(),
 

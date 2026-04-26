@@ -3,6 +3,20 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
+  <ion-modal [isOpen]="isPopupOpen" (didDismiss)="isPopupOpen = false">
+    <ng-template>
+      <ion-content class="ion-padding" style="--background: transparent;">
+        <div class="popup-content" *ngIf="popupBanner$ | async as banner">
+          <img [src]="banner.image" alt="Popup" />
+          <h2>{{ banner.title }}</h2>
+          <p>{{ banner.description }}</p>
+          <ion-button expand="block" (click)="onPopupAction(banner.link)">{{ banner.actionText || 'Shop Now' }}</ion-button>
+          <ion-button fill="clear" color="dark" expand="block" (click)="isPopupOpen = false">Close</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
   <banner-slider [banners]="(banners$ | async) || []"></banner-slider>
   
   <quick-category-grid 
@@ -19,27 +33,39 @@
     (productAddToCart)="onAddToCart($event)">
   </app-product-section>
 
-  <app-promo-banner theme="dog" title="Food, toys, and essentials for dog" (exploreClick)="onPromoExplore($event)">
-  </app-promo-banner>
-
   <app-product-section 
-    [sectionTitle]="'Everything For Dogs'" 
-    [products]="(dogProducts$ | async) || []" 
+    [sectionTitle]="'Deal of the Day'" 
+    [products]="(dealOfDay$ | async) || []" 
     (seeAllClick)="onSeeAll($event)"
     (productClick)="onProductClick($event)" 
     (productAddToCart)="onAddToCart($event)">
   </app-product-section>
 
-  <app-promo-banner theme="cat" title="Food, toys, and essentials for cat" (exploreClick)="onPromoExplore($event)">
-  </app-promo-banner>
+  <ng-container *ngIf="activeId === 'dog'">
+    <app-promo-banner theme="dog" title="Food, toys, and essentials for dog" (exploreClick)="onPromoExplore($event)">
+    </app-promo-banner>
 
-  <app-product-section 
-    [sectionTitle]="'Everything For Cats'" 
-    [products]="(catProducts$ | async) || []" 
-    (seeAllClick)="onSeeAll($event)"
-    (productClick)="onProductClick($event)" 
-    (productAddToCart)="onAddToCart($event)">
-  </app-product-section>
+    <app-product-section 
+      [sectionTitle]="'Everything For Dogs'" 
+      [products]="(dogProducts$ | async) || []" 
+      (seeAllClick)="onSeeAll($event)"
+      (productClick)="onProductClick($event)" 
+      (productAddToCart)="onAddToCart($event)">
+    </app-product-section>
+  </ng-container>
+
+  <ng-container *ngIf="activeId === 'cat'">
+    <app-promo-banner theme="cat" title="Food, toys, and essentials for cat" (exploreClick)="onPromoExplore($event)">
+    </app-promo-banner>
+
+    <app-product-section 
+      [sectionTitle]="'Everything For Cats'" 
+      [products]="(catProducts$ | async) || []" 
+      (seeAllClick)="onSeeAll($event)"
+      (productClick)="onProductClick($event)" 
+      (productAddToCart)="onAddToCart($event)">
+    </app-product-section>
+  </ng-container>
 
   <app-news-feed 
     [articles]="(news$ | async) || []" 

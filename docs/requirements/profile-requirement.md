@@ -1,46 +1,90 @@
 ---
-description: [MANUAL] Yêu cầu nghiệp vụ cho Cụm User Profile và Update Profile
+description: [AUTO-UPDATED] Business Requirements – Profile & User Account
+status: READY
+priority: P1
 ---
-**Title:** Profile Dashboard & Profile Management Implementation
-**Story:** As a System User, I want to view and edit my personal details alongside my pet's biography so that the application has accurate information for service bookings or orders.
 
-### Impact Analysis
-- **UI Components:**
-  - **Profile Dashboard Screen:** 
-    - Render Owner's Header (Avatar, Name, Contact, Address).
-    - Render Pet's Bio snippet (Avatar, Name/details). 
-    - A comprehensive navigation list detailing sections available to the user (Vaccinations, Appointments, Orders, App Settings, etc.).
-    - A distinct, wide LOG OUT button at the bottom.
-  - **Update Profile Screen:**
-    - Forms specifically separating Owner fields (Full Name, Address, etc.) from Pet fields (Breed, Gender, Age).
-    - Camera icon indicators overlaying avatars to signal upload capability.
-- **Behaviors:**
-  - Tapping avatar edit icons triggers native mobile image pickers or file browser dialogs.
-  - Form validation on Update Profile demands structured data checks before submission payload generation.
-  - Tapping Logout requires a secondary prompt/modal confirmation before expelling the user.
+# Profile & User Account
 
-### Technical Blueprint
-- **Frontend Architecture:** Split components logically into `ProfileHeader`, `PetBioCard`, and `ShortcutNavigationList`.
-- **Routing:** `/profile` (Main Dashboard) and `/profile/edit` module mapping.
-- **NgRx Store:** App-wide `UserState` containing the loaded credentials. Optimistic UI update logic: Display changes immediately post-submission, reverting gracefully if the API errors out.
-- **API Strategy:** 
-  - `GET /api/v1/profile`
-  - `PUT /api/v1/profile`
-  - Requires multipart parsing for the distinct Avatar picture upload API endpoints (`/api/v1/profile/upload-avatar`).
+**Story (US-PROF-01):** As a Guest User, I want to see a prompt to log in or register when I visit my Profile tab, so that I understand that I need an account to access personal features.
 
-### Acceptance Criteria (AC)
+**Story (US-PROF-02):** As a Logged-in User, I want to view my profile with avatar, name, membership level, and my pet's details, so that I can manage my account.
 
-**AC1: Loading Dashboard**
-- **Given** I am securely logged in
-- **When** I navigate to the Profile Tab
-- **Then** my personal details and pet details accurately render alongside a menu of accessible app settings and histories.
+**Story (US-PROF-03):** As a Logged-in User, I want to log out, so that my session is cleared from the device.
 
-**AC2: Updating Details**
-- **Given** I am on the Edit Profile layout
-- **When** I correct a typo in my Name and submit the form
-- **Then** the application confirms the change and reflects my new name correctly on the Dashboard.
+---
 
-**AC3: Secure Logout**
-- **Given** my intent to close a session
-- **When** I tap the "Log Out" button
-- **Then** the system asks for confirmation, purges stored credentials completely, and redirects me to the Welcome login experience.
+## Pre-conditions
+- `AuthService.isLoggedIn` signal reflects the current authentication state.
+- `AuthService.currentUser` signal holds `UserProfile | null`.
+
+## Out of Scope
+- Editing user profile fields (edit button rendered but no form — **GAP**).
+- Order history page (icon rendered but no route — **GAP**).
+- Saved addresses, payment methods (menu items rendered but no implementation — **GAP**).
+- Pet health records (visible in UI — **GAP**).
+
+---
+
+## Functional Requirements
+
+### FR-PROF-01 — Guest vs. Authenticated View (`ProfilePageComponent`)
+- `*ngIf="authService.isLoggedIn()"` toggles between:
+  - **Authenticated:** renders `UserProfileComponent` passing `authService` data.
+  - **Guest:** renders CTA buttons (Login, Register) and app branding.
+- `authService.isLoggedIn` is an Angular `signal<boolean>` — template uses `authService.isLoggedIn()`.
+
+### FR-PROF-02 — User Profile Display (`UserProfileComponent`)
+- Reads `authService.currentUser()` signal → `UserProfile { id, name, email, avatar, membership, pet? }`.
+- `Pet` model: `{ id, name, breed, weight, age, nextVaccine, image }`.
+- Displays membership badge (e.g., "Gold" with diamond icon).
+- Displays pet card with breed, age, weight, next vaccine date.
+
+### FR-PROF-03 — Logout
+- `onLogout()` calls `authService.logout()`.
+- `AuthService.logout()`: sets `_currentUser.set(null)`, `isLoggedIn.set(false)`, removes `localStorage['user_profile']`.
+- `ProfilePageComponent` reacts to signal change and re-renders guest view.
+
+### FR-PROF-04 — Navigation from Profile
+- "Terms & Conditions" link navigates to `/terms-privacy` (via `ProfilePageComponent.goToTerms()`).
+- Back navigation from `UserProfileComponent.onBack()` → `navigateRoot('/home')`.
+
+---
+
+## Acceptance Criteria
+
+**AC1 — Guest prompt shown**
+- Given I am not logged in
+- When I tap the Profile tab
+- Then I see a guest view with Login and Register buttons.
+
+**AC2 — Authenticated profile shown**
+- Given I am logged in
+- When I tap the Profile tab
+- Then my avatar, name, membership tier, and pet details are displayed.
+
+**AC3 — Logout clears session**
+- Given I am logged in
+- When I tap "Logout"
+- Then `AuthService.logout()` runs, `isLoggedIn` becomes false, and the guest view renders.
+
+---
+
+## Dev Tasks (Implemented)
+
+| # | Task | File(s) |
+|---|---|---|
+| T1 | `UserProfile` and `Pet` models | `models/user-profile.model.ts` |
+| T2 | `AuthService` — signals, localStorage, login/logout | `services/auth.service.ts` |
+| T3 | `ProfilePageComponent` — conditional rendering on `isLoggedIn()` signal | `pages/profile/profile.component.ts` |
+| T4 | `UserProfileComponent` — display profile, pet card, logout, menu items | `pages/user-profile/user-profile.component.ts` |
+| T5 | `TermsConditionsComponent`, `PrivacyPolicyComponent` pages | `pages/terms-conditions/`, `pages/privacy-policy/` |
+
+## Gap Analysis
+| # | Gap | Severity |
+|---|---|---|
+| G1 | Edit profile button has no form/navigation — stub only | High |
+| G2 | Order history, Saved Addresses, Payment Methods menu items not wired to routes | High |
+| G3 | `UserState` in NgRx store is defined but `AuthService` uses its own signals/localStorage — dual state sources | Medium |
+| G4 | `UserService.getUserProfile()` / `updateProfile()` HTTP calls are never invoked | Medium |
+| G5 | Pet health data (`nextVaccine`) is static from mock — no API or editing | Low |

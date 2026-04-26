@@ -9,6 +9,7 @@ import { addIcons } from 'ionicons';
 import { cartOutline, chevronBack, search, shareOutline, heartOutline, heart } from 'ionicons/icons';
 import { takeUntil } from 'rxjs/operators';
 import { FavoriteService } from '../../../services/favorite.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,8 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   @Input() showFavorite = false;
   /** Product ID for favorite service integration */
   @Input() productId?: string;
+  /** When true, the search bar navigates globally to the product list. When false, emits searchChange to the parent. */
+  @Input() enableGlobalSearch = false;
 
 
   @Output() shareClick = new EventEmitter<void>();
@@ -57,6 +60,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   private readonly tabService = inject(TabService);
   public readonly favoriteService = inject(FavoriteService);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
 
 
 
@@ -144,5 +148,9 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
     }
   }
 
-
+  onGlobalSearch(term: string): void {
+    const t = (term || '').trim();
+    if (!t) return;
+    this.router.navigate(['/category-detail'], { queryParams: { searchTerm: t } });
+  }
 }

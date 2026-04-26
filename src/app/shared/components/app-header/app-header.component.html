@@ -52,7 +52,7 @@
     <!-- Optional Search Bar -->
     <app-search-bar *ngIf="showSearch" class="app-header__search" 
       [searchPlaceholder]="searchPlaceholder"
-      (searchChange)="searchChange.emit($event)">
+      (searchChange)="enableGlobalSearch ? onGlobalSearch($event) : searchChange.emit($event)">
     </app-search-bar>
 
   </header>

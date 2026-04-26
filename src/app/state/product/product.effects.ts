@@ -21,11 +21,17 @@ export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductDetail),
-      switchMap((action) => {
+          switchMap((action) => {
         return of(ProductActions.loadProductDetailSuccess({
           product: mockData.product_detail as ProductDetailModel
         }))
       })
+      // switchMap((action) =>
+      //   this.productService.getProductDetail(action.productId).pipe(
+      //     map((product) => ProductActions.loadProductDetailSuccess({ product })),
+      //     catchError((error) => of(ProductActions.loadProductDetailFailure({ error: error.message })))
+      //   )
+      // )
     )
   );
 
@@ -33,23 +39,29 @@ export class ProductEffects {
   loadSlideImages$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadSliderImages),
-      switchMap(() => {
-        return of(ProductActions.loadSliderImagesSuccess({
-          slider: mockData.banners as SlideModel[]
-        }))
-      })
+      switchMap(() =>
+        this.productService.getSlideImages().pipe(
+          map((slider) => ProductActions.loadSliderImagesSuccess({ slider })),
+          catchError((error) => of(ProductActions.loadSliderImagesFailure({ error: error.message })))
+        )
+      )
     )
   );
 
   loadPopupBanners$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadPopupBanner),
-      switchMap(() =>
-        this.productService.getPopupBanners().pipe(
-          map((banner) => ProductActions.loadPopupBannerSuccess({ banner })),
-          catchError((error) => of(ProductActions.loadPopupBannerFailure({ error: error.message })))
-        )
-      )
+            switchMap(() => {
+        return of(ProductActions.loadSliderImagesSuccess({
+          slider: mockData.banners as SlideModel[]
+        }))
+      })
+      // switchMap(() =>
+      //   this.productService.getPopupBanners().pipe(
+      //     map((banner) => ProductActions.loadPopupBannerSuccess({ banner })),
+      //     catchError((error) => of(ProductActions.loadPopupBannerFailure({ error: error.message })))
+      //   )
+      // )
     )
   );
 
@@ -119,11 +131,17 @@ export class ProductEffects {
   loadProductsNewArrivals$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsNewArrivals),
-      switchMap(() => {
+         switchMap(() => {
         return of(ProductActions.loadProductsNewArrivalsSuccess({
           products: mockData.new_arrivals as ProductBriefModel[]
         }))
       })
+      // switchMap((action) =>
+      //   this.productService.getNewArrivals(action.categoryId).pipe(
+      //     map((products) => ProductActions.loadProductsNewArrivalsSuccess({ products })),
+      //     catchError((error) => of(ProductActions.loadProductsNewArrivalsFailure({ error: error.message })))
+      //   )
+      // )
     )
   );
 
@@ -131,7 +149,7 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsDealOfDay),
       switchMap((action) =>
-        this.productService.getDealOfToday().pipe(
+        this.productService.getDealOfToday(action.categoryId).pipe(
           map((products) => ProductActions.loadProductsDealOfDaySuccess({ products })),
           catchError((error) => of(ProductActions.loadProductsDealOfDayFailure({ error: error.message })))
         )
@@ -154,22 +172,24 @@ export class ProductEffects {
   loadProductsDogFood$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsDogFood),
-      switchMap(() => {
-        return of(ProductActions.loadProductsDogFoodSuccess({
-          products: mockData.dog_products as ProductBriefModel[]
-        }))
-      })
+      switchMap(() =>
+        this.productService.getDogProducts().pipe(
+          map((products) => ProductActions.loadProductsDogFoodSuccess({ products })),
+          catchError((error) => of(ProductActions.loadProductsDogFoodFailure({ error: error.message })))
+        )
+      )
     )
   );
 
   loadProductsCatFood$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsCatFood),
-      switchMap(() => {
-        return of(ProductActions.loadProductsCatFoodSuccess({
-          products: mockData.cat_products as ProductBriefModel[]
-        }))
-      })
+      switchMap(() =>
+        this.productService.getCatProducts().pipe(
+          map((products) => ProductActions.loadProductsCatFoodSuccess({ products })),
+          catchError((error) => of(ProductActions.loadProductsCatFoodFailure({ error: error.message })))
+        )
+      )
     )
   );
 

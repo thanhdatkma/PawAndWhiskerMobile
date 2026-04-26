@@ -52,7 +52,8 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   private productService = inject(ProductService);
   private categoryService = inject(CategoryService);
   
-  categoryId = this.route.snapshot.paramMap.get('id');
+  categoryId: string | null = this.route.snapshot.paramMap.get('id');
+  initialSearchTerm: string = this.route.snapshot.queryParamMap.get('searchTerm') ?? '';
   categoryName: string = 'Products';
   showSearch = false;
   isFilterHidden = false;
@@ -69,7 +70,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   filterState: any = {
     page: 1,
     perPage: 10,
-    searchTerm: '',
+    searchTerm: this.route.snapshot.queryParamMap.get('searchTerm') ?? '',
     categoryIds: this.categoryId ? [this.categoryId] : [],
     brandIds: [],
     attributeIds: [],
@@ -110,13 +111,14 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     };
 
     this.categoryId = this.route.snapshot.paramMap.get('id');
-    
-    if (this.categoryId) {
+    this.initialSearchTerm = this.route.snapshot.queryParamMap.get('searchTerm') ?? '';
+
+    if (this.categoryId || this.initialSearchTerm) {
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
         categoryIds: this.categoryId ? [this.categoryId] : [], 
         page: this.filterState.page,
         perPage: this.filterState.perPage,
-        searchTerm: this.filterState.searchTerm
+        searchTerm: this.initialSearchTerm || this.filterState.searchTerm
       }));
     }
     

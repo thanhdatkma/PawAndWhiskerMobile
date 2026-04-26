@@ -1,45 +1,93 @@
 ---
-description: [MANUAL] Yêu cầu nghiệp vụ cho Categories Page
+description: [AUTO-UPDATED] Business Requirements – Categories Master Page
+status: READY
+priority: P1
 ---
-**Title:** Categories Master Page Implementation
-**Story:** As a Pet Owner, I want to view a structured list of categories so that I can easily navigate and find specific products or services for my pet.
 
-### Impact Analysis
-- **UI Components:**
-  - Header & Bottom Navigation (Shared).
-  - Search Bar: At the top for quick searching.
-  - Left Sidebar: Single column list of Parent Categories with vertical scroll. Selected item is highlighted.
-  - Right Content: Grid layout (2 columns) displaying Child Categories of the active Parent Category. 
-  - Child Category Item: Includes thumbnail, name, and "Xem thêm >" button.
-- **Behaviors:**
-  - Independent vertical scrolling for both the Left Sidebar and Right Content.
-  - Clicking a Parent Category instantly updates the Right Content without reloading the page.
-  - Clicking a Child Category navigates to the Category Detail List page.
+# Categories Master Page
 
-### Technical Blueprint
-- **Frontend Architecture:** Split layout structure. 
-- **Routing:** `/categories` -> `CategoriesModule` (Lazy loaded).
-- **NgRx Store:** `CategoriesState` lưu `categoriesTree` (cây dữ liệu cha-con) và `activeParentId`. Dùng selector để map dữ liệu con tương ứng cho cột phải.
-- **API Strategy:** Fetch `GET /api/v1/categories/tree` 1 lần lúc init để đảm bảo UX chuyển parent-category mượt mà tức thời, thay vì phải fetch lại mỗi lần click.
+**Story (US-CAT-01):** As a Pet Owner, I want to browse all product categories in a structured two-panel layout, so that I can quickly find the right category for my pet's needs.
 
-### Acceptance Criteria (AC)
+---
 
-**AC1: Display Layout Structure**
-- **Given** I navigate to the Categories page
-- **When** the page loads
-- **Then** I should see the Header, Search Bar, Left Sidebar (parent categories), Right Grid (child categories), and Bottom Menu.
+## Pre-conditions
+- `CategoryState` hydrated from Capacitor Preferences on app boot.
+- Store emits categories data on `CategoryActions.loadCategories({})` dispatch.
 
-**AC2: Parent Category Selection**
-- **Given** the Categories page is loaded with a default parent selected
-- **When** I tap on another Parent Category in the Left Sidebar
-- **Then** the tapped item becomes highlighted AND the Right Grid instantly updates to show the relevant child categories.
+## Out of Scope
+- Deep-link filtering; search currently filters visually via `searchTerm` local variable — no store dispatch (**GAP**).
 
-**AC3: Independent Scrolling**
-- **Given** there are many parent and child categories
-- **When** I scroll the Left Sidebar or the Right Grid
-- **Then** they should scroll vertically independently from each other.
+---
 
-**AC4: Navigate to Category Details**
-- **Given** I am viewing the child categories
-- **When** I tap on a child category item or "Xem thêm >"
-- **Then** I am navigated to the detailed product list of that child category.
+## Functional Requirements
+
+### FR-CAT-01 — Load Category Tree (`CategoriesPageComponent`)
+- Dispatches `CategoryActions.loadCategories({})` on `ngOnInit` and on pull-to-refresh.
+- State: `CategoryState` (`ApiState<CategoryModel[]>` + `selectedParentId: string | null`).
+- `CategoryModel` supports nested children via `children?: CategoryModel[]`.
+- Selectors: `selectAllCategories`, `selectSelectedParentId`, `selectSelectedParent`, `selectActiveChildCategories`, `selectCategoriesLoading`.
+- **Expected API:** `GET /api/products/categories?parentId=&isQuick=` → `CategoryModel[]`.
+- Currently served by mock: `mockData.categories`.
+
+### FR-CAT-02 — Left Panel — Parent Category Selection
+- `selectParent(id)` dispatches `CategoryActions.selectParentCategory({ id })`.
+- Reducer updates `selectedParentId`; default is first category after successful load.
+- `selectedParentId$` drives the visual highlight (active state) on the left sidebar.
+
+### FR-CAT-03 — Right Panel — Child Categories
+- `selectActiveChildCategories` selector derives `parent.children` of the active parent.
+- `childCategories$` observable is rendered in the right grid.
+- Tapping a child category navigates to `/category-detail/:id` (**navigation logic in template, not yet confirmed in TS — verify in HTML**).
+
+### FR-CAT-04 — Search Bar
+- `IonSearchbar` binds to `(ionChange)="onSearchChange($event)"`.
+- `searchTerm` is a local component property — filtering is not yet dispatched to the store (**GAP — local filter only**).
+
+### FR-CAT-05 — Loading State
+- `isLoading$` selector is available; loading spinner should be shown while `loading === true`.
+
+---
+
+## Acceptance Criteria
+
+**AC1 — Two-panel layout on load**
+- Given I navigate to `/categories`
+- When the page loads
+- Then the left panel shows all parent categories and the right panel shows children of the first parent.
+
+**AC2 — Parent selection updates children**
+- Given categories are loaded
+- When I tap a different parent category
+- Then `CategoryActions.selectParentCategory` is dispatched, `selectedParentId` updates, and the right panel re-renders with the new parent's children instantly.
+
+**AC3 — Pull-to-Refresh reloads categories**
+- Given I pull down on the page
+- When refresh fires
+- Then `CategoryActions.loadCategories({})` is dispatched and `event.target.complete()` is called.
+
+**AC4 — Navigate to Category Detail**
+- Given I tap a child category
+- When navigation fires
+- Then the app routes to `/category-detail/:childCategoryId`.
+
+---
+
+## Dev Tasks (Implemented)
+
+| # | Task | File(s) |
+|---|---|---|
+| T1 | `CategoryActions` — Load, Success, Failure, SelectParent | `state/category/category.actions.ts` |
+| T2 | `CategoryReducer` — handles loading, data, selectedParentId | `state/category/category.reducer.ts` |
+| T3 | `CategoryEffects` — mock data switchMap | `state/category/category.effects.ts` |
+| T4 | Selectors — `selectAllCategories`, `selectSelectedParent`, `selectActiveChildCategories` | `state/category/category.selectors.ts` |
+| T5 | `CategoryService.getCategories()` — API-ready, accepts params | `services/category.service.ts` |
+| T6 | `CategoryModel` with nested children | `models/categories.model.ts` |
+| T7 | `CategoriesPageComponent` — store wiring, refresh, search | `pages/categories/categories.component.ts` |
+
+## Gap Analysis
+| # | Gap | Severity |
+|---|---|---|
+| G1 | `searchTerm` filters locally, not via store dispatch | Medium |
+| G2 | Child category tap navigation not confirmed in TS (in HTML template only) | Medium |
+| G3 | `CategoryEffects` uses mock `of(mockData.categories)` — real API call commented out | High |
+| G4 | Caching strategy (load once vs. reload) not implemented — categories always refetch | Low |

@@ -15,12 +15,14 @@ export class ProductService extends BaseService {
     return this.get<ProductDetailModel>(`api/products/${id}`);
   }
 
-  getNewArrivals(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`api/products/new-arrivals`);
+  getNewArrivals(categoryId?: string): Observable<ProductBriefModel[]> {
+    const query = categoryId ? `?categoryId=${categoryId}` : '';
+    return this.get<ProductBriefModel[]>(`api/products/new-arrivals${query}`);
   }
 
-  getDealOfToday(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`api/products/get-deal-of-day`);
+  getDealOfToday(categoryId?: string): Observable<ProductBriefModel[]> {
+    const query = categoryId ? `?categoryId=${categoryId}` : '';
+    return this.get<ProductBriefModel[]>(`api/products/get-deal-of-day${query}`);
   }
 
   getNewComment(): Observable<ProductBriefModel[]> {

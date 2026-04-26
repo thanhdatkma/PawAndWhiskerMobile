@@ -14,7 +14,13 @@ Dựa trên khối lượng công việc và độ phức tạp của 14 User St
 4. 🗂️ **Categories Master** (`categories-requirement.md`): Hiển thị cây danh mục, Left menu - Right grid.
 5. 🔍 **Category Detail** (`category-detail-requirement.md`): Luồng danh sách sản phẩm theo danh mục, Infinity Scroll / Pagination.
 
-*» Milestone Sprint 1 Output:* Ứng dụng đã có thể đăng nhập/đăng ký. Khách hàng lướt xem được toàn bộ danh mục và danh sách sản phẩm cơ bản trên app.
+**⚠️ Critical Gaps to Resolve (Must-Fix):**
+- **G-CRIT-2:** Thay thế `AuthService` mock-only bằng logic gọi API thật và xử lý JWT Token.
+- **G-HIGH-1 & 2:** Triển khai HTTP Interceptor để tự động inject JWT và AuthGuard để bảo vệ các trang Profile/Order.
+- **G-HIGH-3:** Chuyển đổi toàn bộ NgRx Effects từ mock data (`of(mockData)`) sang gọi API thật qua `BaseService`.
+- **G-MED-2:** Hợp nhất luồng `AuthService` (signals) và `UserState` (NgRx) để tránh xung đột dữ liệu.
+
+*» Milestone Sprint 1 Output:* Ứng dụng đã có thể đăng nhập/đăng ký thật. Khách hàng lướt xem được toàn bộ danh mục và danh sách sản phẩm thực tế từ Backend.
 
 ---
 
@@ -28,6 +34,12 @@ Dựa trên khối lượng công việc và độ phức tạp của 14 User St
 4. 🎉 **Order Success & Tracking** (`order-success-requirement.md`, `order-tracking-requirement.md`): Báo cáo đặt hàng, UI Order Timeline Stepper.
 5. 🐾 **User & Pet Profile** (`profile-requirement.md`): Trang chủ Profile dashboard, Edit Profile form / Avatar Camera Upload.
 
+**⚠️ Critical Gaps to Resolve (Must-Fix):**
+- **G-CRIT-1:** Sửa lỗi route mismatch: `ProductDetailsComponent` đang đọc `queryParams` trong khi router định nghĩa là `routeParams`.
+- **G-HIGH-4 & 5:** Kích hoạt logic Cart. Kết nối các nút "Add to Cart" vào `CartState` (hiện tại chỉ log console).
+- **G-HIGH-6:** Fetch dữ liệu Filter (Brands, Pricing) từ API thay vì hardcode trong `CategoryService`.
+- **G-MED-3:** Cấu hình lại `hydrationMetaReducer` để không persist các state phân trang (`productList`) dễ gây lỗi dữ liệu cũ.
+
 *» Milestone Sprint 2 Output:* Một E-commerce Web/App hoạt động hoàn chỉnh từ bước xem Chi tiết tới khi Thanh toán và Theo dõi mã Vận đơn. User đã khai báo được thông tin Thú cưng.
 
 ---
@@ -40,4 +52,9 @@ Dựa trên khối lượng công việc và độ phức tạp của 14 User St
 2. 🏥 **Pet Records** (`pet-records-requirement.md`): 5 trang giao diện Lịch sử (Vaccines, Tiêm chủng, Hoá đơn...). Tập trung xây dựng Component Card Tái sử dụng.
 3. 🔔 **Alerts & Settings** (`settings-alerts-requirement.md`): Trang Thông báo động theo Theme Color và màn Cấu hình Preferences (Address, Payment Cards, Darkmode...).
 
-*» Milestone Sprint 3 Output:* Toàn bộ User Stories đã đóng Release. App có khả năng xử lý dịch vụ thú y thay vì chỉ là App mua bán đồ ăn chăn nuôi thuần tuý. SSẵn sàng cho UAT (User Acceptance Testing) và Launch.
+**⚠️ Technical Tasks:**
+- **G-MED-1:** Hợp nhất `FavoriteService` vào `FavoritesState` (NgRx) để đảm bảo tính nhất quán (Single Source of Truth).
+- **G-MED-8:** Đảm bảo `isFavorite` trong Product Detail có tính reactive với store (update icon tức thì khi toggle).
+- **G-LOW-1:** Refactor logic Refresher để hoàn thành dựa trên loading state của NgRx thay vì timeout 1s.
+
+*» Milestone Sprint 3 Output:* Toàn bộ User Stories đã đóng Release. App có khả năng xử lý dịch vụ thú y thay vì chỉ là App mua bán đồ ăn chăn nuôi thuần tuý. Sẵn sàng cho UAT (User Acceptance Testing) và Launch.
