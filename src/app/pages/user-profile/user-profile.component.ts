@@ -33,7 +33,12 @@ import {
   cameraOutline,
   diamond, fitnessOutline, calendarOutline
 } from 'ionicons/icons';
+import { take } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../services/auth.service';
+import { UserActions } from '../../store/user/user.actions';
+import { selectUserProfile } from '../../store/user/user.selectors';
 
 @Component({
   selector: 'app-user-profile',
@@ -60,9 +65,12 @@ import { AuthService } from '../../services/auth.service';
   ]
 })
 export class UserProfileComponent {
+  currentUser = toSignal(this.store.select(selectUserProfile));
+
   constructor(
-    public authService: AuthService,
-    private navCtrl: NavController
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private store: Store
   ) {
     addIcons({
       'diamond': diamond,
@@ -87,7 +95,15 @@ export class UserProfileComponent {
   }
 
   onLogout() {
-    this.authService.logout();
-    // ProfilePageComponent will automatically switch back to guest view via signal
+    this.authService.logout().pipe(take(1)).subscribe({
+      next: () => {
+        this.store.dispatch(UserActions.logout());
+        this.navCtrl.navigateRoot('/login');
+      },
+      error: () => {
+        this.store.dispatch(UserActions.logout());
+        this.navCtrl.navigateRoot('/login');
+      }
+    });
   }
 }

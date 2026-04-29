@@ -20,13 +20,18 @@ import {
   IonCheckbox,
   IonBackButton,
   IonButtons,
+  IonSpinner,
   NavController
 } from '@ionic/angular/standalone';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { RouterLink } from '@angular/router';
 import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOutline, eyeOutline, eyeOffOutline, logoGoogle, logoFacebook, logoTiktok, logoApple, paw } from 'ionicons/icons';
+import { UserActions, selectUserIsLoading } from '../../store';
+import { RegisterPayload } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -55,6 +60,7 @@ import { arrowBackOutline, mailOutline, lockClosedOutline, personOutline, callOu
     IonCheckbox,
     IonBackButton,
     IonButtons,
+    IonSpinner,
     RouterLink,
     AppHeaderComponent
   ]
@@ -65,6 +71,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   registerForm!: FormGroup;
   showPassword = false;
   showConfirmPassword = false;
+  isLoading$!: Observable<boolean>;
 
   constructor(
     private fb: FormBuilder,
@@ -90,29 +97,30 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   override ngOnInit() {
     super.ngOnInit();
     this.initForm();
+    this.isLoading$ = this.store.select(selectUserIsLoading);
   }
 
   ionViewDidEnter() {
-    setTimeout(() => {
-      this.registerTitle?.nativeElement?.focus();
-    }, 100);
+    setTimeout(() => this.registerTitle?.nativeElement?.focus(), 100);
   }
 
   initForm() {
-    this.registerForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10,11}$/)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]],
-      agreeTerms: [false, [Validators.requiredTrue]]
-    }, { validators: this.passwordMatchValidator });
+    this.registerForm = this.fb.group(
+      {
+        fullName: ['', [Validators.required, Validators.minLength(2)]],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required, Validators.pattern(/^0[0-9]{9,10}$/)]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', Validators.required],
+        agreeTerms: [false, Validators.requiredTrue],
+      },
+      { validators: this.passwordMatchValidator }
+    );
   }
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-
     if (password && confirmPassword && password.value !== confirmPassword.value) {
       confirmPassword.setErrors({ passwordMismatch: true });
       return { passwordMismatch: true };
@@ -120,58 +128,48 @@ export class RegisterComponent extends BaseComponent implements OnInit {
     return null;
   }
 
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
-
-  toggleConfirmPassword() {
-    this.showConfirmPassword = !this.showConfirmPassword;
-  }
+  togglePassword() { this.showPassword = !this.showPassword; }
+  toggleConfirmPassword() { this.showConfirmPassword = !this.showConfirmPassword; }
 
   onRegister() {
     if (this.registerForm.valid) {
-      console.log('Registration data:', this.registerForm.value);
-      // Implement registration API integration here
-      this.navCtrl.navigateForward('/verify-code', {
-        state: { email: this.registerForm.value.email }
-      });
+      const { fullName, email, phone, password, confirmPassword } = this.registerForm.value;
+      const payload: RegisterPayload = {
+        full_name: fullName,
+        email,
+        phone_number: phone,
+        password,
+        confirm_password: confirmPassword,
+        agree_terms: true,
+      };
+      this.store.dispatch(UserActions.register({ payload }));
     } else {
       this.markFormGroupTouched(this.registerForm);
     }
   }
 
   private markFormGroupTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
+    Object.values(formGroup.controls).forEach((control) => {
       control.markAsTouched();
-      if ((control as any).controls) {
-        this.markFormGroupTouched(control as FormGroup);
-      }
+      if ((control as any).controls) this.markFormGroupTouched(control as FormGroup);
     });
   }
 
-  goBack() {
-    this.navCtrl.back();
-  }
+  goBack() { this.navCtrl.back(); }
 
   onSocialLogin(provider: string) {
     console.log('Social login with:', provider);
   }
 
-  onSignIn() {
-    this.navCtrl.navigateBack('/login');
-  }
+  onSignIn() { this.navCtrl.navigateBack('/login'); }
 
   goToTerms(event: Event) {
-    if (event.target instanceof HTMLElement) {
-      event.target.blur();
-    }
+    (event.target as HTMLElement)?.blur();
     this.navCtrl.navigateForward('/terms-privacy');
   }
 
   goToPrivacy(event: Event) {
-    if (event.target instanceof HTMLElement) {
-      event.target.blur();
-    }
+    (event.target as HTMLElement)?.blur();
     this.navCtrl.navigateForward('/privacy-policy');
   }
 }

@@ -18,6 +18,11 @@ export abstract class BaseService {
     return this.http.post<T>(`${baseUrl}${endpoint}`, body);
   }
 
+  protected delete<T>(endpoint: string, body?: any): Observable<T> {
+    const baseUrl = this.configService.settings?.baseUrl || '';
+    return this.http.delete<T>(`${baseUrl}${endpoint}`, { body });
+  }
+
   private createParams(params?: any): HttpParams {
     let httpParams = new HttpParams();
     if (params) {

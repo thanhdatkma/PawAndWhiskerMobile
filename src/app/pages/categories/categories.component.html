@@ -1,13 +1,9 @@
 <!-- categories -->
 
 <ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
   <div class="categories-wrapper">
     <!-- Left Sidebar: Parent Categories -->
-    <div class="sidebar hide-scrollbar">
+    <aside class="sidebar hide-scrollbar">
       <div *ngFor="let cat of (categories$ | async); trackBy: trackByFn" 
         class="parent-item"
         [class.parent-item--active]="cat.id === (selectedParentId$ | async)" 
@@ -17,10 +13,14 @@
         </div>
         <ion-text class="parent-item__label">{{ cat.name }}</ion-text>
       </div>
-    </div>
+    </aside>
 
     <!-- Right Content: Child Categories -->
-    <div class="main-content hide-scrollbar">
+     <ion-content>
+      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+       <section class="main-content hide-scrollbar">
       <ng-container *ngIf="(categories$ | async) as categories">
         <div class="section-header">
           <ion-text color="dark">
@@ -60,6 +60,7 @@
           </ion-row>
         </ion-grid>
       </ng-container>
-    </div>
+    </section>
+     </ion-content>
   </div>
 </ion-content>

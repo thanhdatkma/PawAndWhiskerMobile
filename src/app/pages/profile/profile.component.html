@@ -1,22 +1,17 @@
-<ion-content class="welcome-content" scrollX="false" scrollY="!authService.isLoggedIn() ? false : true">
-  <ng-container *ngIf="!authService.isLoggedIn(); else profileDashboard">
+<ion-content class="welcome-content" [scrollY]="isLoggedIn()">
+
+  <!-- Not logged in -->
+  <ng-container *ngIf="!isLoggedIn()">
     <div class="welcome-container">
-      <!-- Full-Screen Background Image -->
       <div class="background-image">
         <ion-img src="./assets/images/login-bg.png" alt="Cute puppy and kitten"></ion-img>
       </div>
-
-      <!-- Gradient Overlay -->
       <div class="gradient-overlay"></div>
-
-      <!-- Content -->
       <div class="content-wrapper">
-        <!-- Top Section: Logo -->
         <div class="top-section">
           <ion-icon name="paw" class="logo-icon"></ion-icon>
           <h1 class="app-title">Paws &<br>Whiskers</h1>
         </div>
-
         <div class="bottom-section">
           <ion-button class="btn-primary" expand="block" mode="ios" routerLink="/login">
             Login
@@ -32,9 +27,17 @@
       </div>
     </div>
   </ng-container>
+
+  <!-- Logged in: loading -->
+  <ng-container *ngIf="isLoggedIn() && isLoadingProfile() && !userProfile()">
+    <div class="profile-loading">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  </ng-container>
+
+  <!-- Logged in: profile data ready -->
+  <ng-container *ngIf="isLoggedIn() && userProfile()">
+    <app-user-profile></app-user-profile>
+  </ng-container>
+
 </ion-content>
-
-
-<ng-template #profileDashboard>
-  <app-user-profile></app-user-profile>
-</ng-template>

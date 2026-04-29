@@ -39,7 +39,7 @@ export class ProductService extends BaseService {
 
 
   getSlideImages(): Observable<SlideModel[]> {
-    return this.get<SlideModel[]>(`api/products/slides`);
+    return this.get<SlideModel[]>(`/admin/banners`);
   }
 
   getPopupBanners(): Observable<PopupBannerModel> {

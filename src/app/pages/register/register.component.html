@@ -110,8 +110,15 @@
         </div>
 
         <div class="register-actions">
-          <ion-button expand="block" shape="round" type="submit" class="register-btn" [disabled]="registerForm.invalid">
-            Register
+          <ion-button
+            expand="block"
+            shape="round"
+            type="submit"
+            class="register-btn"
+            [disabled]="(isLoading$ | async) || registerForm.invalid"
+          >
+            <ion-spinner *ngIf="isLoading$ | async" name="crescent" slot="start" style="width:18px;height:18px"></ion-spinner>
+            {{ (isLoading$ | async) ? 'Registering...' : 'Register' }}
           </ion-button>
         </div>
       </form>

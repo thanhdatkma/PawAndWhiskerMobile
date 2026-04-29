@@ -22,8 +22,7 @@ import { BaseComponent } from '../../shared/components/base-component/base.compo
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoGoogle, logoApple, paw } from 'ionicons/icons';
 import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
-
-import { AuthService } from '../../services/auth.service';
+import { UserActions } from '../../store/user/user.actions';
 
 @Component({
   selector: 'app-login',
@@ -60,8 +59,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private navCtrl: NavController,
-    private authService: AuthService
+    private navCtrl: NavController
   ) {
     super();
     addIcons({
@@ -101,10 +99,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log('Login data:', this.loginForm.value);
-      // Mock login
-      this.authService.login();
-      this.navCtrl.navigateRoot('/profile');
+      const { email, password } = this.loginForm.value;
+      this.store.dispatch(UserActions.login({ email, password }));
     } else {
       this.markFormGroupTouched(this.loginForm);
     }
