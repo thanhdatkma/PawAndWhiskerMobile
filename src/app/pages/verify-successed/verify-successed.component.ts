@@ -9,7 +9,7 @@ import {
   IonButton,
   IonIcon,
   IonButtons,
-  IonImg
+  IonImg,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline, checkmarkOutline, arrowForwardOutline } from 'ionicons/icons';
@@ -31,16 +31,26 @@ import { BaseComponent } from '../../shared/components/base-component/base.compo
     IonButton,
     IonIcon,
     IonButtons,
-    IonImg
-  ]
+    IonImg,
+  ],
 })
 export class VerifySuccessedComponent extends BaseComponent {
   countdown = 5;
   private timerSubscription?: Subscription;
 
+  private resetToken: string = '';
+  private email: string = '';
+
   constructor(private router: Router) {
     super();
     addIcons({ closeOutline, checkmarkOutline, arrowForwardOutline });
+
+    // Read state immediately in constructor so getCurrentNavigation() is still valid
+    const nav = this.router.getCurrentNavigation();
+    if (nav?.extras.state) {
+      this.resetToken = nav.extras.state['reset_token'] ?? '';
+      this.email = nav.extras.state['email'] ?? '';
+    }
   }
 
   override ngOnInit() {
@@ -55,33 +65,35 @@ export class VerifySuccessedComponent extends BaseComponent {
     this.timerSubscription = interval(1000)
       .pipe(take(5))
       .subscribe({
-        next: () => {
-          this.countdown--;
-        },
-        complete: () => {
-          this.goToHome();
-        }
+        next: () => { this.countdown--; },
+        complete: () => { this.proceedToReset(); },
       });
   }
 
   private stopCountdown() {
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
-    }
+    this.timerSubscription?.unsubscribe();
   }
 
+  private proceedToReset() {
+    this.router.navigate(['/reset-password'], {
+      state: { reset_token: this.resetToken, email: this.email },
+    });
+  }
+
+  goToReset() {
+    this.stopCountdown();
+    this.proceedToReset();
+  }
+
+  /** Keep for backwards compat (template may reference it) */
   goToHome() {
     this.stopCountdown();
     this.router.navigate(['/home']);
   }
 
-  setupProfile() {
-    this.stopCountdown();
-    this.router.navigate(['/user-profile']);
-  }
-
   close() {
     this.stopCountdown();
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/login']);
   }
 }
+

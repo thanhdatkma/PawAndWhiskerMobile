@@ -4,7 +4,7 @@ import { from, throwError, timer, Subscription } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { LoadingService } from '../services/loading.service';
 
-const ERROR_HIDE_TIMEOUT_MS = 10_000;
+const ERROR_HIDE_TIMEOUT_MS = 10_00;
 
 let pendingRequests = 0;
 let errorTimeoutSub: Subscription | null = null;

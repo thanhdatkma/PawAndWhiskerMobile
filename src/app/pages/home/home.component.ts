@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
-import { IonContent, IonRefresher, IonRefresherContent, IonModal, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
 import { BannerSliderComponent } from '../../shared/components/banner-slider/banner-slider.component';
 import { QuickCategoryGridComponent } from '../../shared/components/quick-category-grid/quick-category-grid.component';
 import { ProductBriefModel } from '../../models/product-brief.model';
@@ -10,6 +10,7 @@ import { PromoBannerComponent } from '../../shared/components/promo-banner/promo
 import { NewsFeedComponent } from '../../shared/components/news-feed/news-feed.component';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { selectNewArrivals, selectNewsFeed, ProductActions, HomeActions, CategoryActions, selectAllCategories, selectProductSlider, selectDogFood, selectCatFood, selectDealOfDay, selectPopupBanner } from '../../store';
+import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -27,9 +28,10 @@ import { selectNewArrivals, selectNewsFeed, ProductActions, HomeActions, Categor
 })
 export class HomePageComponent extends BaseComponent implements OnInit {
 
+  private productService = inject(ProductService);
+
   activeId = 'dog';
-  
-  // Observables from Store
+
   banners$ = this.store.select(selectProductSlider);
   categories$ = this.store.select(selectAllCategories);
   newArrivals$ = this.store.select(selectNewArrivals);
@@ -48,22 +50,21 @@ export class HomePageComponent extends BaseComponent implements OnInit {
   override ngOnInit() {
     this.loadData();
     this.popupBanner$.subscribe(banner => {
-      if (banner && !this.isPopupOpen) {
+      if (banner && !this.productService.isPopupDismissed()) {
         this.isPopupOpen = true;
       }
     });
   }
 
   loadData() {
+    this.productService.resetPopupSession();
     this.store.dispatch(ProductActions.loadSliderImages());
-    this.store.dispatch(CategoryActions.loadCategories({isQuick: true}));
+    this.store.dispatch(CategoryActions.loadCategories({ isQuick: true }));
     this.store.dispatch(ProductActions.loadProductsNewArrivals({ categoryId: this.activeId }));
     this.store.dispatch(ProductActions.loadProductsDealOfDay({ categoryId: this.activeId }));
     this.store.dispatch(ProductActions.loadProductsDogFood());
     this.store.dispatch(ProductActions.loadProductsCatFood());
-    // this.store.dispatch(ProductActions.loadProductsComment());
     this.store.dispatch(HomeActions.loadNewsFeed());
-
     this.store.dispatch(ProductActions.loadPopupBanner());
   }
 
@@ -74,7 +75,6 @@ export class HomePageComponent extends BaseComponent implements OnInit {
     }, 1000);
   }
 
-  // --- Child event handlers ---
   onCategorySelect(category: any): void {
     this.activeId = category.id;
     this.store.dispatch(ProductActions.loadProductsNewArrivals({ categoryId: this.activeId }));
@@ -86,7 +86,6 @@ export class HomePageComponent extends BaseComponent implements OnInit {
   }
 
   onProductClick(product: ProductBriefModel): void {
-    console.log('[Home] Product clicked:', product.id);
     this.navigate('/product-details/' + product.id);
   }
 
@@ -102,8 +101,13 @@ export class HomePageComponent extends BaseComponent implements OnInit {
     console.log('[Home] Article clicked:', article.id);
   }
 
-  onPopupAction(link: string): void {
+  onDismissPopup(): void {
+    this.productService.dismissPopup();
     this.isPopupOpen = false;
+  }
+
+  onPopupAction(link: string): void {
+    this.onDismissPopup();
     this.navigate(link);
   }
 }

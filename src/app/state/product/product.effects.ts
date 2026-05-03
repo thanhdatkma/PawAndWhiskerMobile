@@ -9,7 +9,6 @@ import { ToastController } from '@ionic/angular/standalone';
 import mockData from '../../../../test/mock-data.json';
 import { ProductDetailModel } from 'src/app/models/product-detail.model';
 import { ProductBriefModel } from 'src/app/models/product-brief.model';
-import { SlideModel } from 'src/app/models/slides.model';
 
 @Injectable()
 export class ProductEffects {
@@ -51,17 +50,12 @@ export class ProductEffects {
   loadPopupBanners$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadPopupBanner),
-            switchMap(() => {
-        return of(ProductActions.loadSliderImagesSuccess({
-          slider: mockData.banners as SlideModel[]
-        }))
-      })
-      // switchMap(() =>
-      //   this.productService.getPopupBanners().pipe(
-      //     map((banner) => ProductActions.loadPopupBannerSuccess({ banner })),
-      //     catchError((error) => of(ProductActions.loadPopupBannerFailure({ error: error.message })))
-      //   )
-      // )
+      switchMap(() =>
+        this.productService.getPopupBanners().pipe(
+          map((banners) => ProductActions.loadPopupBannerSuccess({ banners })),
+          catchError((error) => of(ProductActions.loadPopupBannerFailure({ error: error.message })))
+        )
+      )
     )
   );
 

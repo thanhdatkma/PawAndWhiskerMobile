@@ -4,14 +4,24 @@ import { map } from 'rxjs/operators';
 import { BaseService } from './base.service';
 import { UserProfile } from '../models/user-profile.model';
 
-interface MedusaCustomerResponse {
-  customer: {
-    id: string;
+export interface MobileProfileResponse {
+  user: {
+    id: number;
     email: string;
+    full_name: string;
     first_name: string;
     last_name: string;
-    phone?: string;
+    avatar_url?: string;
+    phone_number?: string;
+    membership_tier?: string;
   };
+}
+
+export interface UpdateProfilePayload {
+  first_name?: string;
+  last_name?: string;
+  phone_number?: string;
+  avatar_url?: string;
 }
 
 @Injectable({
@@ -19,29 +29,33 @@ interface MedusaCustomerResponse {
 })
 export class UserService extends BaseService {
   getUserProfile(): Observable<UserProfile> {
-    return this.get<MedusaCustomerResponse>('store/customers/me').pipe(
-      map(({ customer }) => ({
-        id: customer.id,
-        name: [customer.first_name, customer.last_name].filter(Boolean).join(' '),
-        email: customer.email,
-        avatar: '',
-        membership: 'standard',
-      }))
+    return this.get<MobileProfileResponse>('mobiconnector/v1/auth/profile').pipe(
+      map(({ user }) => this.mapToUserProfile(user))
     );
   }
 
-  updateProfile(changes: Partial<UserProfile>): Observable<UserProfile> {
-    return this.post<MedusaCustomerResponse>('store/customers/me', {
-      first_name: changes.name?.split(' ')[0] ?? '',
-      last_name: changes.name?.split(' ').slice(1).join(' ') ?? '',
-    }).pipe(
-      map(({ customer }) => ({
-        id: customer.id,
-        name: [customer.first_name, customer.last_name].filter(Boolean).join(' '),
-        email: customer.email,
-        avatar: changes.avatar ?? '',
-        membership: changes.membership ?? 'standard',
-      }))
+  updateProfile(payload: UpdateProfilePayload): Observable<UserProfile> {
+    const baseUrl = this.configService.settings?.baseUrl || '';
+    return this.http.put<MobileProfileResponse>(`${baseUrl}mobiconnector/v1/auth/profile`, payload).pipe(
+      map(({ user }) => this.mapToUserProfile(user))
     );
+  }
+
+  uploadAvatar(file: File): Observable<{ avatar_url: string }> {
+    const baseUrl = this.configService.settings?.baseUrl || '';
+    const formData = new FormData();
+    formData.append('avatar', file);
+    return this.http.post<{ avatar_url: string }>(`${baseUrl}mobiconnector/v1/auth/uploadAvatar`, formData);
+  }
+
+  private mapToUserProfile(user: MobileProfileResponse['user']): UserProfile {
+    return {
+      id: String(user.id),
+      name: user.full_name || [user.first_name, user.last_name].filter(Boolean).join(' '),
+      email: user.email,
+      avatar: user.avatar_url ?? '',
+      membership: user.membership_tier ?? 'standard',
+      phone: user.phone_number ?? '',
+    };
   }
 }

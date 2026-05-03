@@ -3,19 +3,15 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <ion-modal [isOpen]="isPopupOpen" (didDismiss)="isPopupOpen = false">
-    <ng-template>
-      <ion-content class="ion-padding" style="--background: transparent;">
-        <div class="popup-content" *ngIf="popupBanner$ | async as banner">
-          <img [src]="banner.image" alt="Popup" />
-          <h2>{{ banner.title }}</h2>
-          <p>{{ banner.description }}</p>
-          <ion-button expand="block" (click)="onPopupAction(banner.link)">{{ banner.actionText || 'Shop Now' }}</ion-button>
-          <ion-button fill="clear" color="dark" expand="block" (click)="isPopupOpen = false">Close</ion-button>
-        </div>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+  <div class="popup-overlay" *ngIf="isPopupOpen && (popupBanner$ | async) as banner">
+    <div class="popup-card">
+      <button class="popup-close" (click)="onDismissPopup()">&#10005;</button>
+      <img [src]="banner.image_url" [alt]="banner.title" class="popup-image" />
+      <button class="popup-cta" (click)="onPopupAction(banner.link_url)">
+        {{ banner.button_text || 'SHOP NOW' }} &#8594;
+      </button>
+    </div>
+  </div>
 
   <banner-slider [banners]="(banners$ | async) || []"></banner-slider>
   

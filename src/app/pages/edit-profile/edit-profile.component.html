@@ -1,3 +1,152 @@
-<p>
-  edit-profile works!
-</p>
+<app-header 
+  [title]="'Update Profile'" 
+  [showBackButton]="true" 
+  [showCart]="false"
+  [showSearch]="false">
+</app-header>
+
+
+<ion-content class="edit-profile-content" [fullscreen]="true">
+  <ion-grid class="edit-grid" *ngIf="form">
+    <ion-row>
+      <ion-col>
+
+        <!-- Avatar Section -->
+        <div class="avatar-section">
+          <div class="avatar-container">
+            <div class="avatar-inner">
+              <ion-img [src]="avatarPreview()" class="avatar-img" alt="Profile photo"></ion-img>
+            </div>
+            <label class="camera-btn" for="avatar-input" aria-label="Change photo">
+              <ion-icon name="camera-outline"></ion-icon>
+              <input
+                id="avatar-input"
+                type="file"
+                accept="image/*"
+                class="file-input"
+                (change)="onChangePhoto($event)"
+              />
+            </label>
+          </div>
+          <ion-text class="change-photo-label">CHANGE PHOTO</ion-text>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+          <div class="section-header">
+            <div class="section-accent personal-accent"></div>
+            <ion-text class="section-title">Personal Information</ion-text>
+          </div>
+
+          <form [formGroup]="form">
+            <div class="field-group">
+              <ion-text class="field-label">Full Name</ion-text>
+              <ion-item class="field-item" lines="none">
+                <ion-input
+                  formControlName="full_name"
+                  placeholder="Enter your full name"
+                  class="field-input"
+                  type="text"
+                ></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="field-group">
+              <ion-text class="field-label">Email Address</ion-text>
+              <ion-item class="field-item field-item--disabled" lines="none">
+                <ion-input
+                  formControlName="email"
+                  class="field-input"
+                  type="email"
+                  [readonly]="true"
+                ></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="field-group">
+              <ion-text class="field-label">Phone Number</ion-text>
+              <ion-item class="field-item" lines="none">
+                <ion-input
+                  formControlName="phone_number"
+                  placeholder="+1 (555) 000-0000"
+                  class="field-input"
+                  type="tel"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pet Information (static) -->
+        <div class="form-section">
+          <div class="section-header">
+            <div class="section-accent pet-accent"></div>
+            <ion-text class="section-title">Pet Information</ion-text>
+          </div>
+
+          <ion-card class="pet-card">
+            <ion-card-content class="pet-card-content">
+              <div class="pet-header">
+                <div class="pet-icon-wrapper">
+                  <ion-icon name="paw-outline" class="pet-icon"></ion-icon>
+                </div>
+                <div class="pet-header-info">
+                  <ion-text class="pet-profile-name">{{ staticPet.name }}'s Profile</ion-text>
+                  <ion-text class="pet-primary-label">Primary Pet</ion-text>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <ion-text class="field-label">Pet's Name</ion-text>
+                <ion-item class="field-item field-item--disabled" lines="none">
+                  <ion-input
+                    [value]="staticPet.name"
+                    class="field-input"
+                    [readonly]="true"
+                  ></ion-input>
+                </ion-item>
+              </div>
+
+              <div class="field-group">
+                <ion-text class="field-label">Breed</ion-text>
+                <ion-item class="field-item field-item--disabled" lines="none">
+                  <ion-input
+                    [value]="staticPet.breed"
+                    class="field-input"
+                    [readonly]="true"
+                  ></ion-input>
+                </ion-item>
+              </div>
+
+              <div class="field-group">
+                <ion-text class="field-label">Pet's Birthday</ion-text>
+                <ion-item class="field-item field-item--disabled" lines="none">
+                  <ion-input
+                    [value]="staticPet.birthday"
+                    class="field-input"
+                    [readonly]="true"
+                  ></ion-input>
+                  <ion-icon name="calendar-outline" slot="end" class="calendar-icon"></ion-icon>
+                </ion-item>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <!-- Confirm Button -->
+        <div class="confirm-section">
+          <ion-button
+            expand="block"
+            class="confirm-btn"
+            (click)="onSave()"
+            [disabled]="form.invalid || (isLoading$ | async)"
+          >
+            Confirm All Changes
+          </ion-button>
+          <ion-text class="last-updated">Last updated: 2 days ago</ion-text>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

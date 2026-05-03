@@ -18,6 +18,8 @@ import {
   IonLabel,
   NavController
 } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { MediaUrlPipe } from '../../pipes/media-url.pipe';
 import { addIcons } from 'ionicons';
 import {
   arrowBackOutline,
@@ -33,10 +35,8 @@ import {
   cameraOutline,
   diamond, fitnessOutline, calendarOutline
 } from 'ionicons/icons';
-import { take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { AuthService } from '../../services/auth.service';
 import { UserActions } from '../../store/user/user.actions';
 import { selectUserProfile } from '../../store/user/user.selectors';
 
@@ -61,15 +61,16 @@ import { selectUserProfile } from '../../store/user/user.selectors';
     IonCard,
     IonList,
     IonItem,
-    IonLabel
+    IonLabel,
+    MediaUrlPipe,
   ]
 })
 export class UserProfileComponent {
   currentUser = toSignal(this.store.select(selectUserProfile));
 
   constructor(
-    private authService: AuthService,
     private navCtrl: NavController,
+    private router: Router,
     private store: Store
   ) {
     addIcons({
@@ -94,16 +95,12 @@ export class UserProfileComponent {
     this.navCtrl.navigateRoot('/home');
   }
 
+  onEditProfile() {
+    this.router.navigate(['/edit-profile']);
+  }
+
   onLogout() {
-    this.authService.logout().pipe(take(1)).subscribe({
-      next: () => {
-        this.store.dispatch(UserActions.logout());
-        this.navCtrl.navigateRoot('/login');
-      },
-      error: () => {
-        this.store.dispatch(UserActions.logout());
-        this.navCtrl.navigateRoot('/login');
-      }
-    });
+    this.store.dispatch(UserActions.logout());
+    this.navCtrl.navigateRoot('/login');
   }
 }

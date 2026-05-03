@@ -19,26 +19,22 @@
 
       <!-- Typography -->
       <div class="text-section">
-        <h1>Verification Successful!</h1>
+        <h1>OTP Verified!</h1>
         <p>
-          Your account has been verified. Welcome to the
-          <span class="brand-name">Paws & Whiskers</span> family!
+          Your identity has been confirmed. You can now set a
+          <span class="brand-name">new password</span> for your account.
         </p>
         <p class="auto-redirect">
-          Redirecting to home in <strong>{{ countdown }}s</strong>...
+          Redirecting in <strong>{{ countdown }}s</strong>...
         </p>
       </div>
 
       <!-- Actions -->
       <div class="action-buttons">
-        <ion-button expand="block" mode="ios" class="primary-btn" (click)="goToHome()">
-          Continue to Home
+        <ion-button expand="block" mode="ios" class="primary-btn" (click)="goToReset()">
+          Set New Password
           <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
         </ion-button>
-
-        <!-- <ion-button fill="clear" mode="ios" class="secondary-btn" (click)="setupProfile()">
-          Set up pet profile later
-        </ion-button> -->
       </div>
     </div>
 

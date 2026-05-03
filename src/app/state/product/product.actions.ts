@@ -43,7 +43,7 @@ export const ProductActions = createActionGroup({
     'Load Product Detail Failure': props<{ error: string }>(),
 
     'Load Popup Banner': emptyProps(),
-    'Load Popup Banner Success': props<{ banner: PopupBannerModel }>(),
+    'Load Popup Banner Success': props<{ banners: PopupBannerModel[] }>(),
     'Load Popup Banner Failure': props<{ error: string }>(),
 
   }

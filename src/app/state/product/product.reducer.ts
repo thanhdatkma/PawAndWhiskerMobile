@@ -80,9 +80,9 @@ export const productReducer = createReducer(
     ...state,
     popupBanner: { ...state.popupBanner, loading: true, error: null }
   })),
-  on(ProductActions.loadPopupBannerSuccess, (state, { banner }) => ({
+  on(ProductActions.loadPopupBannerSuccess, (state, { banners }) => ({
     ...state,
-    popupBanner: { data: banner, loading: false, error: null }
+    popupBanner: { data: banners, loading: false, error: null }
   })),
   on(ProductActions.loadPopupBannerFailure, (state, { error }) => ({
     ...state,

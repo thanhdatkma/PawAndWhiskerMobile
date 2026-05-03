@@ -44,7 +44,8 @@ export const selectProductDetailLoading = createSelector(selectProductDetailStat
 
 // Popup Banner
 export const selectPopupBannerState = createSelector(selectProductState, (state) => state.popupBanner);
-export const selectPopupBanner = createSelector(selectPopupBannerState, (state) => state.data);
+export const selectPopupBanners = createSelector(selectPopupBannerState, (state) => state.data ?? []);
+export const selectPopupBanner = createSelector(selectPopupBanners, (banners) => banners[0] ?? null);
 export const selectPopupBannerLoading = createSelector(selectPopupBannerState, (state) => state.loading);
 
 

@@ -45,4 +45,12 @@ export const routes: Routes = [
     path: 'category-detail/:id',
     loadComponent: () => import('./pages/product-of-category/product-of-category.component').then((m) => m.ProductOfCategoryComponent),
   },
+  {
+    path: 'edit-profile',
+    loadComponent: () => import('./pages/edit-profile/edit-profile.component').then((m) => m.EditProfileComponent),
+  },
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./pages/reset-password/reset-password.component').then((m) => m.ResetPasswordComponent),
+  },
 ];

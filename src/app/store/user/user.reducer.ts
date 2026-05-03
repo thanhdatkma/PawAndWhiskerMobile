@@ -13,6 +13,15 @@ export const userReducer = createReducer<UserState>(
   on(UserActions.updateProfileSuccess, (state, { data }) => ({ ...state, data, loading: false, error: null })),
   on(UserActions.updateProfileFailure, (state, { error }) => ({ ...state, loading: false, error })),
 
+  on(UserActions.updateAvatar, (state) => ({ ...state, loading: true, error: null })),
+  on(UserActions.updateAvatarSuccess, (state, { avatar_url }) => ({
+    ...state,
+    data: state.data ? { ...state.data, avatar: avatar_url } : state.data,
+    loading: false,
+    error: null,
+  })),
+  on(UserActions.updateAvatarFailure, (state, { error }) => ({ ...state, loading: false, error })),
+
   on(UserActions.register, (state) => ({ ...state, loading: true, error: null })),
   on(UserActions.registerSuccess, (state) => ({
     ...state,

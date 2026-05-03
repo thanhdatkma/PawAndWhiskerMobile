@@ -11,15 +11,15 @@
             <div class="avatar-wrapper">
               <div class="avatar-container">
                 <div class="avatar-inner">
-                  <ion-img [src]="user.avatar" class="user-avatar" alt="User avatar"></ion-img>
+                  <ion-img [src]="user.avatar | mediaUrl" class="user-avatar" alt="User avatar"></ion-img>
                 </div>
                 <!-- Premium Badge top-left -->
                 <div class="premium-badge" *ngIf="user.membership === 'Premium Member'">
                   <ion-icon name="diamond" class="premium-icon"></ion-icon>
                 </div>
-                <ion-button fill="solid" class="camera-btn" aria-label="Edit profile">
+                <!-- <ion-button fill="solid" class="camera-btn" aria-label="Edit profile">
                   <ion-icon name="camera-outline"></ion-icon>
-                </ion-button>
+                </ion-button> -->
               </div>
             </div>
 
@@ -28,7 +28,7 @@
             </ion-text>
 
             <div class="user-actions">
-              <ion-button fill="outline" shape="round" class="edit-profile-btn" mode="ios">
+              <ion-button fill="outline" shape="round" class="edit-profile-btn" mode="ios" (click)="onEditProfile()">
                 Edit Profile
               </ion-button>
             </div>

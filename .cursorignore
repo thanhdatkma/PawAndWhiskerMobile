@@ -1,0 +1,71 @@
+# ==========================================
+# 1. CORE & SYSTEM
+# ==========================================
+.git/
+.DS_Store
+Thumbs.db
+.cursor/
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+*.log
+
+# ==========================================
+# 2. BUILD & DEPENDENCIES
+# ==========================================
+**/node_modules/
+**/.angular/
+**/dist/
+**/www/
+**/out-tsc/
+**/coverage/
+**/.npm/
+**/.eslintcache
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ==========================================
+# 3. CAPACITOR & NATIVE
+# ==========================================
+ios/
+android/
+
+# ==========================================
+# 4. MEDIA & ASSETS (Tiết kiệm token)
+# ==========================================
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.pdf
+*.zip
+*.rar
+*.mp4
+*.wav
+*.mp3
+**/assets/fonts/
+**/assets/images/
+src/assets/i18n/*.json
+
+# ==========================================
+# 5. BACKEND (.NET Core / C#)
+# ==========================================
+**/bin/
+**/obj/
+**/[Dd]ebug/
+**/[Rr]elease/
+*.user
+*.suo
+.vs/
+
+# ==========================================
+# 6. CONFIG & MISC
+# ==========================================
+.editorconfig
+.antigravityignore
+scratch/

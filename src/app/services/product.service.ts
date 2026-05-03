@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ProductBriefModel } from '../models/product-brief.model';
 import { ProductDetailModel } from '../models/product-detail.model';
 import { BaseService } from './base.service';
@@ -10,6 +11,20 @@ import { PopupBannerModel } from '../models/popup-banner.model';
   providedIn: 'root'
 })
 export class ProductService extends BaseService {
+
+  private _popupDismissed = false;
+
+  isPopupDismissed(): boolean {
+    return this._popupDismissed;
+  }
+
+  dismissPopup(): void {
+    this._popupDismissed = true;
+  }
+
+  resetPopupSession(): void {
+    this._popupDismissed = false;
+  }
 
   getProductDetail(id: string): Observable<ProductDetailModel> {
     return this.get<ProductDetailModel>(`api/products/${id}`);
@@ -37,13 +52,14 @@ export class ProductService extends BaseService {
     return this.get<ProductBriefModel[]>(`api/products/cat-food`);
   }
 
-
   getSlideImages(): Observable<SlideModel[]> {
-    return this.get<SlideModel[]>(`/admin/banners`);
+    return this.get<{ banners: SlideModel[] }>(`store/banners`, { type: 'slider' })
+      .pipe(map(res => res.banners ?? []));
   }
 
-  getPopupBanners(): Observable<PopupBannerModel> {
-    return this.get<PopupBannerModel>(`api/products/popup-banners`);
+  getPopupBanners(): Observable<PopupBannerModel[]> {
+    return this.get<{ banners: PopupBannerModel[] }>(`store/banners`, { type: 'popup' })
+      .pipe(map(res => res.banners ?? []));
   }
 
 }

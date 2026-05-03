@@ -11,6 +11,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const storageService = inject(StorageService);
   const configService = inject(ConfigService);
   const baseUrl = configService.settings?.baseUrl;
+  const publishableApiKey = configService.settings?.publishableApiKey;
+  const consumerApiKey = configService.settings?.consumerApiKey;
 
   // If the request is to a different domain (like assets/settings), skip adding the token
   if (req.url.includes('assets/settings/') || (baseUrl && !req.url.startsWith(baseUrl) && !req.url.startsWith('/'))) {
@@ -20,14 +22,26 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return from(storageService.get<string>('auth_token')).pipe(
     switchMap((token) => {
       const headers: Record<string, string> = {};
-
-      const publishableApiKey = configService.settings?.publishableApiKey;
+      const isMobiConnectorRequest = req.url.includes('/mobiconnector/v1/');
+      // This flag to using for Medusa login
+      // const publishableApiKey = configService.settings?.publishableApiKey;
+      // if (publishableApiKey) {
+      //   headers['x-publishable-api-key'] = publishableApiKey;
+      // }
       if (publishableApiKey) {
         headers['x-publishable-api-key'] = publishableApiKey;
       }
 
+      if (consumerApiKey) {
+        headers['x-consumer-api-key'] = consumerApiKey;
+      }
+
       if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+        if (isMobiConnectorRequest) {
+          headers['X-Mobile-Token'] = token;
+        } else {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
       }
 
       const authReq = req.clone({ setHeaders: headers });

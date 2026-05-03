@@ -19,6 +19,8 @@ export interface AppSettings {
   disableScrollFadeFilterBar: boolean;
   baseUrl: string;
   publishableApiKey: string;
+  consumerApiKey: string;
+  secretApiKey: string;
 }
 
 
@@ -52,6 +54,8 @@ export class ConfigService {
         environment: '',
         baseUrl: '',
         publishableApiKey: '',
+        consumerApiKey: '',
+        secretApiKey: '',
       };
 
       this.settingsSubject.next(fallback);

@@ -1,6 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { UserProfile } from '../../models/user-profile.model';
 import { RegisterPayload } from '../../services/auth.service';
+import { UpdateProfilePayload } from '../../services/user.service';
 
 export const UserActions = createActionGroup({
   source: 'User',
@@ -11,9 +12,14 @@ export const UserActions = createActionGroup({
     'Load Profile Failure': props<{ error: string }>(),
 
     // Update Profile
-    'Update Profile': props<{ changes: Partial<UserProfile> }>(),
+    'Update Profile': props<{ payload: UpdateProfilePayload }>(),
     'Update Profile Success': props<{ data: UserProfile }>(),
     'Update Profile Failure': props<{ error: string }>(),
+
+    // Update Avatar
+    'Update Avatar': props<{ file: File }>(),
+    'Update Avatar Success': props<{ avatar_url: string }>(),
+    'Update Avatar Failure': props<{ error: string }>(),
 
     // Register
     'Register': props<{ payload: RegisterPayload }>(),

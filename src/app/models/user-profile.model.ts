@@ -4,6 +4,7 @@ export interface UserProfile {
   email: string;
   avatar: string;
   membership: string;
+  phone?: string;
   pet?: Pet;
 }
 

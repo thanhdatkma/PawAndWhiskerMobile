@@ -83,7 +83,7 @@ export interface ProductState {
   newComments: ApiState<ProductBriefModel[]>;
   slider: ApiState<SlideModel[]>;
   detail: ApiState<ProductDetailModel>;
-  popupBanner: ApiState<PopupBannerModel>;
+  popupBanner: ApiState<PopupBannerModel[]>;
   dogFood: ApiState<ProductBriefModel[]>;
   catFood: ApiState<ProductBriefModel[]>;
 }
@@ -94,7 +94,7 @@ export const initialProductState: ProductState = {
   newComments: createInitialApiState<ProductBriefModel[]>([]),
   slider: createInitialApiState<SlideModel[]>([]),
   detail: createInitialApiState<ProductDetailModel>(),
-  popupBanner: createInitialApiState<PopupBannerModel>(),
+  popupBanner: createInitialApiState<PopupBannerModel[]>([]),
   dogFood: createInitialApiState<ProductBriefModel[]>([]),
   catFood: createInitialApiState<ProductBriefModel[]>([]),
 };

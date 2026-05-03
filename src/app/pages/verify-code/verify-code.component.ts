@@ -15,8 +15,10 @@ import {
   IonRow,
   IonCol,
   IonLabel,
+  IonSpinner,
   NavController,
-  IonInputOtp
+  IonInputOtp,
+  ToastController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { arrowBackOutline, refreshOutline, checkmarkCircleOutline, scaleOutline, mailOutline } from 'ionicons/icons';
@@ -24,6 +26,7 @@ import { AppHeaderComponent } from '../../shared/components/app-header/app-heade
 import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-verify-code',
@@ -46,9 +49,10 @@ import { take } from 'rxjs/operators';
     IonRow,
     IonCol,
     IonLabel,
+    IonSpinner,
     IonInputOtp,
-    AppHeaderComponent
-  ]
+    AppHeaderComponent,
+  ],
 })
 export class VerifyCodeComponent implements OnInit, OnDestroy {
   @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
@@ -56,26 +60,34 @@ export class VerifyCodeComponent implements OnInit, OnDestroy {
   otp: string[] = ['', '', '', '', '', ''];
   countdown = 60;
   timerSubscription?: Subscription;
-  email: string = 'n**********g@gmail.com'; // Default or from navigation state
+  isVerifying = false;
+  isResending = false;
+
+  /** Raw email forwarded from forgot-password page */
+  private rawEmail: string = '';
+  /** Masked display version */
+  email: string = '';
 
   constructor(
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private toastCtrl: ToastController
   ) {
     addIcons({
       'arrow-back-outline': arrowBackOutline,
       'refresh-outline': refreshOutline,
       'checkmark-circle-outline': checkmarkCircleOutline,
       'scale-outline': scaleOutline,
-      'mail-outline': mailOutline
+      'mail-outline': mailOutline,
     });
   }
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
-      const rawEmail = navigation.extras.state['email'];
-      this.email = this.maskEmail(rawEmail);
+      this.rawEmail = navigation.extras.state['email'] ?? '';
+      this.email = this.maskEmail(this.rawEmail);
     }
     this.startTimer();
   }
@@ -84,10 +96,8 @@ export class VerifyCodeComponent implements OnInit, OnDestroy {
     if (!email || !email.includes('@')) return email;
     const [local, domain] = email.split('@');
     if (local.length <= 2) return email;
-    const firstChar = local.charAt(0);
-    const lastChar = local.charAt(local.length - 1);
     const maskedPart = '*'.repeat(local.length - 2);
-    return `${firstChar}${maskedPart}${lastChar}@${domain}`;
+    return `${local.charAt(0)}${maskedPart}${local.charAt(local.length - 1)}@${domain}`;
   }
 
   ngOnDestroy() {
@@ -100,43 +110,27 @@ export class VerifyCodeComponent implements OnInit, OnDestroy {
     this.timerSubscription = interval(1000)
       .pipe(take(60))
       .subscribe({
-        next: () => {
-          this.countdown--;
-        },
-        complete: () => {
-          this.countdown = 0;
-        }
+        next: () => { this.countdown--; },
+        complete: () => { this.countdown = 0; },
       });
   }
 
   stopTimer() {
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
-    }
+    this.timerSubscription?.unsubscribe();
   }
 
   onOtpInput(event: any, index: number) {
     const input = event.target;
-    let value = input.value;
-
-    // Filter to only numbers and take the last digit
-    value = value.replace(/[^0-9]/g, '').slice(-1);
-
+    const value = input.value.replace(/[^0-9]/g, '').slice(-1);
     this.otp[index] = value;
     input.value = value;
 
     if (value && index < 5) {
-      // Use requestAnimationFrame to defer focus until after the current event loop
-      // This prevents the next input from capturing the same keystroke
       requestAnimationFrame(() => {
-        const inputs = this.otpInputs.toArray();
-        inputs[index + 1].nativeElement.focus();
+        this.otpInputs.toArray()[index + 1].nativeElement.focus();
       });
     } else if (value && index === 5) {
-      // Auto-verify if the last digit is entered
-      requestAnimationFrame(() => {
-        this.onVerify();
-      });
+      requestAnimationFrame(() => { this.onVerify(); });
     }
   }
 
@@ -145,38 +139,77 @@ export class VerifyCodeComponent implements OnInit, OnDestroy {
   }
 
   onKeyDown(event: KeyboardEvent, index: number) {
-    if (event.key === 'Backspace') {
-      if (!this.otp[index] && index > 0) {
-        requestAnimationFrame(() => {
-          const inputs = this.otpInputs.toArray();
-          inputs[index - 1].nativeElement.focus();
-        });
-      }
+    if (event.key === 'Backspace' && !this.otp[index] && index > 0) {
+      requestAnimationFrame(() => {
+        this.otpInputs.toArray()[index - 1].nativeElement.focus();
+      });
     }
   }
 
   get isOtpComplete(): boolean {
-    return this.otp.every(digit => digit !== '');
+    return this.otp.every((digit) => digit !== '');
   }
 
-  onResend() {
-    if (this.countdown === 0) {
-      this.startTimer();
-      // Logic to resend OTP via API
-      console.log('Resending OTP...');
-    }
+  async onResend() {
+    if (this.countdown > 0 || this.isResending || !this.rawEmail) return;
+
+    this.isResending = true;
+    this.authService.forgotPassword(this.rawEmail).subscribe({
+      next: async () => {
+        this.isResending = false;
+        this.otp = ['', '', '', '', '', ''];
+        this.startTimer();
+        const toast = await this.toastCtrl.create({
+          message: 'A new OTP has been sent to your email.',
+          duration: 2500,
+          color: 'success',
+          position: 'bottom',
+        });
+        await toast.present();
+      },
+      error: async (err) => {
+        this.isResending = false;
+        const message = AuthService.extractMessage(err, 'Failed to resend OTP.');
+        const toast = await this.toastCtrl.create({
+          message,
+          duration: 3000,
+          color: 'danger',
+          position: 'bottom',
+        });
+        await toast.present();
+      },
+    });
   }
 
   onVerify() {
-    if (this.isOtpComplete) {
-      const code = this.otp.join('');
-      console.log('Verifying code:', code);
-      // Logic to verify OTP via API
-      this.navCtrl.navigateRoot('/verify-successed');
-    }
+    if (!this.isOtpComplete || this.isVerifying) return;
+
+    const code = this.otp.join('');
+    this.isVerifying = true;
+
+    this.authService.verifyOtp(this.rawEmail, code).subscribe({
+      next: (res) => {
+        this.isVerifying = false;
+        this.navCtrl.navigateRoot('/verify-successed', {
+          state: { reset_token: res.reset_token, email: this.rawEmail },
+        });
+      },
+      error: async (err) => {
+        this.isVerifying = false;
+        const message = AuthService.extractMessage(err, 'Invalid or expired OTP.');
+        const toast = await this.toastCtrl.create({
+          message,
+          duration: 3000,
+          color: 'danger',
+          position: 'bottom',
+        });
+        await toast.present();
+      },
+    });
   }
 
   goBack() {
     this.navCtrl.back();
   }
 }
+

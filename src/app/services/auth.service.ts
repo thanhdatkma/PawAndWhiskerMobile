@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { StorageService } from './storage.service';
@@ -20,16 +19,36 @@ export interface RegisterPayload {
 
 export interface AuthApiResponse {
   token: string;
-  customer: {
-    id: string;
+  user: {
+    id: number;
     email: string;
+    full_name: string;
     first_name: string;
     last_name: string;
+    avatar_url: string;
+    phone_number: string;
+    membership_tier: string;
   };
 }
 
 export interface LoginApiResponse {
   token: string;
+  token_type: string;
+  expires_in: number;
+  user: AuthApiResponse['user'];
+}
+
+export interface ForgotPasswordResponse {
+  message: string;
+}
+
+export interface VerifyOtpResponse {
+  message: string;
+  reset_token: string;
+}
+
+export interface ResetPasswordResponse {
+  message: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -37,25 +56,47 @@ export class AuthService extends BaseService {
   private storageService = inject(StorageService);
 
   logout(): Observable<void> {
-    return this.delete<void>('auth/logout', {}).pipe(
-      switchMap(() => from(this.storageService.remove(AUTH_TOKEN_KEY)))
-    );
+    this.storageService.remove(AUTH_TOKEN_KEY);
+    return of(undefined);
   }
   register(payload: RegisterPayload): Observable<AuthApiResponse> {
-    return this.post<AuthApiResponse>('store/register', payload);
+    return this.post<AuthApiResponse>('mobiconnector/v1/auth/register', payload);
   }
 
   login(email: string, password: string): Observable<LoginApiResponse> {
-    return this.post<LoginApiResponse>('auth/customer/emailpass', { email, password });
+    return this.post<LoginApiResponse>('mobiconnector/v1/auth/login', { email, password });
   }
 
-  static toUserProfile(customer: AuthApiResponse['customer']): UserProfile {
+  forgotPassword(email: string): Observable<ForgotPasswordResponse> {
+    return this.post<ForgotPasswordResponse>('mobiconnector/v1/auth/forgot-password', { email });
+  }
+
+  verifyOtp(email: string, otp: string): Observable<VerifyOtpResponse> {
+    return this.post<VerifyOtpResponse>('mobiconnector/v1/auth/verify-otp', { email, otp });
+  }
+
+  resetPassword(
+    email: string,
+    reset_token: string,
+    new_password: string,
+    confirm_password: string
+  ): Observable<ResetPasswordResponse> {
+    return this.post<ResetPasswordResponse>('mobiconnector/v1/auth/reset-password', {
+      email,
+      reset_token,
+      new_password,
+      confirm_password,
+    });
+  }
+
+  static toUserProfile(user: AuthApiResponse['user']): UserProfile {
     return {
-      id: customer.id,
-      name: [customer.first_name, customer.last_name].filter(Boolean).join(' '),
-      email: customer.email,
-      avatar: '',
-      membership: 'standard',
+      id: String(user.id),
+      name: user.full_name || [user.first_name, user.last_name].filter(Boolean).join(' '),
+      email: user.email,
+      avatar: user.avatar_url || '',
+      membership: user.membership_tier || 'standard',
+      phone: user.phone_number || '',
     };
   }
 
