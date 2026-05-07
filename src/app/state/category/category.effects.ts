@@ -6,9 +6,6 @@ import { of } from 'rxjs';
 import { ToastController } from '@ionic/angular/standalone';
 import { CategoryService } from '../../services/category.service';
 
-import mockData from '../../../../test/mock-data.json';
-import { CategoryModel } from 'src/app/models/categories.model';
-
 @Injectable()
 export class CategoryEffects {
   private actions$ = inject(Actions);
@@ -19,15 +16,15 @@ export class CategoryEffects {
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CategoryActions.loadCategories),
-      switchMap((action) => {
-        return of(CategoryActions.loadCategoriesSuccess({ 
-          categories: mockData.categories as CategoryModel[] 
-        }))
-      }
-        // this.categoryService.getCategories(action).pipe(
-        //   map((categories) => CategoryActions.loadCategoriesSuccess({ categories })),
-        //   catchError((error) => of(CategoryActions.loadCategoriesFailure({ error: error.message })))
-        // )
+      switchMap((action) =>
+        this.categoryService.getCategories({
+          parentId: action.parentId,
+          isQuick: action.isQuick,
+          includeChildren: !action.isQuick && !action.parentId
+        }).pipe(
+          map((categories) => CategoryActions.loadCategoriesSuccess({ categories })),
+          catchError((error) => of(CategoryActions.loadCategoriesFailure({ error: error.message })))
+        )
       )
     )
   );
