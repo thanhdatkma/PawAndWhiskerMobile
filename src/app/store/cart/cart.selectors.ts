@@ -15,7 +15,7 @@ export const selectCartTotal = createSelector(
   (items) =>
     items.reduce(
       (acc, i) =>
-        acc + (i.product.discountPrice ?? i.product.price) * i.quantity,
+        acc + i.product.current_price * i.quantity,
       0,
     ),
 );

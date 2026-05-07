@@ -22,7 +22,7 @@ export class ProductEffects {
       ofType(ProductActions.loadProductDetail),
           switchMap((action) => {
         return of(ProductActions.loadProductDetailSuccess({
-          product: mockData.product_detail as ProductDetailModel
+          product: {} as ProductDetailModel
         }))
       })
       // switchMap((action) =>
@@ -64,26 +64,25 @@ export class ProductEffects {
       ofType(ProductActions.loadProductsByCategory),
       switchMap((action) => {
         const catIds = action.categoryIds;
-        const firstCatId = Array.isArray(catIds) ? catIds[0] : (catIds || 'dog');
-        return this.productService.getCategoryProducts(firstCatId).pipe(
-          map(products => {
-            const page = action.page || 1;
-            const perPage = action.perPage || 10;
-            const totalCount = products.length;
-            const totalPages = Math.ceil(totalCount / perPage);
-            const start = (page - 1) * perPage;
-            const pagedItems = products.slice(start, start + perPage);
+        const firstCatId = Array.isArray(catIds) ? (catIds[0] || '') : (catIds || '');
+        const requestParams = {
+          page: action.page || 1,
+          perPage: action.perPage || 10,
+          searchTerm: action.searchTerm || '',
+          sortBy: action.sortBy || 'name',
+          sortDirection: action.sortDirection || 'asc',
+          brandIds: action.brandIds,
+          attributeIds: action.attributeIds,
+          minPrice: action.minPrice,
+          maxPrice: action.maxPrice
+        };
 
-            return ProductActions.loadProductsByCategorySuccess({
-              items: pagedItems,
-              totalCount: totalCount,
-              pageIndex: page,
-              pageSize: perPage,
-              totalPages: totalPages,
-              hasPreviousPage: page > 1,
-              hasNextPage: page < totalPages
-            });
-          }),
+        const request$ = action.sectionKey
+          ? this.productService.getProductsBySection(action.sectionKey, requestParams)
+          : this.productService.getCategoryProducts(firstCatId || 'dog', requestParams);
+
+        return request$.pipe(
+          map((pagination) => ProductActions.loadProductsByCategorySuccess(pagination)),
           catchError((error) => of(ProductActions.loadProductsByCategoryFailure({ error: error.message })))
         );
       })
@@ -97,8 +96,8 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsNewArrivals),
       switchMap(() =>
-        this.productService.getNewArrivals().pipe(
-          map((products) => ProductActions.loadProductsNewArrivalsSuccess({ products })),
+        this.productService.getNewArrivals({ page: 1, perPage: 10 }).pipe(
+          map((pagination) => ProductActions.loadProductsNewArrivalsSuccess({ products: pagination.items || [] })),
           catchError((error) => of(ProductActions.loadProductsNewArrivalsFailure({ error: error.message })))
         )
       )
@@ -109,8 +108,8 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsDealOfDay),
       switchMap(() =>
-        this.productService.getDealOfToday().pipe(
-          map((products) => ProductActions.loadProductsDealOfDaySuccess({ products })),
+        this.productService.getDealOfToday({ page: 1, perPage: 10 }).pipe(
+          map((pagination) => ProductActions.loadProductsDealOfDaySuccess({ products: pagination.items || [] })),
           catchError((error) => of(ProductActions.loadProductsDealOfDayFailure({ error: error.message })))
         )
       )
@@ -121,8 +120,8 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsComment),
       switchMap(() =>
-        this.productService.getNewComment().pipe(
-          map((products) => ProductActions.loadProductsCommentSuccess({ products })),
+        this.productService.getNewComment({ page: 1, perPage: 10 }).pipe(
+          map((pagination) => ProductActions.loadProductsCommentSuccess({ products: pagination.items || [] })),
           catchError((error) => of(ProductActions.loadProductsCommentFailure({ error: error.message })))
         )
       )
@@ -133,8 +132,8 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductActions.loadProductsFlashSale),
       switchMap(() =>
-        this.productService.getFlashSale().pipe(
-          map((products) => ProductActions.loadProductsFlashSaleSuccess({ products })),
+        this.productService.getFlashSale({ page: 1, perPage: 10 }).pipe(
+          map((pagination) => ProductActions.loadProductsFlashSaleSuccess({ products: pagination.items || [] })),
           catchError((error) => of(ProductActions.loadProductsFlashSaleFailure({ error: error.message })))
         )
       )

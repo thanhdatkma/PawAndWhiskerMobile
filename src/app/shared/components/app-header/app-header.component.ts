@@ -49,7 +49,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit {
   /** Whether to show the favorite icon button */
   @Input() showFavorite = false;
   /** Product ID for favorite service integration */
-  @Input() productId?: string;
+  @Input() productId?: number;
   /** When true, the search bar navigates globally to the product list. When false, emits searchChange to the parent. */
   @Input() enableGlobalSearch = false;
 

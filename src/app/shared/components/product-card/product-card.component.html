@@ -5,8 +5,8 @@
   <div class="product-card__image-wrap">
 
     <!-- Discount Badge -->
-    <ion-text *ngIf="product.discountPct" class="product-card__discount-badge">
-      -{{ product.discountPct }}%
+    <ion-text *ngIf="product.discount > 0 && product.regular_price > 0" class="product-card__discount-badge">
+      -{{ ((product.discount / product.regular_price) * 100) | number:'1.0-0' }}%
     </ion-text>
 
     <!-- Favorite Icon -->
@@ -25,26 +25,26 @@
 
   <!-- Text Content -->
   <div class="product-card__body">
-    <ion-text class="product-card__category" *ngIf="product.categoryName">{{ product.categoryName }}</ion-text>
+    <ion-text class="product-card__category" *ngIf="product.slug_name">{{ product.slug_name }}</ion-text>
     <h4 class="product-card__name">{{ product.name }}</h4>
 
     <!-- Star Rating -->
     <div *ngIf="product.rating" class="product-card__rating">
       <ion-icon name="star" class="product-card__star-icon"></ion-icon>
       <ion-text class="product-card__rating-value">{{ product.rating }}</ion-text>
-      <ng-container *ngIf="product.soldCount">
-        <ion-text class="product-card__sold-count">{{ product.soldCount | soldCount }} sold</ion-text>
+      <ng-container *ngIf="product.sold_count">
+        <ion-text class="product-card__sold-count">{{ product.sold_count | soldCount }} sold</ion-text>
       </ng-container>
     </div>
 
     <!-- Price Row -->
     <div class="product-card__price-row">
       <div class="product-card__prices">
-        <ion-text *ngIf="product.discountPrice" class="product-card__original-price">
-          {{ product.price | appCurrency }}
+        <ion-text *ngIf="product.is_on_sale && product.sale_price !== null && product.sale_price > 0" class="product-card__original-price">
+          {{ product.regular_price | appCurrency }}
         </ion-text>
         <ion-text class="product-card__current-price">
-          {{ (product.discountPrice ?? product.price) | appCurrency }}
+          {{ product.current_price | appCurrency }}
         </ion-text>
       </div>
 

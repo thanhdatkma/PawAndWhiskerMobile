@@ -60,6 +60,7 @@ export const initialUserState: UserState = {
 
 export interface ProductListState extends ApiState<ProductBriefModel[]> {
   categoryIds: string[];
+  sectionKey?: string;
   currentPage: number;
   perPage: number;
   hasMore: boolean;
@@ -71,6 +72,7 @@ export interface ProductListState extends ApiState<ProductBriefModel[]> {
 export const initialProductListState: ProductListState = {
   ...createInitialApiState<ProductBriefModel[]>([]),
   categoryIds: [],
+  sectionKey: undefined,
   currentPage: 1,
   perPage: 20,
   hasMore: true,

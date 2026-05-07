@@ -9,7 +9,7 @@ import { ProductSectionComponent } from '../../shared/components/product-section
 import { PromoBannerComponent } from '../../shared/components/promo-banner/promo-banner.component';
 import { NewsFeedComponent } from '../../shared/components/news-feed/news-feed.component';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { selectNewArrivals, selectNewsFeed, selectNewsHasMore, selectNewsLoadingMore, ProductActions, HomeActions, CategoryActions, selectAllCategories, selectProductSlider, selectProductList, selectDealOfDay, selectPopupBanner } from '../../store';
+import { selectNewArrivals, selectNewsFeed, selectNewsHasMore, selectNewsLoadingMore, ProductActions, HomeActions, CategoryActions, selectAllCategories, selectProductSlider, selectNewComments, selectDealOfDay, selectFlashSale, selectPopupBanner } from '../../store';
 import { ProductService } from '../../services/product.service';
 
 
@@ -36,8 +36,8 @@ export class HomePageComponent extends BaseComponent implements OnInit {
   categories$ = this.store.select(selectAllCategories);
   newArrivals$ = this.store.select(selectNewArrivals);
   dealOfDay$ = this.store.select(selectDealOfDay);
-  dogProducts$ = this.store.select(selectProductList);
-  catProducts$ = this.store.select(selectProductList);
+  productComment$ = this.store.select(selectNewComments);
+  productFlashSale$ = this.store.select(selectFlashSale);
   news$ = this.store.select(selectNewsFeed);
   popupBanner$ = this.store.select(selectPopupBanner);
   newsHasMore$ = this.store.select(selectNewsHasMore);
@@ -86,7 +86,24 @@ export class HomePageComponent extends BaseComponent implements OnInit {
   }
 
   onSeeAll(sectionTitle: string): void {
-    console.log('[Home] See all clicked for:', sectionTitle);
+    const sectionMap: Record<string, string> = {
+      'New Arrivals': 'new-arrivals',
+      'Deal of the Day': 'deal-of-day',
+      'Top Comments': 'top-comments',
+      'Flash Sale': 'flash-sale'
+    };
+
+    const sectionKey = sectionMap[sectionTitle];
+    if (!sectionKey) {
+      return;
+    }
+
+    this.navigate('/category-detail', {
+      queryParams: {
+        section: sectionKey,
+        title: sectionTitle
+      }
+    });
   }
 
   onProductClick(product: ProductBriefModel): void {

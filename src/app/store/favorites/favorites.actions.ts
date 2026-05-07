@@ -3,19 +3,19 @@ import { createAction, props } from '@ngrx/store';
 export const FavoritesActions = {
   toggle: createAction(
     '[Favorites] Toggle',
-    props<{ productId: string }>(),
+    props<{ productId: number }>(),
   ),
   addFavorite: createAction(
     '[Favorites] Add',
-    props<{ productId: string }>(),
+    props<{ productId: number }>(),
   ),
   removeFavorite: createAction(
     '[Favorites] Remove',
-    props<{ productId: string }>(),
+    props<{ productId: number }>(),
   ),
   loadFavoritesSuccess: createAction(
     '[Favorites] Load Success',
-    props<{ ids: string[] }>(),
+    props<{ ids: number[] }>(),
   ),
   loadFavoritesFailure: createAction(
     '[Favorites] Load Failure',

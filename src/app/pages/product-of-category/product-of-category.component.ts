@@ -53,8 +53,10 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   private categoryService = inject(CategoryService);
   
   categoryId: string | null = this.route.snapshot.paramMap.get('id');
+  sectionKey: string | null = this.route.snapshot.queryParamMap.get('section');
   initialSearchTerm: string = this.route.snapshot.queryParamMap.get('searchTerm') ?? '';
-  categoryName: string = 'Products';
+  categoryName: string = this.route.snapshot.queryParamMap.get('title') ?? 'Products';
+  backButtonDefaultHref = '/tabs/categories';
   showSearch = false;
   isFilterHidden = false;
   
@@ -72,6 +74,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     perPage: 10,
     searchTerm: this.route.snapshot.queryParamMap.get('searchTerm') ?? '',
     categoryIds: this.categoryId ? [this.categoryId] : [],
+    sectionKey: this.sectionKey ?? undefined,
     brandIds: [],
     attributeIds: [],
     minPrice: 0,
@@ -93,7 +96,8 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
       takeUntil(this.destroyed$)
     ).subscribe(searchTerm => {
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
-        categoryIds: this.categoryId, 
+        categoryIds: this.categoryId ? [this.categoryId] : [],
+        sectionKey: this.sectionKey ?? undefined,
         page: 1,
         perPage: this.filterState.perPage,
         searchTerm: searchTerm
@@ -111,11 +115,15 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     };
 
     this.categoryId = this.route.snapshot.paramMap.get('id');
+    this.sectionKey = this.route.snapshot.queryParamMap.get('section');
     this.initialSearchTerm = this.route.snapshot.queryParamMap.get('searchTerm') ?? '';
+    this.categoryName = this.route.snapshot.queryParamMap.get('title') ?? 'Products';
+    this.backButtonDefaultHref = this.sectionKey ? '/tabs/home' : '/tabs/categories';
 
-    if (this.categoryId || this.initialSearchTerm) {
+    if (this.categoryId || this.initialSearchTerm || this.sectionKey) {
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
         categoryIds: this.categoryId ? [this.categoryId] : [], 
+        sectionKey: this.sectionKey ?? undefined,
         page: this.filterState.page,
         perPage: this.filterState.perPage,
         searchTerm: this.initialSearchTerm || this.filterState.searchTerm
@@ -150,6 +158,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     this.filterState.page = 1;
     this.store.dispatch(ProductActions.loadProductsByCategory({ 
       categoryIds: this.categoryId ? [this.categoryId] : [], 
+      sectionKey: this.sectionKey ?? undefined,
       page: 1,
       perPage: this.filterState.perPage,
       searchTerm: this.filterState.searchTerm
@@ -169,9 +178,16 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     this.currentPage$.pipe(take(1)).subscribe(page => {
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
         categoryIds: this.categoryId ? [this.categoryId] : [],
+        sectionKey: this.sectionKey ?? undefined,
         page: page + 1,
         perPage: this.filterState.perPage,
-        searchTerm: this.filterState.searchTerm 
+        searchTerm: this.filterState.searchTerm,
+        brandIds: this.filterState.brandIds,
+        attributeIds: this.filterState.attributeIds,
+        minPrice: this.filterState.minPrice,
+        maxPrice: this.filterState.maxPrice,
+        sortBy: this.filterState.sortBy,
+        sortDirection: this.filterState.sortDirection
       }));
       
       this.isLoading$.pipe(
@@ -190,7 +206,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     this.searchSubject.next(term);
   }
 
-  viewProduct(id: string) {
+  viewProduct(id: number) {
     this.navigate('/product-details', { id });
   }
 
@@ -220,14 +236,48 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     const sortValue = typeof this.filterState.selectedSort === 'object' 
       ? this.filterState.selectedSort.value 
       : this.filterState.selectedSort;
+    const selectedBrands = (this.filterState.brands || [])
+      .filter((item: any) => item.checked)
+      .map((item: any) => item.label);
+    const selectedTags = (this.filterState.tags || [])
+      .filter((item: any) => item.checked)
+      .map((item: any) => item.label);
+    const selectedPricing = (this.filterState.pricings || []).find((item: any) => item.checked);
+
+    let minPrice = 0;
+    let maxPrice = 0;
+    if (selectedPricing?.label) {
+      const [from, to] = selectedPricing.label
+        .replace(/\$/g, '')
+        .split('-')
+        .map((value: string) => Number(value.trim()));
+      minPrice = Number.isFinite(from) ? from : 0;
+      maxPrice = Number.isFinite(to) ? to : 0;
+    }
+
+    this.filterState = {
+      ...this.filterState,
+      page: 1,
+      brandIds: selectedBrands,
+      attributeIds: selectedTags,
+      minPrice,
+      maxPrice,
+      sortBy: (sortValue === SortType.PRICE_ASC || sortValue === SortType.PRICE_DESC) ? 'price' : 'name',
+      sortDirection: (sortValue === SortType.PRICE_DESC || sortValue === SortType.BRAND_DESC) ? 'desc' : 'asc'
+    };
 
     this.store.dispatch(ProductActions.loadProductsByCategory({
       categoryIds: this.categoryId ? [this.categoryId] : [],
+      sectionKey: this.sectionKey ?? undefined,
       page: 1,
       perPage: this.filterState.perPage,
       searchTerm: this.filterState.searchTerm,
-      sortBy: (sortValue === SortType.PRICE_ASC || sortValue === SortType.PRICE_DESC) ? 'price' : 'name',
-      sortDirection: (sortValue === SortType.PRICE_DESC || sortValue === SortType.BRAND_DESC) ? 'desc' : 'asc'
+      brandIds: this.filterState.brandIds,
+      attributeIds: this.filterState.attributeIds,
+      minPrice: this.filterState.minPrice,
+      maxPrice: this.filterState.maxPrice,
+      sortBy: this.filterState.sortBy,
+      sortDirection: this.filterState.sortDirection
     }));
   }
 

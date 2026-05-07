@@ -9,11 +9,11 @@ export const CartActions = {
   ),
   removeItem: createAction(
     '[Cart] Remove Item',
-    props<{ productId: string }>(),
+    props<{ productId: number }>(),
   ),
   updateQuantity: createAction(
     '[Cart] Update Quantity',
-    props<{ productId: string; quantity: number }>(),
+    props<{ productId: number; quantity: number }>(),
   ),
   clearCart: createAction('[Cart] Clear Cart'),
   loadCartSuccess: createAction(

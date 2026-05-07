@@ -111,6 +111,7 @@ export const productListReducer = createReducer(
     const isNewRequest = !params.page || params.page === 1;
     return {
       ...state,
+      sectionKey: params.sectionKey,
       searchTerm: params.searchTerm || '',
       currentPage: params.page || 1,
       loading: true,

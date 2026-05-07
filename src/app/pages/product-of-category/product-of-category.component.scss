@@ -5,6 +5,7 @@
 
 ion-content {
   --background: var(--surface);
+  --padding-bottom: calc(120px + var(--ion-safe-area-bottom, 0px));
 }
 
 .sticky-filter-wrapper {
@@ -22,9 +23,13 @@ ion-content {
 }
 
 .main-container {
-  padding: 0 16px 32px 16px;
+  padding: 0 16px 16px 16px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+ion-grid {
+  padding-bottom: 16px;
 }
 
 .filter-bar {
@@ -126,4 +131,8 @@ ion-content {
 
 .ion-padding-small {
   padding: 8px;
+}
+
+ion-infinite-scroll {
+  padding-bottom: calc(16px + var(--ion-safe-area-bottom, 0px));
 }

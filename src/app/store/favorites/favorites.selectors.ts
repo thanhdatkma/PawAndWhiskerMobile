@@ -14,7 +14,7 @@ export const selectFavoriteCount = createSelector(
   (ids) => ids.length,
 );
 
-export const selectIsFavorite = (productId: string) =>
+export const selectIsFavorite = (productId: number) =>
   createSelector(selectFavoriteIds, (ids) => ids.includes(productId));
 
 export const selectFavoritesIsLoading = createSelector(

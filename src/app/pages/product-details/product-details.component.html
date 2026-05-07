@@ -48,20 +48,21 @@
             <ion-icon name="star" class="star-icon"></ion-icon>
             <ion-text class="rating-value">{{ productDetail.rating }}</ion-text>
           </div>
-          <ion-text class="review-count">({{ productDetail.reviewCount }} reviews)</ion-text>
+          <ion-text class="review-count">({{ productDetail.rating_count }} reviews)</ion-text>
+          <ion-text class="sold-count" *ngIf="productDetail.sold_count"> | {{ productDetail.sold_count }} sold</ion-text>
         </div>
 
         <div class="price-row">
-          <ion-text class="current-price">${{ productDetail.discountPrice | number:'1.2-2' }}</ion-text>
-          <ion-text class="original-price">${{ productDetail.price | number:'1.2-2' }}</ion-text>
-          <div class="save-badge">
-            <ion-text>Save ${{ (productDetail.price - productDetail.discountPrice) | number:'1.2-2' }}</ion-text>
+          <ion-text class="current-price">{{ productDetail.current_price | appCurrency }}</ion-text>
+          <ion-text class="original-price" *ngIf="productDetail.sale_price">{{ productDetail.regular_price | appCurrency }}</ion-text>
+          <div class="save-badge" *ngIf="productDetail.sale_price">
+            <ion-text>Save {{ ((productDetail.regular_price ?? 0) - (productDetail.sale_price ?? 0)) | appCurrency }}</ion-text>
           </div>
         </div>
 
         <div class="selectors-container">
           <!-- Weight Selector -->
-          <div class="selector-group">
+          <div class="selector-group" *ngIf="productDetail.weights && productDetail.weights.length > 0">
             <ion-text class="selector-label">Select Weight</ion-text>
             <div class="weight-buttons">
               <ion-button *ngFor="let w of productDetail.weights" [fill]="w === selectedWeight ? 'solid' : 'clear'"
@@ -115,15 +116,10 @@
         </div>
 
         <div class="tab-content" [ngSwitch]="activeTab">
-          <div *ngSwitchCase="'info'" class="info-content-grid">
+          <div *switchCase="'info'" class="info-content-grid">
             <div class="content-main">
               <div class="description-text">
-                <ion-text>
-                  Treat your furry companion to the finest nutrition with our <span class="highlight">Organic Royal
-                    Canin Kibble</span>.
-                  Specially formulated for adult dogs, this premium blend combines high-quality proteins with essential
-                  vitamins and minerals to support overall vitality and a shiny coat.
-                </ion-text>
+                <ion-text [innerHTML]="productDetail.description"></ion-text>
               </div>
               <ion-grid class="benefits-grid ion-no-padding">
                 <ion-row>

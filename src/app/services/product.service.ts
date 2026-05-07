@@ -6,6 +6,8 @@ import { ProductDetailModel } from '../models/product-detail.model';
 import { BaseService } from './base.service';
 import { SlideModel } from '../models/slides.model';
 import { PopupBannerModel } from '../models/popup-banner.model';
+import { PaginationModel } from '../models/pagination.model';
+import { SearchParamsModel } from '../models/search-params.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,24 +32,39 @@ export class ProductService extends BaseService {
     return this.get<ProductDetailModel>(`api/products/${id}`);
   }
 
-  getNewArrivals(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/new-arrivals`);
+  getNewArrivals(params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
+    return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/products/new-arrivals`, params);
   }
 
-  getDealOfToday(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/get-deal-of-day`);
+  getDealOfToday(params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
+    return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/products/get-deal-of-day`, params);
   }
 
-  getNewComment(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/top-comment`);
+  getNewComment(params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
+    return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/products/top-comment`, params);
   }
 
-  getFlashSale(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/flash-sale`);
+  getFlashSale(params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
+    return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/products/flash-sale`, params);
   }
 
-  getCategoryProducts(slug: string): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/${slug}`);
+  getCategoryProducts(slug: string, params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
+    return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/products/${slug}`, params);
+  }
+
+  getProductsBySection(sectionKey: string, params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
+    switch (sectionKey) {
+      case 'new-arrivals':
+        return this.getNewArrivals(params);
+      case 'deal-of-day':
+        return this.getDealOfToday(params);
+      case 'top-comments':
+        return this.getNewComment(params);
+      case 'flash-sale':
+        return this.getFlashSale(params);
+      default:
+        return this.getCategoryProducts('dog', params);
+    }
   }
 
   getSlideImages(): Observable<SlideModel[]> {

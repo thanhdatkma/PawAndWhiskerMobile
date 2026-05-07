@@ -58,40 +58,40 @@
     { "id": "pharmacy", "title": "Pharmacy", "iconName": "medication", "type": "product" }
   ],
   "new_arrivals": [
-    { "id": "na1", "name": "Organic Royal Canin Kibble", "coverImage": "", "price": 35.0, "discountPrice": 29.75, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 1150, "categoryName": "Dog Food" },
-    { "id": "na2", "name": "Pate cho chó mèo S2PET SNACK 85g dạng lỏng", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 1234, "categoryName": "Pet Treats" },
-    { "id": "na3", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
-    { "id": "na4", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
-    { "id": "na5", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
-    { "id": "na6", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
-    { "id": "na7", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" },
-    { "id": "na8", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" },
-    { "id": "na9", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" },
-    { "id": "na10", "name": "Plush Donut Squeaky Toy", "coverImage": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" }
+    { "id": "na1", "name": "Organic Royal Canin Kibble", "image_url": "", "price": 35.0, "discountPrice": 29.75, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 1150, "categoryName": "Dog Food" },
+    { "id": "na2", "name": "Pate cho chó mèo S2PET SNACK 85g dạng lỏng", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 1234, "categoryName": "Pet Treats" },
+    { "id": "na3", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
+    { "id": "na4", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
+    { "id": "na5", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
+    { "id": "na6", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "reviewCount": 123, "soldCount": 456, "categoryName": "Toys" },
+    { "id": "na7", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" },
+    { "id": "na8", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" },
+    { "id": "na9", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" },
+    { "id": "na10", "name": "Plush Donut Squeaky Toy", "image_url": "assets/images/asset_4.png", "price": 15.0, "discountPrice": 12.5, "discountPct": 15, "rating": 4.8, "categoryName": "Toys" }
   ],
   "dog_products": [
-    { "id": "dp1", "name": "Beef & Rice Kibble", "coverImage": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
-    { "id": "dp2", "name": "Indestructible Chew Ball", "coverImage": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
-    { "id": "dp3", "name": "Beef & Rice Kibble", "coverImage": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
-    { "id": "dp4", "name": "Indestructible Chew Ball", "coverImage": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
-    { "id": "dp5", "name": "Beef & Rice Kibble", "coverImage": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
-    { "id": "dp6", "name": "Indestructible Chew Ball", "coverImage": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
-    { "id": "dp7", "name": "Beef & Rice Kibble", "coverImage": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
-    { "id": "dp8", "name": "Indestructible Chew Ball", "coverImage": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
-    { "id": "dp9", "name": "Beef & Rice Kibble", "coverImage": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
-    { "id": "dp10", "name": "Indestructible Chew Ball", "coverImage": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" }
+    { "id": "dp1", "name": "Beef & Rice Kibble", "image_url": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
+    { "id": "dp2", "name": "Indestructible Chew Ball", "image_url": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
+    { "id": "dp3", "name": "Beef & Rice Kibble", "image_url": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
+    { "id": "dp4", "name": "Indestructible Chew Ball", "image_url": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
+    { "id": "dp5", "name": "Beef & Rice Kibble", "image_url": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
+    { "id": "dp6", "name": "Indestructible Chew Ball", "image_url": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
+    { "id": "dp7", "name": "Beef & Rice Kibble", "image_url": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
+    { "id": "dp8", "name": "Indestructible Chew Ball", "image_url": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" },
+    { "id": "dp9", "name": "Beef & Rice Kibble", "image_url": "assets/images/asset_2.png", "price": 42.0, "discountPrice": 35.7, "discountPct": 15, "rating": 4.9, "categoryName": "Dog Food" },
+    { "id": "dp10", "name": "Indestructible Chew Ball", "image_url": "assets/images/asset_3.png", "price": 12.99, "rating": 4.6, "categoryName": "Toys" }
   ],
   "cat_products": [
-    { "id": "cp1", "name": "Cat Dental Treats Bag", "coverImage": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8, "categoryName": "Cat Treats" },
-    { "id": "cp2", "name": "Modern Pine Tower", "coverImage": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7, "categoryName": "Furniture" },
-    { "id": "cp3", "name": "Cat Dental Treats Bag", "coverImage": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
-    { "id": "cp4", "name": "Modern Pine Tower", "coverImage": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 },
-    { "id": "cp5", "name": "Cat Dental Treats Bag", "coverImage": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
-    { "id": "cp6", "name": "Modern Pine Tower", "coverImage": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 },
-    { "id": "cp7", "name": "Cat Dental Treats Bag", "coverImage": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
-    { "id": "cp8", "name": "Modern Pine Tower", "coverImage": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 },
-    { "id": "cp9", "name": "Cat Dental Treats Bag", "coverImage": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
-    { "id": "cp10", "name": "Modern Pine Tower", "coverImage": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 }
+    { "id": "cp1", "name": "Cat Dental Treats Bag", "image_url": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8, "categoryName": "Cat Treats" },
+    { "id": "cp2", "name": "Modern Pine Tower", "image_url": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7, "categoryName": "Furniture" },
+    { "id": "cp3", "name": "Cat Dental Treats Bag", "image_url": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
+    { "id": "cp4", "name": "Modern Pine Tower", "image_url": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 },
+    { "id": "cp5", "name": "Cat Dental Treats Bag", "image_url": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
+    { "id": "cp6", "name": "Modern Pine Tower", "image_url": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 },
+    { "id": "cp7", "name": "Cat Dental Treats Bag", "image_url": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
+    { "id": "cp8", "name": "Modern Pine Tower", "image_url": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 },
+    { "id": "cp9", "name": "Cat Dental Treats Bag", "image_url": "assets/images/asset_2.png", "price": 11.99, "discountPrice": 9.99, "discountPct": 15, "rating": 4.8 },
+    { "id": "cp10", "name": "Modern Pine Tower", "image_url": "assets/images/asset_1.png", "price": 89.0, "rating": 4.7 }
   ],
   "news_feed": [
     { "id": "n1", "title": "Top 5 tips for summer pet hydration", "summary": "As temperatures rise, keeping your furry friends cool is more important than ever...", "thumbnailImage": "assets/images/asset_1.png" },
@@ -124,7 +124,7 @@
     {
       "id": "1",
       "name": "Gourmet Chicken Kibble",
-      "coverImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDtFAKwY5nEHFkkTSaDGl2g8aMDi-8TxHPB-VY8n0KnO2iJjM7ZoST5eF9E3aB6F9YjWyzLMzhuy58ICmernXNLl8nwbvz7cFN-z1P48vPXYXC0qyMcrrLp4Bmjn1KCe1-cvZ26jlFR1ZiQIMPrahz01nhZTDWvplx3q2bBnQDXWOPYjAWgS0-bHDaiT0dkU7Fc5ich9KL2J-VpVGqyuX7fU3uqb__c1WeFaSO_boCHS0PWNVczRzfWtxot4DjHnM8XrB9m0W_Jj10",
+      "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDtFAKwY5nEHFkkTSaDGl2g8aMDi-8TxHPB-VY8n0KnO2iJjM7ZoST5eF9E3aB6F9YjWyzLMzhuy58ICmernXNLl8nwbvz7cFN-z1P48vPXYXC0qyMcrrLp4Bmjn1KCe1-cvZ26jlFR1ZiQIMPrahz01nhZTDWvplx3q2bBnQDXWOPYjAWgS0-bHDaiT0dkU7Fc5ich9KL2J-VpVGqyuX7fU3uqb__c1WeFaSO_boCHS0PWNVczRzfWtxot4DjHnM8XrB9m0W_Jj10",
       "price": 39.99,
       "discountPrice": 45.00,
       "discountPct": 10,
@@ -133,14 +133,14 @@
     {
       "id": "2",
       "name": "Ocean Whale Plushie",
-      "coverImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuC48Q20nxo7kEp_Yi88vnvXYAyM5iwOS4y8M_4kWbiW0c7_5ESlj324zOxyQVywygUIi8rbySoChR962hLbDNp6LoJIa3uU_NiJYLa_dKbPCSpH4DGmioewVYcr7GXsp9Lgzzzf8W8coOQFmeQpsdF1j4kSbQLg6HERX4ZtfX_PZ_MjT1OvX9X_y7Y4trUtMF69fjzo4LfcHwJvN_XeV3aCdLl34OzJc7TY2LdZy4T1lcPN2UygK13GZES2We7xvjnw6OqvF5Kpl8E",
+      "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC48Q20nxo7kEp_Yi88vnvXYAyM5iwOS4y8M_4kWbiW0c7_5ESlj324zOxyQVywygUIi8rbySoChR962hLbDNp6LoJIa3uU_NiJYLa_dKbPCSpH4DGmioewVYcr7GXsp9Lgzzzf8W8coOQFmeQpsdF1j4kSbQLg6HERX4ZtfX_PZ_MjT1OvX9X_y7Y4trUtMF69fjzo4LfcHwJvN_XeV3aCdLl34OzJc7TY2LdZy4T1lcPN2UygK13GZES2We7xvjnw6OqvF5Kpl8E",
       "price": 14.50,
       "rating": 4.8
     },
     {
       "id": "3",
       "name": "Leather City Leash",
-      "coverImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHBSp-_oxme6XuHBcbJ6ZBj7Piemfo3oEEo8MUdpmrUNFleLo0cLzVfyXsT-1lslSKCOY7hqahSqCuyKdTSkCUzeBdvTiuFgWV2b_z2pO63-fURllemMebHRZrI5BgRbLoDGkGpIGXVYP3mr74WnkMQkV6BoqFeCBkcVC85vs0IZY9wXzGWQm08VoZx0k9sZVvPp0kDD3vdluiHqXDjC97dEtPBGbNjfeSGMtm3Um3kRT-rrWqCvYcIeY_vYwSjl3ddmIFuIMZO78",
+      "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHBSp-_oxme6XuHBcbJ6ZBj7Piemfo3oEEo8MUdpmrUNFleLo0cLzVfyXsT-1lslSKCOY7hqahSqCuyKdTSkCUzeBdvTiuFgWV2b_z2pO63-fURllemMebHRZrI5BgRbLoDGkGpIGXVYP3mr74WnkMQkV6BoqFeCBkcVC85vs0IZY9wXzGWQm08VoZx0k9sZVvPp0kDD3vdluiHqXDjC97dEtPBGbNjfeSGMtm3Um3kRT-rrWqCvYcIeY_vYwSjl3ddmIFuIMZO78",
       "price": 27.20,
       "discountPrice": 32.00,
       "discountPct": 15,
@@ -149,21 +149,21 @@
     {
       "id": "4",
       "name": "Oatmeal Glow Shampoo",
-      "coverImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuC5lIyCto8F4IZF4lO0pwYN7XxvkFBTcN73xyqodQ-VbxBpfu9bCtFJY6mnsoyQ2q_xQA7j_HGLqkJwPgQpgbWd6p7hKRldAm2Uz-CY17Mu_o5Oq4GGsnEGP7VuJgzO5Uj-SnU9M0lHFqDZJGgf28RCaIlS5wq0fBbJr_NcrUnn9ebAsg0KPJLWUqsSjJlKHKdOnwSfQ_cc4-2Ugucmzee7PX5yrFgO6htE49i8C-9SS7CwVLeUyU1Wy-r3Unmozc4oy5ZsLZjUdEw",
+      "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC5lIyCto8F4IZF4lO0pwYN7XxvkFBTcN73xyqodQ-VbxBpfu9bCtFJY6mnsoyQ2q_xQA7j_HGLqkJwPgQpgbWd6p7hKRldAm2Uz-CY17Mu_o5Oq4GGsnEGP7VuJgzO5Uj-SnU9M0lHFqDZJGgf28RCaIlS5wq0fBbJr_NcrUnn9ebAsg0KPJLWUqsSjJlKHKdOnwSfQ_cc4-2Ugucmzee7PX5yrFgO6htE49i8C-9SS7CwVLeUyU1Wy-r3Unmozc4oy5ZsLZjUdEw",
       "price": 19.00,
       "rating": 4.7
     },
     {
       "id": "5",
       "name": "Cloud 9 Ortho Bed",
-      "coverImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDsVozkQMcFIYQVCNJ3R_wdpsCftlQT0a_kREhTRunGN-QZN4mby7X3Q7yLvv6NWzL2N6ZValLHC2ZQf46ZqLHY4Fl8S5Wf_gNXpFXTEw3cjchrNvyAwOjtb_UvhEwTiNq7dL-TON4bODF6JOYngTJMLYYq5JyhuPqmg-mmS0NAVFytXjH6hlhGYeQuA0HzjsDMxVucD3WoqMI-bxPUzFUnOTGEFWz-6VW3QfmOt708Mm5gPj_sBqm4ZBOFeBZ01xkP42enS0-JY1A",
+      "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDsVozkQMcFIYQVCNJ3R_wdpsCftlQT0a_kREhTRunGN-QZN4mby7X3Q7yLvv6NWzL2N6ZValLHC2ZQf46ZqLHY4Fl8S5Wf_gNXpFXTEw3cjchrNvyAwOjtb_UvhEwTiNq7dL-TON4bODF6JOYngTJMLYYq5JyhuPqmg-mmS0NAVFytXjH6hlhGYeQuA0HzjsDMxVucD3WoqMI-bxPUzFUnOTGEFWz-6VW3QfmOt708Mm5gPj_sBqm4ZBOFeBZ01xkP42enS0-JY1A",
       "price": 89.00,
       "rating": 4.9
     },
     {
       "id": "6",
       "name": "Nordic Sisal Tower",
-      "coverImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDUhkbXQDwL2ixsPBcFMKfaC30m_48vIr1_DdJThxBFgtgcZt2BTWcsXWnakLoCdhr9Ilamnu4ZK4q2Rh1HcKmqV6GaNavrvbSaiXXWhjVxe0ii_rfObMCzUw28ddeM1JE9QFivZEiceg8Fvk8yGIV9N9CjXaHM4KcDD03zgnyBgz1CfGXcWU0JSu-yEJnafSfnPFHn3xDDxCst6yl8SG7RgF2zPC-MlqjA2JG-9gGDIpqcnGPEwMs9dOEn1bhd2U8syBl6BiKWuFE",
+      "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDUhkbXQDwL2ixsPBcFMKfaC30m_48vIr1_DdJThxBFgtgcZt2BTWcsXWnakLoCdhr9Ilamnu4ZK4q2Rh1HcKmqV6GaNavrvbSaiXXWhjVxe0ii_rfObMCzUw28ddeM1JE9QFivZEiceg8Fvk8yGIV9N9CjXaHM4KcDD03zgnyBgz1CfGXcWU0JSu-yEJnafSfnPFHn3xDDxCst6yl8SG7RgF2zPC-MlqjA2JG-9gGDIpqcnGPEwMs9dOEn1bhd2U8syBl6BiKWuFE",
       "price": 114.00,
       "discountPrice": 120.00,
       "discountPct": 5,

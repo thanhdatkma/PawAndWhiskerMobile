@@ -13,6 +13,7 @@ import { FavoriteService } from '../../services/favorite.service';
 import { ProductService } from '../../services/product.service';
 import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { ProductActions, selectProductDetail } from 'src/app/store';
+import { CurrencyPipe } from '../../pipes/currency-pipe';
 
 @Component({
   selector: 'app-product-details',
@@ -23,7 +24,8 @@ import { ProductActions, selectProductDetail } from 'src/app/store';
     CommonModule,
     IonicModule,
     ProductCardComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    CurrencyPipe
   ],
 })
 export class ProductDetailsComponent extends BaseComponent implements OnInit {
