@@ -18,4 +18,22 @@ export const selectNewsFeedLoading = createSelector(
   (state) => state.loading
 );
 
+export const selectNewsTotal = createSelector(
+  selectHomeState,
+  (state) => state.newsTotal
+);
 
+export const selectNewsOffset = createSelector(
+  selectHomeState,
+  (state) => state.newsOffset
+);
+
+export const selectNewsLoadingMore = createSelector(
+  selectHomeState,
+  (state) => state.newsLoadingMore
+);
+
+export const selectNewsHasMore = createSelector(
+  selectHomeState,
+  (state) => (state.newsFeed.data?.length ?? 0) < state.newsTotal
+);

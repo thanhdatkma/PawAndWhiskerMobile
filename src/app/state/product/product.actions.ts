@@ -10,11 +10,11 @@ import { PopupBannerModel } from '../../models/popup-banner.model';
 export const ProductActions = createActionGroup({
   source: 'Product',
   events: {
-    'Load Products New Arrivals': props<{ categoryId?: string }>(),
+    'Load Products New Arrivals': emptyProps(),
     'Load Products New Arrivals Success': props<{ products: ProductBriefModel[] }>(),
     'Load Products New Arrivals Failure': props<{ error: string }>(),
 
-    'Load Products Deal of Day': props<{ categoryId?: string }>(),
+    'Load Products Deal of Day': emptyProps(),
     'Load Products Deal of Day Success': props<{ products: ProductBriefModel[] }>(),
     'Load Products Deal of Day Failure': props<{ error: string }>(),
 
@@ -22,16 +22,13 @@ export const ProductActions = createActionGroup({
     'Load Products Comment Success': props<{ products: ProductBriefModel[] }>(),
     'Load Products Comment Failure': props<{ error: string }>(),
 
-    'Load Products Dog Food': emptyProps(),
-    'Load Products Dog Food Success': props<{ products: ProductBriefModel[] }>(),
-    'Load Products Dog Food Failure': props<{ error: string }>(),
-    'Load Products Cat Food': emptyProps(),
-    'Load Products Cat Food Success': props<{ products: ProductBriefModel[] }>(),
-    'Load Products Cat Food Failure': props<{ error: string }>(),
-
     'Load Products By Category': props<SearchParamsModel>(),
     'Load Products By Category Success': props<PaginationModel<ProductBriefModel>>(),
     'Load Products By Category Failure': props<{ error: string }>(),
+
+    'Load Products Flash Sale': emptyProps(),
+    'Load Products Flash Sale Success': props<{ products: ProductBriefModel[] }>(),
+    'Load Products Flash Sale Failure': props<{ error: string }>(),
     'Reset Product List': emptyProps(),
 
     'Load Slider Images': emptyProps(),

@@ -22,15 +22,10 @@ export const selectNewCommentsState = createSelector(selectProductState, (state)
 export const selectNewComments = createSelector(selectNewCommentsState, (state) => state.data || []);
 export const selectNewCommentsLoading = createSelector(selectNewCommentsState, (state) => state.loading);
 
-// Dog Food
-export const selectDogFoodState = createSelector(selectProductState, (state) => state.dogFood);
-export const selectDogFood = createSelector(selectDogFoodState, (state) => state.data || []);
-export const selectDogFoodLoading = createSelector(selectDogFoodState, (state) => state.loading);
-
-// Cat Food
-export const selectCatFoodState = createSelector(selectProductState, (state) => state.catFood);
-export const selectCatFood = createSelector(selectCatFoodState, (state) => state.data || []);
-export const selectCatFoodLoading = createSelector(selectCatFoodState, (state) => state.loading);
+// Flash Sale
+export const selectFlashSaleState = createSelector(selectProductState, (state) => state.flashSale);
+export const selectFlashSale = createSelector(selectFlashSaleState, (state) => state.data || []);
+export const selectFlashSaleLoading = createSelector(selectFlashSaleState, (state) => state.loading);
 
 // Slider Images
 export const selectProductSliderState = createSelector(selectProductState, (state) => state.slider);

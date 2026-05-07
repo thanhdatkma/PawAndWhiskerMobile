@@ -62,59 +62,30 @@ export class ProductEffects {
   loadProductsByCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsByCategory),
-      // switchMap((action) =>
-      //   this.categoryService.getProductByCategories(action).pipe(
-      //     map((pagination) =>
-      //       ProductActions.loadProductsByCategorySuccess(pagination)
-      //     ),
-      //     catchError((error) => of(ProductActions.loadProductsByCategoryFailure({ error: error.message })))
-      //   )
-      // )
       switchMap((action) => {
-        let items = mockData.products as ProductBriefModel[];
         const catIds = action.categoryIds;
-        const firstCatId = Array.isArray(catIds) ? catIds[0] : catIds;
+        const firstCatId = Array.isArray(catIds) ? catIds[0] : (catIds || 'dog');
+        return this.productService.getCategoryProducts(firstCatId).pipe(
+          map(products => {
+            const page = action.page || 1;
+            const perPage = action.perPage || 10;
+            const totalCount = products.length;
+            const totalPages = Math.ceil(totalCount / perPage);
+            const start = (page - 1) * perPage;
+            const pagedItems = products.slice(start, start + perPage);
 
-        if (firstCatId?.startsWith('1-')) {
-          items = mockData.dog_products as ProductBriefModel[];
-        } else if (firstCatId?.startsWith('2-')) {
-          items = mockData.cat_products as ProductBriefModel[];
-        }
-
-        // Apply Search Term
-        if (action.searchTerm) {
-          const term = action.searchTerm.toLowerCase();
-          items = items.filter(p => p.name.toLowerCase().includes(term));
-        }
-
-        // Apply Sort
-        if (action.sortBy) {
-          items = [...items].sort((a, b) => {
-            const dir = action.sortDirection === 'desc' ? -1 : 1;
-            if (action.sortBy === 'price') {
-              return ((a.discountPrice || a.price) - (b.discountPrice || b.price)) * dir;
-            }
-            return a.name.localeCompare(b.name) * dir;
-          });
-        }
-
-        const page = action.page || 1;
-        const perPage = action.perPage || 10;
-        const totalCount = items.length;
-        const totalPages = Math.ceil(totalCount / perPage);
-        
-        const start = (page - 1) * perPage;
-        const pagedItems = items.slice(start, start + perPage);
-
-        return of(ProductActions.loadProductsByCategorySuccess({
-          items: pagedItems,
-          totalCount: totalCount,
-          pageIndex: page,
-          pageSize: perPage,
-          totalPages: totalPages,
-          hasPreviousPage: page > 1,
-          hasNextPage: page < totalPages
-        }));
+            return ProductActions.loadProductsByCategorySuccess({
+              items: pagedItems,
+              totalCount: totalCount,
+              pageIndex: page,
+              pageSize: perPage,
+              totalPages: totalPages,
+              hasPreviousPage: page > 1,
+              hasNextPage: page < totalPages
+            });
+          }),
+          catchError((error) => of(ProductActions.loadProductsByCategoryFailure({ error: error.message })))
+        );
       })
 
 
@@ -125,25 +96,20 @@ export class ProductEffects {
   loadProductsNewArrivals$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsNewArrivals),
-         switchMap(() => {
-        return of(ProductActions.loadProductsNewArrivalsSuccess({
-          products: mockData.new_arrivals as ProductBriefModel[]
-        }))
-      })
-      // switchMap((action) =>
-      //   this.productService.getNewArrivals(action.categoryId).pipe(
-      //     map((products) => ProductActions.loadProductsNewArrivalsSuccess({ products })),
-      //     catchError((error) => of(ProductActions.loadProductsNewArrivalsFailure({ error: error.message })))
-      //   )
-      // )
+      switchMap(() =>
+        this.productService.getNewArrivals().pipe(
+          map((products) => ProductActions.loadProductsNewArrivalsSuccess({ products })),
+          catchError((error) => of(ProductActions.loadProductsNewArrivalsFailure({ error: error.message })))
+        )
+      )
     )
   );
 
   loadProductsDealOfDay$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsDealOfDay),
-      switchMap((action) =>
-        this.productService.getDealOfToday(action.categoryId).pipe(
+      switchMap(() =>
+        this.productService.getDealOfToday().pipe(
           map((products) => ProductActions.loadProductsDealOfDaySuccess({ products })),
           catchError((error) => of(ProductActions.loadProductsDealOfDayFailure({ error: error.message })))
         )
@@ -154,7 +120,7 @@ export class ProductEffects {
   loadProductsComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductsComment),
-      switchMap((action) =>
+      switchMap(() =>
         this.productService.getNewComment().pipe(
           map((products) => ProductActions.loadProductsCommentSuccess({ products })),
           catchError((error) => of(ProductActions.loadProductsCommentFailure({ error: error.message })))
@@ -163,25 +129,13 @@ export class ProductEffects {
     )
   );
 
-  loadProductsDogFood$ = createEffect(() =>
+  loadProductsFlashSale$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProductActions.loadProductsDogFood),
+      ofType(ProductActions.loadProductsFlashSale),
       switchMap(() =>
-        this.productService.getDogProducts().pipe(
-          map((products) => ProductActions.loadProductsDogFoodSuccess({ products })),
-          catchError((error) => of(ProductActions.loadProductsDogFoodFailure({ error: error.message })))
-        )
-      )
-    )
-  );
-
-  loadProductsCatFood$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductActions.loadProductsCatFood),
-      switchMap(() =>
-        this.productService.getCatProducts().pipe(
-          map((products) => ProductActions.loadProductsCatFoodSuccess({ products })),
-          catchError((error) => of(ProductActions.loadProductsCatFoodFailure({ error: error.message })))
+        this.productService.getFlashSale().pipe(
+          map((products) => ProductActions.loadProductsFlashSaleSuccess({ products })),
+          catchError((error) => of(ProductActions.loadProductsFlashSaleFailure({ error: error.message })))
         )
       )
     )
@@ -195,11 +149,10 @@ export class ProductEffects {
           ProductActions.loadProductsByCategoryFailure,
           ProductActions.loadSliderImagesFailure,
           ProductActions.loadPopupBannerFailure,
-          ProductActions.loadProductsDogFoodFailure,
-          ProductActions.loadProductsCatFoodFailure,
           ProductActions.loadProductsNewArrivalsFailure,
           ProductActions.loadProductsDealOfDayFailure,
-          ProductActions.loadProductsCommentFailure
+          ProductActions.loadProductsCommentFailure,
+          ProductActions.loadProductsFlashSaleFailure
         ),
         tap(async (action) => {
           const error = (action as any).error;

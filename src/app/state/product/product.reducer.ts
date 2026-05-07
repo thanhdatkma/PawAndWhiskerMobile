@@ -90,32 +90,18 @@ export const productReducer = createReducer(
   })),
 
 
-  // Dog Food
-  on(ProductActions.loadProductsDogFood, (state) => ({
+  // Flash Sale
+  on(ProductActions.loadProductsFlashSale, (state) => ({
     ...state,
-    dogFood: { ...state.dogFood, loading: true, error: null }
+    flashSale: { ...state.flashSale, loading: true, error: null }
   })),
-  on(ProductActions.loadProductsDogFoodSuccess, (state, { products }) => ({
+  on(ProductActions.loadProductsFlashSaleSuccess, (state, { products }) => ({
     ...state,
-    dogFood: { data: products, loading: false, error: null }
+    flashSale: { data: products, loading: false, error: null }
   })),
-  on(ProductActions.loadProductsDogFoodFailure, (state, { error }) => ({
+  on(ProductActions.loadProductsFlashSaleFailure, (state, { error }) => ({
     ...state,
-    dogFood: { ...state.dogFood, loading: false, error }
-  })),
-
-  // Cat Food
-  on(ProductActions.loadProductsCatFood, (state) => ({
-    ...state,
-    catFood: { ...state.catFood, loading: true, error: null }
-  })),
-  on(ProductActions.loadProductsCatFoodSuccess, (state, { products }) => ({
-    ...state,
-    catFood: { data: products, loading: false, error: null }
-  })),
-  on(ProductActions.loadProductsCatFoodFailure, (state, { error }) => ({
-    ...state,
-    catFood: { ...state.catFood, loading: false, error }
+    flashSale: { ...state.flashSale, loading: false, error }
   }))
 );
 

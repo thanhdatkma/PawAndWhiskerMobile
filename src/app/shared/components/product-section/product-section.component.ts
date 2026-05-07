@@ -34,7 +34,7 @@ export class ProductSectionComponent extends BaseComponent {
     this.productClick.emit(product);
   }
 
-  trackById(_index: number, item: ProductBriefModel): string {
+  trackById(_index: number, item: ProductBriefModel): number {
     return item.id;
   }
 }
