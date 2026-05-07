@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FavoriteService {
   private readonly FAVORITES_KEY = 'favorites';
-  private favoritesSubject = new BehaviorSubject<string[]>(this.loadFavorites());
+  private favoritesSubject = new BehaviorSubject<number[]>(this.loadFavorites());
 
   favorites$ = this.favoritesSubject.asObservable();
 
@@ -22,12 +22,12 @@ export class FavoriteService {
     });
   }
 
-  private loadFavorites(): string[] {
+  private loadFavorites(): number[] {
     const favorites = localStorage.getItem(this.FAVORITES_KEY);
     return favorites ? JSON.parse(favorites) : [];
   }
 
-  toggleFavorite(productId: string): boolean {
+  toggleFavorite(productId: number): boolean {
     const favorites = [...this.getFavorites()];
     const index = favorites.indexOf(productId);
     let isAdded = false;
@@ -46,7 +46,7 @@ export class FavoriteService {
   }
 
 
-  isFavorite(productId: string | undefined): boolean {
+  isFavorite(productId: number | undefined): boolean {
     if (!productId) {
       return false;
     }
@@ -54,8 +54,7 @@ export class FavoriteService {
   }
 
 
-  getFavorites(): string[] {
+  getFavorites(): number[] {
     return this.favoritesSubject.getValue();
   }
 }
-

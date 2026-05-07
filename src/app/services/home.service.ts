@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewsBriefModel } from '../models/news-brief.model';
+import { NewsBriefModel, NewsListResponse } from '../models/news-brief.model';
 import { BaseService } from './base.service';
-
-import { of } from 'rxjs';
-import mockData from '../../../test/mock-data.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService extends BaseService {
 
-  getNewsFeed(): Observable<NewsBriefModel[]> {
-    return this.get<NewsBriefModel[]>(`api/news`);
+  getNewsFeed(limit = 10, offset = 0): Observable<NewsListResponse> {
+    return this.get<NewsListResponse>(`mobiconnector/v1/news`, { limit, offset });
+  }
+
+  getNewsDetail(id: number | string): Observable<NewsBriefModel> {
+    return this.get<NewsBriefModel>(`mobiconnector/v1/news/${id}`);
   }
 }

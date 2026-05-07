@@ -3,10 +3,18 @@
     <div *ngIf="banner.image_url" class="banner-slider__bg-overlay"
       [style.background-image]="'url(' + banner.image_url + ')'">
     </div>
+    <!-- <div class="banner-slider__content">
+      <div class="banner-slider__caption">
+        <h2 class="banner-slider__title">{{ banner.title }}</h2>
+        <a *ngIf="banner.button_text" [href]="banner.link_url" class="banner-slider__cta">
+          {{ banner.button_text }}
+        </a>
+      </div>
+    </div> -->
     <div class="banner-slider__content">
       <div class="banner-slider__caption">
-        <span *ngIf="banner.tagline" class="banner-slider__tagline">
-          {{ banner.tagline }}
+        <span *ngIf="banner.tag_line" class="banner-slider__tagline">
+          {{banner.tag_line}}
         </span>
         <h2 class="banner-slider__title">{{ banner.title }}</h2>
         <button *ngIf="banner.button_text" class="banner-slider__cta">

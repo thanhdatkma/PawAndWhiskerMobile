@@ -9,7 +9,7 @@ import { ProductSectionComponent } from '../../shared/components/product-section
 import { PromoBannerComponent } from '../../shared/components/promo-banner/promo-banner.component';
 import { NewsFeedComponent } from '../../shared/components/news-feed/news-feed.component';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { selectNewArrivals, selectNewsFeed, ProductActions, HomeActions, CategoryActions, selectAllCategories, selectProductSlider, selectDogFood, selectCatFood, selectDealOfDay, selectPopupBanner } from '../../store';
+import { selectNewArrivals, selectNewsFeed, selectNewsHasMore, selectNewsLoadingMore, ProductActions, HomeActions, CategoryActions, selectAllCategories, selectProductSlider, selectProductList, selectDealOfDay, selectPopupBanner } from '../../store';
 import { ProductService } from '../../services/product.service';
 
 
@@ -30,16 +30,18 @@ export class HomePageComponent extends BaseComponent implements OnInit {
 
   private productService = inject(ProductService);
 
-  activeId = 'dog';
+  activeId = 'clothing';
 
   banners$ = this.store.select(selectProductSlider);
   categories$ = this.store.select(selectAllCategories);
   newArrivals$ = this.store.select(selectNewArrivals);
   dealOfDay$ = this.store.select(selectDealOfDay);
-  dogProducts$ = this.store.select(selectDogFood);
-  catProducts$ = this.store.select(selectCatFood);
+  dogProducts$ = this.store.select(selectProductList);
+  catProducts$ = this.store.select(selectProductList);
   news$ = this.store.select(selectNewsFeed);
   popupBanner$ = this.store.select(selectPopupBanner);
+  newsHasMore$ = this.store.select(selectNewsHasMore);
+  newsLoadingMore$ = this.store.select(selectNewsLoadingMore);
 
   isPopupOpen = false;
 
@@ -60,10 +62,11 @@ export class HomePageComponent extends BaseComponent implements OnInit {
     this.productService.resetPopupSession();
     this.store.dispatch(ProductActions.loadSliderImages());
     this.store.dispatch(CategoryActions.loadCategories({ isQuick: true }));
-    this.store.dispatch(ProductActions.loadProductsNewArrivals({ categoryId: this.activeId }));
-    this.store.dispatch(ProductActions.loadProductsDealOfDay({ categoryId: this.activeId }));
-    this.store.dispatch(ProductActions.loadProductsDogFood());
-    this.store.dispatch(ProductActions.loadProductsCatFood());
+    this.store.dispatch(ProductActions.loadProductsNewArrivals());
+    this.store.dispatch(ProductActions.loadProductsDealOfDay());
+    this.store.dispatch(ProductActions.loadProductsComment());
+    this.store.dispatch(ProductActions.loadProductsFlashSale());
+    this.store.dispatch(ProductActions.loadProductsByCategory({ categoryIds: [this.activeId] }));
     this.store.dispatch(HomeActions.loadNewsFeed());
     this.store.dispatch(ProductActions.loadPopupBanner());
   }
@@ -77,8 +80,9 @@ export class HomePageComponent extends BaseComponent implements OnInit {
 
   onCategorySelect(category: any): void {
     this.activeId = category.id;
-    this.store.dispatch(ProductActions.loadProductsNewArrivals({ categoryId: this.activeId }));
-    this.store.dispatch(ProductActions.loadProductsDealOfDay({ categoryId: this.activeId }));
+    this.store.dispatch(ProductActions.loadProductsNewArrivals());
+    this.store.dispatch(ProductActions.loadProductsDealOfDay());
+    this.store.dispatch(ProductActions.loadProductsByCategory({ categoryIds: [this.activeId] }));
   }
 
   onSeeAll(sectionTitle: string): void {
@@ -98,7 +102,11 @@ export class HomePageComponent extends BaseComponent implements OnInit {
   }
 
   onNewsArticleClick(article: NewsBriefModel): void {
-    console.log('[Home] Article clicked:', article.id);
+    this.navigate('/news/' + article.id);
+  }
+
+  onNewsLoadMore(): void {
+    this.store.dispatch(HomeActions.loadMoreNewsFeed());
   }
 
   onDismissPopup(): void {

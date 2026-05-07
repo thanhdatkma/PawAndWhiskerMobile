@@ -26,40 +26,38 @@ export class ProductService extends BaseService {
     this._popupDismissed = false;
   }
 
-  getProductDetail(id: string): Observable<ProductDetailModel> {
+  getProductDetail(id: number): Observable<ProductDetailModel> {
     return this.get<ProductDetailModel>(`api/products/${id}`);
   }
 
-  getNewArrivals(categoryId?: string): Observable<ProductBriefModel[]> {
-    const query = categoryId ? `?categoryId=${categoryId}` : '';
-    return this.get<ProductBriefModel[]>(`api/products/new-arrivals${query}`);
+  getNewArrivals(): Observable<ProductBriefModel[]> {
+    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/new-arrivals`);
   }
 
-  getDealOfToday(categoryId?: string): Observable<ProductBriefModel[]> {
-    const query = categoryId ? `?categoryId=${categoryId}` : '';
-    return this.get<ProductBriefModel[]>(`api/products/get-deal-of-day${query}`);
+  getDealOfToday(): Observable<ProductBriefModel[]> {
+    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/get-deal-of-day`);
   }
 
   getNewComment(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`api/products/get-new-comment`);
+    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/top-comment`);
   }
 
-  getDogProducts(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`api/products/dog-food`);
+  getFlashSale(): Observable<ProductBriefModel[]> {
+    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/flash-sale`);
   }
 
-  getCatProducts(): Observable<ProductBriefModel[]> {
-    return this.get<ProductBriefModel[]>(`api/products/cat-food`);
+  getCategoryProducts(slug: string): Observable<ProductBriefModel[]> {
+    return this.get<ProductBriefModel[]>(`wooconnector/v1/products/${slug}`);
   }
 
   getSlideImages(): Observable<SlideModel[]> {
-    return this.get<{ banners: SlideModel[] }>(`store/banners`, { type: 'slider' })
-      .pipe(map(res => res.banners ?? []));
+    return this.get<SlideModel[]>(`mobiconnector/v1/slider`);
   }
 
   getPopupBanners(): Observable<PopupBannerModel[]> {
-    return this.get<{ banners: PopupBannerModel[] }>(`store/banners`, { type: 'popup' })
-      .pipe(map(res => res.banners ?? []));
+    return this.get<PopupBannerModel | null>(`mobiconnector/v1/popup`)
+      .pipe(map(res => res ? [res] : []));
   }
+
 
 }

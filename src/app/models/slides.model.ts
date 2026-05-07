@@ -1,8 +1,9 @@
 export interface SlideModel {
-    imageUrl: string;
-    title: string;
-    tagline: string;
-    description: string;
-    buttonText: string;
-    linkTo: string;
+  id: number;
+  title: string;
+  image_url: string;
+  link_url: string;
+  tag_line: string;
+  button_text: string;
+  sort_order: number;
 }

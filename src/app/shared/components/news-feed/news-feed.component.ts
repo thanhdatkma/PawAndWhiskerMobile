@@ -15,20 +15,28 @@ import { NewsBriefModel } from '../../../models/news-brief.model';
 export class NewsFeedComponent extends BaseComponent {
   @Input({ required: true }) articles: NewsBriefModel[] = [];
   @Input() sectionTitle = 'Latest News';
-  @Input() maxItems = 3;
+  @Input() maxItems = 10;
+  @Input() hasMore = false;
+  @Input() loadingMore = false;
 
   @Output() articleClick = new EventEmitter<NewsBriefModel>();
+  @Output() seeMoreClick = new EventEmitter<void>();
+  /** kept for back-compat but no longer used in home */
   @Output() seeAllClick = new EventEmitter<void>();
 
   get visibleArticles(): NewsBriefModel[] {
-    return this.articles.slice(0, this.maxItems);
+    return this.articles;
+  }
+
+  getImageUrl(article: NewsBriefModel): string {
+    return article.image_url || article.thumbnailImage || 'assets/images/no-image.png';
   }
 
   onArticleClick(article: NewsBriefModel): void {
     this.articleClick.emit(article);
   }
 
-  onSeeAll(): void {
-    this.seeAllClick.emit();
+  onSeeMore(): void {
+    this.seeMoreClick.emit();
   }
 }

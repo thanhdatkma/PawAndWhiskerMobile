@@ -1,0 +1,125 @@
+.news-detail {
+  padding-bottom: 32px;
+
+  &__loader,
+  &__error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--color-on-surface-variant);
+  }
+
+  // ── Hero ─────────────────────────────────────────────────────────
+  &__hero {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+  }
+
+  &__hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 16px;
+    gap: 8px;
+  }
+
+  &__category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #fff;
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-family: var(--font-headline);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  // ── Meta ─────────────────────────────────────────────────────────
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 16px 0;
+    font-size: 0.8rem;
+    color: var(--color-on-surface-variant);
+  }
+
+  &__author {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  &__sep {
+    opacity: 0.5;
+  }
+
+  &__date {
+    opacity: 0.75;
+  }
+
+  // ── Body ─────────────────────────────────────────────────────────
+  &__summary {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--color-on-surface);
+    margin: 16px 16px 0;
+    font-style: italic;
+    opacity: 0.9;
+  }
+
+  &__content {
+    padding: 16px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--color-on-surface);
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 12px 0;
+      object-fit: cover;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    h2, h3 {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      margin: 20px 0 8px;
+    }
+
+    a {
+      color: var(--color-primary);
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin: 0 0 12px;
+    }
+  }
+}

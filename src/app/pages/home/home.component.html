@@ -21,6 +21,7 @@
     (categorySelect)="onCategorySelect($event)">
   </quick-category-grid>
 
+  <!-- New Arrival Sections-->
   <app-product-section 
     [sectionTitle]="'New Arrivals'" 
     [products]="(newArrivals$ | async) || []" 
@@ -29,6 +30,7 @@
     (productAddToCart)="onAddToCart($event)">
   </app-product-section>
 
+  <!-- Deal of the Day Sections-->
   <app-product-section 
     [sectionTitle]="'Deal of the Day'" 
     [products]="(dealOfDay$ | async) || []" 
@@ -40,7 +42,7 @@
   <ng-container *ngIf="activeId === 'dog'">
     <app-promo-banner theme="dog" title="Food, toys, and essentials for dog" (exploreClick)="onPromoExplore($event)">
     </app-promo-banner>
-
+    <!-- Dog products sections-->
     <app-product-section 
       [sectionTitle]="'Everything For Dogs'" 
       [products]="(dogProducts$ | async) || []" 
@@ -53,7 +55,7 @@
   <ng-container *ngIf="activeId === 'cat'">
     <app-promo-banner theme="cat" title="Food, toys, and essentials for cat" (exploreClick)="onPromoExplore($event)">
     </app-promo-banner>
-
+<!-- Cat products sections-->
     <app-product-section 
       [sectionTitle]="'Everything For Cats'" 
       [products]="(catProducts$ | async) || []" 
@@ -65,9 +67,11 @@
 
   <app-news-feed 
     [articles]="(news$ | async) || []" 
-    [sectionTitle]="'Latest News'" 
-    [maxItems]="5"
+    [sectionTitle]="'Latest News'"
+    [maxItems]="10"
+    [hasMore]="(newsHasMore$ | async) ?? false"
+    [loadingMore]="(newsLoadingMore$ | async) ?? false"
     (articleClick)="onNewsArticleClick($event)" 
-    (seeAllClick)="onSeeAll('News')">
+    (seeMoreClick)="onNewsLoadMore()">
   </app-news-feed>
 </ion-content>

@@ -32,7 +32,7 @@ export const initialCartState: CartState = {
 // ─── Favorites ───────────────────────────────────────────────────────────────
 
 export interface FavoritesState {
-  ids: string[];
+  ids: number[];
   isLoading: boolean;
   error: string | null;
 }
@@ -84,8 +84,7 @@ export interface ProductState {
   slider: ApiState<SlideModel[]>;
   detail: ApiState<ProductDetailModel>;
   popupBanner: ApiState<PopupBannerModel[]>;
-  dogFood: ApiState<ProductBriefModel[]>;
-  catFood: ApiState<ProductBriefModel[]>;
+  flashSale: ApiState<ProductBriefModel[]>;
 }
 
 export const initialProductState: ProductState = {
@@ -95,8 +94,7 @@ export const initialProductState: ProductState = {
   slider: createInitialApiState<SlideModel[]>([]),
   detail: createInitialApiState<ProductDetailModel>(),
   popupBanner: createInitialApiState<PopupBannerModel[]>([]),
-  dogFood: createInitialApiState<ProductBriefModel[]>([]),
-  catFood: createInitialApiState<ProductBriefModel[]>([]),
+  flashSale: createInitialApiState<ProductBriefModel[]>([]),
 };
 export interface CategoryState extends ApiState<CategoryModel[]> {
   selectedParentId: string | null;
@@ -107,10 +105,16 @@ export type CheckoutState = ApiState<CheckoutResponse>;
 
 export interface HomeState {
   newsFeed: ApiState<NewsBriefModel[]>;
+  newsTotal: number;
+  newsOffset: number;
+  newsLoadingMore: boolean;
 }
 
 export const initialHomeState: HomeState = {
   newsFeed: createInitialApiState<NewsBriefModel[]>([]),
+  newsTotal: 0,
+  newsOffset: 0,
+  newsLoadingMore: false,
 };
 
 

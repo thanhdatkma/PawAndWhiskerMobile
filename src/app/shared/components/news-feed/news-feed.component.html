@@ -4,7 +4,6 @@
   <!-- Section Header -->
   <div class="news-feed__header">
     <h3 class="news-feed__title">{{ sectionTitle }}</h3>
-    <button class="news-feed__see-all" (click)="onSeeAll()">See all</button>
   </div>
 
   <!-- Article List -->
@@ -17,15 +16,24 @@
       <!-- Thumbnail -->
       <ion-img
         class="news-feed__thumbnail"
-        [src]="article.thumbnailImage"
+        [src]="getImageUrl(article)"
         [alt]="article.title"></ion-img>
 
       <!-- Text -->
       <div class="news-feed__body">
         <h5 class="news-feed__article-title">{{ article.title }}</h5>
         <p class="news-feed__article-summary">{{ article.summary }}</p>
+        <span class="news-feed__meta">{{ article.author }} · {{ article.created_at | date:'mediumDate' }}</span>
       </div>
     </div>
+  </div>
+
+  <!-- See More -->
+  <div class="news-feed__footer" *ngIf="hasMore || loadingMore">
+    <button class="news-feed__see-more" (click)="onSeeMore()" [disabled]="loadingMore">
+      <ion-spinner *ngIf="loadingMore" name="crescent" class="news-feed__spinner"></ion-spinner>
+      <span *ngIf="!loadingMore">See More</span>
+    </button>
   </div>
 
 </section>
