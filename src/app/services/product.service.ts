@@ -32,6 +32,14 @@ export class ProductService extends BaseService {
     return this.get<ProductDetailModel>(`wooconnector/v1/products/${id}`);
   }
 
+  getRelatedProducts(id: number, page = 1, perPage = 8): Observable<PaginationModel<ProductBriefModel>> {
+    return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/product/related/id`, {
+      id,
+      page,
+      perPage,
+    });
+  }
+
   getNewArrivals(params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
     return this.get<PaginationModel<ProductBriefModel>>(`wooconnector/v1/products/new-arrivals`, params);
   }

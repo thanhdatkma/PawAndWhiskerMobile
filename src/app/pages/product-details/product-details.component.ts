@@ -13,7 +13,8 @@ import { FavoriteService } from '../../services/favorite.service';
 import { BaseComponent } from '../../shared/components/base-component/base.component';
 import { ProductActions, selectProductDetail } from 'src/app/store';
 import { CurrencyPipe } from '../../pipes/currency-pipe';
-import { takeUntil } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -36,11 +37,23 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
   descriptionTabs: ProductDescriptionTabModel[] = [];
   productImages: string[] = [];
   recommendedProducts: ProductBriefModel[] = [];
+  recommendedPage = 1;
+  recommendedPerPage = 10;
+  recommendedHasNext = false;
+  recommendedLoading = false;
+  private recommendedSourceProductId: number | null = null;
   productDetail: ProductDetailModel | undefined;
+  keyBenefitsTitle = '';
+  keyBenefitsItems: string[] = [];
+  qualityAssuranceTitle = '';
+  qualityAssuranceItems: string[] = [];
   productDetail$ = this.store.select(selectProductDetail);
   private route = inject(ActivatedRoute);
 
-  constructor(private favoriteService: FavoriteService) {
+  constructor(
+    private favoriteService: FavoriteService,
+    private productService: ProductService
+  ) {
     super();
     addIcons({
       'arrow-back-outline': arrowBackOutline,
@@ -72,12 +85,14 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
       if (!product) return;
       this.productDetail = this.normalizeProductDetail(product as ProductDetailModel);
       this.productImages = this.normalizeImageUrls((this.productDetail as any)?.images);
-      this.recommendedProducts = Array.isArray((product as any)?.related_products)
-        ? (product as any).related_products
-        : [];
       this.descriptionTabs = Array.isArray((this.productDetail as any)?.description_tabs)
         ? ((this.productDetail as any).description_tabs as ProductDescriptionTabModel[])
         : [];
+      this.applyBenefitsSections(this.productDetail as ProductDetailModel);
+      if (this.productDetail?.id && this.productDetail.id !== this.recommendedSourceProductId) {
+        this.recommendedSourceProductId = this.productDetail.id;
+        this.loadInitialRecommendations();
+      }
       if (this.descriptionTabs.length > 0 && !this.descriptionTabs.some((tab) => tab.key === this.activeTab)) {
         this.activeTab = this.descriptionTabs[0].key;
       }
@@ -88,7 +103,6 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
       this.checkFavorite();
     });
 
-    this.loadInitialRecommendations();
   }
 
   async shareProduct() {
@@ -108,34 +122,22 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
   }
 
   loadInitialRecommendations() {
-    // Simulate loading 10 items
-    // this.recommendedProducts = this.generateMockProducts(10);
+    if (!this.recommendedSourceProductId || this.recommendedLoading) return;
+    this.recommendedPage = 1;
+    this.recommendedProducts = [];
+    this.fetchRecommendedProducts(this.recommendedPage, true);
   }
 
   loadMoreProducts(event: any) {
-    // setTimeout(() => {
-    //   const nextBatch = this.generateMockProducts(10);
-    //   this.recommendedProducts = [...this.recommendedProducts, ...nextBatch];
-    //   event.target.complete();
-
-    //   // Limit to 40 items for demo
-    //   if (this.recommendedProducts.length >= 40) {
-    //     event.target.disabled = true;
-    //   }
-    // }, 1000);
+    if (!this.recommendedHasNext || this.recommendedLoading) {
+      if (event?.target) {
+        event.target.complete();
+        event.target.disabled = !this.recommendedHasNext;
+      }
+      return;
+    }
+    this.fetchRecommendedProducts(this.recommendedPage + 1, false, event);
   }
-
-  // private generateMockProducts(count: number): ProductBriefModel[] {
-  //   const products = this.productService.getProductsSync();
-  //   // Return a slice of products, cycling through if we exceed the total available
-  //   return Array.from({ length: count }).map((_, i) => {
-  //     const index = (this.recommendedProducts.length + i) % products.length;
-  //     return {
-  //       ...products[index],
-  //       id: `rec-${this.recommendedProducts.length + i}`
-  //     };
-  //   });
-  // }
 
   checkFavorite() {
     if (!this.productDetail) return;
@@ -284,5 +286,66 @@ export class ProductDetailsComponent extends BaseComponent implements OnInit {
         content: String(tab?.content ?? ''),
       }))
       .filter((tab: ProductDescriptionTabModel) => tab.key && tab.title);
+  }
+
+  private applyBenefitsSections(product: ProductDetailModel): void {
+    const sections = (product as any)?.benefits_sections ?? {};
+    const keyBenefits = sections?.key_benefits ?? {};
+    const qualityAssurance = sections?.quality_assurance ?? {};
+
+    this.keyBenefitsTitle = this.getSectionTitle(keyBenefits?.title_meta);
+    this.keyBenefitsItems = this.getSectionItems(keyBenefits?.content_meta);
+
+    this.qualityAssuranceTitle = this.getSectionTitle(qualityAssurance?.title_meta);
+    this.qualityAssuranceItems = this.getSectionItems(qualityAssurance?.content_meta);
+  }
+
+  private getSectionTitle(value: unknown): string {
+    if (typeof value !== 'string') return '';
+    const trimmed = value.trim();
+    return trimmed;
+  }
+
+  private getSectionItems(value: unknown): string[] {
+    if (!Array.isArray(value)) return [];
+    const normalized = value
+      .map((item: unknown) => (typeof item === 'string' ? item.trim() : ''))
+      .filter((item: string) => !!item);
+    return normalized;
+  }
+
+  private fetchRecommendedProducts(page: number, reset = false, event?: any): void {
+    if (!this.recommendedSourceProductId) {
+      if (event?.target) event.target.complete();
+      return;
+    }
+
+    this.recommendedLoading = true;
+    this.productService
+      .getRelatedProducts(this.recommendedSourceProductId, page, this.recommendedPerPage)
+      .pipe(
+        finalize(() => {
+          this.recommendedLoading = false;
+          if (event?.target) {
+            event.target.complete();
+            event.target.disabled = !this.recommendedHasNext;
+          }
+        }),
+        takeUntil(this.destroyed$)
+      )
+      .subscribe({
+        next: (response) => {
+          const items = Array.isArray(response?.items) ? response.items : [];
+          this.recommendedProducts = reset ? items : [...this.recommendedProducts, ...items];
+          this.recommendedPage = response?.pageIndex ?? page;
+          this.recommendedHasNext = !!response?.hasNextPage;
+        },
+        error: () => {
+          if (reset) {
+            this.recommendedProducts = [];
+          }
+          this.recommendedHasNext = false;
+        },
+      });
   }
 }

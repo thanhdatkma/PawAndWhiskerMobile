@@ -75,6 +75,11 @@ export interface ProductDescriptionTabModel {
   content: string;
 }
 
+export interface ProductBenefitsSectionModel {
+  title_meta: string;
+  content_meta: string[];
+}
+
 export interface ProductDetailModel {
   id: number;
   name: string;
@@ -95,6 +100,10 @@ export interface ProductDetailModel {
   tags?: ProductTagModel[];
   related_products?: ProductBriefModel[];
   description_tabs?: ProductDescriptionTabModel[];
+  benefits_sections?: {
+    key_benefits?: ProductBenefitsSectionModel;
+    quality_assurance?: ProductBenefitsSectionModel;
+  };
 
   metadata?: ProductMetadataModel;
   rating_summary?: ProductRatingSummaryModel;
