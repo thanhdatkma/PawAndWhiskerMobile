@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="thumbnail-list hide-scrollbar">
-          <div *ngFor="let img of productDetail.images" class="thumbnail-item" [class.active]="img === productDetail.mainImage"
+          <div *ngFor="let img of productImages" class="thumbnail-item" [class.active]="img === productDetail.mainImage"
             (click)="setMainImage(img)">
             <ion-img [src]="img" class="thumbnail-img"></ion-img>
           </div>
@@ -31,9 +31,10 @@
       <!-- Product Details -->
       <ion-col size="12" size-lg="6" class="details-section ion-padding">
         <nav class="breadcrumb">
-          <ng-container *ngFor="let crumb of productDetail.breadcrumbs; let last = last">
-            <ion-text [class.active]="crumb.isActive" (click)="crumb.url && navigate(crumb.url)">
-              {{ crumb.label }}
+          <ng-container *ngFor="let crumb of productDetail.breadcrumb; let last = last">
+            <ion-text [class.active]="crumb.slug === productDetail.categories?.[0]?.slug"
+              (click)="navigate('/category-detail/' + (crumb.id || crumb.Id || ''))">
+              {{ crumb.name }}
             </ion-text>
             <ion-icon *ngIf="!last" name="chevron-forward-outline"></ion-icon>
           </ng-container>
@@ -107,15 +108,81 @@
     <ion-row class="tab-section">
       <ion-col size="12">
         <div class="tab-header hide-scrollbar">
-          <ion-button fill="clear" class="tab-btn" [class.active]="activeTab === 'info'"
-            (click)="setTab('info')">Product Information</ion-button>
-          <ion-button fill="clear" class="tab-btn" [class.active]="activeTab === 'ingredients'"
-            (click)="setTab('ingredients')">Ingredients</ion-button>
-          <ion-button fill="clear" class="tab-btn" [class.active]="activeTab === 'guide'"
-            (click)="setTab('guide')">Feeding Guide</ion-button>
+          <ion-button *ngFor="let tab of descriptionTabs" fill="clear" class="tab-btn" [class.active]="activeTab === tab.key"
+            (click)="setTab(tab.key)">{{ tab.title }}</ion-button>
         </div>
-
-        <div class="tab-content" [ngSwitch]="activeTab">
+        <div class="tab-content">
+          <div class="info-content-grid" *ngIf="activeDescriptionContent; else emptyTabContent">
+            <div class="content-main">
+              <div class="description-text">
+                <ion-text [innerHTML]="activeDescriptionContent"></ion-text>
+              </div>
+              <ion-grid class="benefits-grid ion-no-padding">
+                <ion-row>
+                  <ion-col size="12" size-md="6">
+                    <h3 class="section-title">
+                      <ion-icon name="leaf-outline" class="title-icon"></ion-icon>
+                      <ion-text>Key Benefits</ion-text>
+                    </h3>
+                    <ul class="benefits-list">
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Specially formulated for adult dogs, this premium blend combines high-quality proteins with essential
+                  vitamins and minerals to support overall vitality and a shiny coat.</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Promotes healthy digestion with prebiotic fiber</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Supports joint health and mobility</ion-text>
+                      </li>
+                    </ul>
+                  </ion-col>
+                  <ion-col size="12" size-md="6">
+                    <h3 class="section-title">
+                      <ion-icon name="ribbon-outline" class="title-icon"></ion-icon>
+                      <ion-text>Quality Assurance</ion-text>
+                    </h3>
+                    <ul class="benefits-list">
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>100% USDA Certified Organic</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>No artificial preservatives or colors</ion-text>
+                      </li>
+                      <li>
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-text>Ethically sourced cage-free chicken</ion-text>
+                      </li>
+                    </ul>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="sidebar-promo-col">
+              <div class="promo-card">
+                <div class="promo-content">
+                  <h4 class="promo-title">
+                    <ion-text>Join the Club</ion-text>
+                  </h4>
+                  <ion-text class="promo-desc">Subscribe & save 10% on every order.</ion-text>
+                  <ion-button fill="solid" class="promo-btn">Learn More</ion-button>
+                </div>
+                <ion-icon name="paw" class="promo-bg-icon"></ion-icon>
+              </div>
+            </div>
+          </div>
+          <ng-template #emptyTabContent>
+            <div class="placeholder-text">
+              <ion-text>Content coming soon...</ion-text>
+            </div>
+          </ng-template>
+        </div>
+        <!-- <div class="tab-content" [ngSwitch]="activeTab">
           <div *switchCase="'info'" class="info-content-grid">
             <div class="content-main">
               <div class="description-text">
@@ -167,7 +234,7 @@
                 </ion-row>
               </ion-grid>
             </div>
-
+          
             <div class="sidebar-promo-col">
               <div class="promo-card">
                 <div class="promo-content">
@@ -187,7 +254,7 @@
           <div *ngSwitchCase="'guide'" class="placeholder-text">
             <ion-text>Feeding guidelines and portions coming soon...</ion-text>
           </div>
-        </div>
+        </div> -->
       </ion-col>
     </ion-row>
     <!-- You May Also Like Section -->

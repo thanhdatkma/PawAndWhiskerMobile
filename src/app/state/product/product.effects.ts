@@ -20,17 +20,12 @@ export class ProductEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProductDetail),
-          switchMap((action) => {
-        return of(ProductActions.loadProductDetailSuccess({
-          product: {} as ProductDetailModel
-        }))
+      switchMap((action) => {
+        return this.productService.getProductDetail(Number(action.productId)).pipe(
+          map((product) => ProductActions.loadProductDetailSuccess({ product })),
+          catchError((error) => of(ProductActions.loadProductDetailFailure({ error: error.message })))
+        );
       })
-      // switchMap((action) =>
-      //   this.productService.getProductDetail(action.productId).pipe(
-      //     map((product) => ProductActions.loadProductDetailSuccess({ product })),
-      //     catchError((error) => of(ProductActions.loadProductDetailFailure({ error: error.message })))
-      //   )
-      // )
     )
   );
 

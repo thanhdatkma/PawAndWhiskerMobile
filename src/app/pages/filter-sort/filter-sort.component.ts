@@ -93,6 +93,16 @@ export class FilterSortComponent implements OnInit {
   }
 
   apply() {
+    const selectedBrandIds = this.brands
+      .filter((brand: any) => brand.checked)
+      .map((brand: any) => brand.slug || brand.id || brand.label)
+      .filter((brandId: any) => brandId !== undefined && brandId !== null && brandId !== '');
+
+    const brandIds =
+      selectedBrandIds.length > 1
+        ? selectedBrandIds.join(',')
+        : (selectedBrandIds[0] ?? '');
+
     this.modalCtrl.dismiss({
       filterState: {
         ...this.filterState,
@@ -100,7 +110,8 @@ export class FilterSortComponent implements OnInit {
         pricings: this.pricings,
         tags: this.tags,
         selectedSort: this.selectedSort,
-        sortBy: this.filterState.sortBy
+        sortBy: this.filterState.sortBy,
+        brandIds,
       }
     });
   }

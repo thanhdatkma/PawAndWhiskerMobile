@@ -260,17 +260,32 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
     const selectedTags = (this.filterState.tags || [])
       .filter((item: any) => item.checked)
       .map((item: any) => item.slug || item.label);
-    const selectedPricing = (this.filterState.pricings || []).find((item: any) => item.checked);
-
     let minPrice = 0;
     let maxPrice = 0;
-    if (selectedPricing?.label) {
-      const [from, to] = selectedPricing.label
-        .replace(/\$/g, '')
-        .split('-')
-        .map((value: string) => Number(value.trim()));
-      minPrice = Number.isFinite(from) ? from : 0;
-      maxPrice = Number.isFinite(to) ? to : 0;
+    const selectedPricings = this.filterState.pricings.filter((pricing: any) => pricing.checked);
+
+    // const selectedPricing = (this.filterState.pricings || []).find((item: any) => item.checked);
+    if (selectedPricings.length >= 2) {
+      const ranges = selectedPricings
+        .map((pricing: any) => {
+          const [fromRaw, toRaw] = String(pricing.label ?? '')
+            .replace(/\$/g, '')
+            .split('-')
+            .map((value: string) => Number(value.trim()));
+          return {
+            from: Number.isFinite(fromRaw) ? fromRaw : null,
+            to: Number.isFinite(toRaw) ? toRaw : null
+          };
+        })
+        .filter((range: { from: number | null; to: number | null }) => range.from !== null && range.to !== null);
+
+      if (ranges.length > 0) {
+        minPrice = Math.min(...ranges.map((range: { from: number | null }) => range.from as number));
+        maxPrice = Math.max(...ranges.map((range: { to: number | null }) => range.to as number));
+      }
+    } else if (selectedPricings.length === 1) {
+      minPrice = selectedPricings[0].min;
+      maxPrice = selectedPricings[0].max;
     }
 
     this.filterState = {

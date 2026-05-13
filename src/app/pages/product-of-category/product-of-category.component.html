@@ -15,17 +15,17 @@
   <div class="sticky-filter-wrapper" [class.filter-hidden]="isFilterHidden">
     <div class="filter-bar">
       <div class="filter-scroll-container">
-        <button class="filter-btn" (click)="openFilterSort(FilterTab.BRANDS)" [class.has-filter]="getFilterCount(FilterTab.BRANDS) > 0">
+        <button class="filter-btn" (click)="openFilterSort(FilterTab.BRANDS)" [class.has-filter]="getFilterCount(FilterTab.BRANDS) > 0" *ngIf="filterState.brands?.length > 0">
           <ion-text>Brands</ion-text>
           <ion-badge color="primary" *ngIf="getFilterCount(FilterTab.BRANDS) > 0" class="filter-badge">{{getFilterCount(FilterTab.BRANDS)}}</ion-badge>
           <ion-icon name="chevron-down-outline" *ngIf="getFilterCount(FilterTab.BRANDS) === 0"></ion-icon>
         </button>
-        <button class="filter-btn" (click)="openFilterSort(FilterTab.PRICING)" [class.has-filter]="getFilterCount(FilterTab.PRICING) > 0">
+        <button class="filter-btn" (click)="openFilterSort(FilterTab.PRICING)" [class.has-filter]="getFilterCount(FilterTab.PRICING) > 0" *ngIf="filterState.pricings?.length > 0">
           <ion-text>Pricing</ion-text>
           <ion-badge color="primary" *ngIf="getFilterCount(FilterTab.PRICING) > 0" class="filter-badge">{{getFilterCount(FilterTab.PRICING)}}</ion-badge>
           <ion-icon name="chevron-down-outline" *ngIf="getFilterCount(FilterTab.PRICING) === 0"></ion-icon>
         </button>
-        <button class="filter-btn" (click)="openFilterSort(FilterTab.TAGS)" [class.has-filter]="getFilterCount(FilterTab.TAGS) > 0">
+        <button class="filter-btn" (click)="openFilterSort(FilterTab.TAGS)" [class.has-filter]="getFilterCount(FilterTab.TAGS) > 0" *ngIf="filterState.tags?.length > 0">
           <ion-text>Tags</ion-text>
           <ion-badge color="primary" *ngIf="getFilterCount(FilterTab.TAGS) > 0" class="filter-badge">{{getFilterCount(FilterTab.TAGS)}}</ion-badge>
           <ion-icon name="chevron-down-outline" *ngIf="getFilterCount(FilterTab.TAGS) === 0"></ion-icon>

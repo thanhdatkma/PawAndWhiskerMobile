@@ -29,7 +29,7 @@ export class ProductService extends BaseService {
   }
 
   getProductDetail(id: number): Observable<ProductDetailModel> {
-    return this.get<ProductDetailModel>(`api/products/${id}`);
+    return this.get<ProductDetailModel>(`wooconnector/v1/products/${id}`);
   }
 
   getNewArrivals(params: SearchParamsModel = {}): Observable<PaginationModel<ProductBriefModel>> {
