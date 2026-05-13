@@ -12,7 +12,8 @@ import { BaseComponent } from '../../shared/components/base-component/base.compo
 import { ProductBriefModel } from '../../models/product-brief.model';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
-import { takeUntil, take } from 'rxjs/operators';
+import { takeUntil, take, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { ModalController } from '@ionic/angular/standalone';
 import { AppHeaderComponent } from '../../shared/components/app-header/app-header.component';
@@ -106,19 +107,36 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   }
   override ngOnInit() {
     super.ngOnInit();
+    this.categoryId = this.route.snapshot.paramMap.get('id');
+    this.sectionKey = this.route.snapshot.queryParamMap.get('section');
+    this.initialSearchTerm = this.route.snapshot.queryParamMap.get('searchTerm') ?? '';
+    this.categoryName = this.route.snapshot.queryParamMap.get('title') ?? 'Products';
+    this.backButtonDefaultHref = this.sectionKey ? '/tabs/home' : '/tabs/categories';
+
     this.filterState = {
+      ...this.filterState,
       ...this.categoryService.getFilterState(),
+      categoryIds: this.categoryId ? [this.categoryId] : [],
       selectedSort: { 
         value: SortType.DEFAULT, 
         label: SORT_OPTIONS_MAP.get(SortType.DEFAULT)! 
       }
     };
 
-    this.categoryId = this.route.snapshot.paramMap.get('id');
-    this.sectionKey = this.route.snapshot.queryParamMap.get('section');
-    this.initialSearchTerm = this.route.snapshot.queryParamMap.get('searchTerm') ?? '';
-    this.categoryName = this.route.snapshot.queryParamMap.get('title') ?? 'Products';
-    this.backButtonDefaultHref = this.sectionKey ? '/tabs/home' : '/tabs/categories';
+    if (this.categoryId) {
+      this.categoryService.getFilterOptions(this.categoryId).pipe(
+        takeUntil(this.destroyed$),
+        catchError(() => of({ brands: [], pricings: [], tags: [], sortBy: [] }))
+      ).subscribe((opts) => {
+        this.filterState = {
+          ...this.filterState,
+          brands: opts.brands,
+          pricings: opts.pricings,
+          tags: opts.tags,
+          sortBy: opts.sortBy
+        };
+      });
+    }
 
     if (this.categoryId || this.initialSearchTerm || this.sectionKey) {
       this.store.dispatch(ProductActions.loadProductsByCategory({ 
@@ -227,7 +245,7 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
 
     const { data } = await modal.onDidDismiss();
     if (data && data.filterState) {
-      this.filterState = data.filterState;
+      this.filterState = { ...this.filterState, ...data.filterState };
       this.applyFilters();
     }
   }
@@ -238,10 +256,10 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
       : this.filterState.selectedSort;
     const selectedBrands = (this.filterState.brands || [])
       .filter((item: any) => item.checked)
-      .map((item: any) => item.label);
+      .map((item: any) => item.slug || item.id || item.label);
     const selectedTags = (this.filterState.tags || [])
       .filter((item: any) => item.checked)
-      .map((item: any) => item.label);
+      .map((item: any) => item.slug || item.label);
     const selectedPricing = (this.filterState.pricings || []).find((item: any) => item.checked);
 
     let minPrice = 0;
@@ -284,6 +302,8 @@ export class ProductOfCategoryComponent extends BaseComponent implements OnInit 
   getFilterCount(type: FilterTab): number {
     if (type === FilterTab.SORT) return 0;
     const key = type === FilterTab.PRICING ? 'pricings' : type;
-    return (this.filterState as any)[key].filter((item: any) => item.checked).length;
+    const list = (this.filterState as any)[key];
+    if (!Array.isArray(list)) return 0;
+    return list.filter((item: any) => item.checked).length;
   }
 }

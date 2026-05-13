@@ -54,9 +54,15 @@ export class FilterSortComponent implements OnInit {
   ngOnInit() {
     this.currentTab = this.initialTab;
     if (this.filterState) {
-      this.brands = JSON.parse(JSON.stringify(this.filterState.brands));
-      this.pricings = JSON.parse(JSON.stringify(this.filterState.pricings));
-      this.tags = JSON.parse(JSON.stringify(this.filterState.tags));
+      this.brands = JSON.parse(JSON.stringify(this.filterState.brands ?? []));
+      this.pricings = JSON.parse(JSON.stringify(this.filterState.pricings ?? []));
+      this.tags = JSON.parse(JSON.stringify(this.filterState.tags ?? []));
+      if (Array.isArray(this.filterState.sortBy) && this.filterState.sortBy.length > 0) {
+        this.sorts = this.filterState.sortBy.map((o: { value: SortType; label: string }) => ({
+          value: o.value,
+          label: o.label
+        }));
+      }
       if (typeof this.filterState.selectedSort === 'string') {
         const val = this.filterState.selectedSort as SortType;
         this.selectedSort = { value: val, label: SORT_OPTIONS_MAP.get(val)! };
@@ -89,10 +95,12 @@ export class FilterSortComponent implements OnInit {
   apply() {
     this.modalCtrl.dismiss({
       filterState: {
+        ...this.filterState,
         brands: this.brands,
         pricings: this.pricings,
         tags: this.tags,
-        selectedSort: this.selectedSort
+        selectedSort: this.selectedSort,
+        sortBy: this.filterState.sortBy
       }
     });
   }

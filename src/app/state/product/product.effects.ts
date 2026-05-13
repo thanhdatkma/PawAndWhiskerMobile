@@ -71,8 +71,8 @@ export class ProductEffects {
           searchTerm: action.searchTerm || '',
           sortBy: action.sortBy || 'name',
           sortDirection: action.sortDirection || 'asc',
-          brandIds: action.brandIds,
-          attributeIds: action.attributeIds,
+          brandIds: Array.isArray(action.brandIds) ? action.brandIds.join(',') : (action.brandIds ?? ''),
+          attributeIds: Array.isArray(action.attributeIds) ? action.attributeIds.join(',') : (action.attributeIds ?? ''),
           minPrice: action.minPrice,
           maxPrice: action.maxPrice
         };

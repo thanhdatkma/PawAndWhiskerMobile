@@ -30,24 +30,28 @@ export class CategoryService extends BaseService {
 
   getFilterState() {
     return {
-      brands: [
-        { label: 'Nike', count: 120, checked: false },
-        { label: 'Adidas', count: 85, checked: false },
-        { label: 'Puma', count: 40, checked: false },
-        { label: 'Reebok', count: 25, checked: false },
-        { label: 'Under Armour', count: 18, checked: false }
-      ],
-      pricings: [
-        { label: '$0 - $31', count: 800, checked: false },
-        { label: '$31 - $64', count: 8, checked: false },
-        { label: '$64 - $121', count: 3, checked: false }
-      ],
-      tags: [
-        { label: 'New', count: 4, checked: false },
-        { label: 'On Sale', count: 20, checked: false },
-        { label: 'In Stock', count: 3, checked: false }
-      ]
+      brands: [],
+      pricings: [],
+      tags: [],
+      sortBy: []
     };
+  }
+
+  getFilterOptions(categoryId: string): Observable<{ brands: any[]; pricings: any[]; tags: any[]; sortBy: any[] }> {
+    return this.get<{
+      branches?: any[];
+      brands?: any[];
+      pricings?: any[];
+      tags?: any[];
+      sortBy?: any[];
+    }>('wooconnector/v1/filter-options', { category_id: categoryId }).pipe(
+      map((res) => ({
+        brands: (res.brands ?? []).map((b) => ({ ...b, checked: Boolean(b.checked) })),
+        pricings: (res.pricings ?? []).map((p) => ({ ...p, checked: Boolean(p.checked) })),
+        tags: (res.tags ?? []).map((t) => ({ ...t, checked: Boolean(t.checked) })),
+        sortBy: res.sortBy ?? []
+      }))
+    );
   }
 
   private mapCategory(item: any): CategoryModel {

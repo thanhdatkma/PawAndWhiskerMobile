@@ -6,7 +6,7 @@ export enum FilterTab {
 }
 
 export enum SortType {
-  DEFAULT = 'default',
+  DEFAULT = 'name',
   PRICE_ASC = 'price_asc',
   PRICE_DESC = 'price_desc',
   BRAND_ASC = 'brand_asc',
